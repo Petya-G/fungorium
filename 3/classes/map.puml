@@ -1,5 +1,8 @@
 @startuml
+Map *-- "0..1" Tecton
 class Map{
-
+    tectons : List<Tectons>
+    void generate()
+    void splitRandomTecton()
 }
 @enduml

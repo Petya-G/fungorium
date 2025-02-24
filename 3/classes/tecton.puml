@@ -1,11 +1,13 @@
 @startuml
+
 Tecton "2..12" -- Tecton : neighbour
 Tecton o-- "0..*" Entity
 Tecton *-- "0..1" Body
 class Tecton {
   neighbours : List<Tecton>
   entities : List<Entity>
-  void split()
+  void deleteThreads()
+  void plantBody()
   void effect()
 }
 

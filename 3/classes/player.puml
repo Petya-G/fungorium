@@ -1,5 +1,16 @@
 @startuml
-class Player{
+abstract class Player{
+    id : Integer
+
+}
+
+Player <|-- Mushroomer
+class Mushroomer{
+    bodies : List<Bodies>
+}
+
+Player <|-- Insecter
+class Insecter{
 
 }
 @enduml
