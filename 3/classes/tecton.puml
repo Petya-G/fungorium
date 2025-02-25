@@ -8,17 +8,11 @@
     {static} maxBodies: Integer
     minNeighbours : Integer
     maxNeighbours : Integer
+    entities : Entity[]
 
     addNeighbour(Tecton) : void
-    addThread(Thread) : void
-    addSpores(Body) : void
-    addBody(Body) : void
-    addInsect(Insect) : void
-    addSpore(Spore) : void
-    removeInsect(Insect) : void
-    removeBody(Body) : void
-    removeThread(Thread) : void
-    removeSpores(Spore) : void
+    addEntity(Entity) : void
+    removeEntity(Entity) : void
   }
 
   Tecton *-- "0..1" Body
