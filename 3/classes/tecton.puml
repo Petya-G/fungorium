@@ -4,8 +4,8 @@
   ATecton *-- "0..*" Spores
   ATecton <|.. IEffect
   abstract class ATecton {
-    {static} maxThreads = -1 : Integer
-    {static} maxBodies = 1: Integer
+    {static} maxThreads : Integer
+    {static} maxBodies: Integer
     minNeighbours : Integer
     maxNeighbours : Integer
 

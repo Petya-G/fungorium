@@ -2,6 +2,7 @@
 
 Thread <|-- Entity
 class Thread{
-
+    tecton1 : Tecton
+    tecton2 : Tecton
 }
 @enduml

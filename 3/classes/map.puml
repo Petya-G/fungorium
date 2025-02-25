@@ -1,7 +1,8 @@
 @startuml map
 Map *-- "0..1" ATecton
 class Map{
-    void generate()
-    void splitRandomTecton()
+    tectons : Tecton[]
+    generate() : void
+    splitRandomTecton() : void
 }
 @enduml
