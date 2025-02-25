@@ -1,27 +1,48 @@
 @startuml
+package tecton{
 
-Tecton "2..12" -- Tecton : neighbour
-Tecton o-- "0..*" Entity
-Tecton *-- "0..1" Body
-class Tecton {
-  neighbours : List<Tecton>
-  entities : List<Entity>
-  void deleteThreads()
-  void plantBody()
-  void effect()
-}
+  ATecton "2..12" -- ATecton : neighbour
+  ATecton o-- "0..*" Insect
+  abstract class ATecton {
+    {static} maxThreads = -1 : Integer
+    {static} maxBodies = 1: Integer
+    minNeighbours : Integer
+    maxNeighbours : Integer
+    addNeighbour(Tecton) : void
+    addThread(Thread) : void
+    addSpore(Body) : void
+    addBody(Body) : void
+    addInsect(Insect) : void
+    removeInsect(Insect) : void
+    removeBody(Body) : void
+    removeThread(Thread) : void
+    effect() : void
+  }
 
-Tecton <|-- SingleThreadedTecton
-class SingleThreadedTecton <<SingleThreaded>> {
-}
+  Tecton *-- "0..1" Body
+  Tecton *-- "0..*" Thread
+  ATecton <|-- Tecton
+  class Tecton {
+  }
 
-Tecton <|-- BodylessTecton
-class BodylessTecton <<Bodyless>>{
+  SingleThreadedTecton *-- "0..1" Body
+  SingleThreadedTecton *-- "0..1" Thread
+  ATecton <|-- SingleThreadedTecton
+  class SingleThreadedTecton {
+    {static} maxThreads = 1 : Integer
+  }
 
-}
 
-Tecton <|-- ThreadConsumingTecton
-class ThreadConsumingTecton <<ThreadConsuming>>{
+  BodylessTecton *-- "0..*" Thread
+  ATecton <|-- BodylessTecton
+  class BodylessTecton {
+    {static} maxBodies = 0 : Integer
+  }
 
+  ThreadConsumingTecton *-- "0..1" Body
+  ThreadConsumingTecton *-- "0..*" Thread
+  ATecton <|-- ThreadConsumingTecton
+  class ThreadConsumingTecton {
+  }
 }
 @enduml
