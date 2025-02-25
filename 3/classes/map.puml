@@ -1,4 +1,4 @@
-@startuml
+@startuml map
 Map *-- "0..1" Tecton
 class Map{
     void generate()

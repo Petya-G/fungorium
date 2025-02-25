@@ -1,0 +1,12 @@
+@startuml fungorium
+package fungorium{
+    !include player.puml
+    !include map.puml
+    !include tecton.puml
+    !include entity.puml
+    !include spore.puml
+    !include thread.puml
+    !include body.puml
+    !include insect.puml
+}
+@enduml

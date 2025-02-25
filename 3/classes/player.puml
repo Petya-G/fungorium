@@ -1,16 +1,17 @@
-@startuml
+@startuml player
 abstract class Player{
     id : Integer
-
 }
 
 Player <|-- Mushroomer
 class Mushroomer{
-    bodies : List<Bodies>
+    plantBody(Tecton) : void
+    plantSpore(Tecton, Spore) : void
 }
 
 Player <|-- Insecter
 class Insecter{
-
+    moveInsect(Insect) : void
+    cutThread(Tecton, Insect) : void
 }
 @enduml

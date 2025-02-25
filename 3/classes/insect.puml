@@ -1,4 +1,4 @@
-@startuml
+@startuml insect
 class Insect{
 
 }

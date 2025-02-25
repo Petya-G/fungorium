@@ -1,8 +1,7 @@
-@startuml
-package tecton{
-
+@startuml tecton
   ATecton "2..12" -- ATecton : neighbour
   ATecton o-- "0..*" Insect
+  ATecton *-- "0..*" Spore
   abstract class ATecton {
     {static} maxThreads = -1 : Integer
     {static} maxBodies = 1: Integer
@@ -13,9 +12,11 @@ package tecton{
     addSpore(Body) : void
     addBody(Body) : void
     addInsect(Insect) : void
+    addSpore(Spore) : void
     removeInsect(Insect) : void
     removeBody(Body) : void
     removeThread(Thread) : void
+    removeSpore(Spore) : void
     effect() : void
   }
 
@@ -44,5 +45,4 @@ package tecton{
   ATecton <|-- ThreadConsumingTecton
   class ThreadConsumingTecton {
   }
-}
 @enduml
