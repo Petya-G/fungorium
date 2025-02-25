@@ -1,23 +1,24 @@
 @startuml tecton
   ATecton "2..12" -- ATecton : neighbour
   ATecton o-- "0..*" Insect
-  ATecton *-- "0..*" Spore
+  ATecton *-- "0..*" Spores
+  ATecton <|.. IEffect
   abstract class ATecton {
     {static} maxThreads = -1 : Integer
     {static} maxBodies = 1: Integer
     minNeighbours : Integer
     maxNeighbours : Integer
+
     addNeighbour(Tecton) : void
     addThread(Thread) : void
-    addSpore(Body) : void
+    addSpores(Body) : void
     addBody(Body) : void
     addInsect(Insect) : void
     addSpore(Spore) : void
     removeInsect(Insect) : void
     removeBody(Body) : void
     removeThread(Thread) : void
-    removeSpore(Spore) : void
-    effect() : void
+    removeSpores(Spore) : void
   }
 
   Tecton *-- "0..1" Body

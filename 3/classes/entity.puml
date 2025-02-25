@@ -2,4 +2,8 @@
 abstract class Entity {
     owner : Player
 }
+
+interface IEffect{
+    effect(Insect) : void
+}
 @enduml

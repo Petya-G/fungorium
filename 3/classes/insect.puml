@@ -2,6 +2,6 @@
 
 Insect <|-- Entity
 class Insect{
-
+    Consume(Spore)
 }
 @enduml

@@ -1,0 +1,8 @@
+@startuml colony
+
+Colony <|-- Entity
+class Colony{
+    bodies : Body[]
+    threads : Thread[]
+}
+@enduml

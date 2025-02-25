@@ -1,7 +1,39 @@
 @startuml spore
 
-Spore <|-- Entity
-class Spore{
+Spores *.. "1--*" SporeType
+Spores <|.. Entity
+class Spores{
+    count : Integer
+    sporeType : SporeType
+}
+
+SporeType <|.. IEffect
+class SporeType{
+    {static} calories : Integer
+}
+
+SlowDownSpore <|--SporeType
+class SlowDownSpore{
+
+}
+
+SpeedUpSpore <|--SporeType
+class SpeedUpSpore{
+
+}
+
+TastySpore <|--SporeType
+class TastySpore{
+
+}
+
+InsectParalizingSpore <|--SporeType
+class InsectParalizingSpore{
+
+}
+
+MouthParalizingSpore <|--SporeType
+class MouthParalizingSpore{
 
 }
 @enduml
