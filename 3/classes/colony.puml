@@ -2,7 +2,9 @@
 
 Colony <|-- Entity
 class Colony{
-    bodies : Body[]
-    threads : Thread[]
+    mushroomStems : MushroomStem[]
+    mushroomThreads : mushroomThread[]
+    mushroomStemCount: int
+    getMushroomStemCount(): int
 }
 @enduml

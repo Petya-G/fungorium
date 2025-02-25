@@ -1,9 +1,0 @@
-@startuml body
-
-Body <|-- Entity
-class Body{
-    throwableSpores : Spores[]
-    throwSpore(Spores, Tecton) : void
-    getColony() : Colonies
-}
-@enduml

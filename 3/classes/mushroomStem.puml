@@ -1,0 +1,13 @@
+@startuml body
+
+Body <|-- Entity
+class MushroomStem{
+    level: int
+    sporeThrowCnt: int
+    colony: Colony
+    getEnergy(): int
+    isDead(): boolean
+    getColony() : Colony
+    throwSpore() : void
+}
+@enduml

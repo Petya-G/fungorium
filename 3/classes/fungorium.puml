@@ -5,8 +5,9 @@ package fungorium{
     !include tecton.puml
     !include entity.puml
     !include spore.puml
-    !include thread.puml
-    !include body.puml
+    !include mushroomThread.puml
+    !include mushroomStem.puml
     !include insect.puml
+    !include colony.puml
 }
 @enduml
