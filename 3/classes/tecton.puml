@@ -27,21 +27,21 @@
   }
 
   SingleThreadedTecton *-- "0..1" Body
-  SingleThreadedTecton *-- "0..1" Thread
+  SingleThreadedTecton "2" *-- "0..1" Thread
   ATecton <|-- SingleThreadedTecton
   class SingleThreadedTecton {
     {static} maxThreads = 1 : Integer
   }
 
 
-  BodylessTecton *-- "0..*" Thread
+  BodylessTecton "2" *-- "0..*" Thread
   ATecton <|-- BodylessTecton
   class BodylessTecton {
     {static} maxBodies = 0 : Integer
   }
 
   ThreadConsumingTecton *-- "0..1" Body
-  ThreadConsumingTecton *-- "0..*" Thread
+  ThreadConsumingTecton "2" *-- "0..*" Thread
   ATecton <|-- ThreadConsumingTecton
   class ThreadConsumingTecton {
   }

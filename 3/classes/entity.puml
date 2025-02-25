@@ -1,5 +1,5 @@
 @startuml entity
 abstract class Entity {
-
+    owner : Player
 }
 @enduml

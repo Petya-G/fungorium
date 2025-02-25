@@ -4,14 +4,18 @@ abstract class Player{
 }
 
 Player <|-- Mushroomer
+Mushroomer o-- "0..*" Spore
+Mushroomer o-- "1..*" Body
+Mushroomer o-- "0..*" Thread
 class Mushroomer{
     plantBody(Tecton) : void
     plantSpore(Tecton, Spore) : void
 }
 
 Player <|-- Insecter
+Insecter o-- Insect
 class Insecter{
-    moveInsect(Insect) : void
-    cutThread(Tecton, Insect) : void
+    moveInsect(Insect, Tecton) : void
+    cutThread(Insect, Thread) : void
 }
 @enduml

@@ -1,5 +1,5 @@
 @startuml map
-Map *-- "0..1" Tecton
+Map *-- "0..1" ATecton
 class Map{
     void generate()
     void splitRandomTecton()
