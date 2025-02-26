@@ -1,7 +1,10 @@
 @startuml insect
 
 Insect <|-- Entity
+Insect o-- ATecton
 class Insect{
-    Consume(Spore)
+    eat(Spore) : void
+    move() : void
+    cutShroomThread(SroomThread St) : void
 }
 @enduml

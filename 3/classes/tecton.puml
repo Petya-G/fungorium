@@ -1,7 +1,7 @@
 @startuml tecton
   ATecton "2..12" -- ATecton : neighbour
   ATecton o-- "0..*" Insect
-  ATecton *-- "0..*" Spores
+  ATecton o-- "0..*" Spores
   ATecton <|.. IOnTurn
   ATecton <|.. IOnRound
   abstract class ATecton {
