@@ -20,7 +20,7 @@ Player <|-- Insecter
 Insecter o-- Insect
 class Insecter{
     insect : Insect
-    moveInsect(Insect) : void
-    cutThread(Insect) : void
+    moveInsect(Tecton) : void
+    cutThread(Thread) : void
 }
 @enduml
