@@ -3,6 +3,8 @@
   ATecton o-- "0..*" Insect
   ATecton *-- "0..*" Spores
   ATecton <|.. IEffect
+  ATecton <|.. IOnTurn
+  ATecton <|.. IOnRound
   abstract class ATecton {
     {static} maxThreads : Integer
     {static} maxBodies: Integer

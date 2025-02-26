@@ -1,4 +1,6 @@
 @startuml player
+Player <|.. IOnTurn
+Player <|.. IOnRound
 abstract class Player{
     id : Integer
 }

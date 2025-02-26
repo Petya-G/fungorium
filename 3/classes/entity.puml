@@ -6,4 +6,12 @@ abstract class Entity {
 interface IEffect{
     effect(Insect) : void
 }
+
+interface IOnTurn{
+    onTurnEnd() : void
+}
+
+interface IOnRound{
+    onRoundEnd() : void
+}
 @enduml

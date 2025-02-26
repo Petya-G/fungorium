@@ -1,12 +1,15 @@
 @startuml mushroomStem
 
+MushroomStem <|.. IOnTurn
+MushroomStem <|.. IOnRound
 MushroomStem <|-- Entity
 class MushroomStem{
-    level: int
-    sporeThrowCnt: int
-    getEnergy(): int
+    {static} maxSporeThrows : Integer
+    energy: Integer
+    level: Integer
+    thrownSpores: Integer
     isDead(): boolean
-    getColony() : Colony
-    throwSpore() : void
+    getColonies() : Colony[]
+    throwSpores(Spores, Tecton) : void
 }
 @enduml
