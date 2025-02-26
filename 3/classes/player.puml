@@ -5,9 +5,10 @@ abstract class Player{
     id : Integer
 }
 
-Player --|> Mushroomer
-Mushroomer o-- "0..*" Spores
-Mushroomer o-- "1..*" Colony
+Player <|-- Mushroomer
+Mushroomer o-- "0..*" MushroomStem
+Mushroomer o-- "0..*" MushroomThread
+Mushroomer --- "1..*" Colony
 class Mushroomer{
     mushroomStems : MushroomStem[]
     mushroomThreads : MushroomThread[]
