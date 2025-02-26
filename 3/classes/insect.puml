@@ -2,6 +2,8 @@
 
 Insect <|-- Entity
 class Insect{
-    Consume(Spore)
+    eat(Spore) : void
+    move() : void
+    cutShroomThread(SroomThread St) : void
 }
 @enduml
