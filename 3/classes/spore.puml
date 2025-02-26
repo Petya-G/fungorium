@@ -1,35 +1,33 @@
 @startuml spore
 
-Spores <|-- Entity
-Spores <|.. IEffect
-class Spores{
-    {static} calories : Integer
-    count : Integer
-    sporeType : SporeType
+Tecton *-- Spores
+
+abstract class Spores{
+    Nutrition : Integer
+    abstract effect(Insect) : void
 }
 
-SlowDownSpore <|-- Spores
+SlowingSpore <|--Spores
 class SlowDownSpore{
+    effect(Insect) : void
 
 }
 
-SpeedUpSpore <|-- Spores
+SpeedingSpore <|--Spores
 class SpeedUpSpore{
+    effect(Insect) : void
 
 }
 
-TastySpore <|-- Spores
-class TastySpore{
-
-}
-
-InsectParalizingSpore <|-- Spores
+InsectParalizingSpore <|--Spores
 class InsectParalizingSpore{
+    effect(Insect) : void
 
 }
 
-MouthParalizingSpore <|-- Spores
+ClawParalizingSpore <|--Spores
 class MouthParalizingSpore{
+    effect(Insect) : void
 
 }
-@enduml
+@enduml	
