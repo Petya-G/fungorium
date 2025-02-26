@@ -1,7 +1,7 @@
-@startuml thread
+@startuml mushroomThread
 
-Thread <|-- Entity
-class Thread{
+MushroomThread <|-- Entity
+class MushroomThread{
     tecton1 : Tecton
     tecton2 : Tecton
 }

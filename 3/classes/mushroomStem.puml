@@ -1,6 +1,6 @@
-@startuml body
+@startuml mushroomStem
 
-Body <|-- Entity
+MushroomStem <|-- Entity
 class MushroomStem{
     level: int
     sporeThrowCnt: int
