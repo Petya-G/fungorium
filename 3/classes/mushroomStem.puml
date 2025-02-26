@@ -4,7 +4,6 @@ Body <|-- Entity
 class MushroomStem{
     level: int
     sporeThrowCnt: int
-    colony: Colony
     getEnergy(): int
     isDead(): boolean
     getColony() : Colony
