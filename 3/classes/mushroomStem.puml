@@ -2,7 +2,7 @@
 
 MushroomStem <|.. IOnTurn
 MushroomStem <|.. IOnRound
-MushroomStem <|-- Entity
+MushroomStem --|> Entity
 class MushroomStem{
     {static} maxSporeThrows : Integer
     energy: Integer

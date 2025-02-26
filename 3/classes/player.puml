@@ -5,7 +5,7 @@ abstract class Player{
     id : Integer
 }
 
-Player <|-- Mushroomer
+Player --|> Mushroomer
 Mushroomer o-- "0..*" Spores
 Mushroomer o-- "1..*" Colony
 class Mushroomer{
@@ -16,7 +16,7 @@ class Mushroomer{
     throwSpore(Tecton, Spores) : void
 }
 
-Player <|-- Insecter
+Player --|> Insecter
 Insecter o-- Insect
 class Insecter{
     insect : Insect
