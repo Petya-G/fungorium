@@ -9,7 +9,7 @@ class MushroomStem{
     level: Integer
     thrownSpores: Integer
     isDead(): boolean
-    getColonies() : Colony[]
+    getColony() : Colony
     throwSpores(Spores, Tecton) : void
 }
 @enduml

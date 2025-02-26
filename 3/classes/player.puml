@@ -2,15 +2,17 @@
 Player <|.. IOnTurn
 Player <|.. IOnRound
 abstract class Player{
+    score : Integer
     id : Integer
 }
 
 Player <|-- Mushroomer
 Mushroomer o-- "0..*" Spores
-Mushroomer o-- "1..*" MushroomStem
-Mushroomer o-- "0..*" MushroomThread
+Mushroomer o-- "1..*" Colony
 class Mushroomer{
-    colonies : Colony[]
+    mushroomStems : MushroomStem[]
+    mushroomThreads : MushroomThread[]
+    getColonies() : Colony[]
     plantBody(Tecton) : void
     throwSpore(Tecton, Spores) : void
 }

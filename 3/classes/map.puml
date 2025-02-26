@@ -1,6 +1,6 @@
 @startuml map
 Map <|.. IOnTurn
-Map <|.. IOnRoun
+Map <|.. IOnRound
 Map *-- "0..1" ATecton
 class Map{
     tectons : Tecton[]

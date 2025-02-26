@@ -3,15 +3,11 @@ abstract class Entity {
     owner : Player
 }
 
-interface IEffect{
-    effect(Insect) : void
-}
-
 interface IOnTurn{
-    onTurnEnd() : void
+    onTurn() : void
 }
 
 interface IOnRound{
-    onRoundEnd() : void
+    onRound() : void
 }
 @enduml
