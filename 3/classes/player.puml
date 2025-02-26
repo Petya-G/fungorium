@@ -5,8 +5,8 @@ abstract class Player{
 
 Player <|-- Mushroomer
 Mushroomer o-- "0..*" Spores
-Mushroomer o-- "1..*" Body
-Mushroomer o-- "0..*" Thread
+Mushroomer o-- "1..*" mushroomStem
+Mushroomer o-- "0..*" mushroomThread
 class Mushroomer{
     colonies : Colony[]
     plantBody(Tecton) : void
