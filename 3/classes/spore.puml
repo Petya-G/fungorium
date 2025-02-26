@@ -8,25 +8,25 @@ abstract class Spores{
 }
 
 SlowingSpore <|--Spores
-class SlowDownSpore{
+class SlowingSpore{
     effect(Insect) : void
 
 }
 
 SpeedingSpore <|--Spores
-class SpeedUpSpore{
+class SpeedingSpore{
     effect(Insect) : void
 
 }
 
-InsectParalizingSpore <|--Spores
-class InsectParalizingSpore{
+ParalizingSpore <|--Spores
+class ParalizingSpore{
     effect(Insect) : void
 
 }
 
 ClawParalizingSpore <|--Spores
-class MouthParalizingSpore{
+class ClawParalizingSpore{
     effect(Insect) : void
 
 }
