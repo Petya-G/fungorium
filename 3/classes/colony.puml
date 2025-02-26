@@ -1,6 +1,6 @@
 @startuml colony
 
-Colony <|-- Entity
+Entity <|-- Colony
 Colony o-- "1..*" MushroomStem
 Colony o-- "0..*" MushroomThread
 class Colony{
