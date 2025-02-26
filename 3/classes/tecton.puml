@@ -5,7 +5,6 @@
   IOnTurn<|.. ATecton 
   IOnRound <|.. ATecton 
   ATecton *-- "0..*" Entity
-  ATecton o-- Insect
   abstract class ATecton {
     {static} maxThreads : Integer
     {static} maxBodies: Integer
