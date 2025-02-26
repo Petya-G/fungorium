@@ -4,6 +4,6 @@ Entity <|-- Insect
 class Insect{
     eat(Spore) : void
     move() : void
-    cutShroomThread(SroomThread St) : void
+    cutThread(MushroomThread) : void
 }
 @enduml

@@ -22,6 +22,6 @@ Insecter o-- Insect
 class Insecter{
     insect : Insect
     moveInsect(Tecton) : void
-    cutThread(Thread) : void
+    cutThread(MushroomThread) : void
 }
 @enduml
