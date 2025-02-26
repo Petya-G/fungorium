@@ -15,28 +15,28 @@
     removeEntity(Entity) : void
   }
 
-  Tecton *-- "0..1" Body
-  Tecton *-- "0..*" Thread
+  Tecton *-- "0..1" MushroomStem 
+  Tecton *-- "0..*" MushroomThread
   ATecton <|-- Tecton
   class Tecton {
   }
 
-  SingleThreadedTecton *-- "0..1" Body
-  SingleThreadedTecton "2" *-- "0..1" Thread
+  SingleThreadedTecton *-- "0..1" MushroomStem
+  SingleThreadedTecton "2" *-- "0..1" MushroomThread
   ATecton <|-- SingleThreadedTecton
   class SingleThreadedTecton {
     {static} maxThreads = 1 : Integer
   }
 
 
-  BodylessTecton "2" *-- "0..*" Thread
+  BodylessTecton "2" *-- "0..*" MushroomThread
   ATecton <|-- BodylessTecton
   class BodylessTecton {
     {static} maxBodies = 0 : Integer
   }
 
-  ThreadConsumingTecton *-- "0..1" Body
-  ThreadConsumingTecton "2" *-- "0..*" Thread
+  ThreadConsumingTecton *-- "0..1" MushroomStem
+  ThreadConsumingTecton "2" *-- "0..*" MushroomThread
   ATecton <|-- ThreadConsumingTecton
   class ThreadConsumingTecton {
   }
