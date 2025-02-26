@@ -4,7 +4,7 @@ Entity <|-- Spore
 
 abstract class Spore{
     Nutrition : Integer
-    abstract effect(Insect) : void
+    {abstract} effect(Insect) : void
 }
 
 Spore <|--SlowingSpore
