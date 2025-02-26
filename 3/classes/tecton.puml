@@ -7,7 +7,7 @@
   ATecton *-- "0..*" Entity
   abstract class ATecton {
     {static} maxThreads : Integer
-    {static} maxBodies: Integer
+    {static} maxStems: Integer
     minNeighbours : Integer
     maxNeighbours : Integer
     entities : Entity[]
@@ -33,9 +33,9 @@
 
 
   'BodylessTecton "2" *-- "0..*" MushroomThread
-  ATecton <|-- BodylessTecton
-  class BodylessTecton {
-    {static} maxBodies = 0 : Integer
+  ATecton <|-- StemlessTecton
+  class StemlessTecton {
+    {static} maxStems = 0 : Integer
   }
 
   ' ThreadConsumingTecton *-- "0..1" MushroomStem
