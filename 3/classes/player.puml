@@ -14,7 +14,7 @@ class Mushroomer{
     mushroomThreads : MushroomThread[]
     getColonies() : Colony[]
     plantBody(Tecton) : void
-    throwSpore(Tecton, Spores) : void
+    throwSpore(Tecton, Spore) : void
 }
 
 Insecter --|> Player
