@@ -1,9 +1,10 @@
 @startuml tecton
   ATecton "2..12" -- ATecton : neighbour
-  ATecton o-- "0..*" Insect
-  ATecton *-- "0..*" Spore
+  'ATecton o-- "0..*" Insect
+  'ATecton *-- "0..*" Spore
   IOnTurn<|.. ATecton 
   IOnRound <|.. ATecton 
+  ATecton *-- "0..*" Entity
   abstract class ATecton {
     {static} maxThreads : Integer
     {static} maxBodies: Integer
@@ -16,28 +17,29 @@
     removeEntity(Entity) : void
   }
 
-  Tecton *-- "0..1" MushroomStem 
-  Tecton *-- "0..*" MushroomThread
+  'Tecton *-- "0..1" MushroomStem 
+  'Tecton *-- "0..*" MushroomThread
+  
   ATecton <|-- Tecton
   class Tecton {
   }
 
-  SingleThreadedTecton *-- "0..1" MushroomStem
-  SingleThreadedTecton "2" *-- "0..1" MushroomThread
+  'SingleThreadedTecton *-- "0..1" MushroomStem
+  'SingleThreadedTecton "2" *-- "0..1" MushroomThread
   ATecton <|-- SingleThreadedTecton
   class SingleThreadedTecton {
     {static} maxThreads = 1 : Integer
   }
 
 
-  BodylessTecton "2" *-- "0..*" MushroomThread
+  'BodylessTecton "2" *-- "0..*" MushroomThread
   ATecton <|-- BodylessTecton
   class BodylessTecton {
     {static} maxBodies = 0 : Integer
   }
 
-  ThreadConsumingTecton *-- "0..1" MushroomStem
-  ThreadConsumingTecton "2" *-- "0..*" MushroomThread
+  ' ThreadConsumingTecton *-- "0..1" MushroomStem
+  'ThreadConsumingTecton "2" *-- "0..*" MushroomThread
   ATecton <|-- ThreadConsumingTecton
   class ThreadConsumingTecton {
   }
