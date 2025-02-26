@@ -5,6 +5,5 @@ Map *-- "0..1" ATecton
 class Map{
     tectons : Tecton[]
     generate() : void
-    splitRandomTecton() : void
 }
 @enduml
