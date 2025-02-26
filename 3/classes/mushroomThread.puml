@@ -3,5 +3,6 @@
 Entity <|-- MushroomThread
 class MushroomThread{
     tecton : ATecton
+    getConnectedThreads() : MushroomThread[] 
 }
 @enduml
