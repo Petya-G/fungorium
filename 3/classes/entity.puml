@@ -1,6 +1,7 @@
 @startuml entity
 abstract class Entity {
     owner : Player
+    tecton: ATecton
 }
 
 interface IOnTurn{
