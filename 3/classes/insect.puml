@@ -1,7 +1,6 @@
 @startuml insect
 
 Entity <|-- Insect
-Insect o-- ATecton
 class Insect{
     eat(Spore) : void
     move() : void
