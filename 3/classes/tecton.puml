@@ -2,8 +2,8 @@
   ATecton "2..12" -- ATecton : neighbour
   ATecton o-- "0..*" Insect
   ATecton o-- "0..*" Spores
-  ATecton <|.. IOnTurn
-  ATecton <|.. IOnRound
+  IOnTurn<|.. ATecton 
+  IOnRound <|.. ATecton 
   abstract class ATecton {
     {static} maxThreads : Integer
     {static} maxBodies: Integer

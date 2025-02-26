@@ -1,5 +1,5 @@
 @startuml player
-Player <|.. IOnTurn
+IOnTurn <|.. Player
 abstract class Player{
     score : Integer
     id : Integer

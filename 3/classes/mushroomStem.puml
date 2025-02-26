@@ -1,8 +1,8 @@
 @startuml mushroomStem
 
-MushroomStem <|.. IOnTurn
-MushroomStem <|.. IOnRound
-MushroomStem --|> Entity
+IOnTurn <|.. MushroomStem
+IOnRound <|.. MushroomStem
+Entity <|-- MushroomStem 
 class MushroomStem{
     {static} maxSporeThrows : Integer
     energy: Integer
