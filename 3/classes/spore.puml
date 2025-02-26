@@ -1,31 +1,31 @@
 @startuml spore
 
-Tecton *-- Spores
+Spore <|-- Entity
 
-abstract class Spores{
+abstract class Spore{
     Nutrition : Integer
     abstract effect(Insect) : void
 }
 
-SlowingSpore <|--Spores
+SlowingSpore <|--Spore
 class SlowingSpore{
     effect(Insect) : void
 
 }
 
-SpeedingSpore <|--Spores
+SpeedingSpore <|--Spore
 class SpeedingSpore{
     effect(Insect) : void
 
 }
 
-ParalizingSpore <|--Spores
+ParalizingSpore <|--Spore
 class ParalizingSpore{
     effect(Insect) : void
 
 }
 
-ClawParalizingSpore <|--Spores
+ClawParalizingSpore <|--Spore
 class ClawParalizingSpore{
     effect(Insect) : void
 
