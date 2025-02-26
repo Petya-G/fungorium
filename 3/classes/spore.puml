@@ -1,31 +1,31 @@
 @startuml spore
 
-Spore <|-- Entity
+Entity <|-- Spore
 
 abstract class Spore{
     Nutrition : Integer
     abstract effect(Insect) : void
 }
 
-SlowingSpore <|--Spore
+Spore <|--SlowingSpore
 class SlowingSpore{
     effect(Insect) : void
 
 }
 
-SpeedingSpore <|--Spore
+Spore <|--SpeedingSpore
 class SpeedingSpore{
     effect(Insect) : void
 
 }
 
-ParalizingSpore <|--Spore
+Spore <|--ParalizingSpore
 class ParalizingSpore{
     effect(Insect) : void
 
 }
 
-ClawParalizingSpore <|--Spore
+Spore <|--ClawParalizingSpore
 class ClawParalizingSpore{
     effect(Insect) : void
 
