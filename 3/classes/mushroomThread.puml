@@ -2,6 +2,5 @@
 
 Entity <|-- MushroomThread
 class MushroomThread{
-    tecton : ATecton
 }
 @enduml
