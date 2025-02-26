@@ -17,7 +17,7 @@ class Mushroomer{
     throwSpore(Tecton, Spores) : void
 }
 
-Player --|> Insecter
+Insecter --|> Player
 Insecter o-- Insect
 class Insecter{
     insect : Insect
