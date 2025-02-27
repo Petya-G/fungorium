@@ -2,7 +2,7 @@
 
 abstract class Effect{
     {static} duration : Integer
-    DurationRemainging : Integer
+    durationRemaining : Integer
 }
 
 Slow --|> Effect
