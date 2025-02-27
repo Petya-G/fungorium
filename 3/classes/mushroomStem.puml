@@ -8,7 +8,7 @@ class MushroomStem{
     thrownSpores: Integer
     energy: Integer
     level: Integer
-    throwSpores(Spore, Tecton) : void
+    throwSpore(Spore, Tecton) : void
     isDead(): boolean
     getColony() : Colony
 }
