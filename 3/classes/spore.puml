@@ -15,11 +15,11 @@ Spore <|--SpeedingSpore
 class SpeedingSpore{
 }
 
-Spore <|--ParalizingSpore
-class ParalizingSpore{
+Spore <|--ParalyzingSpore
+class ParalyzingSpore{
 }
 
-Spore <|--ClawParalizingSpore
-class ClawParalizingSpore{
+Spore <|--ClawParalyzingSpore
+class ClawParalyzingSpore{
 }
 @enduml	
