@@ -1,7 +1,7 @@
 @startuml tecton
   IOnTurn <|.. Tecton 
   IOnRound <|.. Tecton 
-  Tecton "2..12" -- Tecton : neighbour
+  Tecton  o-- Tecton : neighbour
   Tecton *-- "0..*" Entity
   class Tecton {
     {static} maxThreads : Integer

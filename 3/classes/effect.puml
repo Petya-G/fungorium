@@ -13,12 +13,12 @@ Fast --|> Effect
 class Fast {
 }
 
-Paralyse --|> Effect
-class Paralyse {
+Paralyze --|> Effect
+class Paralyze {
 }
 
 ClawParalyze --|> Effect
-class ClawParalyse {
+class ClawParalyze {
 }
 
 
