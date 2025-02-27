@@ -6,6 +6,5 @@ class Map{
     tectons : Tecton[]
     generate() : void
     splitTecton(Tecton) : void
-    getRandomTection() : Tecton
 }
 @enduml
