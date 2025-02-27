@@ -1,9 +1,11 @@
 @startuml insect
 
 Entity <|-- Insect
+Insect *-- Effect
 class Insect{
+    effects : Effect[]
     eat(Spore) : void
     move() : void
-    cutThread(MushroomThread) : void
+    cut(MushroomThread) : void
 }
 @enduml

@@ -1,15 +1,14 @@
 @startuml tecton
-  ATecton "2..12" -- ATecton : neighbour
-  'ATecton o-- "0..*" Insect
-  'ATecton *-- "0..*" Spore
-  IOnTurn<|.. ATecton 
-  IOnRound <|.. ATecton 
-  ATecton *-- "0..*" Entity
-  abstract class ATecton {
+  IOnTurn <|.. Tecton 
+  IOnRound <|.. Tecton 
+  Tecton "2..12" -- Tecton : neighbour
+  Tecton *-- "0..*" Entity
+  class Tecton {
     {static} maxThreads : Integer
     {static} maxStems: Integer
     minNeighbours : Integer
     maxNeighbours : Integer
+    neighbours : Tecton
     entities : Entity[]
 
     addNeighbour(Tecton) : void
@@ -20,27 +19,23 @@
   'Tecton *-- "0..1" MushroomStem 
   'Tecton *-- "0..*" MushroomThread
   
-  ATecton <|-- Tecton
-  class Tecton {
-  }
-
   'SingleThreadedTecton *-- "0..1" MushroomStem
   'SingleThreadedTecton "2" *-- "0..1" MushroomThread
-  ATecton <|-- SingleThreadedTecton
+  Tecton <|-- SingleThreadedTecton
   class SingleThreadedTecton {
     {static} maxThreads = 1 : Integer
   }
 
 
   'BodylessTecton "2" *-- "0..*" MushroomThread
-  ATecton <|-- StemlessTecton
+  Tecton <|-- StemlessTecton
   class StemlessTecton {
     {static} maxStems = 0 : Integer
   }
 
   ' ThreadConsumingTecton *-- "0..1" MushroomStem
   'ThreadConsumingTecton "2" *-- "0..*" MushroomThread
-  ATecton <|-- ThreadConsumingTecton
+  Tecton <|-- ThreadConsumingTecton
   class ThreadConsumingTecton {
   }
 @enduml

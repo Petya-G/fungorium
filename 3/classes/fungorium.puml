@@ -9,5 +9,6 @@ package fungorium{
     !include mushroomStem.puml
     !include insect.puml
     !include colony.puml
+    !include effect.puml
 }
 @enduml

@@ -2,6 +2,6 @@
 
 Entity <|-- MushroomThread
 class MushroomThread{
-    getConnectedThreads() : MushroomThread[] 
+    getConnected() : MushroomThread[] 
 }
 @enduml

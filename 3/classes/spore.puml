@@ -3,31 +3,23 @@
 Entity <|-- Spore
 
 abstract class Spore{
-    Nutrition : Integer
-    {abstract} effect(Insect) : void
+    nutrition : Integer
+    effect : Effect
 }
 
 Spore <|--SlowingSpore
 class SlowingSpore{
-    effect(Insect) : void
-
 }
 
 Spore <|--SpeedingSpore
 class SpeedingSpore{
-    effect(Insect) : void
-
 }
 
 Spore <|--ParalizingSpore
 class ParalizingSpore{
-    effect(Insect) : void
-
 }
 
 Spore <|--ClawParalizingSpore
 class ClawParalizingSpore{
-    effect(Insect) : void
-
 }
 @enduml	

@@ -13,7 +13,7 @@ class Mushroomer{
     mushroomStems : MushroomStem[]
     mushroomThreads : MushroomThread[]
     getColonies() : Colony[]
-    plantBody(Tecton) : void
+    plantStem(Tecton) : void
     throwSpore(Tecton, Spore) : void
 }
 
@@ -21,6 +21,7 @@ Insecter --|> Player
 Insecter o-- Insect
 class Insecter{
     insect : Insect
+    eat(Spore) : void
     moveInsect(Tecton) : void
     cutThread(MushroomThread) : void
 }

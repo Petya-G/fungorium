@@ -1,0 +1,25 @@
+@startuml effect
+
+abstract class Effect{
+    {static} maxDuration : Integer
+    duration : Integer
+}
+
+Slow --|> Effect
+class Slow {
+}
+
+Fast --|> Effect
+class Fast {
+}
+
+Paralize --|> Effect
+class Paralize {
+}
+
+ClawParalize --|> Effect
+class ClawParalize {
+}
+
+
+@enduml
