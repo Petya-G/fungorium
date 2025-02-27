@@ -5,11 +5,11 @@ IOnRound <|.. MushroomStem
 Entity <|-- MushroomStem 
 class MushroomStem{
     {static} maxSporeThrows : Integer
+    thrownSpores: Integer
     energy: Integer
     level: Integer
-    thrownSpores: Integer
+    throwSpores(Spore, Tecton) : void
     isDead(): boolean
     getColony() : Colony
-    throwSpores(Spores, Tecton) : void
 }
 @enduml
