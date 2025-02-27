@@ -10,8 +10,8 @@ Mushroomer o-- "1..*" MushroomStem
 Mushroomer o-- "0..*" MushroomThread
 Mushroomer --- "1..*" Colony
 class Mushroomer{
-    mushroomStems : MushroomStem[]
-    mushroomThreads : MushroomThread[]
+    mushroomStems : List<MushroomStem>
+    mushroomThreads : List<MushroomThread>
     getColonies() : Colony[]
     plantStem(Tecton) : void
     throwSpore(Tecton, Spore) : void

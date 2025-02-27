@@ -3,9 +3,9 @@
 Entity <|-- Insect
 Insect *-- Effect
 class Insect{
-    effects : Effect[]
+    effects : List<Effect>
     eat(Spore) : void
-    move() : void
+    move(Tecton) : void
     cut(MushroomThread) : void
 }
 @enduml

@@ -1,9 +1,9 @@
 @startuml map
 IOnTurn <|.. Map 
 IOnRound <|.. Map
-Map *-- "0..1" Tecton
+Map "1" *-- "0..*" Tecton
 class Map{
-    tectons : Tecton[]
+    tectons : List<Tecton>
     generate() : void
     splitTecton(Tecton) : void
 }
