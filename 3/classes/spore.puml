@@ -1,11 +1,11 @@
 @startuml spore
 
 Entity <|-- Spore
-Spore *-- Effect
+Spore --- Effect
 
 abstract class Spore{
     nutrition : Integer
-    effect : Effect
+    {static} effect : Effect
 }
 
 Spore <|--SlowingSpore
@@ -16,11 +16,11 @@ Spore <|--SpeedingSpore
 class SpeedingSpore{
 }
 
-Spore <|--ParalyzingSpore
-class ParalyzingSpore{
+Spore <|--ParalysingSpore
+class ParalysingSpore{
 }
 
-Spore <|--ClawParalyzingSpore
-class ClawParalyzingSpore{
+Spore <|--ClawParalysingSpore
+class ClawParalysingSpore{
 }
 @enduml	
