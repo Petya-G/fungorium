@@ -1,8 +1,8 @@
 @startuml effect
 
 abstract class Effect{
-    {static} maxDuration : Integer
-    duration : Integer
+    {static} duration : Integer
+    DurationRemainging : Integer
 }
 
 Slow --|> Effect
