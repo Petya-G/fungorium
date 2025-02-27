@@ -1,7 +1,7 @@
 @startuml spore
 
 Entity <|-- Spore
-Spore o-- Effect
+Spore --- Effect
 
 abstract class Spore{
     nutrition : Integer

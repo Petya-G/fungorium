@@ -9,7 +9,7 @@
     minNeighbours : Integer
     maxNeighbours : Integer
     neighbours : Tecton
-    entities : List<Entity>
+    entities : Entity[]
 
     addNeighbour(Tecton) : void
     addEntity(Entity) : void

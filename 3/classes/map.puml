@@ -3,7 +3,7 @@ IOnTurn <|.. Map
 IOnRound <|.. Map
 Map "1" *-- "0..*" Tecton
 class Map{
-    tectons : List<Tecton>
+    tectons : Tecton[]
     generate() : void
     splitTecton(Tecton) : void
 }

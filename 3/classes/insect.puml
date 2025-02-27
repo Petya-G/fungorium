@@ -3,7 +3,7 @@
 Entity <|-- Insect
 Insect *-- Effect
 class Insect{
-    effects : List<Effect>
+    effects : Effect[]
     eat(Spore) : void
     move(Tecton) : void
     cut(MushroomThread) : void
