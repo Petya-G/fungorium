@@ -8,8 +8,8 @@
     {static} maxStems: Integer
     minNeighbours : Integer
     maxNeighbours : Integer
-    neighbours : Tecton
-    entities : Entity[]
+    neighbours : List<Tecton>
+    entities : List<Entity>
 
     addNeighbour(Tecton) : void
     addEntity(Entity) : void

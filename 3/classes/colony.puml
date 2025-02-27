@@ -4,7 +4,7 @@
 Colony o-- "1..*" MushroomStem
 Colony o-- "0..*" MushroomThread
 class Colony{
-    mushroomStems : MushroomStem[]
-    mushroomThreads : MushroomThread[]
+    mushroomStems : List<MushroomStem>
+    mushroomThreads : List<MushroomThread>
 }
 @enduml

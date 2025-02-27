@@ -12,7 +12,7 @@ Mushroomer --- "1..*" Colony
 class Mushroomer{
     mushroomStems : List<MushroomStem>
     mushroomThreads : List<MushroomThread>
-    getColonies() : Colony[]
+    getColonies() : List<Colony>
     plantStem(Tecton) : void
     throwSpore(Tecton, Spore) : void
 }
