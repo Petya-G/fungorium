@@ -1,5 +1,4 @@
 @startuml tecton
-  IOnTurn <|.. Tecton 
   IOnRound <|.. Tecton 
   Tecton  o-- Tecton : neighbour
   'Tecton *-- "0..*" Entity
