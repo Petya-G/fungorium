@@ -1,0 +1,30 @@
+@startuml moveInsect
+title Insecter moves Insect
+
+participant "IR:Insecter" as IR
+participant "I:Insect" as I
+participant "T1:Tecton" as T1
+participant "T2:Tecton" as T2
+
+
+activate IR
+IR -> IR: moveInsect(T2)
+activate IR
+IR -> I: move(T2) 
+activate I
+I -> T1: removeInsect(I)
+activate T1
+T1 --> I:
+deactivate T1
+I -> T2: addInsect(I)
+activate T2
+T2 --> I:
+deactivate T2
+
+I --> IR
+
+deactivate I
+
+deactivate IR
+deactivate IR
+@enduml
