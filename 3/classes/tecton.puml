@@ -12,18 +12,15 @@
     spores : List<Spore>
     insects : List<Insect>  
 
-    addNeighbour(Tecton) : void
-    addStem(MushroomStem stem) : void
-    removeStem() : void
-
-    addThread(MushroomThread thread) : void
-    removeThread(MushroomThread thread) : void
-
-    addSpore(Spore spore) : void
-    removeSpore(Spore spore) : void
-
-    addInsect(Insect insect) : void
-    removeInsect(Insect insect) : void
+    'addNeighbour(Tecton) : void
+    'addStem(MushroomStem stem) : void
+    'removeStem() : void
+    'addThread(MushroomThread thread) : void
+    'removeThread(MushroomThread thread) : void
+    'addSpore(Spore spore) : void
+    'removeSpore(Spore spore) : void
+    'addInsect(Insect insect) : void
+    'removeInsect(Insect insect) : void
 
     split() : Tecton
 
