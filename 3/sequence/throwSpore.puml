@@ -1,0 +1,13 @@
+@startuml startTurn_mushroomer
+
+title Spóra dobása
+actor Mushroomer
+Mushroomer -> MushroomStem: throwSpore() : void
+activate MushroomStem
+MushroomStem ->> MushroomStem: isEnoughEnergy() : bool
+MushroomStem --> Mushroomer: False
+MushroomStem --> MushroomStem: True
+MushroomStem -> Tecton : addSpores() : integer
+deactivate MushroomStem
+
+@enduml
