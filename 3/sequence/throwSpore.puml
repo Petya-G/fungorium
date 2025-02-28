@@ -1,4 +1,4 @@
-@startuml startTurn_mushroomer
+@startuml throwSpore
 
 title Mushroomer throws Spore
 
@@ -13,7 +13,7 @@ M ->> M: isEnoughEnergy() : bool
 M --> P: False
 M --> M: True
 activate T
-M -> T : addSpores(T) : integer
+M -> T : addSpores(Spore) : integer
 T --> M
 deactivate T
 M --> P
