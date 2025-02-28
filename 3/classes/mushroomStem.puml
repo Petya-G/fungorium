@@ -6,7 +6,7 @@ Entity <|-- MushroomStem
 class MushroomStem{
     {static} maxSporeThrows : Integer
     thrownSpores: Integer
-    energy: Integer
+    spores : List<Spores>
     level: Integer
     throwSpore(Spore, Tecton) : boolean
     OnTurn(): void
