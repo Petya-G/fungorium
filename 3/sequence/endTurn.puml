@@ -1,16 +1,12 @@
 @startuml endTurn
-title Player ends turn
+title Round ends
 
 actor Controller
-participant "p:Player" as P
 participant "m:Map" as M
 participant "t:Tecton" as T
 participant "mt:MushroomThread" as MT
 
-Controller -> P: Player ends turn
-
-activate P
-P -> M: endTurn()
+Controller -> M: endRound()
 
 activate M
 loop for(t : tectons)
@@ -23,12 +19,14 @@ loop for(t : tectons)
             T -> MT: removeEntity(mt)
             activate MT
 
+            T <-- MT
             deactivate MT
         end
     end
 end
+M <-- T
 deactivate T
 
+Controller <-- M
 deactivate M
-deactivate P
 @enduml
