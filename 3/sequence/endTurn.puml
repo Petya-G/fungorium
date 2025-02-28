@@ -1,0 +1,34 @@
+@startuml endTurn
+title Player ends turn
+
+actor Controller
+participant "p:Player" as P
+participant "m:Map" as M
+participant "t:Tecton" as T
+participant "mt:MushroomThread" as MT
+
+Controller -> P: Player ends turn
+
+activate P
+P -> M: endTurn()
+
+activate M
+loop for(t : tectons)
+    alt random
+
+        M -> T: splitTecton(t)
+
+        activate T
+        loop for(mt : t.getMushroomThreads())
+            T -> MT: removeEntity(mt)
+            activate MT
+
+            deactivate MT
+        end
+    end
+end
+deactivate T
+
+deactivate M
+deactivate P
+@enduml
