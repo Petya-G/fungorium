@@ -4,32 +4,30 @@ title Insecter moves Insect
 actor Controller
 participant "ir : Insecter" as IR
 participant "i : Insect" as I
-participant "t1:Tecton" as T1
-participant "t2:Tecton" as T2
-participant "e :Effect" as I
+participant "e : Effect" as E
+participant "t1 : Tecton" as T1
+participant "t2 : Tecton" as T2
 
 Controller -> IR: moveInsect(Tecton)
 activate IR
-IR -> I: move(T2) 
+IR -> I: move(T2)
 activate I
 
 I -> I : getSpeed()
 
-    loop for(e in effects)
-        I -> E : getSpeedModifier()
-        I <-- E : speedModifier
-    end
-    alt sum speed > 0
-
-
-I -> T1: removeInsect(I)
-activate T1
-T1 --> I:
-deactivate T1
-I -> T2: addInsect(I)
-activate T2
-T2 --> I:
-deactivate T2
+loop for(e in effects)
+    I -> E : getSpeedModifier()
+    I <-- E : speedModifier
+end
+alt sum speed > 0
+    I -> T1: removeInsect(I)
+    activate T1
+    T1 --> I:
+    deactivate T1
+    I -> T2: addInsect(I)
+    activate T2
+    T2 --> I:
+    deactivate T2
 end
 I --> IR
 

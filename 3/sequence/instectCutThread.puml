@@ -3,21 +3,19 @@
 title Insect cuts thread
 
 
-actor "P:Insecter" as P
-participant  "I:Insect" as I
-participant "M:MushroomThread" as M
+actor "ir : Insecter" as IR
+participant  "i : Insect" as I
+participant "mt : MushroomThread" as M
 
-
-activate I
-P -> I: cutThread(M) : void
-activate M
+activate IR
+IR -> I: cutThread(mt) : void
 I -> M: cut(M) : void
+activate M
 M--> I
+
 deactivate M
-I-->P
+I-->IR
+
 deactivate I
-
-
-
 
 @enduml

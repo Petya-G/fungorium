@@ -27,7 +27,7 @@ deactivate T1
 
 I -> I : add e2 to effects
 
-I -> T: removeSpore(Spore)
+I -> T: removeSpore(s)
 activate T
 T --> I:
 deactivate T
