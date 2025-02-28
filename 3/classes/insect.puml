@@ -9,6 +9,10 @@ class Insect{
     eat(Spore) : boolean
     move(Tecton) : boolean
     cut(MushroomThread) : boolean
+
+    isStunned() : boolean
+    getSpeed() : Integer
+
     OnTurn() : void
 }
 @enduml

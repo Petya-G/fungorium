@@ -4,6 +4,9 @@ abstract class Effect{
     {static} duration : Integer
     durationRemaining : Integer
 
+    {static} doesStun : bool
+    {static} speedModifier : Integer
+
     doesStun() : bool
     getSpeedModifier() : Integer
 }

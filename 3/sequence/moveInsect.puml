@@ -6,11 +6,21 @@ participant "ir : Insecter" as IR
 participant "i : Insect" as I
 participant "t1:Tecton" as T1
 participant "t2:Tecton" as T2
+participant "e :Effect" as I
 
-Controller -> IR: moveInsect()
+Controller -> IR: moveInsect(Tecton)
 activate IR
 IR -> I: move(T2) 
 activate I
+
+I -> I : getSpeed()
+
+    loop for(e in effects)
+        I -> E : getSpeedModifier()
+        I <-- E : speedModifier
+    end
+
+
 I -> T1: removeInsect(I)
 activate T1
 T1 --> I:
@@ -24,6 +34,7 @@ I --> IR
 
 deactivate I
 
+Controller <-- IR
 deactivate IR
 deactivate IR
 @enduml
