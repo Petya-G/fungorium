@@ -1,14 +1,13 @@
 @startuml moveInsect
 title Insecter moves Insect
 
-participant "IR:Insecter" as IR
-participant "I:Insect" as I
-participant "T1:Tecton" as T1
-participant "T2:Tecton" as T2
+actor Controller
+participant "ir : Insecter" as IR
+participant "i : Insect" as I
+participant "t1:Tecton" as T1
+participant "t2:Tecton" as T2
 
-
-activate IR
-IR -> IR: moveInsect(T2)
+Controller -> IR: moveInsect()
 activate IR
 IR -> I: move(T2) 
 activate I
