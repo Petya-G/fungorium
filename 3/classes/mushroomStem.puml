@@ -8,8 +8,8 @@ class MushroomStem{
     thrownSpores: Integer
     energy: Integer
     level: Integer
-    'throwSpore(Spore, Tecton) : void
+    throwSpore(Spore, Tecton) : boolean
     OnTurn(): void
-    'getColony() : Colony
+    getColony() : Colony
 }
 @enduml

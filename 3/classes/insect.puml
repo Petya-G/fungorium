@@ -6,9 +6,9 @@ Insect *-- Effect
 IOnTurn <|.. Insect
 class Insect{
     effects : List<Effect>
-    eat(Spore) : void
-    move(Tecton) : void
-    cut(MushroomThread) : void
+    eat(Spore) : boolean
+    move(Tecton) : boolean
+    cut(MushroomThread) : boolean
     OnTurn() : void
 }
 @enduml
