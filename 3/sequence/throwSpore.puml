@@ -1,13 +1,22 @@
 @startuml startTurn_mushroomer
 
-title Spóra dobása
-actor Mushroomer
-Mushroomer -> MushroomStem: throwSpore() : void
-activate MushroomStem
-MushroomStem ->> MushroomStem: isEnoughEnergy() : bool
-MushroomStem --> Mushroomer: False
-MushroomStem --> MushroomStem: True
-MushroomStem -> Tecton : addSpores() : integer
-deactivate MushroomStem
+title Mushroomer throws Spore
+
+
+actor "P:Mushroomer" as P
+participant "M:MushroomStem" as M
+participant "T:Tecton" as T
+
+P -> M: throwSpore(M,T) : void
+activate M
+M ->> M: isEnoughEnergy() : bool
+M --> P: False
+M --> M: True
+activate T
+M -> T : addSpores(T) : integer
+T --> M
+deactivate T
+M --> P
+deactivate M
 
 @enduml
