@@ -3,22 +3,33 @@
 abstract class Effect{
     {static} duration : Integer
     durationRemaining : Integer
+
+    doesStun() : bool
+    getSpeedModifier() : Integer
 }
 
 Slow --|> Effect
 class Slow {
+    doesStun() : bool
+    getSpeedModifier() : Integer
 }
 
 Fast --|> Effect
 class Fast {
+    doesStun() : bool
+    getSpeedModifier() : Integer
 }
 
 Paralyze --|> Effect
 class Paralyze {
+    doesStun() : bool
+    getSpeedModifier() : Integer
 }
 
 ClawParalyze --|> Effect
 class ClawParalyze {
+    doesStun() : bool
+    getSpeedModifier() : Integer
 }
 
 

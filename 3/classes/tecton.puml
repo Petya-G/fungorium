@@ -2,23 +2,41 @@
   IOnTurn <|.. Tecton 
   IOnRound <|.. Tecton 
   Tecton  o-- Tecton : neighbour
-  Tecton *-- "0..*" Entity
+  'Tecton *-- "0..*" Entity
   class Tecton {
     {static} maxThreads : Integer
-    {static} maxStems: Integer
-    minNeighbours : Integer
-    maxNeighbours : Integer
+    
     neighbours : List<Tecton>
     entities : List<Entity>
 
+    stem : MushroomStem
+    threads : List<MushroomThread>
+    spores : List<Spore>
+    insects : List<Insect>  
+
     addNeighbour(Tecton) : void
-    addEntity(Entity) : void
-    removeEntity(Entity) : void
+    addStem(MushroomStem stem) : void
+    removeStem() : void
+
+    addThread(MushroomThread thread) : void
+    removeThread(MushroomThread thread) : void
+
+    addSpore(Spore spore) : void
+    removeSpore(Spore spore) : void
+
+    addInsect(Insect insect) : void
+    removeInsect(Insect insect) : void
+
+    split() : Tecton
+
+    OnRound() : void
   }
 
-  'Tecton *-- "0..1" MushroomStem 
-  'Tecton *-- "0..*" MushroomThread
+  Tecton *-- "0..1" MushroomStem 
+  Tecton *-- "0..*" MushroomThread
   
+  Tecton *-- "0..*" Spore
+  Tecton *-- "0..*" Insect
   'SingleThreadedTecton *-- "0..1" MushroomStem
   'SingleThreadedTecton "2" *-- "0..1" MushroomThread
   Tecton <|-- SingleThreadedTecton

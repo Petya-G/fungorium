@@ -3,6 +3,7 @@ IOnTurn <|.. Player
 abstract class Player{
     score : Integer
     id : Integer
+    OnTurn() : abstract void
 }
 
 Player <|-- Mushroomer
@@ -15,6 +16,7 @@ class Mushroomer{
     getColonies() : List<Colony>
     plantStem(Tecton) : void
     throwSpore(Tecton, Spore) : void
+    OnTurn() : void
 }
 
 Insecter --|> Player
@@ -24,5 +26,6 @@ class Insecter{
     eat(Spore) : void
     moveInsect(Tecton) : void
     cutThread(MushroomThread) : void
+    OnTurn() : void
 }
 @enduml

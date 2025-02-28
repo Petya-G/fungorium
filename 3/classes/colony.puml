@@ -6,5 +6,8 @@ Colony o-- "0..*" MushroomThread
 class Colony{
     mushroomStems : List<MushroomStem>
     mushroomThreads : List<MushroomThread>
+
+    Destroy() : void
+    getStemCount() : Integer
 }
 @enduml

@@ -1,15 +1,15 @@
 @startuml mushroomStem
 
 IOnTurn <|.. MushroomStem
-IOnRound <|.. MushroomStem
+'IOnRound <|.. MushroomStem
 Entity <|-- MushroomStem 
 class MushroomStem{
     {static} maxSporeThrows : Integer
     thrownSpores: Integer
     energy: Integer
     level: Integer
-    throwSpore(Spore, Tecton) : void
-    isDead(): boolean
-    getColony() : Colony
+    'throwSpore(Spore, Tecton) : void
+    OnTurn(): void
+    'getColony() : Colony
 }
 @enduml

@@ -5,22 +5,27 @@ Spore o-- Effect
 
 abstract class Spore{
     nutrition : Integer
-    {static} effect : Effect
+
+    getEffect() : abstract Effect
 }
 
 Spore <|--SlowingSpore
 class SlowingSpore{
+    getEffect() : Effect
 }
 
 Spore <|--SpeedingSpore
 class SpeedingSpore{
+    getEffect() : Effect
 }
 
 Spore <|--ParalyzingSpore
 class ParalyzingSpore{
+    getEffect() : Effect
 }
 
 Spore <|--ClawParalyzingSpore
 class ClawParalyzingSpore{
+    getEffect() : Effect
 }
 @enduml	

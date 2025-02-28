@@ -1,10 +1,11 @@
 @startuml map
-IOnTurn <|.. Map 
+'IOnTurn <|.. Map 
 IOnRound <|.. Map
 Map "1" *-- "0..*" Tecton
 class Map{
     tectons : List<Tecton>
     generate() : void
     splitTecton(Tecton) : void
+    OnRound() : void
 }
 @enduml

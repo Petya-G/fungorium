@@ -2,10 +2,13 @@
 
 Entity <|-- Insect
 Insect *-- Effect
+
+IOnTurn <|.. Insect
 class Insect{
     effects : List<Effect>
     eat(Spore) : void
     move(Tecton) : void
     cut(MushroomThread) : void
+    OnTurn() : void
 }
 @enduml
