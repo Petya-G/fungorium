@@ -13,8 +13,7 @@ activate P
         P -> M : onTurn()
         activate M
         P <-- M
-        deactivate M
-        
+        deactivate M 
     end
 
 Controller <-- P
