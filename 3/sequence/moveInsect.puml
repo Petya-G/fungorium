@@ -19,6 +19,7 @@ I -> I : getSpeed()
         I -> E : getSpeedModifier()
         I <-- E : speedModifier
     end
+    alt sum speed > 0
 
 
 I -> T1: removeInsect(I)
@@ -29,7 +30,7 @@ I -> T2: addInsect(I)
 activate T2
 T2 --> I:
 deactivate T2
-
+end
 I --> IR
 
 deactivate I
