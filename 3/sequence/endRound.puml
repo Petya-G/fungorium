@@ -10,6 +10,11 @@ Controller -> M: endRound()
 
 activate M
 loop for(t : tectons)
+    M -> T: endRound()
+    activate T
+    M <-- T
+    deactivate T
+
     alt random
 
         M -> T: splitTecton(t)

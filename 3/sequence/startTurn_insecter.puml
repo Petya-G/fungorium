@@ -1,0 +1,32 @@
+@startuml startTurn_insecter
+title Insecter's turn starts
+
+actor Controller
+participant "P:Insecter" as P
+participant "I:Insect" as I
+participant "E:Effect" as E
+'participant ""
+
+Controller -> P : onTurn()
+activate P
+    P -> I : onTurn()
+    activate I
+        loop for(e in effects)
+            
+
+            I -> E : getDurationRemaining
+            E --> I : durationRemaining
+            I -> E : setDurationRemaining(durationRemaining-1)
+    
+            alt durationRemaining = 0
+                I -> I : remove effect
+            end
+
+        end
+    P <-- I
+    deactivate I
+
+Controller <-- P
+deactivate P
+
+@enduml

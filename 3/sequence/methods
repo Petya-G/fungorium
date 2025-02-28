@@ -25,7 +25,7 @@ Insect.move(Tecton) : boolean
 Insect.cut(MushroomThread) : boolean
 Insect.OnTurn() : void
 
-Map.generate() : void
+*Map.generate() : void
 Map.splitTecton(Tecton) : void
 Map.OnRound() : void
 

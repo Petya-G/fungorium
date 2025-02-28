@@ -1,0 +1,23 @@
+@startuml startTurn_mushroomer
+title Mushroomer's turn starts
+
+actor Controller
+participant "P:Mushroomer" as P
+participant "M:MushroomStem" as M
+'participant ""
+
+Controller -> P : onTurn()
+activate P
+
+    loop for(t in stems)
+        P -> M : onTurn()
+        activate M
+        P <-- M
+        deactivate M
+        
+    end
+
+Controller <-- P
+deactivate P
+
+@enduml
