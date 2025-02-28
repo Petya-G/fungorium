@@ -1,4 +1,4 @@
-@startuml endTurn
+@startuml endRound
 title Round ends
 
 actor Controller
