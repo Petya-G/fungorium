@@ -1,30 +1,23 @@
-@startuml moveInsect
-title Insecter moves Insect
+@startuml startGame
+title Player starts game
 
-participant "IR:Insecter" as IR
-participant "I:Insect" as I
-participant "T1:Tecton" as T1
-participant "T2:Tecton" as T2
+actor Controller
+participant "M:Map" as M
+participant "T:Tecton 1" as T
 
+Controller -> M : generate()
 
-activate IR
-IR -> IR: moveInsect(T2)
-activate IR
-IR -> I: move(T2) 
-activate I
-I -> T1: removeInsect(I)
-activate T1
-T1 --> I:
-deactivate T1
-I -> T2: addInsect(I)
-activate T2
-T2 --> I:
-deactivate T2
+activate M
+    loop
+        M --> T : new Tecton()
+        M <-- T
 
-I --> IR
-
-deactivate I
-
-deactivate IR
-deactivate IR
+        loop
+            activate T
+                M -> T : addNeighbor(Tecton)
+                M <-- T
+            deactivate T
+        end
+    end
+Controller <-- M
 @enduml
