@@ -1,0 +1,18 @@
+@startuml stem
+title Spore is thrown, then eaten
+
+state "Spore resides on tecton" as spore
+spore : Spore is passive until eaten
+
+[*] --> spore : throwSpore(Tecton, Spore)
+spore --> eff : eatSpore(Spore)
+
+state "Effect added to Insect, max. durationRemaining" as eff
+eff : The spore is removed from tecton at this point,
+eff : only effect remains.
+
+eff --> eff : durationRemaining decreases each turn
+
+eff --> [*] : when durationRemaining = 0, effect is removed
+
+@enduml
