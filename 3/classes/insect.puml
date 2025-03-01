@@ -6,13 +6,13 @@ Insect *-- Effect
 IOnTurn <|.. Insect
 class Insect{
     effects : List<Effect>
-    eat(Spore) : boolean
-    move(Tecton) : boolean
-    cut(MushroomThread) : boolean
+    eat(Spore) : Boolean
+    move(Tecton) : Boolean
+    cut(MushroomThread) : Boolean
 
-    isStunned() : boolean
+    isStunned() : Boolean
     getSpeed() : Integer
 
-    OnTurn() : void
+    onTurn() : void
 }
 @enduml

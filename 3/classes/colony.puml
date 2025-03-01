@@ -7,7 +7,7 @@ class Colony{
     mushroomStems : List<MushroomStem>
     mushroomThreads : List<MushroomThread>
 
-    Destroy() : void
+    destroy() : void
     getStemCount() : Integer
 }
 @enduml

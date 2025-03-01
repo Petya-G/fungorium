@@ -4,34 +4,34 @@ abstract class Effect{
     {static} duration : Integer
     durationRemaining : Integer
 
-    {static} doesStun : bool
+    {static} doesStun : Boolean
     {static} speedModifier : Integer
 
-    doesStun() : bool
+    doesStun() : Boolean
     getSpeedModifier() : Integer
 }
 
 Slow --|> Effect
 class Slow {
-    doesStun() : bool
+    doesStun() : Boolean
     getSpeedModifier() : Integer
 }
 
 Fast --|> Effect
 class Fast {
-    doesStun() : bool
+    doesStun() : Boolean
     getSpeedModifier() : Integer
 }
 
 Paralyze --|> Effect
 class Paralyze {
-    doesStun() : bool
+    doesStun() : Boolean
     getSpeedModifier() : Integer
 }
 
 ClawParalyze --|> Effect
 class ClawParalyze {
-    doesStun() : bool
+    doesStun() : Boolean
     getSpeedModifier() : Integer
 }
 

@@ -6,6 +6,6 @@ class Map{
     tectons : List<Tecton>
     generate() : void
     splitTecton(Tecton) : void
-    OnRound() : void
+    onRound() : void
 }
 @enduml

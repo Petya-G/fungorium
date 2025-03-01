@@ -24,7 +24,7 @@
 
     split() : Tecton
 
-    OnRound() : void
+    onRound() : void
   }
 
   Tecton *-- "0..1" MushroomStem 

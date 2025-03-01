@@ -8,8 +8,8 @@ class MushroomStem{
     thrownSpores: Integer
     spores : List<Spores>
     level: Integer
-    throwSpore(Spore, Tecton) : boolean
-    OnTurn(): void
+    throwSpore(Spore, Tecton) : Boolean
+    onTurn(): void
     getColony() : Colony
 
     deleteFromGame() : void
