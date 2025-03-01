@@ -4,6 +4,7 @@ title Mushroomer's turn starts
 actor Controller
 participant "P:Mushroomer" as P
 participant "M:MushroomStem" as M
+participant "C:Colony" as C
 'participant ""
 
 Controller -> P : onTurn()
@@ -14,6 +15,12 @@ activate P
         activate M
         P <-- M
         deactivate M 
+    end
+
+    loop for(c in colonies)
+        alt c has no stems
+            P -> C : Destroy()
+        end
     end
 
 Controller <-- P
