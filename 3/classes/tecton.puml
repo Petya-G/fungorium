@@ -4,6 +4,7 @@
   'Tecton *-- "0..*" Entity
   class Tecton {
     {static} maxThreads : Integer
+    {static} maxStems : Integer
     
     neighbours : List<Tecton>
 
