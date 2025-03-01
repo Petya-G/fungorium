@@ -1,0 +1,19 @@
+@startuml stem
+title Stem is upgraded by Player in their turns
+
+state "Stem planted, level 1" as stem_plant
+stem_plant: Can only be planted when there are enough spores on the tecton.
+stem_plant: Starts at level 1
+
+state "Level 2" as lvl2
+lvl2: Stem can now throw spores at a distance of 2
+state "Level 3" as lvl3
+lvl3: Stem can now throw spores at a distance of 3
+
+[*] --> stem_plant : plantStem(Tecton)
+stem_plant --> lvl2 : level-up by Controller (once per turn)
+lvl2 --> lvl3 : level-up by Controller (once per turn)
+lvl3 --> [*] : removeFromGame()
+
+
+@enduml
