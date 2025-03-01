@@ -1,29 +1,30 @@
 @startuml destroyColony
-title Destroy Colony
-actor Controller
-participant "P:Mushroomer" as P
-participant "M:MushroomStem" as M
+title Destroy Colony function
+
+' EZ CSAK A DESTROY COLONY FV MŰKÖDÉSE, ezért nem a Controller az actor
+
+actor Mushroomer as A
+
 participant "C:Colony" as C
+participant "M:MushroomStem" as M
+participant "M:MushroomThread" as T
 
-activate P
-Controller -> P : OnTurn()
+A -> C : Destroy()
 
-
-loop for(m : MushroomStem)
+activate C
+loop for m in C.MushroomStems
+    C -> M : removeFromGame()
     activate M
-    P-> M : getColony()
-    M-->P
-        loop for(c : colony)
-            activate C
-            M --> C : Destroy()
-            C --> M
-            deactivate C
-        end
+    C <-- M
     deactivate M
-    end
+end
 
-P --> Controller
-deactivate P
-
+loop for t in C.MushroomThreads
+    C -> T : removeFromGame()
+    activate T
+    C <-- T
+    deactivate T
+end
+A <-- C
 
 @enduml

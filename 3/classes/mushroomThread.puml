@@ -3,5 +3,7 @@
 Entity <|-- MushroomThread
 class MushroomThread{
     getConnected() : List<MushroomThread>
+     deleteFromGame() : void
+    ' remove this thread from tecton and from owner player's list
 }
 @enduml
