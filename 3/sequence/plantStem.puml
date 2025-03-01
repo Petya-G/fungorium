@@ -1,0 +1,20 @@
+@startuml plantStem
+
+title Mushroomer plants Stem
+
+actor Controller
+participant "P:Mushroomer" as P
+
+participant "T:Tecton" as T
+
+Controller -> P : PlantStem(T)
+activate P
+P -> T: AddStem(T) : void
+activate T
+T-->P
+deactivate T
+
+P --> Controller
+deactivate P
+
+@enduml
