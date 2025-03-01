@@ -11,5 +11,8 @@ class MushroomStem{
     throwSpore(Spore, Tecton) : boolean
     OnTurn(): void
     getColony() : Colony
+
+    deleteFromGame() : void
+    ' remove this stem from tecton and from owner player's list
 }
 @enduml

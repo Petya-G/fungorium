@@ -19,6 +19,11 @@ activate T
 T --> M
 deactivate T
 end
+
+alt Stem has thrown too many spores
+    M -> M : deleteFromGame()
+end
+
 M --> P
 deactivate M
 
