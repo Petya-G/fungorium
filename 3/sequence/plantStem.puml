@@ -9,11 +9,12 @@ participant "T:Tecton" as T
 
 Controller -> P : PlantStem(T)
 activate P
+alt There are enough spores on the Tecton
 P -> T: AddStem(T) : void
 activate T
 T-->P
 deactivate T
-
+end
 P --> Controller
 deactivate P
 
