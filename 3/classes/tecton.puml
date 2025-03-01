@@ -51,5 +51,6 @@
   'ThreadConsumingTecton "2" *-- "0..*" MushroomThread
   Tecton <|-- ThreadConsumingTecton
   class ThreadConsumingTecton {
+    onRound() : void
   }
 @enduml
