@@ -12,7 +12,7 @@ activate P
 
 P -> M: throwSpore(T, S) : void
 activate M
-alt Player has enough energy
+alt Tecton is close enough to MushroomStem
 
 M -> T : addSpore(Spore)
 activate T

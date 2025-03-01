@@ -7,8 +7,9 @@ actor "P:Mushroomer" as P
 
 participant "T:Tecton" as T
 
-activate T
+
 P -> T: PlantStem(T) : void
+activate T
 T-->P
 deactivate T
 
