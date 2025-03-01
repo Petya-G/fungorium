@@ -6,10 +6,13 @@ participant "P:Mushroomer" as P
 participant "M:MushroomStem" as M
 
 Controller-->P
+activate P
 P -> M: LevelUp(M) : void
 activate M
 M --> P
-P --> Controller 
 deactivate M
+
+P --> Controller 
+deactivate P
 
 @enduml
