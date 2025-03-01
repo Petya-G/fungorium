@@ -1,0 +1,29 @@
+@startuml destroyColony
+title Destroy Colony
+actor Controller
+participant "P:Mushroomer" as P
+participant "M:MushroomStem" as M
+participant "C:Colony" as C
+
+activate P
+Controller -> P : OnTurn()
+
+
+loop for(m : MushroomStem)
+    activate M
+    P-> M : getColony()
+    M-->P
+        loop for(c : colony)
+            activate C
+            M --> C : Destroy()
+            C --> M
+            deactivate C
+        end
+    deactivate M
+    end
+
+P --> Controller
+deactivate P
+
+
+@enduml
