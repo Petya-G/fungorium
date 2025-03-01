@@ -2,17 +2,15 @@
 title Mushroomstem levels up
 
 actor Controller
-participant "P:Mushroomer" as P
 participant "M:MushroomStem" as M
 
-Controller-->P
-activate P
-P -> M: LevelUp(M) : void
+group max. once per turn
+Controller -> M: increase level variable
 activate M
-M --> P
-deactivate M
 
-P --> Controller 
-deactivate P
+M --> Controller
+deactivate M
+end
+
 
 @enduml
