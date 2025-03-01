@@ -1,17 +1,15 @@
 @startuml levelUp
 title Mushroomstem levels up
 
-
-actor "P:Mushroomer" as P
+actor Controller
+participant "P:Mushroomer" as P
 participant "M:MushroomStem" as M
 
-
+Controller-->P
 P -> M: LevelUp(M) : void
 activate M
-M ->> M: isEnoughEnergy() : bool
-M --> P: False
-M --> M: True
 M --> P
+P --> Controller 
 deactivate M
 
 @enduml
