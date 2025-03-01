@@ -2,21 +2,27 @@
 
 title Mushroomer throws Spore
 
-
-actor "P:Mushroomer" as P
+actor Controller
+participant "P:Mushroomer" as P
 participant "M:MushroomStem" as M
 participant "T:Tecton" as T
 
-P -> M: throwSpore(M,T) : void
+Controller -> P : throwSpore(M, T, S)
+activate P
+
+P -> M: throwSpore(T, S) : void
 activate M
-M ->> M: isEnoughEnergy() : bool
-M --> P: False
-M --> M: True
+alt Player has enough energy
+
+M -> T : addSpore(Spore)
 activate T
-M -> T : addSpores(Spore) : integer
 T --> M
 deactivate T
+end
 M --> P
 deactivate M
+
+Controller <-- P
+deactivate P
 
 @enduml

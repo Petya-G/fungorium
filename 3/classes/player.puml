@@ -15,7 +15,7 @@ class Mushroomer{
     mushroomThreads : List<MushroomThread>
     getColonies() : List<Colony>
     plantStem(Tecton) : void
-    throwSpore(Tecton, Spore) : void
+    throwSpore(MushroomStem, Tecton, Spore) : void
     OnTurn() : void
 }
 
