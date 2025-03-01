@@ -13,6 +13,7 @@ Mushroomer --- "1..*" Colony
 class Mushroomer{
     mushroomStems : List<MushroomStem>
     mushroomThreads : List<MushroomThread>
+    spores : List<Spore>
     getColonies() : List<Colony>
     plantStem(Tecton) : void
     throwSpore(MushroomStem, Tecton, Spore) : void
