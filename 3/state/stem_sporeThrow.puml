@@ -1,0 +1,20 @@
+@startuml stem
+title Stem throws spores until it dies
+
+state "Stem planted, 0 spores thrown" as stem_plant
+stem_plant: Can only be planted when there are enough spores on the tecton.
+stem_plant: Starts at level 1
+
+state "1 spore thrown" as 1spore
+state "2 spores thrown" as 2spore
+state "3 spores thrown" as 3spore
+3spore: At this point, the stem removes itself from the game.
+
+[*] --> stem_plant : plantStem(Tecton)
+stem_plant --> 1spore : throwSpore(Tecton, Spore)
+1spore --> 2spore : throwSpore(Tecton, Spore)
+2spore --> 3spore : throwSpore(Tecton, Spore)
+3spore --> [*] : removeFromGame()
+
+
+@enduml
