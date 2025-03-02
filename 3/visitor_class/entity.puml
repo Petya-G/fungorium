@@ -1,0 +1,8 @@
+@startuml entity
+
+abstract class Entity{
+    {abstract} location : Tecton
+    {abstract} owner : Player
+}
+
+@enduml

@@ -1,0 +1,7 @@
+@startuml thread
+
+class Thread extends Entity{
+    getConnected() : List<Thread>
+}
+
+@enduml
