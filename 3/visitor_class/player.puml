@@ -18,7 +18,6 @@ class Mushroomer extends Player implements IMushroom{
     stems : List<Stem>
     threads : List<Thread>
     spores : List<Spore>
-    getColonies : List<Colony>
 }
 
 @enduml
