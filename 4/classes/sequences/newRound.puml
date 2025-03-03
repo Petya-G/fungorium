@@ -1,0 +1,23 @@
+@startuml endRound
+title New Round
+
+actor Controller
+participant "m : Map" as M
+participant "t : Tecton" as T
+
+Controller -> M : onRound()
+activate M
+
+loop for(t : tectons)
+    M -> T
+    activate T
+
+    T -> T : onRound()
+    M <-- T
+    deactivate T
+end
+
+Controller <-- M
+deactivate M
+
+@enduml
