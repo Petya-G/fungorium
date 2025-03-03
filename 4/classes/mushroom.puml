@@ -1,0 +1,11 @@
+@startuml mushroom
+
+Mushroom *-- "1..*" Stem
+Mushroom *-- "1..*" Thread
+Mushroom *-- "0..*" Spore
+class Mushroom implements IMushroom{
+    stems : List<Stem>
+    thread : List<Thread>
+    spores : List<Spore>
+}
+@enduml

@@ -1,7 +1,7 @@
 @startuml insect
 
 Insect *-- "0..*" Effect
-class Insect extends Entity implements OnTurn, IInsect{
+class Insect extends Entity implements IInsect{
     effects : List<Effect>
 }
 

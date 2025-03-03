@@ -1,15 +1,11 @@
 @startuml tecton
 
-Tecton *-- "0..1" Stem
-Tecton *-- "0..*" Spore
-Tecton *-- "0..*" Thread
+Tecton o-- "0..*" Mushroom
 Tecton *-- "0..*" Insect
+Tecton o-- "0..*" Tecton
 class Tecton implements OnRound, IMushroom{
     neighbours : List<Tecton>
-    stem : Stem
-    threads : List<Thread>
-    spores : List<Spore>
-    insects : List<Insect>
+    mushrooms : List<Mushroom>
     addInsect(i : Insect) : void
 }
 

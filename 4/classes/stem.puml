@@ -1,11 +1,10 @@
 @startuml stem
 
-class Stem extends Entity implements OnTurn, ISpore{
+class Stem extends Entity implements OnTurn{
     maxSporeThrows : Integer
     numThrownSpores : Integer
     spores : List<Spore>
     level : Integer
-    throwSpore(s : Spore, t : Tecton) : Boolean
 }
 
 @enduml

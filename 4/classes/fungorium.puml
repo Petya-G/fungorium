@@ -1,13 +1,16 @@
 @startuml fungorium
-package fungorium{
+'package fungorium{
     !include interface.puml
     !include effect.puml
     !include entity.puml
     !include insect.puml
+    !include mushroom.puml
     !include spore.puml
     !include stem.puml
     !include map.puml
     !include tecton.puml
     !include thread.puml
     !include player.puml
-}
+    !include mushroomer.puml
+    !include insecter.puml
+'}

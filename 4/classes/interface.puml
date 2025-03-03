@@ -8,17 +8,14 @@ interface OnRound{
     {abstract} onRound() : void
 }
 
-interface IInsect{
+interface IInsect implements OnTurn{
     {abstract} eat(s : Spore) : Boolean
     {abstract} move(t : Tecton) : Boolean
     {abstract} cut(t : Thread) : Boolean
 }
 
-interface ISpore{
+interface IMushroom{
     {abstract} addSpore(t : Tecton, s : Spore) : Boolean
-}
-
-interface IMushroom implements ISpore{
     {abstract} addStem(t : Tecton, s : Stem) : Boolean
     {abstract} addThread(t : Tecton, t : Thread) : Boolean
 }

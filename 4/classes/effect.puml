@@ -1,6 +1,6 @@
 @startuml spore
 
-abstract class Effect {
+abstract class Effect implements OnTurn{
     {abstract} duration : Integer
     {abstract} effect(i : Insect) : void
 }
