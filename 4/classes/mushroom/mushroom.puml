@@ -12,7 +12,7 @@ interface IMushroom{
 Mushroom *-- "1..*" Stem
 Mushroom *-- "1..*" Thread
 Mushroom *-- "0..*" Spore
-class Mushroom implements IMushroom, OnTurn{
+class Mushroom implements IMushroom, IOnTurn{
     thrownSpores : List<Spore>
     stems : List<Stem>
     thread : List<Thread>

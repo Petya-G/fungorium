@@ -1,6 +1,6 @@
 @startuml insecter
 
-interface IInsect implements OnTurn{
+interface IInsect implements IOnTurn{
     {abstract} eat(sp : Spore) : Boolean
     {abstract} move(t : Tecton) : Boolean
     {abstract} cut(th : Thread) : Boolean

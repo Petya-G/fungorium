@@ -5,15 +5,15 @@ abstract class Entity{
     {abstract} owner : Player
 }
 
-interface IThrowable{
+interface IThrow implements IOnTurn{
     {abstract} throw(t : Tecton, sp : Spore) : void
 }
 
-interface OnTurn{
+interface IOnTurn{
     {abstract} onTurn() : void
 }
 
-interface OnRound{
+interface IOnRound{
     {abstract} onRound() : void
 }
 
