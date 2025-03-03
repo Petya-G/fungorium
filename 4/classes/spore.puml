@@ -1,0 +1,14 @@
+@startuml spore
+
+abstract class Spore extends Entity{
+    {abstract} nutrition : Integer
+    {abstract} effect : Effect
+    {abstract} getEffect() : Effect
+}
+
+class SpeedingSpore extends Spore {}
+class SlowingSpore extends Spore {}
+class ParalyzingSpore extends Spore {}
+class ClawParalyzingSpore extends Spore {}
+
+@enduml
