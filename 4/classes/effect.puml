@@ -2,7 +2,8 @@
 
 abstract class Effect implements OnTurn{
     {abstract} duration : Integer
-    {abstract} effect(i : Insect) : void
+    {abstract} apply(i : Insect) : void
+    {abstract} remove(i : Insect) : void
 }
 
 class Fast extends Effect {}

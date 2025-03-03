@@ -6,6 +6,7 @@ Tecton o-- "0..*" Tecton
 class Tecton implements OnRound, IMushroom{
     neighbours : List<Tecton>
     mushrooms : List<Mushroom>
+    addNeighbour(t : Tecton) : void
     addInsect(i : Insect) : void
 }
 
