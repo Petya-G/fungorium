@@ -13,7 +13,6 @@ class Insecter extends Player implements IInsect{
 Mushroomer o-- "1..*" Stem
 Mushroomer o-- "1..*" Thread
 Mushroomer o-- "0..*" Spore
-Mushroomer --- "0..*" Colony
 class Mushroomer extends Player implements IMushroom{
     stems : List<Stem>
     threads : List<Thread>
