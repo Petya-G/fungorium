@@ -1,6 +1,6 @@
 @startuml tecton
 
-Tecton o-- "0..*" Mushroom
+Tecton *-- "0..*" Mushroom
 Tecton *-- "0..*" Insect
 Tecton o-- "0..*" Tecton
 class Tecton implements OnRound, IMushroom{
