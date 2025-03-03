@@ -3,7 +3,6 @@
 class Stem extends Entity implements OnTurn{
     maxSporeThrows : Integer
     numThrownSpores : Integer
-    spores : List<Spore>
     level : Integer
 }
 
