@@ -1,0 +1,9 @@
+@startuml map
+
+Map *-- "1..*" Tecton
+class Map implements OnRound{
+    tectons : List<Tecton>
+    generate() : void
+}
+
+@enduml

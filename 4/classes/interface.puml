@@ -1,0 +1,26 @@
+@startuml interface
+
+interface OnTurn{
+    {abstract} onTurn() : void
+}
+
+interface OnRound{
+    {abstract} onRound() : void
+}
+
+interface IInsect{
+    {abstract} eat(s : Spore) : Boolean
+    {abstract} move(t : Tecton) : Boolean
+    {abstract} cut(t : Thread) : Boolean
+}
+
+interface ISpore{
+    {abstract} addSpore(t : Tecton, s : Spore) : Boolean
+}
+
+interface IMushroom implements ISpore{
+    {abstract} addStem(t : Tecton, s : Stem) : Boolean
+    {abstract} addThread(t : Tecton, t : Thread) : Boolean
+}
+
+@enduml
