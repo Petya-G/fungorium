@@ -9,18 +9,18 @@ interface OnRound{
 }
 
 interface IInsect implements OnTurn{
-    {abstract} eat(s : Spore) : Boolean
+    {abstract} eat(sp : Spore) : Boolean
     {abstract} move(t : Tecton) : Boolean
-    {abstract} cut(t : Thread) : Boolean
+    {abstract} cut(th : Thread) : Boolean
 }
 
 interface IMushroom{
-    {abstract} add(t : Tecton, s : Spore) : Boolean
-    {abstract} add(t : Tecton, s : Stem) : Boolean
-    {abstract} add(t : Tecton, t : Thread) : Boolean
-    {abstract} remove(t : Tecton, s : Spore) : Boolean
-    {abstract} remove(t : Tecton, s : Stem) : Boolean
-    {abstract} remove(t : Tecton, t : Thread) : Boolean
+    {abstract} add(t : Tecton, sp : Spore) : Boolean
+    {abstract} add(t : Tecton, st : Stem) : Boolean
+    {abstract} add(t : Tecton, th : Thread) : Boolean
+    {abstract} remove(t : Tecton, sp : Spore) : Boolean
+    {abstract} remove(t : Tecton, st : Stem) : Boolean
+    {abstract} remove(t : Tecton, th : Thread) : Boolean
 }
 
 @enduml
