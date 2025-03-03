@@ -15,9 +15,12 @@ interface IInsect implements OnTurn{
 }
 
 interface IMushroom{
-    {abstract} addSpore(t : Tecton, s : Spore) : Boolean
-    {abstract} addStem(t : Tecton, s : Stem) : Boolean
-    {abstract} addThread(t : Tecton, t : Thread) : Boolean
+    {abstract} add(t : Tecton, s : Spore) : Boolean
+    {abstract} add(t : Tecton, s : Stem) : Boolean
+    {abstract} add(t : Tecton, t : Thread) : Boolean
+    {abstract} remove(t : Tecton, s : Spore) : Boolean
+    {abstract} remove(t : Tecton, s : Stem) : Boolean
+    {abstract} remove(t : Tecton, t : Thread) : Boolean
 }
 
 @enduml
