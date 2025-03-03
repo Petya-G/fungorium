@@ -1,0 +1,20 @@
+@startuml core
+
+abstract class Entity{
+    {abstract} location : Tecton
+    {abstract} owner : Player
+}
+
+interface IThrowable{
+    {abstract} throw(t : Tecton, sp : Spore) : void
+}
+
+interface OnTurn{
+    {abstract} onTurn() : void
+}
+
+interface OnRound{
+    {abstract} onRound() : void
+}
+
+@enduml

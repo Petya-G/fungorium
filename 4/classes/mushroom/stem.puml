@@ -1,8 +1,9 @@
 @startuml stem
 
-class Stem extends Entity implements OnTurn{
+class Stem extends Entity implements OnTurn, IThrowable{
     maxSporeThrows : Integer
     numThrownSpores : Integer
+    throwableSpores : List<Spore>
     level : Integer
 }
 

@@ -1,18 +1,4 @@
-@startuml interface
-
-interface OnTurn{
-    {abstract} onTurn() : void
-}
-
-interface OnRound{
-    {abstract} onRound() : void
-}
-
-interface IInsect implements OnTurn{
-    {abstract} eat(sp : Spore) : Boolean
-    {abstract} move(t : Tecton) : Boolean
-    {abstract} cut(th : Thread) : Boolean
-}
+@startuml mushroom
 
 interface IMushroom{
     {abstract} add(t : Tecton, sp : Spore) : Boolean
@@ -21,6 +7,15 @@ interface IMushroom{
     {abstract} remove(t : Tecton, sp : Spore) : Boolean
     {abstract} remove(t : Tecton, st : Stem) : Boolean
     {abstract} remove(t : Tecton, th : Thread) : Boolean
+}
+
+Mushroom *-- "1..*" Stem
+Mushroom *-- "1..*" Thread
+Mushroom *-- "0..*" Spore
+class Mushroom implements IMushroom, OnTurn{
+    thrownSpores : List<Spore>
+    stems : List<Stem>
+    thread : List<Thread>
 }
 
 @enduml

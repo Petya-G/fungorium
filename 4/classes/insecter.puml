@@ -1,8 +1,0 @@
-@startuml insecter
-
-Insecter o-- Insect
-class Insecter extends Player implements IInsect{
-    insect : Insect
-}
-
-@enduml
