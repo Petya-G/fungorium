@@ -1,11 +1,5 @@
 @startuml insecter
 
-interface IInsect implements IOnTurn{
-    {abstract} eat(sp : Spore) : Boolean
-    {abstract} move(t : Tecton) : Boolean
-    {abstract} cut(th : Thread) : Boolean
-}
-
 Insecter o-- Insect
 class Insecter extends Player implements IInsect{
     insect : Insect

@@ -1,7 +1,7 @@
 @startuml mushroomer
 
 Mushroomer o-- "1..*" Mushroom
-class Mushroomer extends Player implements IMushroom, IThrow{
+class Mushroomer extends Player implements IMushroom{
     mushrooms : List<Mushroom>
 }
 

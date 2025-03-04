@@ -1,5 +1,11 @@
 @startuml insect
 
+interface IInsect{
+    {abstract} eat(sp : Spore) : Boolean
+    {abstract} move(t : Tecton) : Boolean
+    {abstract} cut(th : Thread) : Boolean
+}
+
 Insect *-- "0..*" Effect
 class Insect extends Entity implements IInsect{
     effects : List<Effect>

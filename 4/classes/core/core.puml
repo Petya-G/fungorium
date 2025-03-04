@@ -1,20 +1,16 @@
 @startuml core
 
-abstract class Entity{
-    {abstract} location : Tecton
-    {abstract} owner : Player
-}
-
-interface IThrow implements IOnTurn{
-    {abstract} throw(t : Tecton, sp : Spore) : void
-}
-
 interface IOnTurn{
     {abstract} onTurn() : void
 }
 
 interface IOnRound{
     {abstract} onRound() : void
+}
+
+abstract class Entity implements IOnTurn{
+    {abstract} location : Tecton
+    {abstract} owner : Player
 }
 
 @enduml

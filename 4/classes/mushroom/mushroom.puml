@@ -1,10 +1,8 @@
 @startuml mushroom
 
-interface IMushroom{
-    {abstract} add(t : Tecton, sp : Spore) : Boolean
+interface IMushroom implements ISpore{
     {abstract} add(t : Tecton, st : Stem) : Boolean
     {abstract} add(t : Tecton, th : Thread) : Boolean
-    {abstract} remove(t : Tecton, sp : Spore) : Boolean
     {abstract} remove(t : Tecton, st : Stem) : Boolean
     {abstract} remove(t : Tecton, th : Thread) : Boolean
 }
@@ -12,7 +10,7 @@ interface IMushroom{
 Mushroom *-- "1..*" Stem
 Mushroom *-- "1..*" Thread
 Mushroom *-- "0..*" Spore
-class Mushroom implements IMushroom, IOnTurn{
+class Mushroom implements IMushroom{
     thrownSpores : List<Spore>
     stems : List<Stem>
     thread : List<Thread>

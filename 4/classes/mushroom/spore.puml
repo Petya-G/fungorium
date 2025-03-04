@@ -1,5 +1,10 @@
 @startuml spore
 
+interface ISpore {
+    {abstract} add(t : Tecton, sp : Spore) : Boolean
+    {abstract} remove(t : Tecton, sp : Spore) : Boolean
+}
+
 abstract class Spore extends Entity{
     {abstract} nutrition : Integer
     {abstract} effect : Effect
