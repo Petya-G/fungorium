@@ -6,7 +6,7 @@
     {static} maxThreads : Integer
     {static} maxStems : Integer
     
-    neighbours : List<Tecton>
+    neighbors : List<Tecton>
 
     stem : MushroomStem
     threads : List<MushroomThread>
