@@ -4,12 +4,12 @@ Mushroomer -left-|> Player
 Insecter -left-|> Player
 
 left to right direction
-Player --> (Turn over)
+Player --> (Ends turn)
 
-Mushroomer --> (Throws threads)
-Mushroomer --> (Levels up)
 Mushroomer --> (Plants stem)
+Mushroomer --> (Levels up stem)
 Mushroomer --> (Throws spore)
+Mushroomer --> (Grows thread)
 
 Insecter --> (Moves insect)
 Insecter --> (Eat with insect)
