@@ -1,14 +1,20 @@
+' En igy kepzeltem el, a szamok egyelore randomak...
+' Ha hulyeseg torold ki, 
+' Ducz
 
 @startuml Cut with insect
 skinparam linestyle ortho
 actor Insecter 
 rectangle "map: Map" as 1
-rectangle "tecton1: Tecton" as 2.1
-rectangle "tecton2: Tecton" as 2.2
+rectangle "thread.location: Tecton" as 2.1
+rectangle "thread.owner: Player (Mushroomer)" as 2.2
+'rectangle "tecton2: Tecton" as 2.2
 rectangle "insect: Insect" as 3
 rectangle "thread: MushroomThread" as 4
 
-3 -right-> 2.1: 1. cut(thread)
-3 -right-> 2.2: 2. 
+3 -right-> 2.1: 1. remove(thread)
+3 -right-> 2.2: 2. remove(thread)
+
+Insecter -right-> 3: 1. cut(thread)
 
 @enduml
