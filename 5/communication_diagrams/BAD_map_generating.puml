@@ -7,9 +7,6 @@ rectangle "tecton2: Tecton" as 2.2
 rectangle "tecton3: Tecton" as 2.3
 rectangle "tecton4: Tecton" as 2.4
 
-rectangle "C" as 3
-rectangle "D" as 4
-
 1 -right-> 2.1: <<create>>
 1 -right-> 2.1: 1. addTecton(tecton1): void
 
