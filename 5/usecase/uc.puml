@@ -1,21 +1,18 @@
-@startuml
-actor Player
-usecase "Turn over" as to
-Player --> to
-usecase "Start Game" as sg
-Player --> sg
-usecase "moves insect" as mi
-Player --> mi
-usecase "insect eats" as ie
-Player --> ie
-usecase "insect cuts" as ic
-Player --> ic
-usecase "throw threads" as tt
-Player --> tt
-usecase "levels up" as lu
-Player --> lu
-usecase "plants mushroom" as pm
-Player --> pm
-usecase "throws spore" as ts
-Player --> ts
+@startuml player
+
+Mushroomer -left-|> Player
+Insecter -left-|> Player
+
+left to right direction
+Player --> (Turn over)
+
+Mushroomer --> (Throws threads)
+Mushroomer --> (Levels up)
+Mushroomer --> (Plants stem)
+Mushroomer --> (Throws spore)
+
+Insecter --> (Moves insect)
+Insecter --> (Eat with insect)
+Insecter --> (Cut with insect)
+
 @enduml

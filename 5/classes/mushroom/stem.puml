@@ -3,7 +3,7 @@
 interface IStem{
     {abstract} add(t : Tecton, th : Stem) : Boolean
     {abstract} remove(t : Tecton, th : Stem) : Boolean
-    levelUp() : void
+    {abstract} levelUp() : Boolean
 }
 
 Stem *-- Spore
