@@ -1,0 +1,13 @@
+
+@startuml Plants stem
+skinparam linestyle ortho
+actor Mushroomer
+rectangle "map: Map" as 1
+rectangle "tecton: Tecton" as 2.1
+rectangle "thread: MushroomThread" as 3
+rectangle "spore: Spore" as 4
+rectangle "stem: MushroomStem" as 5
+
+3 -right-> 2.1: 1. 
+
+@enduml
