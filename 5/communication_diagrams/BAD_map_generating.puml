@@ -1,0 +1,25 @@
+
+@startuml diagram1
+skinparam linestyle ortho
+rectangle "map: Map" as 1
+rectangle "tecton1: Tecton" as 2.1
+rectangle "tecton2: Tecton" as 2.2
+rectangle "tecton3: Tecton" as 2.3
+rectangle "tecton4: Tecton" as 2.4
+
+rectangle "C" as 3
+rectangle "D" as 4
+
+1 -right-> 2.1: <<create>>
+1 -right-> 2.1: 1. addTecton(tecton1): void
+
+1 -left-> 2.2: <<create>>
+1 -left-> 2.2: 2. addTecton(tecton2): void
+
+1 -right-> 2.3: <<create>>
+1 -left-> 2.3: 3. addTecton(tecton3): void
+
+1 -right-> 2.4: <<create>>
+1 -left-> 2.4: 4. addTecton(tecton4): void
+
+@enduml
