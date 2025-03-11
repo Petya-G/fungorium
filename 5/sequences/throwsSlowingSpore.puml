@@ -1,0 +1,22 @@
+@startuml Throws slowing spore
+
+title Mushroomer throws slowing spore on tecton
+
+actor Controller
+participant "mr : Mushroomer" as MR
+participant "t : Tecton" as T
+participant "sp : Slowing Spore" as SP
+
+activate Controller
+Controller -> MR : add(t, sp)
+activate MR
+
+MR -> T : add(t, sp)
+activate T
+
+MR <-- T : true
+deactivate T
+
+Controller <-- MR : true
+deactivate MR
+@enduml

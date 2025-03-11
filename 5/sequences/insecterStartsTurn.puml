@@ -1,0 +1,31 @@
+@startuml Insecter starts turn
+
+title Insecter starts turn
+
+actor Controller
+participant "ir : Insecter" as IR
+participant "i : Insect" as I
+participant "e : Effect" as E
+
+activate Controller
+Controller -> IR : onRound()
+activate IR
+
+IR -> I : onRound()
+activate I
+
+loop for(e : effects)
+    I -> E
+    activate E
+
+    alt duration == 0
+    E -> E : remove(i)
+
+    I <--E
+    deactivate E
+end
+
+IR <-- I
+deactivate I
+
+@enduml

@@ -1,10 +1,11 @@
 @startuml player
 
-Mushroomer -left-|> Player
-Insecter -left-|> Player
+Mushroomer -left-|> User
+Insecter -left-|> User
 
 left to right direction
-Player --> (Ends turn)
+User --> (Ends turn)
+User --> (Starts game)
 
 Mushroomer --> (Plants stem)
 Mushroomer --> (Levels up stem)
