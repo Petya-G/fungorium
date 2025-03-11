@@ -1,0 +1,9 @@
+
+@startuml Grows thread
+skinparam linestyle ortho
+actor Player
+rectangle "map: Map" as 1
+rectangle "tecton: Tecton" as 2.1
+1 -right-> 2.1: 1. 
+
+@enduml
