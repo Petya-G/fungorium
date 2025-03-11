@@ -1,0 +1,12 @@
+@startuml thread
+
+interface IThread{
+    {abstract} add(t : Tecton, th : Thread) : Boolean
+    {abstract} remove(t : Tecton, th : Thread) : Boolean
+}
+
+class Thread extends Entity{
+    getConnected() : List<Thread>
+}
+
+@enduml

@@ -1,0 +1,8 @@
+@startuml player
+
+abstract class Player implements IOnTurn{
+    {abstract} id : Integer
+    {abstract} score : Integer
+}
+
+@enduml

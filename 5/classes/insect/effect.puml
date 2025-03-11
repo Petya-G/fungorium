@@ -1,0 +1,14 @@
+@startuml spore
+
+abstract class Effect implements IOnTurn{
+    {abstract} duration : Integer
+    {abstract} apply(i : Insect) : void
+    {abstract} remove(i : Insect) : void
+}
+
+class Fast extends Effect {}
+class Slow extends Effect {}
+class Paralyze extends Effect {}
+class ClawParalyze extends Effect {}
+
+@enduml

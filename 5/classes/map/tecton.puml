@@ -1,0 +1,21 @@
+@startuml tecton
+
+Tecton *-- "0..*" Spore
+Tecton *-- "1..*" Stem
+Tecton *-- "1..*" Thread
+Tecton *-- "0..*" Insect
+Tecton --- "0..*" Tecton
+class Tecton implements IOnRound, ISpore, IStem, IThread{
+    spores : List<Spore>
+    stems : List<Stem>
+    threads : List<Thread>
+    neighbours : List<Tecton>
+    insects : List<Insect>
+    addNeighbour(t : Tecton) : void
+    addInsect(i : Insect) : void
+}
+
+class StemlessTecton extends Tecton {}
+class ThreadConsumingTecton extends Tecton {}
+class SingleThreadedTecton extends Tecton {}
+@enduml

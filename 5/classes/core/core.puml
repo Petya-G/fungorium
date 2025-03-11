@@ -1,0 +1,16 @@
+@startuml core
+
+interface IOnTurn{
+    {abstract} onTurn() : void
+}
+
+interface IOnRound{
+    {abstract} onRound() : void
+}
+
+abstract class Entity implements IOnTurn{
+    {abstract} location : Tecton
+    {abstract} owner : Player
+}
+
+@enduml

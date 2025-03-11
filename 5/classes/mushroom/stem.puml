@@ -1,0 +1,17 @@
+@startuml stem
+
+interface IStem{
+    {abstract} add(t : Tecton, th : Stem) : Boolean
+    {abstract} remove(t : Tecton, th : Stem) : Boolean
+    levelUp() : void
+}
+
+Stem *-- Spore
+class Stem extends Entity implements ISpore{
+    maxSporeThrows : Integer
+    numThrownSpores : Integer
+    throwableSpores : List<Spore>
+    level : Integer
+}
+
+@enduml
