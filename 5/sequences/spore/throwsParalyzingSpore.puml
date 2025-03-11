@@ -1,0 +1,20 @@
+@startuml Mushroomer throws paralyzing spore on tecton
+title Mushroomer throws paralyzing spore on tecton
+
+actor Controller
+participant "mr : Mushroomer" as MR
+participant "t : Tecton" as T
+participant "sp : Paralyzing Spore" as SP
+
+activate Controller
+Controller -> MR : add(t, sp)
+activate MR
+
+MR -> T : add(t, sp)
+activate T
+
+MR <-- T : true
+deactivate T
+
+deactivate MR
+@enduml
