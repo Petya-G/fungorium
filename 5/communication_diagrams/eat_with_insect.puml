@@ -1,7 +1,7 @@
 
 @startuml Eat with insect
 skinparam linestyle ortho
-actor Insecter 
+actor Insecter
 rectangle "map: Map" as 1
 rectangle "tecton1: Tecton" as 2.1
 rectangle "tecton2: Tecton" as 2.2
