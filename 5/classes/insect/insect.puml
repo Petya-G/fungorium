@@ -9,7 +9,7 @@ interface IInsect{
 Insect *-- "0..*" Effect
 class Insect extends Entity implements IInsect{
     effects : List<Effect>
-    paralized : Boolean
+    'paralized : Boolean
     clawParalized : Boolean
     baseSpeed : Integer
     speedModifier : Integer
