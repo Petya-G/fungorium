@@ -8,14 +8,14 @@ participant "i : Insect" as I
 participant "e : Effect" as E
 
 activate Controller
-Controller -> IR : onRound()
+Controller -> IR : onTurn()
 activate IR
 
-IR -> I : onRound()
+IR -> I : onTurn()
 activate I
 
 loop for(e : effects)
-    I -> E
+    I -> E : onTurn()
     activate E
 
     alt duration == 0

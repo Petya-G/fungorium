@@ -1,5 +1,5 @@
-@startuml Mushroomer plants stem
-title Mushroomer plants stem
+@startuml Mushroomer plants stem on tecton
+title Mushroomer plants stem on tecton
 
 actor Controller
 participant "mr : Mushroomer" as MR

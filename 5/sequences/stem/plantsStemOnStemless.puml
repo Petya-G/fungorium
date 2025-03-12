@@ -1,0 +1,20 @@
+@startuml Mushroomer plants stem on stemless tecton
+title Mushroomer plants stem on stemless tecton
+
+actor Controller
+participant "mr : Mushroomer" as MR
+participant "st : Stemless tecton" as ST
+participant "s : Stem" as S
+
+activate Controller
+Controller -> MR : plantStem(t, s)
+activate MR
+
+MR -> ST : add(t, s)
+activate ST
+
+MR <-- ST : false
+deactivate ST
+
+deactivate MR
+@enduml

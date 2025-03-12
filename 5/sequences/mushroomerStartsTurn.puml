@@ -4,30 +4,28 @@ title Mushroomer starts turn
 
 actor Controller
 participant "mr : Mushroomer" as MR
-participant "th : Thread" as TH
 participant "s : Stem" as S
+participant "th : Thread" as TH
 
 activate Controller
-Controller -> MR : onRound()
+Controller -> MR : onTurn()
 activate MR
 
-MR -> MR : onRound()
+loop for(s : stems)
+    MR -> S : onTurn()
+    activate S
+
+    MR <-- S
+    deactivate S
+end
+
 loop for(th : threads)
-    MR -> TH
+    MR -> TH : onTurn()
     activate TH
-    TH -> TH : onRound()
 
     MR <-- TH
     deactivate TH
 end
 
-loop for(s : stems)
-    MR -> S
-    activate S
-    S -> S : onRound()
-
-    MR <-- S
-    deactivate S
-end
 
 @enduml
