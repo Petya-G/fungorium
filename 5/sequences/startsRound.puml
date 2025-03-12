@@ -6,6 +6,8 @@ participant "m : Map" as M
 participant "t : Tecton" as T
 participant "mr : Mushroomer" as MR
 participant "mt : Mushroomthread" as MT
+participant "ms : Mushroomstem" as MS
+participant "sp : Spore" as SP
 
 activate Controller
 Controller -> M : onRound()
@@ -14,6 +16,11 @@ activate M
 loop for(t : tectons)
     M -> T : onRound()
     activate T
+
+    alt random
+        T -> T : split()
+        'edit here
+    end
 
     alt t is threadconsuming
         loop for(mt : mushroomthreads)
@@ -24,10 +31,11 @@ loop for(t : tectons)
 
             T -> T : remove(t, mt)
         end
-        M <-- T
-        deactivate T
     end
 
-    deactivate M
+    M <-- T
+    deactivate T
+end
+deactivate M
 
-    @enduml
+@enduml

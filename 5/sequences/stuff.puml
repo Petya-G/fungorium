@@ -1,0 +1,101 @@
+@startuml New round starts
+title New round starts
+
+actor Controller
+participant "m : Map" as M
+participant "t : Tecton" as T
+participant "mr : Mushroomer" as MR
+participant "ir : Insecter" as IR
+participant "t1 : Tecton" as T1
+participant "t2 : Tecton" as T2
+
+activate Controller
+Controller -> M : onRound()
+activate M
+
+loop for(t : tectons)
+    M -> T : onRound()
+    activate T
+
+    alt random
+        T -> T : split()
+        create T1
+        T -> T1 **: new
+        create T2
+        T -> T2 **: new
+        T -> M : addTecton(t1)
+        T -> M : addTecton(t2)
+        
+        loop for (mt in threads)
+            T -> MR : remove(t mt)
+            activate MR
+            T <-- MR
+            deactivate MR
+            T -> T : remove(t mt)
+        end
+        
+        loop for (ms in stems)
+            T -> MR : remove(t ms)
+            activate MR
+            T <-- MR
+            deactivate MR
+            T -> T : remove(t ms)
+            alt random choice
+                T -> MR : add(t1, ms)
+            else
+                T -> MR : add(t2, ms)
+            end
+            activate MR
+            T <-- MR
+            deactivate MR
+        end
+        
+        loop for (i in insects)
+            T -> MR : remove(t, i)
+            activate MR
+            T <-- MR
+            deactivate MR
+            T -> T : remove(t, i)
+            alt random
+                T -> MR : add(t1, i)
+            else
+                T -> MR : add(t2, i)
+            end
+            activate MR
+            T <-- MR
+            deactivate MR
+        end
+        
+        loop for (sp in spores)
+            T -> MR : remove(t sp)
+            activate MR
+            T <-- MR
+            deactivate MR
+            T -> T : remove(t sp)
+            alt random 
+                T -> MR : add(t1, sp)
+            else
+                T -> MR : add(t2, sp)
+            end
+            activate MR
+            T <-- MR
+            deactivate MR
+        end
+    end
+
+    alt t is threadconsuming
+        loop for(mt : mushroomthreads)
+            T -> MR : remove(t mt)
+            activate MR
+            T <-- MR
+            deactivate MR
+            T -> T : remove(t mt)
+        end
+    end
+
+    M <-- T
+    deactivate T
+end
+deactivate M
+
+@enduml

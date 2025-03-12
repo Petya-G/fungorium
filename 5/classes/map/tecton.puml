@@ -11,6 +11,8 @@ class Tecton implements IOnRound, ISpore, IStem, IThread{
     threads : List<Thread>
     neighbours : List<Tecton>
     insects : List<Insect>
+    getSporeCount(p : Player) : Integer
+    hasStem() : Boolean
     addNeighbour(t : Tecton) : void
     addInsect(i : Insect) : void
 }

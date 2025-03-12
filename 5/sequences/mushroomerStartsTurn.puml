@@ -6,6 +6,7 @@ actor Controller
 participant "mr : Mushroomer" as MR
 participant "s : Stem" as S
 participant "th : Thread" as TH
+participant "t : Tecton" as T
 
 activate Controller
 Controller -> MR : onTurn()
@@ -22,6 +23,14 @@ end
 loop for(th : threads)
     MR -> TH : onTurn()
     activate TH
+
+    TH -> T : getLocation()
+    activate T
+    alt  not hasStem() and getSporeCount() > 5
+
+
+    TH <-- T
+    end
 
     MR <-- TH
     deactivate TH
