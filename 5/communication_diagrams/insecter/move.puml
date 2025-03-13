@@ -1,5 +1,5 @@
 
-@startuml
+@startuml Move insect 
 title Move insect to another tecton
 skinparam linestyle ortho
 actor Insecter as 0

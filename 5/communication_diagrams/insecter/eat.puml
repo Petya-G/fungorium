@@ -1,5 +1,5 @@
 
-@startuml
+@startuml Eat with insect
 title Eat with insect
 skinparam linestyle ortho
 actor Insecter as 0
