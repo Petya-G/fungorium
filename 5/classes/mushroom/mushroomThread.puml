@@ -1,8 +1,8 @@
 @startuml thread
 
 interface IThread{
-    {abstract} add(th : Thread) : Boolean
-    {abstract} remove(th : Thread) : Boolean
+    {abstract} add(th : Mushroomthread) : Boolean
+    {abstract} remove(th : Mushroomthread) : Boolean
 }
 
 class MushroomThread extends Entity{

@@ -1,8 +1,8 @@
 @startuml stem
 
 interface IStem{
-    {abstract} add(th : Stem) : Boolean
-    {abstract} remove(th : Stem) : Boolean
+    {abstract} add(ms: Mushroomstem) : Boolean
+    {abstract} remove(ms : Mushroomstem) : Boolean
     {abstract} levelUp() : Boolean
 }
 
