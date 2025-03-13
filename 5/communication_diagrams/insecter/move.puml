@@ -1,0 +1,16 @@
+
+@startuml
+title Move insect to another tecton
+skinparam linestyle ortho
+actor Insecter as 0
+rectangle "map: Map" as 1
+rectangle "tecton1: Tecton" as 2.1
+rectangle "tecton2: Tecton" as 2.2
+rectangle "insect: Insect" as 3
+
+0 -- 3 :  1. → move(tecton2)
+3 -- 2.1:  2. → move(tecton2)
+2.1 -- 2.2:  3. → addInsect(insect)
+2.1 -- 1
+
+@enduml

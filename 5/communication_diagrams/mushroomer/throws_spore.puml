@@ -1,13 +1,18 @@
 
-@startuml Plants stem
+@startuml Throws spore
+title Stem throws spore
 skinparam linestyle ortho
 actor Mushroomer
 rectangle "map: Map" as 1
 rectangle "tecton: Tecton" as 2.1
-rectangle "thread: MushroomThread" as 3
 rectangle "spore: Spore" as 4
 rectangle "stem: MushroomStem" as 5
 
-3 -right-> 2.1: 1. 
+Mushroomer -left- 5: 1. ← add(tecton, spore)
+5 -down- 4: 2. ↓ <<create>>
+5 -left- 2.1: 3. ← add(spore)
+2.1 -down- 1
+
+
 
 @enduml

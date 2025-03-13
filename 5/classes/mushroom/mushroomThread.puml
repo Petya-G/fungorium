@@ -5,7 +5,7 @@ interface IThread{
     {abstract} remove(th : Thread) : Boolean
 }
 
-class Thread extends Entity{
+class MushroomThread extends Entity{
     getConnected() : List<Thread>
 }
 
