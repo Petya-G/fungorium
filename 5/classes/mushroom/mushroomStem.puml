@@ -6,8 +6,8 @@ interface IStem{
     {abstract} levelUp() : Boolean
 }
 
-Stem *-- Spore
-class Stem extends Entity implements ISpore{
+MushroomStem *-- Spore
+class MushroomStem extends Entity implements ISpore{
     maxSporeThrows : Integer
     numThrownSpores : Integer
     throwableSpores : List<Spore>

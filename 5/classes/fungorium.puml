@@ -4,8 +4,8 @@ package fungorium{
     !include insect/effect.puml
     !include insect/insect.puml
     !include mushroom/spore.puml
-    !include mushroom/stem.puml
-    !include mushroom/thread.puml
+    !include mushroom/mushroomStem.puml
+    !include mushroom/mushroomThread.puml
     !include map/map.puml
     !include map/tecton.puml
     !include player/player.puml
