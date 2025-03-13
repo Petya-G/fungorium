@@ -9,7 +9,7 @@ rectangle "spore: Spore" as 4
 rectangle "stem: MushroomStem" as 5
 
 Mushroomer -left- 5: 1. ← add(spore)
-5 -down- 4: 2. ↓ <<create>>
+Mushroomer -down- 4: 2. ↓ <<create>>
 5 -left- 2.1: 3. ← add(spore)
 2.1 -down- 1
 
