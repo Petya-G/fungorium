@@ -12,9 +12,9 @@ rectangle "thread.owner: Player (Mushroomer)" as 2.2
 rectangle "insect: Insect" as 3
 rectangle "thread: MushroomThread" as 4
 
-3 -right-> 2.1: 1. remove(thread)
-3 -right-> 2.2: 2. remove(thread)
+3 --> 2.1: 1. remove(thread)
+3 --> 2.2: 2. remove(thread)
 
-Insecter -right-> 3: 1. cut(thread)
+Insecter --> 3: 1. cut(thread)
 
 @enduml
