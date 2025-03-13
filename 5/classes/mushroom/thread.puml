@@ -1,8 +1,8 @@
 @startuml thread
 
 interface IThread{
-    {abstract} add(t : Tecton, th : Thread) : Boolean
-    {abstract} remove(t : Tecton, th : Thread) : Boolean
+    {abstract} add(th : Thread) : Boolean
+    {abstract} remove(th : Thread) : Boolean
 }
 
 class Thread extends Entity{

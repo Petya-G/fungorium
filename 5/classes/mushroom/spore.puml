@@ -1,8 +1,8 @@
 @startuml spore
 
 interface ISpore {
-    {abstract} add(t : Tecton, sp : Spore) : Boolean
-    {abstract} remove(t : Tecton, sp : Spore) : Boolean
+    {abstract} add(sp : Spore) : Boolean
+    {abstract} remove(sp : Spore) : Boolean
 }
 
 abstract class Spore extends Entity{

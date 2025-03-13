@@ -1,8 +1,8 @@
 @startuml stem
 
 interface IStem{
-    {abstract} add(t : Tecton, th : Stem) : Boolean
-    {abstract} remove(t : Tecton, th : Stem) : Boolean
+    {abstract} add(th : Stem) : Boolean
+    {abstract} remove(th : Stem) : Boolean
     {abstract} levelUp() : Boolean
 }
 
