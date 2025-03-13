@@ -8,9 +8,9 @@ rectangle "tecton: Tecton" as 2.1
 rectangle "insect: Insect" as 3
 rectangle "spore: Spore" as 4
 
-0 -- 3 :  1. → eat(spore)
-3 -- 2.1:  2. → eat(spore)
-2.1 -- 1
+0 -right- 3 :  1. → eat(spore)
+3 -right- 2.1:  2. → eat(spore)
+2.1 -right- 1
 2.1 -- 4
 
 @enduml
