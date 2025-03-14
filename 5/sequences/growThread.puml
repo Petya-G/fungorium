@@ -4,7 +4,6 @@ title Mushroomer grows thread on a tecton
 actor Controller
 participant "mr : Mushroomer" as MR
 participant "t : Tecton" as T
-participant "th : MushroomThread" as TH
 
 activate Controller
 Controller -> MR : add(t, th)
