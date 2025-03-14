@@ -3,18 +3,38 @@
 ' Ducz
 
 @startuml Cut with insect
+title Cut with insect 
 skinparam linestyle ortho
-actor Insecter 
+
+rectangle "Controller" as 0
+
 rectangle "map: Map" as 1
-rectangle "thread.location: Tecton" as 2.1
-rectangle "thread.owner: Player (Mushroomer)" as 2.2
-'rectangle "tecton2: Tecton" as 2.2
-rectangle "insect: Insect" as 3
-rectangle "thread: MushroomThread" as 4
 
-3 --> 2.1: 1. remove(thread)
-3 --> 2.2: 2. remove(thread)
+rectangle "tecton1: Tecton" as 2.1
+rectangle "tecton2: Tecton" as 2.2
 
-Insecter -right-> 3: 1. cut(thread)
+rectangle "insecter: Insecter" as 3.1
+rectangle "mushroomer: Mushroomer" as 3.2
+
+
+
+rectangle "insect: Insect" as 4
+
+rectangle "thread: MushroomThread" as 5
+0 -left-> 1: 1: <<create>>\n8: addTecton(tecton1)\n9: addTecton(tecton2)
+0 --> 2.1: 2: <<create>>\n10: addNeighbour(tecton2)\n13: addInsect(insect)\n14: add(thread)
+0 --> 2.2: 3: <<create>>\n11: addNeighbour(tecton1)\n15: add(thread)
+
+0 --> 3.1: 4: <<create>>
+0 --> 3.2: 5: <<create>>\n12 add(thread)
+
+0 --> 4: 6: <<create>>
+0 --> 5: 7: <<create>>
+
+'szerintem ezek nem is kellenek bele
+'1.1 --> 4: 7. cut(thread)
+
+'1.2 --> 2.1: 8. remove(thread)
+'1.2 --> 2.2: 9. remove(thread)
 
 @enduml

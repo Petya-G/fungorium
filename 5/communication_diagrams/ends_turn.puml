@@ -1,5 +1,6 @@
 
-@startuml Grows thread
+@startuml End turn
+title  End turn
 skinparam linestyle ortho
 actor Player
 rectangle "map: Map" as 1
