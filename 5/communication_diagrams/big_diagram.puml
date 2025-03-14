@@ -19,6 +19,7 @@ rectangle "stem: MushroomStem" as 6
 
 rectangle "spore: Spore" as 7
 
+'rectangle "Map" as 8
 
 '0 -left-> 1: 1: <<create>>\n8: addTecton(tecton1)\n9: addTecton(tecton2)
 0 -left-> 2.1: 1: <<create>>\n6.1: add(thread1)\n10: addNeighbour(tecton2)\n11: addInsect(insect)\n12: add(stem)\n 13: add(spore)
@@ -39,5 +40,7 @@ rectangle "spore: Spore" as 7
 
 '1.2 --> 2.1: 8. remove(thread)
 '1.2 --> 2.2: 9. remove(thread)
+
+
 
 @enduml
