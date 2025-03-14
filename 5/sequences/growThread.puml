@@ -1,0 +1,20 @@
+@startuml Mushroomer grows thread on a tecton
+title Mushroomer grows thread on a tecton
+
+actor Controller
+participant "mr : Mushroomer" as MR
+participant "t : Tecton" as T
+participant "th : MushroomThread" as TH
+
+activate Controller
+Controller -> MR : add(t, th)
+activate MR
+
+MR -> T : add(t, th)
+activate T
+
+MR <-- T : true
+deactivate T
+
+deactivate MR
+@enduml
