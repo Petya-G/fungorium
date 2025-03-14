@@ -1,11 +1,11 @@
 @startuml core
 
-interface IOnTurn{
-    {abstract} onTurn() : void
+interface ITurn{
+    {abstract} endTurn() : void
 }
 
-interface IOnRound{
-    {abstract} onRound() : void
+interface IRound{
+    {abstract} endTurn() : void
 }
 
 abstract class Entity implements IOnTurn{
