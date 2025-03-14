@@ -5,7 +5,7 @@ interface ITurn{
 }
 
 interface IRound{
-    {abstract} endTurn() : void
+    {abstract} endRound() : void
 }
 
 abstract class Entity implements ITurn{
