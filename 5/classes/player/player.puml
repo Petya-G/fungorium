@@ -1,6 +1,6 @@
 @startuml player
 
-abstract class Player implements IOnTurn{
+abstract class Player implements ITurn{
     {abstract} id : Integer
     {abstract} score : Integer
 }

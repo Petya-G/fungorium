@@ -8,7 +8,7 @@ interface IRound{
     {abstract} endTurn() : void
 }
 
-abstract class Entity implements IOnTurn{
+abstract class Entity implements ITurn{
     {abstract} location : Tecton
     {abstract} owner : Player
 }

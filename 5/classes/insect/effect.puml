@@ -1,6 +1,6 @@
 @startuml spore
 
-abstract class Effect implements IOnTurn{
+abstract class Effect implements ITurn{
     {abstract} duration : Integer
     {abstract} apply(i : Insect) : void
     {abstract} remove(i : Insect) : void
