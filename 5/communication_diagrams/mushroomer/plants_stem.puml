@@ -10,7 +10,7 @@ rectangle "spore: Spore" as 4
 rectangle "stem: MushroomStem" as 5
 
 Mushroomer - 2.1: \n 1. → getSporeCount() \n 2. ← spore count \n 3. → hasStem() \n 4. ← no stem there yet \n 5. → getThreads() \n 6. ← threads list \n 8. → add(stem)
-Mushroomer - 5: 7. → <<create>>
+Mushroomer -left- 5: 7. ← <<create>>
 2.1 -down- 4
 2.1 -up- 1
 2.1 - 3

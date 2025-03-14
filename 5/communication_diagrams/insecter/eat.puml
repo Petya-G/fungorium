@@ -1,12 +1,16 @@
 
 @startuml Eat with insect
+title Eat with insect
 skinparam linestyle ortho
-actor Insecter
+actor Insecter as 0
 rectangle "map: Map" as 1
 rectangle "tecton: Tecton" as 2.1
 rectangle "insect: Insect" as 3
 rectangle "spore: Spore" as 4
 
-3 -right-> 2.1: 1. eat(spore)
+0 -right- 3 :  1. → eat(spore)
+3 -right- 2.1:  2. → eat(spore)
+2.1 -right- 1
+2.1 -- 4
 
 @enduml
