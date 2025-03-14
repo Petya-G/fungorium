@@ -1,4 +1,4 @@
-@startuml Mushroomer throws claw paralyzing spore from stem to tecton
+@startuml MushroomerThrowsClawParalyzingSporeFromStemToTecton
 title Mushroomer throws claw paralyzing spore from stem to tecton
 
 actor Controller

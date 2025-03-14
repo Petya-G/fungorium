@@ -1,8 +1,9 @@
-@startuml Mushroomer throws speeding spore on tecton
-title Mushroomer throws speeding spore on tecton
+@startuml MushroomerThrowsSpeedingSporeFromStemToTecton
+title Mushroomer throws speeding spore from stem to tecton
 
 actor Controller
 participant "mr : Mushroomer" as MR
+participant "ms : MushroomStem" as MS
 participant "t : Tecton" as T
 participant "sp : Speeding Spore" as SP
 
@@ -10,11 +11,18 @@ activate Controller
 Controller -> MR : add(t, sp)
 activate MR
 
-MR -> T : add(t, sp)
+MR -> MS : add(t, sp)
+activate MS
+
+MS -> T : add(t, sp)
 activate T
 
-MR <-- T : true
+MS <-- T : true
 deactivate T
+
+MS -> MS : remove(t, sp)
+MR <-- MS : true
+deactivate MS
 
 deactivate MR
 @enduml
