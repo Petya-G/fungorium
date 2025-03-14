@@ -1,4 +1,4 @@
-@startuml growThread
+@startuml growThreadOnSingle
 title Mushroomer grows thread on a single threaded tecton
 
 actor Controller
