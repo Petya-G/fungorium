@@ -5,7 +5,7 @@ Tecton *-- "0..*" MushroomStem
 Tecton *-- "0..*" MushroomThread
 Tecton *-- "0..*" Insect
 Tecton --- "0..*" Tecton
-class Tecton implements IOnRound, ISpore, IStem, IThread{
+class Tecton implements IRound, ISpore, IStem, IThread{
     spores : List<Spore>
     stems : List<MushroomStem>
     threads : List<MushroomThread>
