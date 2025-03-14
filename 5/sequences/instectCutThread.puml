@@ -1,0 +1,24 @@
+@startuml insectCutThread
+
+title Insect cuts thread
+
+actor Controller
+participant "ir : Insecter" as IR
+participant  "i : Insect" as I
+participant "mt : MushroomThread" as M
+
+activate Controller
+Controller -> IR: cutThread(mt) : void
+
+activate IR
+IR -> I: cutThread(mt) : void
+activate I
+I -> M: cut(mt) : void
+activate M
+M--> I
+
+deactivate M
+I-->IR
+deactivate I
+
+@enduml
