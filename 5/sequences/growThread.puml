@@ -1,4 +1,4 @@
-@startuml Mushroomer grows thread on a tecton
+@startuml growThread
 title Mushroomer grows thread on a tecton
 
 actor Controller
