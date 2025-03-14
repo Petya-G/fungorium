@@ -1,9 +1,0 @@
-@startuml map
-
-Map *-- "1..*" Tecton
-class Map implements IOnRound{
-    tectons : List<Tecton>
-    addTecton(t : Tecton) : void
-}
-
-@enduml

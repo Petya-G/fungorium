@@ -6,8 +6,7 @@ package fungorium{
     !include mushroom/spore.puml
     !include mushroom/mushroomStem.puml
     !include mushroom/mushroomThread.puml
-    !include map/map.puml
-    !include map/tecton.puml
+    !include core/tecton.puml
     !include player/player.puml
     !include player/mushroomer.puml
     !include player/insecter.puml
