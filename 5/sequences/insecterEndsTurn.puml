@@ -1,6 +1,6 @@
-@startuml InsecterStartsTurn
+@startuml Insecter ends turn
 
-title Insecter starts turn
+title Insecter ends turn
 
 actor Controller
 participant "ir : Insecter" as IR
@@ -8,17 +8,17 @@ participant "i : Insect" as I
 participant "e : Effect" as E
 
 activate Controller
-Controller -> IR : onTurn()
+Controller -> IR : endTurn()
 activate IR
 
-IR -> I : onTurn()
+IR -> I : endTurn()
 activate I
 
 loop for(e : effects)
-    I -> E : onTurn()
+    I -> E : endTurn()
     activate E
 
-    alt duration == 0
+    alt duration == 1
     E -> E : remove(i)
 
     I <--E
