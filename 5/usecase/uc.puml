@@ -8,7 +8,7 @@ User --> (Ends turn)
 User --> (Starts game)
 
 Mushroomer --> (Plants stem)
-Mushroomer --> (Levels up stem)
+'Mushroomer --> (Levels up stem)
 Mushroomer --> (Throws spore)
 Mushroomer --> (Grows thread)
 
