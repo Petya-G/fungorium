@@ -15,13 +15,22 @@ activate IR
 IR -> I: cut(mt)
 activate I
 
-alt clawParalized
+alt clawParalized or paralyzed
     IR <-- I : false
 
 else
     I -> M: gotCut()
     activate M
     
+    M -> T : getLocation()
+    activate T
+
+    T -> T : remove(mt)
+
+    M <-- T
+    deactivate T
+
+
     I <-- M
     deactivate M
 
