@@ -15,13 +15,13 @@ IR -> I : endTurn()
 activate I
 
 loop for(e : effects)
-    I -> E : endTurn()
-    activate E
-
     alt duration == 1
-    E -> E : remove(i)
-
-    I <--E
+        I -> E : remove(i)
+        activate E
+        I <- E : remove(e)
+        I <-- E
+        deactivate E
+    end
     deactivate E
 end
 

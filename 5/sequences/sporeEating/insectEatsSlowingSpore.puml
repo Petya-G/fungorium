@@ -7,6 +7,7 @@ participant "i : Insect" as I
 participant "s : Slowing spore" as S
 participant "e : Slow" as E
 participant "t : Tecton" as T
+participant "mr : Mushroomer" as MR
 
 Controller -> IR: eat(s)
 activate IR
@@ -14,29 +15,31 @@ IR -> I: eat(s)
 activate I
 
 alt paralyzed
-
-    deactivate S
     IR <-- I : false
 else
 
-    I -> S : beingEaten()
+    I -> S : remove(i)
     activate S
 
-    S -> E : getEffect()
+    S -> E : apply(i)
     activate E
 
-    E -> E : apply(i)
+    E -> I : apply(e)
 
     S <-- E
     deactivate E
 
     S -> T : getLocation()
     activate T
-
     T -> T : remove(s)
-
     S <--T
     deactivate T
+
+    S -> MR : getPlayer()
+    activate MR
+    MR -> MR : remove(s)
+    S <-- MR
+    deactivate MR
 
     I <-- S
     deactivate S

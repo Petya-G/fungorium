@@ -1,0 +1,44 @@
+@startuml Mushroomer ends turn
+
+title Mushroomer ends turn
+
+actor Controller
+participant "mr : Mushroomer" as MR
+participant "ms : Mushroomstem" as MS
+participant "sp0 : Fasting spore" as S0
+participant "sp1 : Slowing spore" as S1
+participant "sp2 : Claw paralyzing spore" as S2
+participant "sp3 : Paralyzing spore" as S3
+
+activate Controller
+Controller -> MR : endTurn()
+activate MR
+
+loop for(s : stems)
+    MR -> MS : endTurn()
+    activate MS
+
+    alt level == 0
+    MS -> S0 **: new
+    MS -> MS : add(S0)
+    end
+
+    alt level == 1
+    MS -> S1 **: new
+    MS -> MS : add(S1)
+    end
+
+    alt level == 2
+    MS -> S2 **: new
+    MS -> MS : add(S2)
+    end
+
+    alt level == 3
+    MS -> S3 **: new
+    MS -> MS : add(S3)
+    end
+
+    MR <-- MS
+end
+
+@enduml

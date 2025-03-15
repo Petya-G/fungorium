@@ -1,0 +1,26 @@
+@startuml Round ends
+title Round ends
+
+actor Controller
+participant "m : Map" as M
+participant "t : Tecton" as T
+participant "mt : Mushroomthread" as MT
+
+activate Controller
+Controller -> T : endRound()
+activate T
+
+T -> T : split()
+loop for(mt : mushroomthreads)
+    T -> MR : remove(t mt)
+    activate MR
+    T <-- MR
+    deactivate MR
+    T -> T : remove(t mt)
+end
+
+Controller <- T
+deactivate T
+
+
+@enduml

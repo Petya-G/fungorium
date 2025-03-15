@@ -3,7 +3,6 @@
 interface IStem{
     {abstract} add(ms: Mushroomstem) : Boolean
     {abstract} remove(ms : Mushroomstem) : Boolean
-    {abstract} levelUp() : Boolean
 }
 
 MushroomStem *-- Spore
@@ -12,6 +11,7 @@ class MushroomStem extends Entity implements ISpore{
     numThrownSpores : Integer
     throwableSpores : List<Spore>
     level : Integer
+    levelUp() : Boolean
 }
 
 @enduml

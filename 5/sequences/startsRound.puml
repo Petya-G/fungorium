@@ -1,41 +1,18 @@
-@startuml NewRoundStarts
-title Round ends
+@startuml Round ends for threadconsuming tecton
+title  Round ends for threadconsuming tecton
 
 actor Controller
-participant "m : Map" as M
-participant "t : Tecton" as T
-participant "mr : Mushroomer" as MR
+participant "t : Threadconsuming tecton" as T
 participant "mt : Mushroomthread" as MT
-participant "ms : Mushroomstem" as MS
-participant "sp : Spore" as SP
 
 activate Controller
-Controller -> M : onRound()
-activate M
+Controller -> T : onRound()
+activate T
 
-loop for(t : tectons)
-    M -> T : onRound()
-    activate T
-
-    alt random
-        T -> T : split()
-        'edit here
-    end
-
-    alt t is threadconsuming
-        loop for(mt : mushroomthreads)
-            T -> MR : remove(t, mt)
-            activate MR
-            T <-- MR
-            deactivate MR
-
-            T -> T : remove(t, mt)
-        end
-    end
-
-    M <-- T
-    deactivate T
+loop for(mt : mushroomthreads)
+    
 end
-deactivate M
+
+deactivate T
 
 @enduml

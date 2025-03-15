@@ -7,6 +7,7 @@ class Mushroomer extends Player implements ISpore, IStem, IThread{
     spores : List<Spore>
     stems : List<MushroomStem>
     threads : List<MushroomThread>
+    levelUp(ms : MushroomStem) : Boolean
 }
 
 @enduml

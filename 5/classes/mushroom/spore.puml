@@ -8,8 +8,7 @@ interface ISpore {
 abstract class Spore extends Entity{
     {abstract} nutrition : Integer
     {abstract} effect : Effect
-    {abstract} beingEaten() : void
-    {abstract} getEffect() : Effect
+    {abstract} remove(i : Insect) : Boolean
 }
 
 class SpeedingSpore extends Spore {}
