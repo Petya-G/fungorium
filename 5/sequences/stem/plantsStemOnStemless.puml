@@ -1,4 +1,4 @@
-@startuml Mushroomer plants stem on stemless tecton
+@startuml MushroomerPlantsStemOnStemlessTecton
 title Mushroomer plants stem on stemless tecton
 
 actor Controller
