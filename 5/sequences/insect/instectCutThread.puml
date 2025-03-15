@@ -6,19 +6,27 @@ actor Controller
 participant "ir : Insecter" as IR
 participant  "i : Insect" as I
 participant "mt : MushroomThread" as M
+participant "t : Tecton" as T
 
 activate Controller
-Controller -> IR: cutThread(mt) : void
+Controller -> IR: cut(mt)
 
 activate IR
-IR -> I: cutThread(mt) : void
+IR -> I: cut(mt)
 activate I
-I -> M: cut(mt) : void
-activate M
-M--> I
 
-deactivate M
-I-->IR
+alt clawParalized
+    IR <-- I : false
+
+else
+    I -> M
+    activate M
+    
+    I <-- M
+    deactivate M
+
+    IR <-- I : true
+end
 deactivate I
 
 @enduml
