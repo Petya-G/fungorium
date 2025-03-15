@@ -8,25 +8,24 @@ User --> (Ends turn)
 User --> (Starts game)
 
 Mushroomer --> (Plants stem)
-Mushroomer --> (Plants stem on stemless tecton)
 Mushroomer --> (Plants stem on occupied tecton)
+Mushroomer --> (Plants stem on stemless tecton)
 'Mushroomer --> (Levels up stem)
 Mushroomer --> (Throws claw paralyzing spore)
 Mushroomer --> (Throws paralyzing spore)
 Mushroomer --> (Throws slowing spore)
 Mushroomer --> (Throws speeding spore)
 
-Mushroomer --> (Throws claw paralyzing spore but can't)
-Mushroomer --> (Throws paralyzing spore but can't)
-Mushroomer --> (Throws slowing spore but can't)
-Mushroomer --> (Throws speeding spore but can't)
+'Mushroomer --> (Throws claw paralyzing spore but can't)
+'Mushroomer --> (Throws paralyzing spore but can't)
+'Mushroomer --> (Throws slowing spore but can't)
+'Mushroomer --> (Throws speeding spore but can't)
 
 Mushroomer --> (Grows thread)
 Mushroomer --> (Grows thread on occupied single threaded tecton)
 
 Insecter --> (Moves insect)
-Insecter --> (Moves insect but can't because slow)
-Insecter --> (Moves insect but can't because stun)
+Insecter --> (Moves insect unsuccsessfully)
 
 Insecter --> (Insect eats claw paralyzing spore)
 Insecter --> (Insect eats paralyzing spore)
@@ -34,7 +33,6 @@ Insecter --> (Insect eats slowing spore)
 Insecter --> (Insect eats speeding spore)
 
 Insecter --> (Cut with insect)
-Insecter --> (Cut with insect but can't because stun)
-Insecter --> (Cut with insect but can't because claw stun)
+Insecter --> (Cut with insect unsuccsessfully)
 
 @enduml

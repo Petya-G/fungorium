@@ -19,7 +19,7 @@ alt clawParalized or paralyzed
     IR <-- I : false
 
 else
-    I -> M
+    I -> M: gotCut()
     activate M
     
     M -> T : getLocation()

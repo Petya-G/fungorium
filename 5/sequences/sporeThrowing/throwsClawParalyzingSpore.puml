@@ -14,13 +14,13 @@ activate MR
 MR -> MS : add(t, sp)
 activate MS
 
-MS -> T : add(t, sp)
+MS -> T : add(sp)
 activate T
 
 MS <-- T : true
 deactivate T
 
-MS -> MS : remove(t, sp)
+MS -> MS : remove(sp)
 MR <-- MS : true
 deactivate MS
 
