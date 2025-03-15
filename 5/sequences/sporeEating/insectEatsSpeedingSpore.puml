@@ -1,0 +1,50 @@
+@startuml  Insecter's insect eats speeding spore
+title Insecter's insect eats speeding spore
+
+actor Controller
+participant "ir : Insecter" as IR
+participant "i : Insect" as I
+participant "s : Speeding Spore" as S
+participant "e : Fast" as E
+participant "t : Tecton" as T
+
+Controller -> IR: eat(s)
+activate IR
+IR -> I: eat(s)
+activate I
+
+alt paralyzed
+
+    deactivate S
+    IR <-- I : false
+else
+
+    I -> S : beingEaten()
+    activate S
+
+    S -> E : getEffect()
+    activate E
+
+    E -> E : apply(i)
+
+    S <-- E
+    deactivate E
+
+    S -> T : getLocation()
+    activate T
+
+    T -> T : remove(s)
+
+    S <--T
+    deactivate T
+
+    I <-- S
+    deactivate S
+    IR <-- I : true
+end
+deactivate I
+
+Controller <-- IR
+deactivate IR
+deactivate IR
+@enduml
