@@ -1,0 +1,31 @@
+@startuml Starts game
+title Starts game
+skinparam linestyle ortho
+
+rectangle "Controller" as 0
+
+rectangle "tecton1: Tecton" as 2.1
+rectangle "tecton2: Tecton" as 2.2
+rectangle "stemlessTecton3: StemlessTecton" as 2.3
+rectangle "threadConsumingTecton4: ThreadConsumingTecton" as 2.4
+rectangle "singleThreadedTecton5: SingleThreadedTecton" as 2.5
+
+rectangle "insecter: Insecter" as 3.1
+rectangle "mushroomer: Mushroomer" as 3.2
+
+rectangle "insect: Insect" as 4
+
+0 --> 2.1: 1: <<create>>\n6: addNeighbour(tecton2)\n17: add(insect)
+0 --> 2.2:  2: <<create>>\n7: addNeighbour(tecton1)\n8: addNeighbour(tecton3)\n10: addNeighbour(tecton4)
+0 --> 2.3: 3: <<create>>\n9: addNeighbour(tecton2)\n12: addNeighbour(tecton4)
+0 --> 2.4: 4: <<create>>\n11: addNeighbour(tecton2)\n13: addNeighbour(tecton3)\n14: addNeighbour(tecton5)
+0 --> 2.5: 5: <<create>>\n10: addNeighbour(tecton4)\n15: addNeighbour(tecton4)
+
+
+0 --> 4: 16: <<create>>
+
+0 -left-> 3.1: 18: <<create>>
+
+0 -right-> 3.2: 19: <<create>>
+
+@enduml
