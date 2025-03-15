@@ -19,7 +19,7 @@ alt clawParalized
     IR <-- I : false
 
 else
-    I -> M
+    I -> M: gotCut()
     activate M
     
     I <-- M

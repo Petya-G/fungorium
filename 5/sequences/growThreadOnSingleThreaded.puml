@@ -1,9 +1,9 @@
 @startuml growThreadOnSingle
-title Mushroomer grows thread on a single threaded tecton
+title Mushroomer grows thread on an occupied single threaded tecton
 
 actor Controller
 participant "mr : Mushroomer" as MR
-participant "t : Tecton" as T
+participant "t : Signle threaded tecton" as T
 
 activate Controller
 Controller -> MR : add(t, th)
@@ -12,14 +12,8 @@ activate MR
 MR -> T : add(t, th)
 activate T
 
-alt empty
-
-MR <-- T : true
-
-else
 MR <-- T : false
 deactivate T
-end
 
 deactivate MR
 @enduml

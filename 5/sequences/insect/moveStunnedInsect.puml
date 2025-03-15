@@ -1,5 +1,5 @@
 @startuml moveStunnedInsect
-title Insecter moves stunned Insect
+title Insecter moves insect unsuccsessfully
 
 actor Controller
 participant "ir : Insecter" as IR
