@@ -9,7 +9,7 @@ activate Controller
 Controller -> MR : add(t, th)
 activate MR
 
-MR -> T : add(t, th)
+MR -> T : add(th)
 activate T
 
 MR <-- T : true
