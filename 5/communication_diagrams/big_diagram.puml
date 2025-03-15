@@ -26,7 +26,7 @@ rectangle "clawPralyzing: ClawParalyzingSpore" as 7.4
 
 '0 -left-> 1: 1: <<create>>\n8: addTecton(tecton1)\n9: addTecton(tecton2)
 0 --left--> 2.1: 1: <<create>>\n13: add(thread1)\n17: addNeighbour(tecton2)\n19: addInsect(insect)\n21: add(stem)\n23: add(speeding)\n27: add(paralyzing)
-0 -right-> 2.2: 2: <<create>>\n15: add(thread2)\n18: addNeighbour(tecton1)\n25: add(slowing)29: add(clawParalyzing)
+0 -right-> 2.2:  2: <<create>>\n15: add(thread2)\n18: addNeighbour(tecton1)\n25: add(slowing)29: add(clawParalyzing)
 
 0 -down-> 4: 3: <<create>>
 0 -down-> 3.1: 5: <<create>>
@@ -39,8 +39,8 @@ rectangle "clawPralyzing: ClawParalyzingSpore" as 7.4
 
 0 ---> 7.1: 9: <<create>>
 0 ---> 7.2: 10: <<create>>
-0 ---> 7.3: 11: <<create>>
-0 ---> 7.4: 12: <<create>>
+0 --> 7.3: 11: <<create>>
+0 --> 7.4: 12: <<create>>
 
 
 @enduml
