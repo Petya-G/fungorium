@@ -25,8 +25,7 @@ Mushroomer --> (Grows thread)
 Mushroomer --> (Grows thread on occupied single threaded tecton)
 
 Insecter --> (Moves insect)
-Insecter --> (Moves insect but can't because slow)
-Insecter --> (Moves insect but can't because stun)
+Insecter --> (Moves insect unsuccsessfully)
 
 Insecter --> (Insect eats claw paralyzing spore)
 Insecter --> (Insect eats paralyzing spore)
