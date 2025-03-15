@@ -1,0 +1,29 @@
+@startuml moveStunnedInsect
+title Insecter moves stunned Insect
+
+actor Controller
+participant "ir : Insecter" as IR
+participant "i : Insect" as I
+participant "e : Effect" as E
+participant "t1 : Tecton" as T1
+participant "t2 : Tecton" as T2
+
+Controller -> IR: moveInsect(Tecton)
+activate IR
+IR -> I: move(T2)
+activate I
+
+I -> I : getSpeed()
+
+loop for(e in effects)
+    I -> E : getSpeedModifier()
+    I <-- E : speedModifier
+end
+I --> IR: false
+
+deactivate I
+
+'Controller <-- IR
+deactivate IR
+deactivate IR
+@enduml
