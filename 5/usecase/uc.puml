@@ -8,12 +8,19 @@ User --> (Ends turn)
 User --> (Starts game)
 
 Mushroomer --> (Plants stem)
+Mushroomer --> (Plants stem on stemless tecton)
+Mushroomer --> (Plants stem on occupied tecton)
 'Mushroomer --> (Levels up stem)
-Mushroomer --> (Throws spore)
+Mushroomer --> (Throws claw paralyzing spore)
+Mushroomer --> (Throws paralyzing spore)
+Mushroomer --> (Throws slowing spore)
+Mushroomer --> (Throws speeding spore)
 Mushroomer --> (Grows thread)
 
 Insecter --> (Moves insect)
+Insecter --> (Moves insect but can't)
 Insecter --> (Eat with insect)
 Insecter --> (Cut with insect)
+Insecter --> (Cut with insect but can't)
 
 @enduml
