@@ -3,9 +3,21 @@ title Mushroomer grows thread on an occupied single threaded tecton
 
 actor Controller
 participant "mr : Mushroomer" as MR
-participant "t : Signle threaded tecton" as T
+participant "t : Single threaded tecton" as T
 
 activate Controller
+Controller -> MR : add(t, th)
+activate MR
+
+MR -> T : add(th)
+activate T
+
+MR <-- T : true
+deactivate T
+
+Controller <-- MR: true
+deactivate MR
+
 Controller -> MR : add(t, th)
 activate MR
 
@@ -15,5 +27,6 @@ activate T
 MR <-- T : false
 deactivate T
 
+'Controller <-- MR: true
 deactivate MR
 @enduml

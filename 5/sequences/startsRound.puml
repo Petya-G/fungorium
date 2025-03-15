@@ -1,5 +1,5 @@
-@startuml New round starts
-title New round starts
+@startuml NewRoundStarts
+title Round ends
 
 actor Controller
 participant "m : Map" as M
