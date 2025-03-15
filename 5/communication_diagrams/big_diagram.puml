@@ -17,30 +17,30 @@ rectangle "thread1: MushroomThread" as 5
 rectangle "thread2: MushroomThread" as 5.1
 rectangle "stem: MushroomStem" as 6
 
-rectangle "spore: Spore" as 7
+rectangle "speeding: SpeedingSpore" as 7.1
+rectangle "slowing: SlowingSpore" as 7.2
+rectangle "paralyzing: ParalyzingSpore" as 7.3
+rectangle "clawPralyzing: ClawParalyzingSpore" as 7.4
 
 'rectangle "Map" as 8
 
 '0 -left-> 1: 1: <<create>>\n8: addTecton(tecton1)\n9: addTecton(tecton2)
-0 -left-> 2.1: 1: <<create>>\n6.1: add(thread1)\n10: addNeighbour(tecton2)\n11: addInsect(insect)\n12: add(stem)\n 13: add(spore)
-0 -right-> 2.2: 2: <<create>>\n7.1: add(thread2)\n14: addNeighbour(tecton1)
+0 --left--> 2.1: 1: <<create>>\n13: add(thread1)\n17: addNeighbour(tecton2)\n19: addInsect(insect)\n21: add(stem)\n23: add(speeding)\n27: add(paralyzing)
+0 -right-> 2.2:  2: <<create>>\n15: add(thread2)\n18: addNeighbour(tecton1)\n25: add(slowing)29: add(clawParalyzing)
 
-0 -down-> 3.1: 3: <<create>>
-0 -up-> 3.2: 4: <<create>>\n6.2: add(thread1)\n7.2: add(thread2)\n 12.1: add(stem)\n 13.1: add(spore)
+0 -down-> 4: 3: <<create>>
+0 -down-> 3.1: 5: <<create>>
 
-0 -down-> 4: 5: <<create>>
+0 --up--> 3.2: 4: <<create>>\n14: add(thread1)\n16: add(thread2)\n 20: add(stem)\n 22: add(speeding)\n24: add(slowing)\n26: add(paralyzing)\n28: add(clawParalyzing)
 
-0 --> 5: 6: <<create>>
-0 --> 5.1: 7: <<create>>
-0 --> 6: 8: <<create>>
+0 ---> 5: 6: <<create>>
+0 ---> 5.1: 7: <<create>>
+0 ---> 6: 8: <<create>>
 
-0 --> 7: 9: <<create>>
-'szerintem ezek nem is kellenek bele
-'1.1 --> 4: 7. cut(thread)
-
-'1.2 --> 2.1: 8. remove(thread)
-'1.2 --> 2.2: 9. remove(thread)
-
+0 ---> 7.1: 9: <<create>>
+0 ---> 7.2: 10: <<create>>
+0 --> 7.3: 11: <<create>>
+0 --> 7.4: 12: <<create>>
 
 
 @enduml
