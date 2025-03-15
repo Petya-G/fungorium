@@ -2,6 +2,8 @@
 
 rectangle "Controller" as Controller
 
+rectangle "Map" as Map
+
 package "Tectons" {
     rectangle "tecton1: Tecton" as tecton1
     rectangle "tecton2: Tecton" as tecton2
@@ -43,22 +45,24 @@ package "Spores" {
     rectangle "clawParalyzing: ClawParalyzingSpore" as clawParalyzing
 }
 
-' Creating tectons and assigning neighbors
-Controller -up---> tecton1 : 1: <<create>>\n6: addNeighbour(tecton2)
-Controller -up---> tecton2 : 2: <<create>>\n7: addNeighbour(tecton1)\n8: addNeighbour(tecton3)\n10: addNeighbour(tecton4)
-'\n36: add(thread1)\n39: add(thread2)\n49: add(slowing)
-Controller -up---> tecton3 : 3: <<create>>\n9: addNeighbour(tecton2)\n12: addNeighbour(tecton4)
-Controller -up---> tecton4 : 4: <<create>>\n11: addNeighbour(tecton2)\n13: addNeighbour(tecton3)\n14: addNeighbour(tecton5)
-mushroomer2 --> tecton4 : 32: add(stem3) \n 40: add(thread2)
-mushroomer2 ->> tecton2 : 49: add(slowing)\n 52: add(clawParalyzing)
+Controller -up-> Map : 0: <<create>> \n 0.5: generate()
 
-mushroomer1 --> tecton1 : 26: add(stem1)\n 35: add(thread1)\n 43: add(speeding)\n 46: add(paralyzing)
-mushroomer1 --down-> tecton2 : 29: add(stem2)
+' Creating tectons and assigning neighbors
+Map -up---> tecton1 : 1: <<create>>\n6: addNeighbour(tecton2)
+Map -up---> tecton2 : 2: <<create>>\n7: addNeighbour(tecton1)\n8: addNeighbour(tecton3)\n10: addNeighbour(tecton4)
+'\n36: add(thread1)\n39: add(thread2)\n49: add(slowing)
+Map -up---> tecton3 : 3: <<create>>\n9: addNeighbour(tecton2)\n12: addNeighbour(tecton4)
+Map -up---> tecton4 : 4: <<create>>\n11: addNeighbour(tecton2)\n13: addNeighbour(tecton3)\n14: addNeighbour(tecton5)
+mushroomer2 --down--> tecton4 : 32: add(stem3) \n 40: add(thread2)
+mushroomer2 --->> tecton2 : 49: add(slowing)\n 52: add(clawParalyzing)
+
+mushroomer1 -> tecton1 : 26: add(stem1)\n 35: add(thread1)\n 43: add(speeding)\n 46: add(paralyzing)
+mushroomer1 -left-> tecton2 : 29: add(stem2)
 
 insecter1 ----> tecton1 : 17: addInsect(insect1)
 insecter2 ----> tecton2 : 19: addInsect(insect2)
 
-Controller -up---> tecton5 : 5: <<create>>\n15: addNeighbour(tecton4)
+Map -up---> tecton5 : 5: <<create>>\n15: addNeighbour(tecton4)
 
 ' Creating insects and adding them to tectons
 insecter1 -up-> insect1 : 16: <<create>>
