@@ -11,6 +11,7 @@ interface IRound{
 abstract class Entity implements ITurn{
     {abstract} location : Tecton
     {abstract} owner : Player
+    {abstract} remove() : void
 }
 
 @enduml
