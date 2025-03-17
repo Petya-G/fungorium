@@ -1,0 +1,16 @@
+@startuml core
+
+interface ITurn{
+    {abstract} endTurn() : void
+}
+
+interface IRound{
+    {abstract} endRound() : void
+}
+
+abstract class Entity implements ITurn{
+    {abstract} location : Tecton
+    {abstract} owner : Player
+}
+
+@enduml

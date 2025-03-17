@@ -1,0 +1,17 @@
+@startuml stem
+
+interface IStem{
+    {abstract} add(ms: Mushroomstem) : Boolean
+    {abstract} remove(ms : Mushroomstem) : Boolean
+}
+
+MushroomStem *-- Spore
+class MushroomStem extends Entity implements ISpore{
+    maxSporeThrows : Integer
+    numThrownSpores : Integer
+    throwableSpores : List<Spore>
+    level : Integer
+    levelUp() : Boolean
+}
+
+@enduml

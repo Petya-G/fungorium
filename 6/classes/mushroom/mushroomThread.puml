@@ -1,0 +1,12 @@
+@startuml thread
+
+interface IThread{
+    {abstract} add(th : Mushroomthread) : Boolean
+    {abstract} remove(th : Mushroomthread) : Boolean
+}
+
+class MushroomThread extends Entity{
+    getConnected() : List<Thread>
+}
+
+@enduml

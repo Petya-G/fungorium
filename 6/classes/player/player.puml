@@ -1,0 +1,8 @@
+@startuml player
+
+abstract class Player implements ITurn{
+    {abstract} id : Integer
+    {abstract} score : Integer
+}
+
+@enduml

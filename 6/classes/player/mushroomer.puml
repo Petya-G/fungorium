@@ -1,0 +1,16 @@
+@startuml mushroomer
+
+Mushroomer o-- "0..*" Spore
+Mushroomer o-- "1..*" MushroomStem
+Mushroomer o-- "1..*" MushroomThread
+class Mushroomer extends Player implements ISpore, IStem, IThread{
+    spores : List<Spore>
+    stems : List<MushroomStem>
+    threads : List<MushroomThread>
+    levelUp(ms : MushroomStem) : Boolean
+    growThread(t : Tecton) : Boolean
+    plantStem(t : Tecton) : Boolean
+    throwSpore(t : Tecton, s : Spore) : Boolean
+}
+
+@enduml
