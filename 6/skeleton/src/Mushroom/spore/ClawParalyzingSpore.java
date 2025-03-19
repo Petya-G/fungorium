@@ -1,6 +1,6 @@
-package Spore;
+package mushroom.spore;
 
-import Effect.Effect;
+import effect.Effect;
 
 public class ClawParalyzingSpore extends Spore{
     

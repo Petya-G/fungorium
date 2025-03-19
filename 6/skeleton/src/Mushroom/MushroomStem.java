@@ -1,4 +1,4 @@
-package Mushroom;
+package mushroom;
 
 public class MushroomStem {
     

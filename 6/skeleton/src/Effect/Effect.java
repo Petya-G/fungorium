@@ -1,4 +1,4 @@
-package Effect;
+package effect;
 
 public class Effect {
     

@@ -1,5 +1,5 @@
-package Spore;
-import Effect.*;
+package mushroom.spore;
+import effect.*;
 abstract class Spore {
     int nutrition;
     Effect effect;
