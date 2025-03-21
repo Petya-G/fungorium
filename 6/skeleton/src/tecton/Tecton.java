@@ -1,11 +1,10 @@
 package tecton;
 
-import java.util.List;
-
 import core.*;
 import insect.*;
 import mushroom.*;
 import mushroom.spore.*;
+import java.util.*;
 
 public class Tecton implements IRound, ISpore, IStem, IThread {
     protected MushroomStem stem;
@@ -14,13 +13,22 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
     protected List<Tecton> neighbours;
     protected List<Insect> insects;
 
+    public Tecton() {
+        neighbours = new ArrayList<Tecton>();
+    }
+
     public Integer getSporeCount(Player p){
         throw new UnsupportedOperationException("Unimplemented method 'endRound'");
     }
     public Boolean hasStem(){
         throw new UnsupportedOperationException("Unimplemented method 'endRound'");
     }
-    public void addNeighbour(Tecton t){}
+    public List<Tecton> getNeighbours () {
+        return neighbours;
+    }
+    public void addNeighbour(Tecton t){
+        neighbours.add(t);
+    }
     public void addInsect(Insect i){}
 
     @Override
