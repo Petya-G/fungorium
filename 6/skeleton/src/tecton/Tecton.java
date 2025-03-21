@@ -26,6 +26,9 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
     public List<Tecton> getNeighbours () {
         return neighbours;
     }
+    public List<MushroomThread> getThreads() {
+        return threads;
+    }
     public void addNeighbour(Tecton t){
         neighbours.add(t);
     }
