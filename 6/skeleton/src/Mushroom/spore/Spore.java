@@ -1,6 +1,6 @@
 package mushroom.spore;
 import effect.*;
-abstract class Spore {
+public abstract class Spore {
     int nutrition;
     Effect effect;
 

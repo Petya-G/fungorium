@@ -1,5 +1,12 @@
 package effect;
+import insect.*;
 
-public class Effect {
-    
+public abstract class Effect {
+    int duration;
+
+    public int getDuration() {
+        return duration;
+    }
+    public abstract void apply(Insect I);
+    public abstract void remove(Insect I);
 }
