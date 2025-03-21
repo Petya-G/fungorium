@@ -38,7 +38,6 @@ public class Main {
     }
 
     static void TEST_cutInsect(Map m, Insecter i) {
-        DBG_printMap(m);
         Insect insect = i.getInsect();
         Tecton t = insect.getLocation();
         System.out.println("Select thread: 0-" + (t.getThreads().size()-1));
@@ -51,6 +50,21 @@ public class Main {
         }
 
         i.cut(t.getThreads().get(num));
+    }
+
+    static void TEST_eatInsect(Map m, Insecter i) {
+        Insect insect = i.getInsect();
+        Tecton t = insect.getLocation();
+        System.out.println("Select spore: 0-" + (t.getSpores().size()-1));
+        Scanner in = new Scanner(System.in);
+        int num = in.nextInt();
+
+        if (num < 0 || num >= t.getSpores().size()) {
+            System.out.println("Invalid spore index!");
+            return;
+        }
+
+        i.eat(t.getSpores().get(num));
     }
 
     static Insecter chooseInsecter(Insecter a, Insecter b) {
@@ -101,6 +115,8 @@ public class Main {
                 case 1:
                     TEST_cutInsect(map, chooseInsecter(insecter1, insecter2));
                     break;
+                case 2:
+                    TEST_eatInsect(map, chooseInsecter(insecter1, insecter2));
                 case 10:
                     System.out.println("Goodbye!");
                 default:
