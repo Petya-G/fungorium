@@ -9,20 +9,22 @@ public class MushroomStem extends Entity {
     private int numThrownSpores;
     private int level;
 
-    public MushroomStem() {
+    public MushroomStem(Mushroomer owner, Tecton location) {
+        this.owner = owner;
+        this.location = location;
         this.maxSporeThrows = 5;
         this.numThrownSpores = 0;
         this.level = 0;
     }
 
     public boolean throwSpore(Tecton tecton){
-        Spore spore = new SpeedingSpore();
+        Spore spore = new SpeedingSpore((Mushroomer)owner, tecton);
         if(level == 1)
-            spore = new SlowingSpore();
+            spore = new SlowingSpore((Mushroomer)owner, tecton);
         if(level == 2)
-            spore = new ClawParalyzingSpore();
+            spore = new ClawParalyzingSpore((Mushroomer)owner, tecton);
         if(level == 2)
-            spore = new ParalyzingSpore();
+            spore = new ParalyzingSpore((Mushroomer)owner, tecton);
 
         if(tecton.add(spore)){
             numThrownSpores++;

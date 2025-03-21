@@ -18,7 +18,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     }
 
     public Boolean plantMushroomstem(Tecton tecton){
-        MushroomStem ms = new MushroomStem();
+        MushroomStem ms = new MushroomStem(this, tecton);
         if(tecton.add(ms)){
             add(ms);
             return true;
@@ -27,7 +27,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     }
 
     public Boolean growMushroomthread(Tecton tecton){
-        MushroomThread mt = new MushroomThread();
+        MushroomThread mt = new MushroomThread(this, tecton);
         if(tecton.add(mt)){
             add(mt);
             return true;
