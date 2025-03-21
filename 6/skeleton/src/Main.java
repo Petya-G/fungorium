@@ -117,8 +117,10 @@ public class Main {
                     break;
                 case 2:
                     TEST_eatInsect(map, chooseInsecter(insecter1, insecter2));
+                    break;
                 case 10:
                     System.out.println("Goodbye!");
+                    break;
                 default:
                     System.out.println("Invalid test case!");
                     break;
