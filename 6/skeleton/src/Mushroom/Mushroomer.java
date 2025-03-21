@@ -17,70 +17,52 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         this.threads = threads;
     }
 
-    public Boolean plantMushroomstem(Tecton tecton){
+    public Boolean plantMushroomstem(Tecton tecton) {
         MushroomStem ms = new MushroomStem(this, tecton);
-        if(tecton.add(ms)){
-            add(ms);
-            return true;
-        }
-        return false;
+        return tecton.add(ms) ? add(ms) : false;
     }
 
-    public Boolean growMushroomthread(Tecton tecton){
+    public Boolean growMushroomthread(Tecton tecton) {
         MushroomThread mt = new MushroomThread(this, tecton);
-        if(tecton.add(mt)){
-            add(mt);
-            return true;
-        }
-        return false;
+        return tecton.add(mt) ? add(mt) : false;
     }
 
-    public Boolean throwSpore(MushroomStem ms, Tecton tecton){
-        if(ms.throwSpore(tecton))
-            return true;
-        return false;
+    public Boolean throwSpore(MushroomStem ms, Tecton tecton) {
+        return ms.throwSpore(tecton);
     }
 
     public Boolean levelUp(MushroomStem ms) {
-        if(ms.levelUp())
-            return true;
-        return false;
+        return ms.levelUp();
     }
 
     @Override
     public boolean add(MushroomThread th) {
-        threads.add(th);
-        return true;
+        return threads.add(th);
     }
 
     @Override
     public boolean remove(MushroomThread th) {
-        threads.remove(th);
-        return true;
+        return threads.remove(th);
     }
 
     @Override
     public boolean add(MushroomStem ms) {
-        stems.add(ms);
-        return true;
+        return stems.add(ms);
     }
 
     @Override
     public boolean remove(MushroomStem ms) {
-        stems.remove(ms);
-        return true;
+        return stems.remove(ms);
     }
 
     @Override
     public boolean add(Spore sp) {
-        spores.add(sp);
-        return true;
+        return spores.add(sp);
     }
 
     @Override
     public boolean remove(Spore sp) {
-        spores.remove(sp);
-        return true;
+        return spores.remove(sp);
     }
 
     @Override
@@ -95,7 +77,8 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     @Override
     public void endTurn() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
+        stems.forEach(ms -> ms.endTurn());
+        threads.forEach(th -> th.endTurn());
+        spores.forEach(sp -> sp.endTurn());
     }
 }

@@ -5,6 +5,7 @@ import mushroom.spore.*;
 import tecton.Tecton;
 
 public class MushroomStem extends Entity {
+    private boolean thrown;
     private int maxSporeThrows;
     private int numThrownSpores;
     private int level;
@@ -15,6 +16,7 @@ public class MushroomStem extends Entity {
         this.maxSporeThrows = 5;
         this.numThrownSpores = 0;
         this.level = 0;
+        this.thrown = false;
     }
 
     public boolean throwSpore(Tecton tecton){
@@ -23,13 +25,17 @@ public class MushroomStem extends Entity {
             spore = new SlowingSpore((Mushroomer)owner, tecton);
         if(level == 2)
             spore = new ClawParalyzingSpore((Mushroomer)owner, tecton);
-        if(level == 2)
+        if(level == 3)
             spore = new ParalyzingSpore((Mushroomer)owner, tecton);
 
         if(tecton.add(spore)){
+            ((Mushroomer)owner).add(spore);
+            thrown = true;
             numThrownSpores++;
+
             if(numThrownSpores == maxSporeThrows)
                 remove();
+
             return true;
         }
         return false;
@@ -55,7 +61,6 @@ public class MushroomStem extends Entity {
 
     @Override
     public void endTurn() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
+        thrown = false;
     }
 }

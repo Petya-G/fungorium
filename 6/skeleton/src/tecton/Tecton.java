@@ -17,15 +17,34 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
         neighbours = new ArrayList<Tecton>();
     }
 
-    public Integer getSporeCount(Player p){
-        throw new UnsupportedOperationException("Unimplemented method 'endRound'");
+    public Integer getSporeCount(Player p) {
+        return spores.stream().filter(sp -> sp.getOwner() == p).toArray().length;
     }
 
-    public Boolean hasStem(){
-        throw new UnsupportedOperationException("Unimplemented method 'endRound'");
+    public Tecton split() {
+        Tecton t = new Tecton();
+        threads.clear();
+
+        for (Spore sp : spores) {
+            if (Math.random() < 0.5) {
+                t.add(sp);
+                sp.setLocation(t);
+                this.remove(sp);
+            }
+        }
+
+        for (Insect i : insects) {
+            if (Math.random() < 0.5) {
+                t.addInsect(i);
+                i.setLocation(t);
+                this.removeInsect(i);
+            }
+        }
+
+        return t;
     }
 
-    public List<Tecton> getNeighbours () {
+    public List<Tecton> getNeighbours() {
         return neighbours;
     }
 
@@ -37,45 +56,62 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
         return spores;
     }
 
-    public void addNeighbour(Tecton t){
+    public void addNeighbour(Tecton t) {
         neighbours.add(t);
     }
 
-    public void addInsect(Insect i){}
+    public void addInsect(Insect i) {
+        insects.add(i);
+    }
+
+    public void removeInsect(Insect i) {
+        insects.remove(i);
+    }
 
     @Override
     public void endRound() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'endRound'");
     }
+
     @Override
     public boolean add(MushroomThread th) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        if (neighbours.stream()
+                .filter(t -> t.getThreads().stream().filter(m -> m.getOwner() == th.getOwner()).toArray().length > 0)
+                .toArray().length > 0) {
+            threads.add(th);
+            return true;
+        }
+        return false;
     }
+
     @Override
     public boolean remove(MushroomThread th) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        return threads.remove(th);
     }
+
     @Override
     public boolean add(MushroomStem ms) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        if (threads.stream().filter(m -> m.getOwner() == ms.getOwner()).toArray().length > 0) {
+            stem = ms;
+            return true;
+        }
+        return false;
     }
+
     @Override
     public boolean remove(MushroomStem ms) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        stem = null;
+        return true;
     }
+
     @Override
     public boolean add(Spore sp) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        return spores.add(sp);
     }
+
     @Override
     public boolean remove(Spore sp) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        return spores.remove(sp);
     }
 }
