@@ -8,11 +8,12 @@ public class ParalyzeEffect extends Effect {
         duration = 3;
     }
 
-    public void apply(Insect I) {
-
+    public void apply(Insect i) {
+        i.setParalyzed(true);
+        duration--;
     }
 
-    public void remove(Insect I) {
-
+    public void remove(Insect i) {
+        i.setParalyzed(false);
     }
 }

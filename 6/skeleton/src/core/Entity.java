@@ -14,6 +14,10 @@ public abstract class Entity implements ITurn {
         return location;
     }
 
+    public void setLocation(Tecton location) {
+        this.location = location;
+    }
+
     public abstract void remove();
 
     @Override

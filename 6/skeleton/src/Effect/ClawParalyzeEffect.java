@@ -8,11 +8,12 @@ public class ClawParalyzeEffect extends Effect {
         duration = 3;
     }
 
-    public void apply(Insect I) {
-        
+    public void apply(Insect i) {
+       i.setClawParalyzed(true);
+       duration--;
     }
 
-    public void remove(Insect I) {
-
+    public void remove(Insect i) {
+        i.setClawParalyzed(false);
     }
 }

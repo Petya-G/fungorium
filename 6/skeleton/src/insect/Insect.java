@@ -12,41 +12,70 @@ public class Insect extends Entity implements IInsect {
     protected boolean paralyzed;
     protected boolean clawParalyzed;
     protected int baseSpeed;
-    protected int speedModifier;
+    protected double speedModifier;
 
-    public void apply(Effect e) {
-        // Implementation for applying an effect
+    public boolean isParalyzed() {
+        return paralyzed;
+    }
+
+    public void setParalyzed(boolean paralyzed) {
+        this.paralyzed = paralyzed;
+    }
+
+    public boolean isClawParalyzed() {
+        return clawParalyzed;
+    }
+
+    public void setClawParalyzed(boolean clawParalyzed) {
+        this.clawParalyzed = clawParalyzed;
+    }
+
+    public int getBaseSpeed() {
+        return baseSpeed;
+    }
+
+    public void setBaseSpeed(int baseSpeed) {
+        this.baseSpeed = baseSpeed;
+    }
+
+    public double getSpeedModifier() {
+        return speedModifier;
+    }
+
+    public void setSpeedModifier(double speedModifier) {
+        this.speedModifier = speedModifier;
     }
 
     public void remove(Effect e) {
-        // Implementation for removing an effect
+        effects.remove(e);
+    }
+
+    public void add(Effect e) {
+        effects.add(e);
     }
 
     @Override
     public boolean eat(Spore sp) {
-        // Implementation for eating a spore
-        return false;
+        throw new UnsupportedOperationException("Unimplemented method 'eat'");
     }
 
     @Override
     public boolean move(Tecton t) {
-        // Implementation for moving to a Tecton
-        return false;
+        throw new UnsupportedOperationException("Unimplemented method 'move'");
     }
 
     @Override
     public boolean cut(MushroomThread th) {
-        // Implementation for cutting a thread
-        return false;
+        throw new UnsupportedOperationException("Unimplemented method 'cut'");
     }
 
     @Override
     public void endTurn() {
-        // Implementation for ending the turn
+        throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
     }
 
     @Override
     public void remove() {
-        // Implementation for removing the insect
+        throw new UnsupportedOperationException("Unimplemented method 'remove'");
     }
 }

@@ -8,11 +8,12 @@ public class SlowEffect extends Effect {
         duration = 3;
     }
 
-    public void apply(Insect I) {
-
+    public void apply(Insect i) {
+        i.setSpeedModifier(0.5);
+        duration--;
     }
 
-    public void remove(Insect I) {
-
+    public void remove(Insect i) {
+        i.setSpeedModifier(0);
     }
 }

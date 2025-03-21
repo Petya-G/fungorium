@@ -9,7 +9,7 @@ public abstract class Effect {
         return duration;
     }
 
-    public abstract void apply(Insect I);
+    public abstract void apply(Insect i);
 
-    public abstract void remove(Insect I);
+    public abstract void remove(Insect i);
 }
