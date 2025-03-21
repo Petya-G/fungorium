@@ -22,19 +22,13 @@ public class Insecter extends Player implements IInsect {
     }
 
     @Override
-    public Integer getId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getId'");
-    }
-
-    @Override
     public Integer getScore() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getScore'");
     }
 
     @Override
-    public void setScore(Integer score) {
+    public void addScore(Integer score) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setScore'");
     }

@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 import insect.Insect;
 import insect.Insecter;
-import mushroom.MushroomThread;
 import tecton.*;
 public class Main {
     

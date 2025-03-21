@@ -1,5 +1,9 @@
-package tecton;
 import java.util.*;
+
+import tecton.SingleThreadedTecton;
+import tecton.StemlessTecton;
+import tecton.Tecton;
+import tecton.ThreadConsumingTecton;
 
 public class Map {
     List<Tecton> tectons;

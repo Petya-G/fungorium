@@ -1,14 +1,11 @@
 package mushroom.spore;
 
-import effect.Effect;
+import effect.*;
 
-public class ClawParalyzingSpore extends Spore{
-    
-    
-    public Effect getEffect(){
-        
-        return effect;
+public class ClawParalyzingSpore extends Spore {
+
+    public ClawParalyzingSpore() {
+        nutrition = 10;
+        effect = new ClawParalyzeEffect();
     }
-
-    
 }

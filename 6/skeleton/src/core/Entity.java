@@ -6,6 +6,10 @@ public abstract class Entity implements ITurn {
     protected Tecton location;
     protected Player owner;
 
+    public Player getOwner() {
+        return owner;
+    }
+
     public Tecton getLocation() {
         return location;
     }
