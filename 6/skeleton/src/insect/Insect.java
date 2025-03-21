@@ -56,26 +56,31 @@ public class Insect extends Entity implements IInsect {
 
     @Override
     public boolean eat(Spore sp) {
+        // TODO Auto-generated method stub: Implement method 'eat' 
         throw new UnsupportedOperationException("Unimplemented method 'eat'");
     }
 
     @Override
     public boolean move(Tecton t) {
+        // TODO Auto-generated method stub: Implement method 'move' 
         throw new UnsupportedOperationException("Unimplemented method 'move'");
     }
 
     @Override
     public boolean cut(MushroomThread th) {
+        // TODO Auto-generated method stub: Implement method 'eat' 
         throw new UnsupportedOperationException("Unimplemented method 'cut'");
     }
 
     @Override
     public void endTurn() {
+        // TODO Auto-generated method stub: Implement method 'endturn' 
         throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
     }
 
     @Override
     public void remove() {
+        // TODO Auto-generated method stub: Implement method 'remove' 
         throw new UnsupportedOperationException("Unimplemented method 'remove'");
     }
 }

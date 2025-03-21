@@ -12,10 +12,4 @@ public class ClawParalyzingSpore extends Spore {
         nutrition = 10;
         effect = new ClawParalyzeEffect();
     }
-
-    @Override
-    public void endTurn() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
-    }
 }

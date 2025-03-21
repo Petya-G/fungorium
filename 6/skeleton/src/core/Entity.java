@@ -6,6 +6,8 @@ public abstract class Entity implements ITurn {
     protected Tecton location;
     protected Player owner;
 
+    public abstract void remove();
+
     public Player getOwner() {
         return owner;
     }
@@ -18,8 +20,7 @@ public abstract class Entity implements ITurn {
         this.location = location;
     }
 
-    public abstract void remove();
 
-    @Override
-    public abstract void endTurn();
+    public void endTurn(){
+    }
 }
