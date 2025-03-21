@@ -71,6 +71,10 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
         return spores;
     }
 
+    public List<Spore> getSpores(Player owner) {
+        return spores;
+    }
+
     public void addNeighbour(Tecton t) {
         neighbours.add(t);
     }
@@ -83,14 +87,18 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
         insects.remove(i);
     }
 
+    public boolean hasThread(Player p) {
+        return threads.stream().filter(m -> m.getOwner() == p).toArray().length == 1;
+    }
+
+    public boolean neighbourHasThread(Player p) {
+        return neighbours.stream().filter(t -> t.hasThread(p)).toArray().length > 0;
+    }
+
     @Override
     public boolean add(MushroomThread th) {
-        if (neighbours.stream()
-                .filter(t -> t.getThreads().stream().filter(m -> m.getOwner() == th.getOwner()).toArray().length > 0)
-                .toArray().length > 0) {
-            threads.add(th);
-            return true;
-        }
+        if (!hasThread(th.getOwner()) && neighbourHasThread(th.getOwner()))
+            return threads.add(th);
         return false;
     }
 
@@ -101,10 +109,16 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
 
     @Override
     public boolean add(MushroomStem ms) {
-        if (threads.stream().filter(m -> m.getOwner() == ms.getOwner()).toArray().length > 0) {
+        List<Spore> sp = getSpores(ms.getOwner());
+
+        if (stem == null && hasThread(ms.getOwner()) && sp.size() >= ms.getCost()) {
+            for (int i = 0; i < ms.getCost(); i++)
+                sp.get(i).remove();
+
             stem = ms;
             return true;
         }
+
         return false;
     }
 

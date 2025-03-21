@@ -1,5 +1,7 @@
 package mushroom;
 
+import java.util.List;
+
 import core.Entity;
 import mushroom.spore.*;
 import tecton.Tecton;
@@ -9,6 +11,7 @@ public class MushroomStem extends Entity {
     private int maxSporeThrows;
     private int numThrownSpores;
     private int level;
+    private int cost;
 
     public MushroomStem(Mushroomer owner, Tecton location) {
         this.owner = owner;
@@ -17,6 +20,11 @@ public class MushroomStem extends Entity {
         this.numThrownSpores = 0;
         this.level = 0;
         this.thrown = false;
+        this.cost = 3;
+    }
+
+    public int getCost() {
+        return cost;
     }
 
     public boolean throwSpore(Tecton tecton){
@@ -42,7 +50,13 @@ public class MushroomStem extends Entity {
     }
 
     public boolean levelUp() {
-        throw new UnsupportedOperationException("Unimplemented method 'levelUp'");
+        List<Spore> spores = location.getSpores(owner);
+        if(spores.size() > 0){
+            level++;
+            spores.get(0).remove();
+            return true;
+        }
+        return false;
     }
 
     public int getMaxSporeThrows() {
