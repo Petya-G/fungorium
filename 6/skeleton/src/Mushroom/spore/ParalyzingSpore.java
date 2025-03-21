@@ -3,5 +3,6 @@ import effect.*;
 public class ParalyzingSpore extends Spore{
     public Effect getEffect() {
         //TODO
+        return effect;
     }
 }

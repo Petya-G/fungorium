@@ -3,5 +3,6 @@ import effect.*;
 public class SlowingSpore extends Spore{
     public Effect getEffect() {
         // TODO
+        return effect;
     }
 }
