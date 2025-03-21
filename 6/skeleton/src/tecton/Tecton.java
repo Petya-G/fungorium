@@ -23,10 +23,25 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
 
     public Tecton split() {
         Tecton t = new Tecton();
+
+        int rnd = new Random().nextInt(4);
+        if (rnd == 0)
+            t = new SingleThreadedTecton();
+        else if (rnd == 1)
+            t = new StemlessTecton();
+        else if (rnd == 2)
+            t = new ThreadConsumingTecton();
+
+        for (Tecton n : neighbours) {
+            if (new Random().nextBoolean()) {
+                t.addNeighbour(n);
+            }
+        }
+
         threads.clear();
 
         for (Spore sp : spores) {
-            if (Math.random() < 0.5) {
+            if (new Random().nextBoolean()) {
                 t.add(sp);
                 sp.setLocation(t);
                 this.remove(sp);
@@ -34,7 +49,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
         }
 
         for (Insect i : insects) {
-            if (Math.random() < 0.5) {
+            if (new Random().nextBoolean()) {
                 t.addInsect(i);
                 i.setLocation(t);
                 this.removeInsect(i);
@@ -66,12 +81,6 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
 
     public void removeInsect(Insect i) {
         insects.remove(i);
-    }
-
-    @Override
-    public void endRound() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'endRound'");
     }
 
     @Override
@@ -113,5 +122,9 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
     @Override
     public boolean remove(Spore sp) {
         return spores.remove(sp);
+    }
+
+    @Override
+    public void endRound() {
     }
 }

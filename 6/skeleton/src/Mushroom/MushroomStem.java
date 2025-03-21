@@ -28,7 +28,7 @@ public class MushroomStem extends Entity {
         if(level == 3)
             spore = new ParalyzingSpore((Mushroomer)owner, tecton);
 
-        if(tecton.add(spore)){
+        if(!thrown && tecton.add(spore)){
             ((Mushroomer)owner).add(spore);
             thrown = true;
             numThrownSpores++;

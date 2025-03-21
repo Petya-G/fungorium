@@ -1,11 +1,9 @@
 import java.util.*;
 
-import tecton.SingleThreadedTecton;
-import tecton.StemlessTecton;
-import tecton.Tecton;
-import tecton.ThreadConsumingTecton;
+import tecton.*;
+import core.*;
 
-public class Map {
+public class Map implements IRound{
     List<Tecton> tectons;
 
     public Map() {
@@ -14,7 +12,7 @@ public class Map {
 
     public List<Tecton> getTectons() {
         return tectons;
-    };
+    }
 
     void connect(Tecton a, Tecton b) {
         a.addNeighbour(b);
@@ -49,5 +47,15 @@ public class Map {
         connect(t2, t3);
 
         connect(t1, t2);
+    }
+
+    @Override
+    public void endRound() {
+        tectons.forEach(t -> t.endRound());
+        for (Tecton t : tectons) {
+            if(new Random().nextBoolean()) {
+                tectons.add(t.split());
+            }
+        }
     }
 }
