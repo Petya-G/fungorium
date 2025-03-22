@@ -97,6 +97,7 @@ public class MushroomStem extends Entity {
     public void remove() {
         getLocation().remove(this);
         ((Mushroomer) getOwner()).remove(this);
+        Debug.DBGFUNC("GOmba törlése");
     }
 
     /**
@@ -105,5 +106,6 @@ public class MushroomStem extends Entity {
     @Override
     public void endTurn() {
         thrown = false;
+        Debug.DBGFUNC("Kör vége");
     }
 }
