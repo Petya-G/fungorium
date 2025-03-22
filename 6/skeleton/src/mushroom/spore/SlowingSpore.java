@@ -1,7 +1,7 @@
-package mushroom.spore;
+package Mushroom.spore;
 
+import Mushroom.Mushroomer;
 import effect.*;
-import mushroom.Mushroomer;
 import tecton.Tecton;
 
 public class SlowingSpore extends Spore {

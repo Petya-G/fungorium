@@ -1,8 +1,8 @@
 package mushroom.spore;
 
+import mushroom.Mushroomer;
 import core.Entity;
 import effect.*;
-import mushroom.Mushroomer;
 
 public abstract class Spore extends Entity {
     int nutrition;

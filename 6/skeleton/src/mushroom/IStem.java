@@ -1,4 +1,4 @@
-package mushroom;
+package Mushroom;
 
 public interface IStem {
     boolean add(MushroomStem ms);

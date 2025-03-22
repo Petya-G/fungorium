@@ -1,9 +1,9 @@
-package mushroom;
+package Mushroom;
 
 import java.util.List;
 
+import Mushroom.spore.*;
 import core.Player;
-import mushroom.spore.*;
 import tecton.*;
 
 public class Mushroomer extends Player implements ISpore, IStem, IThread {

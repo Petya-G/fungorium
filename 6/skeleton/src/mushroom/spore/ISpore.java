@@ -1,4 +1,4 @@
-package mushroom.spore;
+package Mushroom.spore;
 
 public interface ISpore {
     boolean add(Spore sp);

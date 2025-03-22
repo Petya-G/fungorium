@@ -2,10 +2,12 @@ package insect;
 
 import core.Entity;
 import effect.Effect;
-import mushroom.spore.Spore;
 import tecton.Tecton;
-import mushroom.MushroomThread;
+
 import java.util.List;
+
+import mushroom.MushroomThread;
+import mushroom.spore.Spore;
 
 public class Insect extends Entity implements IInsect {
     protected List<Effect> effects;

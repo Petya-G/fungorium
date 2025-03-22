@@ -1,9 +1,9 @@
-package mushroom;
+package Mushroom;
 
 import java.util.List;
 
+import Mushroom.spore.*;
 import core.Entity;
-import mushroom.spore.*;
 import tecton.Tecton;
 
 public class MushroomStem extends Entity {
