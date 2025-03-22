@@ -130,7 +130,8 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
 
     @Override
     public boolean add(MushroomStem ms) {
-        List<Spore> sp = getSpores(ms.getOwner());
+        // we need to clone this because we remove while iterating later
+        List<Spore> sp = new ArrayList<>(getSpores(ms.getOwner()));
 
         if (stem == null && hasThread(ms.getOwner()) && sp.size() >= ms.getCost()) {
             for (int i = 0; i < ms.getCost(); i++)

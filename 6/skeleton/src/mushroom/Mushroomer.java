@@ -67,7 +67,9 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     @Override
     public boolean add(MushroomStem ms) {
         Debug.DBGFUNC("");
-        return stems.add(ms);
+        stems.add(ms);
+        System.out.println(stems);
+        return true;
     }
 
     @Override
