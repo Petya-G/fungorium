@@ -28,6 +28,10 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         this.threads = new ArrayList<>();
     }
 
+    public List<MushroomThread> getThreads() {
+        return threads;
+    }
+
     public Boolean plantMushroomstem(Tecton tecton) {
         Debug.DBGFUNC("");
         MushroomStem ms = new MushroomStem(this, tecton);
@@ -62,6 +66,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     @Override
     public boolean add(MushroomStem ms) {
+        Debug.DBGFUNC("");
         return stems.add(ms);
     }
 

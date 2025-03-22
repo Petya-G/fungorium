@@ -46,8 +46,10 @@ public class MushroomStem extends Entity {
             if(numThrownSpores == maxSporeThrows)
                 remove();
 
+            Debug.DBGFUNC("Spore thrown successfully");
             return true;
         }
+        Debug.DBGFUNC("Failed to throw spore (already thrown in turn)");
         return false;
     }
 

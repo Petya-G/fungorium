@@ -1,5 +1,6 @@
 package insect;
 
+import core.Debug;
 import core.Entity;
 import effect.Effect;
 import tecton.Tecton;
@@ -142,7 +143,8 @@ public class Insect extends Entity implements IInsect {
     @Override
     public void endTurn() {
         // TODO Auto-generated method stub: Implement method 'endturn' 
-        throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
+        //throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
+        Debug.DBGFUNC("");
     }
 
     /**

@@ -104,13 +104,22 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
     }
 
     public boolean neighbourHasThread(Player p) {
-        return neighbours.stream().filter(t -> t.hasThread(p)).toArray().length > 0;
+        for (Tecton t : neighbours) {
+            if (t.hasThread(p)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public boolean add(MushroomThread th) {
-        if (!hasThread(th.getOwner()) && neighbourHasThread(th.getOwner()))
+        Debug.DBGFUNC("");
+        if (!hasThread(th.getOwner()) && neighbourHasThread(th.getOwner())) {
+            Debug.DBGFUNC("added thread successfully");
             return threads.add(th);
+        }
+        Debug.DBGFUNC("cant add thread: hasThread=" + hasThread(th.getOwner()) + " neighbourHasThread=" + neighbourHasThread(th.getOwner()));
         return false;
     }
 
@@ -133,7 +142,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
             return true;
         }
 
-        Debug.DBGFUNC("stem cant be added");
+        Debug.DBGFUNC("stem cant be added: hasThread=" + hasThread(ms.getOwner()) + " spores=" + sp.size());
         return false;
     }
 

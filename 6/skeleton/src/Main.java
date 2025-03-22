@@ -176,6 +176,10 @@ public class Main {
         // create test stem
         Tecton t0 =  map.tectons.get(0);
 
+        MushroomThread thread1 = new MushroomThread(mushroomer1, t0);
+        mushroomer1.getThreads().add(thread1);
+        t0.getThreads().add(thread1);
+
         MushroomStem stem1 = new MushroomStem(mushroomer1,t0);
         mushroomer1.getStems().add(stem1);
         t0.setStem(stem1);
@@ -194,6 +198,8 @@ public class Main {
             System.out.println(" 3. Grow thread on tecton");
             System.out.println(" 4. Plant stem on tecton");
             System.out.println(" 5. Throw spore");
+            System.out.println(" 6. End turn");
+            System.out.println(" 7. End round");
             System.out.println(" 10. Exit");
 
             num = in.nextInt();
@@ -217,6 +223,17 @@ public class Main {
                     break;
                 case 5:
                     TEST_throwSpore(map, chooseMushroomer(mushroomer1, mushroomer2));
+                    break;
+                case 6:
+                    mushroomer1.endTurn();
+                    mushroomer2.endTurn();
+                    insecter1.endTurn();
+                    insect2.endTurn();
+
+                    break;
+                case 7:
+                    map.endRound();
+                    
                     break;
                 case 10:
                     System.out.println("Goodbye!");
