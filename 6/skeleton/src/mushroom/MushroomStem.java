@@ -14,6 +14,9 @@ public class MushroomStem extends Entity {
     private int level;
     private int cost;
 
+    /**
+     * Konstruktor
+     */
     public MushroomStem(Mushroomer owner, Tecton location) {
         this.owner = owner;
         this.location = location;
@@ -25,10 +28,16 @@ public class MushroomStem extends Entity {
         Debug.DBGFUNC("Gomba létrehozva");
     }
 
+    /**
+     * Gombatest árának lekérése
+     */
     public int getCost() {
         return cost;
     }
 
+    /**
+     * Spóra dobása, ahol a spóratípus a test szintjétől függ
+     */
     public boolean throwSpore(Tecton tecton){
         Spore spore = new SpeedingSpore((Mushroomer)owner, tecton);
         if(level == 1)
@@ -53,6 +62,9 @@ public class MushroomStem extends Entity {
         return false;
     }
 
+    /**
+     * Test fejlesztése, amennyiben van spóra a tektonon
+     */
     public boolean levelUp() {
         List<Spore> spores = location.getSpores(owner);
         if(spores.size() > 0){
@@ -64,20 +76,32 @@ public class MushroomStem extends Entity {
         return false;
     }
 
+    /**
+     * Maximum spóradobások száma
+     */
     public int getMaxSporeThrows() {
         return maxSporeThrows;
     }
 
+    /**
+     * Eddigi spóradobások száma
+     */
     public int getNumThrownSpores() {
         return numThrownSpores;
     }
 
+    /**
+     * Stem törlése a játékból
+     */
     @Override
     public void remove() {
         getLocation().remove(this);
         ((Mushroomer) getOwner()).remove(this);
     }
 
+    /**
+     * Kör vége, ezután újra dobhatunk spórát
+     */
     @Override
     public void endTurn() {
         thrown = false;

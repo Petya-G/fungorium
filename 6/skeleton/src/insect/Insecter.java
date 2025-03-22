@@ -8,10 +8,16 @@ import tecton.Tecton;
 public class Insecter extends Player implements IInsect {
     private Insect insect;
 
+    /**
+     * A rovarászhoz tartozó rovar lekérése
+     */
     public Insect getInsect() {
         return insect;
     }
 
+    /**
+     * Rovar rendelése a rovarászhoz
+     */
     public void setInsect(Insect insect) {
         this.insect = insect;
     }

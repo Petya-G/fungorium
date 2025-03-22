@@ -8,10 +8,16 @@ public abstract class Spore extends Entity {
     int nutrition;
     Effect effect;
 
+    /**
+     * Spóra hatásának lekérése
+     */
     public Effect getEffect(){
         return effect;
     }
 
+    /**
+     * Spóra törlése a játékból
+     */
     @Override
     public void remove() {
         getLocation().remove(this);
