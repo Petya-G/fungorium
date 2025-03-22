@@ -1,8 +1,9 @@
 package mushroom;
 
-import java.util.List;
+import java.util.*;
 
 import mushroom.spore.*;
+import core.Debug;
 import core.Player;
 import tecton.*;
 
@@ -11,27 +12,41 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     private List<MushroomStem> stems;
     private List<MushroomThread> threads;
 
+    public List<MushroomStem> getStems() {
+        return stems;
+    }
+
     public Mushroomer(List<Spore> spores, List<MushroomStem> stems, List<MushroomThread> threads) {
         this.spores = spores;
         this.stems = stems;
         this.threads = threads;
     }
 
+    public Mushroomer() {
+        this.spores = new ArrayList<>();
+        this.stems = new ArrayList<>();
+        this.threads = new ArrayList<>();
+    }
+
     public Boolean plantMushroomstem(Tecton tecton) {
+        Debug.DBGFUNC("");
         MushroomStem ms = new MushroomStem(this, tecton);
         return tecton.add(ms) ? add(ms) : false;
     }
 
     public Boolean growMushroomthread(Tecton tecton) {
+        Debug.DBGFUNC("");
         MushroomThread mt = new MushroomThread(this, tecton);
         return tecton.add(mt) ? add(mt) : false;
     }
 
     public Boolean throwSpore(MushroomStem ms, Tecton tecton) {
+        Debug.DBGFUNC("");
         return ms.throwSpore(tecton);
     }
 
     public Boolean levelUp(MushroomStem ms) {
+        Debug.DBGFUNC("");
         return ms.levelUp();
     }
 

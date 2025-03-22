@@ -20,7 +20,7 @@ public class Map implements IRound{
     }
 
     public void generate() {
-        System.out.println("Map: generate()");
+        Debug.DBGFUNC("generating map");
 
 
         // test map generation. Final version will feature randomly generated maps

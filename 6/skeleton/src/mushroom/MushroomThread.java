@@ -1,5 +1,6 @@
 package mushroom;
 
+import core.Debug;
 import core.Entity;
 import tecton.Tecton;
 
@@ -8,14 +9,14 @@ public class MushroomThread extends Entity {
     public MushroomThread(Mushroomer owner, Tecton location) {
         this.owner = owner;
         this.location = location;
-        System.out.println("Gombafonal létrehozva");
+        Debug.DBGFUNC("Gombafonal létrehozva");
     }
 
     @Override
     public void remove() {
         getLocation().remove(this);
         ((Mushroomer) getOwner()).remove(this);
-        System.out.println("Gombafonal törölve");
+        Debug.DBGFUNC("Gombafonal törölve");
     }
 
     @Override

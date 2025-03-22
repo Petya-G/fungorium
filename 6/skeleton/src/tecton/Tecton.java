@@ -17,7 +17,11 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
 
     public Tecton() {
         neighbours = new ArrayList<Tecton>();
-        System.out.println("Tecton lerakva");
+        threads = new ArrayList<>();
+        spores = new ArrayList<>();
+        insects = new ArrayList<>();
+        
+        Debug.DBGFUNC("Tecton lerakva");
     }
 
     public Integer getSporeCount(Player p) {
@@ -25,7 +29,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
     }
 
     public Tecton split() {
-        System.out.println("Tecton szétválik");
+        Debug.DBGFUNC("Tecton szétválik");
         Tecton t = new Tecton();
 
         int rnd = new Random().nextInt(4);
@@ -61,6 +65,10 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
         }
 
         return t;
+    }
+
+    public void setStem(MushroomStem st) {
+        stem = st;
     }
 
     public List<Tecton> getNeighbours() {
@@ -120,9 +128,12 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
                 sp.get(i).remove();
 
             stem = ms;
+
+            Debug.DBGFUNC("stem added successfully");
             return true;
         }
 
+        Debug.DBGFUNC("stem cant be added");
         return false;
     }
 

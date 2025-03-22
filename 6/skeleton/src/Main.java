@@ -1,8 +1,13 @@
 
 import java.util.Scanner;
 
+import core.Debug;
+import core.Debug.*;
 import insect.Insect;
 import insect.Insecter;
+import mushroom.*;
+import mushroom.spore.SpeedingSpore;
+import mushroom.spore.Spore;
 import tecton.*;
 public class Main {
     
@@ -54,6 +59,12 @@ public class Main {
     static void TEST_eatInsect(Map m, Insecter i) {
         Insect insect = i.getInsect();
         Tecton t = insect.getLocation();
+
+        if (t.getSpores().size() < 1) {
+            System.out.println("No spores to eat!");
+            return;
+        }
+
         System.out.println("Select spore: 0-" + (t.getSpores().size()-1));
         Scanner in = new Scanner(System.in);
         int num = in.nextInt();
@@ -66,8 +77,74 @@ public class Main {
         i.eat(t.getSpores().get(num));
     }
 
+    static void TEST_growThread(Map m, Mushroomer mr) {
+        DBG_printMap(m);
+        System.out.println("Select a tecton: ");
+        Scanner in = new Scanner(System.in);
+        int num = in.nextInt();
+
+        if (num >= m.getTectons().size() || num < 0) {
+            System.out.println("Invalid tecton index!");
+            return;
+        }
+
+        mr.growMushroomthread(m.getTectons().get(num));
+    }
+
+    static void TEST_plantStem(Map m, Mushroomer mr) {
+        DBG_printMap(m);
+        System.out.println("Select a tecton: ");
+        Scanner in = new Scanner(System.in);
+        int num = in.nextInt();
+
+        if (num >= m.getTectons().size() || num < 0) {
+            System.out.println("Invalid tecton index!");
+            return;
+        }
+
+        mr.plantMushroomstem(m.getTectons().get(num));
+    }
+
+    static void TEST_throwSpore(Map m, Mushroomer mr) {
+        DBG_printMap(m);
+        System.out.println("Select a tecton: ");
+        Scanner in = new Scanner(System.in);
+        int num = in.nextInt();
+
+        if (num >= m.getTectons().size() || num < 0) {
+            System.out.println("Invalid tecton index!");
+            return;
+        }
+        if (mr.getStems().size() < 1) {
+            System.out.println("Mushroomer has no stems!");
+            return;
+        }
+
+        System.out.println("Select stem: 0-" + (mr.getStems().size()-1));
+       
+        int num2 = in.nextInt();
+
+        if (num2 < 0 || num2 >= mr.getStems().size()) {
+            System.out.println("Invalid stem index!");
+            return;
+        }
+
+        mr.throwSpore(mr.getStems().get(num2), m.getTectons().get(num));
+    }
+
     static Insecter chooseInsecter(Insecter a, Insecter b) {
         System.out.println("Select insecter (0/1)");
+        Scanner in = new Scanner(System.in);
+        int i = in.nextInt();
+        if (i == 0) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+
+    static Mushroomer chooseMushroomer(Mushroomer a, Mushroomer b) {
+        System.out.println("Select mushroomer (0/1)");
         Scanner in = new Scanner(System.in);
         int i = in.nextInt();
         if (i == 0) {
@@ -91,7 +168,18 @@ public class Main {
         Insecter insecter2 = new Insecter();
         Insect insect2 = new Insect();
         insecter2.setInsect(insect2);
-        
+
+        Mushroomer mushroomer1 = new Mushroomer();
+        Mushroomer mushroomer2 = new Mushroomer();
+
+
+        // create test stem
+        Tecton t0 =  map.tectons.get(0);
+
+        MushroomStem stem1 = new MushroomStem(mushroomer1,t0);
+        mushroomer1.getStems().add(stem1);
+        t0.setStem(stem1);
+
         System.out.println("Creating mushroomers");
     
         Scanner in = new Scanner(System.in);
@@ -102,6 +190,10 @@ public class Main {
             System.out.println(" 0. Move with insect");
             System.out.println(" 1. Cut with insect");
             System.out.println(" 2. Eat with insect");
+
+            System.out.println(" 3. Grow thread on tecton");
+            System.out.println(" 4. Plant stem on tecton");
+            System.out.println(" 5. Throw spore");
             System.out.println(" 10. Exit");
 
             num = in.nextInt();
@@ -116,6 +208,15 @@ public class Main {
                     break;
                 case 2:
                     TEST_eatInsect(map, chooseInsecter(insecter1, insecter2));
+                    break;
+                case 3:
+                    TEST_growThread(map, chooseMushroomer(mushroomer1, mushroomer2));
+                    break;
+                case 4:
+                    TEST_plantStem(map, chooseMushroomer(mushroomer1, mushroomer2));
+                    break;
+                case 5:
+                    TEST_throwSpore(map, chooseMushroomer(mushroomer1, mushroomer2));
                     break;
                 case 10:
                     System.out.println("Goodbye!");

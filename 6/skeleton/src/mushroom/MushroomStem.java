@@ -5,6 +5,7 @@ import java.util.List;
 import mushroom.spore.*;
 import core.Entity;
 import tecton.Tecton;
+import core.Debug;
 
 public class MushroomStem extends Entity {
     private boolean thrown;
@@ -21,7 +22,7 @@ public class MushroomStem extends Entity {
         this.level = 0;
         this.thrown = false;
         this.cost = 3;
-        System.out.println("Gomba létrehozva");
+        Debug.DBGFUNC("Gomba létrehozva");
     }
 
     public int getCost() {
@@ -55,7 +56,7 @@ public class MushroomStem extends Entity {
         if(spores.size() > 0){
             level++;
             spores.get(0).remove();
-            System.out.println("Gomba szintet léő");
+            Debug.DBGFUNC("Gomba szintet lép");
             return true;
         }
         return false;

@@ -1,5 +1,6 @@
 package effect;
 
+import core.Debug;
 import insect.*;
 
 public class ParalyzeEffect extends Effect {
@@ -11,11 +12,11 @@ public class ParalyzeEffect extends Effect {
     public void apply(Insect i) {
         i.setParalyzed(true);
         duration--;
-        System.out.println("Kábító hatás van érvényben a rovaron");
+        Debug.DBGFUNC("Kábító hatás van érvényben a rovaron");
     }
 
     public void remove(Insect i) {
         i.setParalyzed(false);
-        System.out.println("Kábító hatás lejárt");
+        Debug.DBGFUNC("Kábító hatás lejárt");
     }
 }
