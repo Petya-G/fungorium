@@ -12,4 +12,8 @@ public abstract class Effect {
     public abstract void apply(Insect i);
 
     public abstract void remove(Insect i);
+
+    public void decreaseDuration(){
+        duration--;
+    }
 }

@@ -156,6 +156,8 @@ public class Insect extends Entity implements IInsect {
 
      /**
      * Végrehajtja a kör végén szükséges folyamatokat.
+     * Csökkenti a rovaron lévő hatások idejét, szükség esetén törli is őket.
+     * Ezután újra kiértékeli az összesített hatást.
      */
     @Override
     public void endTurn() {
@@ -164,11 +166,13 @@ public class Insect extends Entity implements IInsect {
             if(e.getDuration()==1){
                 remove(e);
             }else{
-                //TODO we should be able to decrease duration, assuming different durations even exist 
+                e.decreaseDuration();
             }
         }
 
-        Debug.DBGFUNC("Kör vége");
+        for(Effect e : effects){
+            e.apply(this);
+        }
     }
 
     /**
