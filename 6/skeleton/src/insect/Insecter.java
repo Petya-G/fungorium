@@ -2,6 +2,7 @@ package insect;
 
 import mushroom.MushroomThread;
 import mushroom.spore.Spore;
+import core.Debug;
 import core.Player;
 import tecton.Tecton;
 
@@ -24,36 +25,33 @@ public class Insecter extends Player implements IInsect {
 
     @Override
     public void endTurn() {
-        // Implementation for ending the turn
+        System.out.println("Spora megevése");
     }
 
     @Override
     public Integer getScore() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getScore'");
+        return score;
     }
 
     @Override
     public void addScore(Integer score) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setScore'");
+        score++;
+        Debug.DBGFUNC("Pont megnövelve");
     }
 
     @Override
     public boolean eat(Spore sp) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eat'");
+        return insect.eat(sp);
+        
     }
 
     @Override
     public boolean move(Tecton t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'move'");
+        return insect.move(t);
     }
 
     @Override
     public boolean cut(MushroomThread th) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cut'");
+        return insect.cut(th);
     }
 }
