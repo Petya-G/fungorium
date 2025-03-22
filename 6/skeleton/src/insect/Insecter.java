@@ -1,8 +1,8 @@
 package insect;
 
-import core.Player;
 import mushroom.MushroomThread;
 import mushroom.spore.Spore;
+import core.Player;
 import tecton.Tecton;
 
 public class Insecter extends Player implements IInsect {

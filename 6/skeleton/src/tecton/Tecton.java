@@ -2,9 +2,11 @@ package tecton;
 
 import core.*;
 import insect.*;
+
+import java.util.*;
+
 import mushroom.*;
 import mushroom.spore.*;
-import java.util.*;
 
 public class Tecton implements IRound, ISpore, IStem, IThread {
     protected MushroomStem stem;
