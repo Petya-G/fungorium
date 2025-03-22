@@ -111,8 +111,10 @@ public class Insect extends Entity implements IInsect {
      */
     @Override
     public boolean eat(Spore sp) {
-        // TODO Auto-generated method stub: Implement method 'eat' 
-        throw new UnsupportedOperationException("Unimplemented method 'eat'");
+        add(sp.getEffect());
+        sp.remove();
+        Debug.DBGFUNC("Spora megevése");
+        return true;
     }
 
     /**
@@ -122,8 +124,9 @@ public class Insect extends Entity implements IInsect {
      */
     @Override
     public boolean move(Tecton t) {
-        // TODO Auto-generated method stub: Implement method 'move' 
-        throw new UnsupportedOperationException("Unimplemented method 'move'");
+        location = t;
+        Debug.DBGFUNC("Rovar mozog");
+        return true;
     }
 
      /**
@@ -133,8 +136,9 @@ public class Insect extends Entity implements IInsect {
      */
     @Override
     public boolean cut(MushroomThread th) {
-        // TODO Auto-generated method stub: Implement method 'eat' 
-        throw new UnsupportedOperationException("Unimplemented method 'cut'");
+        th.remove();
+        Debug.DBGFUNC("Gombafonal elvágása");
+        return true;
     }
 
      /**
@@ -144,7 +148,7 @@ public class Insect extends Entity implements IInsect {
     public void endTurn() {
         // TODO Auto-generated method stub: Implement method 'endturn' 
         //throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
-        Debug.DBGFUNC("");
+        Debug.DBGFUNC("Kör vége");
     }
 
     /**
@@ -152,7 +156,6 @@ public class Insect extends Entity implements IInsect {
      */
     @Override
     public void remove() {
-        // TODO Auto-generated method stub: Implement method 'remove' 
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        Debug.DBGFUNC("Rovar eltávolítva");
     }
 }

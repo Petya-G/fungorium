@@ -1,5 +1,7 @@
 package mushroom;
 
+import java.util.List;
+
 import core.Debug;
 import core.Entity;
 import tecton.Tecton;
@@ -31,4 +33,9 @@ public class MushroomThread extends Entity {
     @Override
     public void endTurn() {
     }
+    
+    /* 
+    public List<Thread> getConnected() {
+    }
+    */
 }
