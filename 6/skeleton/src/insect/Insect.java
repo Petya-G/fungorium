@@ -149,7 +149,6 @@ public class Insect extends Entity implements IInsect {
         // TODO Auto-generated method stub: Implement method 'endturn' 
         //throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
         Debug.DBGFUNC("Kör vége");
-        Debug.DBGFUNC("");
     }
 
     /**
@@ -157,6 +156,6 @@ public class Insect extends Entity implements IInsect {
      */
     @Override
     public void remove() {
-        System.out.println("Rovar eltávolítva");
+        Debug.DBGFUNC("Rovar eltávolítva");
     }
 }
