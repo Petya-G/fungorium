@@ -11,5 +11,6 @@ public class SlowingSpore extends Spore {
         this.location = location;
         nutrition = 10;
         effect = new SlowEffect();
+        System.out.println("Lassító spóra lerakva");
     }
 }

@@ -11,5 +11,6 @@ public class ClawParalyzingSpore extends Spore {
         this.location = location;
         nutrition = 10;
         effect = new ClawParalyzeEffect();
+        System.out.println("Rágó kábító spóra lerakva");
     }
 }

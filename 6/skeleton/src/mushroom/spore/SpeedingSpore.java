@@ -11,5 +11,6 @@ public class SpeedingSpore extends Spore {
         this.location = location;
         nutrition = 10;
         effect = new FastEffect();
+        System.out.println("Gyorsító spóra lerakva");
     }
 }

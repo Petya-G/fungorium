@@ -10,5 +10,6 @@ public class ParalyzingSpore extends Spore {
         this.location = location;
         nutrition = 10;
         effect = new ParalyzeEffect();
+        System.out.println("Kábító spóra lerakva");
     }
 }

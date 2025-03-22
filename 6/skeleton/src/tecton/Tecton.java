@@ -17,6 +17,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
 
     public Tecton() {
         neighbours = new ArrayList<Tecton>();
+        System.out.println("Tecton lerakva");
     }
 
     public Integer getSporeCount(Player p) {
@@ -24,6 +25,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
     }
 
     public Tecton split() {
+        System.out.println("Tecton szétválik");
         Tecton t = new Tecton();
 
         int rnd = new Random().nextInt(4);

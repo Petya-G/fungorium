@@ -21,6 +21,7 @@ public class MushroomStem extends Entity {
         this.level = 0;
         this.thrown = false;
         this.cost = 3;
+        System.out.println("Gomba létrehozva");
     }
 
     public int getCost() {
@@ -54,6 +55,7 @@ public class MushroomStem extends Entity {
         if(spores.size() > 0){
             level++;
             spores.get(0).remove();
+            System.out.println("Gomba szintet léő");
             return true;
         }
         return false;
