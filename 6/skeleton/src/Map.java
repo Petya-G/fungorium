@@ -10,15 +10,24 @@ public class Map implements IRound{
         tectons = new ArrayList<Tecton>();
     }
 
+    /**
+     * Visszaadja a pályán lévő tektonok listáját
+     */
     public List<Tecton> getTectons() {
         return tectons;
     }
 
+    /**
+     * Összeköt két tektont a pályán
+     */
     void connect(Tecton a, Tecton b) {
         a.addNeighbour(b);
         b.addNeighbour(a);
     }
 
+    /**
+     * Létrehozza a pályát. Jelenleg teszteléshez egy fix pálya jön létre, ez később random lesz
+     */
     public void generate() {
         Debug.DBGFUNC("generating map");
 
@@ -49,6 +58,9 @@ public class Map implements IRound{
         connect(t1, t2);
     }
 
+    /**
+     * Round vége, itt minden tekton EndRound függvényét meghívjuk
+     */
     @Override
     public void endRound() {
         tectons.forEach(t -> t.endRound());
