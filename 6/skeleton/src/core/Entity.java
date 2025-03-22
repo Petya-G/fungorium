@@ -22,5 +22,6 @@ public abstract class Entity implements ITurn {
 
 
     public void endTurn(){
+        System.out.println("Kör vége");
     }
 }

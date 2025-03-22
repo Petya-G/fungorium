@@ -48,7 +48,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * Gombatest lerakása egy tektonra
      */
     public Boolean plantMushroomstem(Tecton tecton) {
-        Debug.DBGFUNC("");
+        Debug.DBGFUNC("Gombatest növesztése");
         MushroomStem ms = new MushroomStem(this, tecton);
         return tecton.add(ms) ? add(ms) : false;
     }
@@ -57,7 +57,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * Gombafonal lerakása egy tektonra
      */
     public Boolean growMushroomthread(Tecton tecton) {
-        Debug.DBGFUNC("");
+        Debug.DBGFUNC("Gomabfonal növesztése");
         MushroomThread mt = new MushroomThread(this, tecton);
         return tecton.add(mt) ? add(mt) : false;
     }
@@ -66,7 +66,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * Spóra dobása egy gombatestből egy tektonra
      */
     public Boolean throwSpore(MushroomStem ms, Tecton tecton) {
-        Debug.DBGFUNC("");
+        Debug.DBGFUNC("Spóra dobása");
         return ms.throwSpore(tecton);
     }
 
@@ -74,7 +74,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * Gombatest fejlesztése
      */
     public Boolean levelUp(MushroomStem ms) {
-        Debug.DBGFUNC("");
+        Debug.DBGFUNC("Gombatest szintlépés");
         return ms.levelUp();
     }
 
@@ -99,7 +99,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public boolean add(MushroomStem ms) {
-        Debug.DBGFUNC("");
+        Debug.DBGFUNC("Új gomba hozzáadása");
         stems.add(ms);
         System.out.println(stems);
         return true;
@@ -143,6 +143,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     @Override
     public void addScore(Integer score) {
         this.score += score;
+        Debug.DBGFUNC("Gombász pontjainak növelése");
     }
 
     /**

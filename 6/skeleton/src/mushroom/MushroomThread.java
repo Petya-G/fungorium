@@ -32,6 +32,7 @@ public class MushroomThread extends Entity {
      */
     @Override
     public void endTurn() {
+        Debug.DBGFUNC("Kör vége");
     }
     
     /* 
