@@ -1,4 +1,4 @@
-package Mushroom;
+package mushroom;
 
 public interface IThread {
     boolean add(MushroomThread th);

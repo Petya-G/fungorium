@@ -1,6 +1,6 @@
-package Mushroom.spore;
+package mushroom.spore;
 
-import Mushroom.Mushroomer;
+import mushroom.Mushroomer;
 import effect.*;
 import tecton.Tecton;
 

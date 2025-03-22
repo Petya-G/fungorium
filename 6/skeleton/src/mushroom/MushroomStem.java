@@ -1,8 +1,8 @@
-package Mushroom;
+package mushroom;
 
 import java.util.List;
 
-import Mushroom.spore.*;
+import mushroom.spore.*;
 import core.Entity;
 import tecton.Tecton;
 
