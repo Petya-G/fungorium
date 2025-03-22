@@ -111,21 +111,31 @@ public class Insect extends Entity implements IInsect {
      */
     @Override
     public boolean eat(Spore sp) {
+        Debug.DBGFUNC("Spora megevése");
+        if (paralyzed) {
+            return false;
+        }
         add(sp.getEffect());
         sp.remove();
-        Debug.DBGFUNC("Spora megevése");
         return true;
     }
 
     /**
      * Megpróbál mozogni.
-     * @param t A tekton, amelyre menni szeretne a rovar.
+     * @param targetTecton A tekton, amelyre menni szeretne a rovar.
      * @return igaz, ha a mozgás sikerült, egyébként hamis
      */
     @Override
-    public boolean move(Tecton t) {
-        location = t;
+    public boolean move(Tecton targetTecton) {
         Debug.DBGFUNC("Rovar mozog");
+        if(paralyzed) return false;
+
+        Tecton baseTecton = getLocation(); 
+
+        baseTecton.removeInsect(this);
+        targetTecton.addInsect(this);
+
+        setLocation(targetTecton);
         return true;
     }
 
@@ -136,9 +146,12 @@ public class Insect extends Entity implements IInsect {
      */
     @Override
     public boolean cut(MushroomThread th) {
-        th.remove();
         Debug.DBGFUNC("Gombafonal elvágása");
-        return true;
+        if(clawParalyzed || paralyzed) return false;
+
+        Tecton baseTecton = getLocation(); 
+        return baseTecton.remove(th);
+
     }
 
      /**
@@ -146,8 +159,15 @@ public class Insect extends Entity implements IInsect {
      */
     @Override
     public void endTurn() {
-        // TODO Auto-generated method stub: Implement method 'endturn' 
-        //throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
+        Debug.DBGFUNC("Kör vége");
+        for(Effect e : effects){
+            if(e.getDuration()==1){
+                remove(e);
+            }else{
+                //TODO we should be able to decrease duration, assuming different durations even exist 
+            }
+        }
+
         Debug.DBGFUNC("Kör vége");
     }
 
