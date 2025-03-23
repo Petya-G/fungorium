@@ -58,6 +58,12 @@ public class Main {
     static void TEST_cutInsect(Map m, Insecter i) {
         Insect insect = i.getInsect();
         Tecton t = insect.getLocation();
+
+        if (t.getThreads().size() < 1) {
+            System.out.println("No threads on tecton!");
+            return;
+        }
+
         System.out.println("Select thread: 0-" + (t.getThreads().size()-1));
         Scanner in = new Scanner(System.in);
         int num = in.nextInt();
@@ -173,7 +179,10 @@ public class Main {
      */
     static void TEST_levelStem(Map m, Mushroomer mr) {
         
-
+        if (mr.getStems().size() < 1) {
+            System.out.println("Mushroomer has no stems!");
+            return;
+        }
         System.out.println("Select stem: 0-" + (mr.getStems().size()-1));
 
         Scanner in = new Scanner(System.in);
