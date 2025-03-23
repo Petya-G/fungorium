@@ -52,12 +52,12 @@ public class Insecter extends Player implements IInsect {
 
     /**
      * Növeli a játékos pontszámát.
-     * @param s A hozzáadandó pontok száma.
+     * @param score A hozzáadandó pontok száma.
      */
     @Override
-    public void addScore(Integer s) {
+    public void addScore(Integer score) {
         Debug.DBGFUNC("Pont megnövelve");
-        score+=s;
+        this.score+=score;
     }
 
     /**
