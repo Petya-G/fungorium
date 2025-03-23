@@ -6,7 +6,7 @@ import insect.*;
 public class FastEffect extends Effect {
 
     /**
-     * Konstruktor, baállítja a hatás időtartamát
+     * Konstruktor, beállítja a hatás időtartamát
      */
     public FastEffect() {
         duration = 3;
