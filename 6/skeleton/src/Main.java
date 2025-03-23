@@ -10,7 +10,16 @@ import mushroom.spore.SpeedingSpore;
 import mushroom.spore.Spore;
 import tecton.*;
 public class Main {
-    
+    /**
+     * Beolvas egy integert a felhasználótól
+     * 
+     */
+    static Scanner in = new Scanner(System.in);
+    static int readInt() {
+        while (!in.hasNextInt()) {}
+        return in.nextInt();
+    }
+
     /**
      * Kiírja a pályán lévő tektonokat és kapcsolataikat
      * @param m A pálya, vagy térkép, amit ki írunk
@@ -39,8 +48,8 @@ public class Main {
     static void TEST_moveInsect(Map m, Insecter i) {
         DBG_printMap(m);
         System.out.println("Select a tecton to move to: ");
-        Scanner in = new Scanner(System.in);
-        int num = in.nextInt();
+
+        int num = readInt();
 
         if (num >= m.getTectons().size() || num < 0) {
             System.out.println("Invalid tecton index!");
@@ -65,8 +74,8 @@ public class Main {
         }
 
         System.out.println("Select thread: 0-" + (t.getThreads().size()-1));
-        Scanner in = new Scanner(System.in);
-        int num = in.nextInt();
+       
+        int num = readInt();
 
         if (num < 0 || num >= t.getThreads().size()) {
             System.out.println("Invalid thread index!");
@@ -91,8 +100,8 @@ public class Main {
         }
 
         System.out.println("Select spore: 0-" + (t.getSpores().size()-1));
-        Scanner in = new Scanner(System.in);
-        int num = in.nextInt();
+        
+        int num = readInt();
 
         if (num < 0 || num >= t.getSpores().size()) {
             System.out.println("Invalid spore index!");
@@ -110,8 +119,8 @@ public class Main {
     static void TEST_growThread(Map m, Mushroomer mr) {
         DBG_printMap(m);
         System.out.println("Select a tecton: ");
-        Scanner in = new Scanner(System.in);
-        int num = in.nextInt();
+        
+        int num = readInt();
 
         if (num >= m.getTectons().size() || num < 0) {
             System.out.println("Invalid tecton index!");
@@ -129,8 +138,8 @@ public class Main {
     static void TEST_plantStem(Map m, Mushroomer mr) {
         DBG_printMap(m);
         System.out.println("Select a tecton: ");
-        Scanner in = new Scanner(System.in);
-        int num = in.nextInt();
+        
+        int num = readInt();
 
         if (num >= m.getTectons().size() || num < 0) {
             System.out.println("Invalid tecton index!");
@@ -148,8 +157,8 @@ public class Main {
     static void TEST_throwSpore(Map m, Mushroomer mr) {
         DBG_printMap(m);
         System.out.println("Select a tecton: ");
-        Scanner in = new Scanner(System.in);
-        int num = in.nextInt();
+        
+        int num = readInt();
 
         if (num >= m.getTectons().size() || num < 0) {
             System.out.println("Invalid tecton index!");
@@ -162,7 +171,7 @@ public class Main {
 
         System.out.println("Select stem: 0-" + (mr.getStems().size()-1));
        
-        int num2 = in.nextInt();
+        int num2 = readInt();
 
         if (num2 < 0 || num2 >= mr.getStems().size()) {
             System.out.println("Invalid stem index!");
@@ -185,8 +194,8 @@ public class Main {
         }
         System.out.println("Select stem: 0-" + (mr.getStems().size()-1));
 
-        Scanner in = new Scanner(System.in);
-        int num = in.nextInt();
+        
+        int num = readInt();
 
         if (num < 0 || num >= mr.getStems().size()) {
             System.out.println("Invalid stem index!");
@@ -204,9 +213,9 @@ public class Main {
      */
     static Insecter chooseInsecter(Insecter a, Insecter b) {
         System.out.println("Select insecter (0/1)");
-        Scanner in = new Scanner(System.in);
-        int i = in.nextInt();
-        in.close();
+        
+        int i = readInt();
+        
         if (i == 0) {
             return a;
         } else {
@@ -222,8 +231,8 @@ public class Main {
      */
     static Mushroomer chooseMushroomer(Mushroomer a, Mushroomer b) {
         System.out.println("Select mushroomer (0/1)");
-        Scanner in = new Scanner(System.in);
-        int i = in.nextInt();
+        
+        int i = readInt();
         if (i == 0) {
             return a;
         } else {
@@ -243,10 +252,13 @@ public class Main {
         System.out.println("Creating insecters");
         Insecter insecter1 = new Insecter();
         Insect insect1 = new Insect();
+        insect1.setLocation(map.tectons.get(0));
+
         insecter1.setInsect(insect1);
 
         Insecter insecter2 = new Insecter();
         Insect insect2 = new Insect();
+        insect2.setLocation(map.tectons.get(4));
         insecter2.setInsect(insect2);
 
         Mushroomer mushroomer1 = new Mushroomer();
@@ -266,7 +278,7 @@ public class Main {
 
         System.out.println("Creating mushroomers");
     
-        Scanner in = new Scanner(System.in);
+        
 
         int num = 0;
         while(num != 10) {
@@ -283,7 +295,7 @@ public class Main {
             System.out.println(" 8. Level up stem (?)");
             System.out.println(" 10. Exit");
 
-            num = in.nextInt();
+            num = readInt();
 
             switch (num) {
                 case 0:
