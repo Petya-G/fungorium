@@ -16,6 +16,8 @@ public class MushroomStem extends Entity {
 
     /**
      * Konstruktor
+     * @param owner A gombatestet tulajdonló játékos
+     * @param location A gombetest helye, vagyis, hogy melyik tektonon van
      */
     public MushroomStem(Mushroomer owner, Tecton location) {
         this.owner = owner;
@@ -30,6 +32,7 @@ public class MushroomStem extends Entity {
 
     /**
      * Gombatest árának lekérése
+     * @return A gombatest ára
      */
     public int getCost() {
         return cost;
@@ -37,6 +40,8 @@ public class MushroomStem extends Entity {
 
     /**
      * Spóra dobása, ahol a spóratípus a test szintjétől függ
+     * @param tecton A tekton, amire dobja a spórát
+     * @return A művelet sikeressége (bool)
      */
     public boolean throwSpore(Tecton tecton){
         Spore spore = new SpeedingSpore((Mushroomer)owner, tecton);
@@ -63,11 +68,12 @@ public class MushroomStem extends Entity {
     }
 
     /**
-     * Test fejlesztése, amennyiben van spóra a tektonon
+     * Test fejlesztése, amennyiben van a játékosnak spórája a tektonon
+     * @return true, ha szintet, egyébként false
      */
     public boolean levelUp() {
         List<Spore> spores = location.getSpores(owner);
-        if(spores.size() > 0){
+        if(!spores.isEmpty()){
             level++;
             spores.get(0).remove();
             Debug.DBGFUNC("Gomba szintet lép");

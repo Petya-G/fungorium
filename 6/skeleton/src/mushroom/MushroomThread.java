@@ -10,6 +10,8 @@ public class MushroomThread extends Entity {
 
     /**
      * Konstruktor
+     * @param owner A gombafonalat tulajdonló gombász
+     * @param location A tekton, amin a gombafonál van
      */
     public MushroomThread(Mushroomer owner, Tecton location) {
         this.owner = owner;
