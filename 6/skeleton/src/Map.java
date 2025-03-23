@@ -4,14 +4,18 @@ import tecton.*;
 import core.*;
 
 public class Map implements IRound{
-    List<Tecton> tectons;
+    List<Tecton> tectons; // a Map tektonjait tartalmazó lista
 
+    /**
+     * Konstruktor, üresen inicializálja a tectons tagváltozót
+     */
     public Map() {
         tectons = new ArrayList<Tecton>();
     }
 
     /**
      * Visszaadja a pályán lévő tektonok listáját
+     * @return pályán lévő tektonok listája
      */
     public List<Tecton> getTectons() {
         return tectons;
@@ -19,6 +23,8 @@ public class Map implements IRound{
 
     /**
      * Összeköt két tektont a pályán
+     * @param a Egyik összekötendő tekton
+     * @param b Másik összekötendő tekton
      */
     void connect(Tecton a, Tecton b) {
         a.addNeighbour(b);
