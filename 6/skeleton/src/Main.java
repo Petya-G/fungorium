@@ -13,6 +13,7 @@ public class Main {
     
     /**
      * Kiírja a pályán lévő tektonokat és kapcsolataikat
+     * @param m A pálya, vagy térkép, amit ki írunk
      */
     static void DBG_printMap(Map m) {
         System.out.println("--- Map ---");
@@ -32,6 +33,8 @@ public class Main {
 
     /**
      * A rovar mozgatását teszteli
+     * @param m A pálya, amin van és mozog a rovar
+     * @param i A rovar, amit mozgatunk
      */
     static void TEST_moveInsect(Map m, Insecter i) {
         DBG_printMap(m);
@@ -49,6 +52,8 @@ public class Main {
 
     /**
      * A rovarral való fonalvágást teszteli
+     * @param m A pálya, amin van a rovar
+     * @param i A rovar, amivel elvágjuk a fonalat
      */
     static void TEST_cutInsect(Map m, Insecter i) {
         Insect insect = i.getInsect();
@@ -67,6 +72,8 @@ public class Main {
 
     /**
      * A spórák megevését teszteli
+     * @param m A pálya, amin van a rovar
+     * @param i A rovar, ami megeszi a spórát
      */
     static void TEST_eatInsect(Map m, Insecter i) {
         Insect insect = i.getInsect();
@@ -91,6 +98,8 @@ public class Main {
 
     /**
      *Az új fonál növesztését tesztelő függvény
+     * @param m A pálya, amin fonalat növesztünk
+     * @param mr A gombász, aki növeszti az új fonalat
      */
     static void TEST_growThread(Map m, Mushroomer mr) {
         DBG_printMap(m);
@@ -108,6 +117,8 @@ public class Main {
 
     /**
      * Új Stem ültetését teszteli
+     * @param m A pálya, amin gombatestet (Stem) növesztünk
+     * @param mr A gombász, aki növeszti az új gombatestet (Stem)
      */
     static void TEST_plantStem(Map m, Mushroomer mr) {
         DBG_printMap(m);
@@ -125,6 +136,8 @@ public class Main {
 
     /**
      * Spórák dobását teszteli
+     * @param m A pálya, amin spórát dobunk
+     * @param mr A gombász, aki spórát dob
      */
     static void TEST_throwSpore(Map m, Mushroomer mr) {
         DBG_printMap(m);
@@ -155,6 +168,8 @@ public class Main {
 
     /**
      * Gombatest fejlesztését teszteli
+     * @param m A pálya, amin van a gombatest
+     * @param mr A gombász, akié a gombatest
      */
     static void TEST_levelStem(Map m, Mushroomer mr) {
         
@@ -174,11 +189,15 @@ public class Main {
 
     /**
      * Megkéri a felhasználót, hogy két Insecter közül válasszon (teszteléshez)
+     * @param a Az első Insecter
+     * @param b A második Insecter
+     * @return A kiválasztott Insecter
      */
     static Insecter chooseInsecter(Insecter a, Insecter b) {
         System.out.println("Select insecter (0/1)");
         Scanner in = new Scanner(System.in);
         int i = in.nextInt();
+        in.close();
         if (i == 0) {
             return a;
         } else {
@@ -188,6 +207,9 @@ public class Main {
 
     /**
      * Megkéri a felhasználót, hogy két Mushroomer közül válasszon (teszteléshez)
+     * @param a Az első Mushroomer
+     * @param b A második Mushroomer
+     * @return A kiválasztott Mushroomer
      */
     static Mushroomer chooseMushroomer(Mushroomer a, Mushroomer b) {
         System.out.println("Select mushroomer (0/1)");
