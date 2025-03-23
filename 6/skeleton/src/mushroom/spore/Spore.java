@@ -6,11 +6,12 @@ import core.Entity;
 import effect.*;
 
 public abstract class Spore extends Entity {
-    int nutrition;
-    Effect effect;
+    int nutrition; //A tápérték, ennyi pontot kap a rovar, mikor megeszi a spórát
+    Effect effect; //A spóra rovarra gyakorolt hatása
 
     /**
      * Spóra hatásának lekérése
+     * @return A spóra hatása
      */
     public Effect getEffect(){
         return effect;
