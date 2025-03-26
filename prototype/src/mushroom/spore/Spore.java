@@ -29,11 +29,6 @@ public abstract class Spore extends Entity {
         Debug.DBGFUNC("Spóra törlése");
     }
 
-    /**
-     * Beállítja a rovar helyét
-     * 
-     * @param location A tekton, amin a rovar van
-     */
     @Override
     public void setLocation(Tecton location) {
         this.location.remove(this);

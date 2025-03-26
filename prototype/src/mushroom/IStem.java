@@ -1,5 +1,7 @@
 package mushroom;
 
+import java.util.List;
+
 /**
  * Az IStem interfész egy gombatest viselkedését definiálja.
  * Ez az interfész lehetővé teszi gombatest hozzáadását és eltávolítását.
@@ -20,4 +22,6 @@ public interface IStem {
      * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
      */
     boolean remove(MushroomStem ms);
+
+    List<MushroomStem> getStems();
 }

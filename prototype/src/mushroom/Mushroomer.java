@@ -5,6 +5,7 @@ import java.util.*;
 import mushroom.spore.*;
 import core.Debug;
 import core.Player;
+import insect.Insect;
 import tecton.*;
 
 /**
@@ -12,9 +13,9 @@ import tecton.*;
  * A gombász képes spórákat, gombatesteket és gombafonalakat kezelni.
  */
 public class Mushroomer extends Player implements ISpore, IStem, IThread {
-    private List<Spore> spores;
-    private List<MushroomStem> stems;
-    private List<MushroomThread> threads;
+    private List<Spore> spores = new ArrayList<Spore>();
+    private List<MushroomStem> stems = new ArrayList<MushroomStem>();
+    private List<MushroomThread> threads = new ArrayList<MushroomThread>();
 
     /**
      * Konstruktor, amely inicializálja a gombász spóráit, gombatestjeit és
@@ -37,10 +38,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     public Mushroomer(Tecton location) {
         Debug.DBGFUNC("Mushroomer alapértelmezett konstruktor");
-        this.spores = new ArrayList<>();
-        this.stems = new ArrayList<>();
         stems.add(new MushroomStem(this, location));
-        this.threads = new ArrayList<>();
         threads.add(new MushroomThread(this, location));
     }
 
@@ -49,6 +47,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * 
      * @return A gombászhoz tartozó gombatestek listája.
      */
+    @Override
     public List<MushroomStem> getStems() {
         Debug.DBGFUNC("Gombászhoz tartozó gombatestek lekérése");
         return stems;
@@ -59,9 +58,19 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * 
      * @return A gombászhoz tartozó gombafonalak listája.
      */
+    @Override
     public List<MushroomThread> getThreads() {
         Debug.DBGFUNC("Gombászhoz tartozó gombafonalak lekérése");
         return threads;
+    }
+
+    @Override
+    public List<Spore> getSpores() {
+        return spores;
+    }
+
+    public boolean hasThread(Tecton tecton) {
+        return threads.stream().filter(th -> th.getLocation() == tecton).toArray().length == 1;
     }
 
     /**
@@ -72,18 +81,28 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     public Boolean plantMushroomstem(Tecton tecton) {
         MushroomStem ms = new MushroomStem(this, tecton);
-        List<Spore> sp = new ArrayList<>(tecton.getSpores(this));
-        Debug.DBGFUNC("Gombafonal növesztése" + tecton.hasThread(this) + " spores=" + sp.size());
 
-        if (!tecton.hasThread(this) || sp.size() < ms.getCost() || !tecton.add(ms))
+        if (!hasThread(tecton))
             return false;
 
-        for (int i = 0; i < ms.getCost(); i++)
-            sp.get(i).remove();
+        MushroomThread thread = threads.stream().filter(th -> th.hasEaten()).findFirst().get();
+        if (thread != null && tecton.add(ms)) {
+            thread.setEaten(false);
+            add(ms);
+            return true;
+        }
 
-        add(ms);
+        List<Spore> sp = new ArrayList<>(tecton.getSpores(this));
+        if (sp.size() >= ms.getCost() && tecton.add(ms)) {
+            for (int i = 0; i < ms.getCost(); i++)
+                sp.get(i).remove();
 
-        return true;
+            add(ms);
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -115,6 +134,10 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     public Boolean throwSpore(MushroomStem ms, Tecton tecton) {
         return ms.throwSpore(tecton);
+    }
+
+    public boolean eatWith(MushroomThread thread, Insect insect) {
+        return thread.eat(insect);
     }
 
     /**

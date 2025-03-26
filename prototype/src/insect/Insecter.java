@@ -2,6 +2,10 @@ package insect;
 
 import mushroom.MushroomThread;
 import mushroom.spore.Spore;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import core.Debug;
 import core.Player;
 import tecton.Tecton;
@@ -12,29 +16,29 @@ import tecton.Tecton;
  * mozogni és gombafonalakat elvágni.
  */
 public class Insecter extends Player implements IInsect {
-    private Insect insect;
+    private List<Insect> insects = new ArrayList<Insect>();
 
     public Insecter(Tecton location) {
-        Debug.DBGFUNC("Rovarász létrehozása");
-        this.insect = new Insect(this, location);
+        this.insects.add(new Insect(this, location));
     }
 
-    /**
-     * A rovarászhoz tartozó rovart adja vissza.
-     * @return A rovarászhoz tartozó rovar.
-     */
-    public Insect getInsect() {
-        Debug.DBGFUNC("Rovarászhoz tartozó rovar");
-        return insect;
+    public Insecter(List<Insect> insects) {
+        this.insects = insects;
     }
 
-    /**
-     * Rovart rendel a rovarászhoz.
-     * @param insect A rovar, amelyet a rovarászhoz rendelünk.
-     */
-    public void setInsect(Insect insect) {
-        Debug.DBGFUNC("Rovarászhoz tartozó rovar beállítása");
-        this.insect = insect;
+    @Override
+    public boolean add(Insect insect) {
+        return insects.add(insect);
+    }
+
+    @Override
+    public boolean remove(Insect insect) {
+        return insects.remove(insect);
+    }
+
+    @Override
+    public List<Insect> getInsects() {
+        return insects;
     }
 
     /**
@@ -45,35 +49,17 @@ public class Insecter extends Player implements IInsect {
         Debug.DBGFUNC("Kör vége");
     }
 
-    /**
-     * A rovarász megpróbál elfogyasztani egy gombaspórát.
-     * @param sp Az elfogyasztandó spóra.
-     * @return Igaz, ha sikerült megenni a spórát, egyébként hamis.
-     */
-    @Override
-    public boolean eat(Spore sp) {
+    public boolean eatWith(Insect insect, Spore sp) {
         Debug.DBGFUNC("Spóra megevése");
         return insect.eat(sp);
     }
 
-    /**
-     * A rovarász megpróbál átmenni egy másik tektonra.
-     * @param t A tekton, ahová a rovarász menni szeretne.
-     * @return Igaz, ha a mozgás sikerült, egyébként hamis.
-     */
-    @Override
-    public boolean move(Tecton t) {
+    public boolean moveWith(Insect insect, Tecton t) {
         Debug.DBGFUNC("Rovarász mozog");
         return insect.move(t);
     }
 
-    /**
-     * A rovarász megpróbál elvágni egy gombafonalat.
-     * @param th Az elvágandó gombafonal.
-     * @return Igaz, ha sikerült elvágni a fonalat, egyébként hamis.
-     */
-    @Override
-    public boolean cut(MushroomThread th) {
+    public boolean cutWith(Insect insect, MushroomThread th) {
         Debug.DBGFUNC("Rovarász gombafonalat vág");
         return insect.cut(th);
     }

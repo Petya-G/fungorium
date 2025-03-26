@@ -1,5 +1,7 @@
 package mushroom;
 
+import java.util.List;
+
 /**
  * Az IThread interfész egy gombafonal viselkedését definiálja.
  * Ez az interfész lehetővé teszi gombafonal hozzáadását és eltávolítását.
@@ -20,4 +22,6 @@ public interface IThread {
      * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
      */
     boolean remove(MushroomThread th);
+
+    List<MushroomThread> getThreads();
 }

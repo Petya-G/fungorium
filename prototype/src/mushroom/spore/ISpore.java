@@ -1,5 +1,7 @@
 package mushroom.spore;
 
+import java.util.List;
+
 public interface ISpore {
 
     /**
@@ -17,4 +19,6 @@ public interface ISpore {
      * @return A művelet sikeressége
      */
     boolean remove(Spore sp);
+
+    List<Spore> getSpores();
 }

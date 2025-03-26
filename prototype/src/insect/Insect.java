@@ -17,7 +17,7 @@ import mushroom.spore.Spore;
  * gombafonalakat elvágni.
  * A különböző spórák befolyásolják a képességeiket.
  */
-public class Insect extends Entity implements IInsect {
+public class Insect extends Entity {
     protected List<Effect> effects;
     protected boolean paralyzed;
     protected boolean clawParalyzed;
@@ -145,8 +145,8 @@ public class Insect extends Entity implements IInsect {
      */
     @Override
     public void setLocation(Tecton location) {
-        remove();
-        location.addInsect(this);
+        this.location.remove(this);
+        location.add(this);
         super.setLocation(location);
     }
 
@@ -156,7 +156,6 @@ public class Insect extends Entity implements IInsect {
      * @param sp Elfogyasztandó spóra.
      * @return igaz, ha sikerült megenni, egyébként hamis.
      */
-    @Override
     public boolean eat(Spore sp) {
         Debug.DBGFUNC("Spora megevése");
         if (paralyzed || clawParalyzed)
@@ -173,7 +172,6 @@ public class Insect extends Entity implements IInsect {
      * @param targetTecton A tekton, amelyre menni szeretne a rovar.
      * @return igaz, ha a mozgás sikerült, egyébként hamis
      */
-    @Override
     public boolean move(Tecton targetTecton) {
         //TODO check if any player has thread connection betwen the insect location and the target location
         //TODO somwhere take into account speedModifier
@@ -191,10 +189,13 @@ public class Insect extends Entity implements IInsect {
      * @param th Elvágandó gombafonal.
      * @return igaz, ha sikerült elvágni, egyébként hamis.
      */
-    @Override
     public boolean cut(MushroomThread th) {
         Debug.DBGFUNC("Gombafonal elvágása");
-        return (clawParalyzed || paralyzed) ? false : getLocation().remove(th);
+        if(clawParalyzed || paralyzed)
+            return false;
+
+        th.setCutoff(true);
+        return true;
     }
 
     /**
@@ -217,6 +218,13 @@ public class Insect extends Entity implements IInsect {
      */
     @Override
     public void remove() {
-        getLocation().removeInsect(this);
+        getLocation().remove(this);
+        ((Insecter) getOwner()).remove(this);
+    }
+
+    public void Split() {
+        Insect insect = new Insect((Insecter) getOwner(), getLocation());
+        ((Insecter) getOwner()).add(insect);
+        getLocation().add(insect);
     }
 }

@@ -8,24 +8,26 @@ import java.util.*;
 import mushroom.*;
 import mushroom.spore.*;
 
-public class Tecton implements IRound, ISpore, IStem, IThread {
+public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
     protected MushroomStem stem;
-    protected List<Spore> spores;
-    protected List<MushroomThread> threads;
-    protected List<Tecton> neighbours;
-    protected List<Insect> insects;
+    protected List<Spore> spores = new ArrayList<Spore>();
+    protected List<MushroomThread> threads = new ArrayList<MushroomThread>();
+    protected List<Insect> insects = new ArrayList<Insect>();
+    protected List<Tecton> neighbours = new ArrayList<Tecton>();
 
     /**
      * A Tecton osztály konstruktora, üresen inicializálja a lista típusú
      * tagváltozókat
      */
     public Tecton() {
-        neighbours = new ArrayList<>();
-        threads = new ArrayList<>();
-        spores = new ArrayList<>();
-        insects = new ArrayList<>();
-
         Debug.DBGFUNC("Tecton lerakva");
+    }
+
+    public Tecton(List<Spore> spores, List<MushroomThread> threads, List<Insect> insects, List<Tecton> neighbours) {
+        this.spores = spores;
+        this.threads = threads;
+        this.insects = insects;
+        this.neighbours = neighbours;
     }
 
     /**
@@ -65,19 +67,19 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
         threads.clear();
 
         List<Spore> sporesToMove = spores.stream()
-            .filter(sp -> new Random().nextBoolean())
-            .toList();
+                .filter(sp -> new Random().nextBoolean())
+                .toList();
 
         for (Spore sp : sporesToMove)
             sp.setLocation(t);
 
         List<Insect> insectsToMove = insects.stream()
-            .filter(i -> new Random().nextBoolean())
-            .toList();
+                .filter(i -> new Random().nextBoolean())
+                .toList();
 
         for (Insect i : insectsToMove)
             i.setLocation(t);
-                
+
         return t;
     }
 
@@ -95,6 +97,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
      * 
      * @return A tektonon lévő fonalak listája
      */
+    @Override
     public List<MushroomThread> getThreads() {
         return threads;
     }
@@ -104,8 +107,14 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
      * 
      * @return A tektonon lévő spórák listája
      */
+    @Override
     public List<Spore> getSpores() {
         return spores;
+    }
+
+    @Override
+    public List<MushroomStem> getStems() {
+        return stem == null ? new ArrayList<MushroomStem>() : List.of(stem);
     }
 
     /**
@@ -126,24 +135,6 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
      */
     public void addNeighbour(Tecton t) {
         neighbours.add(t);
-    }
-
-    /**
-     * Hozzáadja a kapott rovart a tektonon található rovarokhoz
-     * 
-     * @param i Az új rovar
-     */
-    public void addInsect(Insect i) {
-        insects.add(i);
-    }
-
-    /**
-     * Eltávolítja a kapott rovart a tektonról
-     * 
-     * @param i Az eltávolítandó rovar
-     */
-    public void removeInsect(Insect i) {
-        insects.remove(i);
     }
 
     /**
@@ -255,5 +246,26 @@ public class Tecton implements IRound, ISpore, IStem, IThread {
      */
     @Override
     public void endRound() {
+    }
+
+    @Override
+    public boolean add(Insect insect) {
+        return insects.add(insect);
+    }
+
+    @Override
+    public boolean remove(Insect insect) {
+        return insects.remove(insect);
+    }
+
+    @Override
+    public List<Insect> getInsects() {
+        return insects;
+    }
+
+    public void removeUnconnectedThreads() {
+        threads.stream()
+                .filter(t -> !t.isConnected())
+                .toList().forEach(th -> th.remove());
     }
 }
