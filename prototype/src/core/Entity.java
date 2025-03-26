@@ -10,6 +10,7 @@ public abstract class Entity implements ITurn {
 
     /**
      * Visszaadja az entitást birtokló játékost
+     *
      * @return Az entitást birtokló játékos
      */
     public Player getOwner() {
@@ -18,6 +19,7 @@ public abstract class Entity implements ITurn {
 
     /**
      * Visszaadja az entitás helyét
+     *
      * @return A tekton, amin az entitás van
      */
     public Tecton getLocation() {
@@ -26,6 +28,7 @@ public abstract class Entity implements ITurn {
 
     /**
      * Beállítja az entitás helyét
+     *
      * @param location A tekton, amin az entitás van
      */
     public void setLocation(Tecton location) {
@@ -35,7 +38,7 @@ public abstract class Entity implements ITurn {
     /**
      * Minden kör végén lefut
      */
-    public void endTurn(){
+    public void endTurn() {
         System.out.println("Kör vége");
     }
 }

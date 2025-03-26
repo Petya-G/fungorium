@@ -14,7 +14,7 @@ public class FastEffect extends Effect {
 
     /**
      * Érvényesíti a hatást egy rovarra
-     * 
+     *
      * @param i A rovar, amire kifejti hatását
      */
     public void apply(Insect i) {
@@ -25,7 +25,7 @@ public class FastEffect extends Effect {
 
     /**
      * Érvényteleníti a hatást egy rovarra
-     * 
+     *
      * @param i A rovar, amire érvényteleníti hatását
      */
     public void remove(Insect i) {

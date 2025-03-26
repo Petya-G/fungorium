@@ -12,7 +12,7 @@ public abstract class Spore extends Entity {
 
     /**
      * Spóra hatásának lekérése
-     * 
+     *
      * @return A spóra hatása
      */
     public Effect getEffect() {

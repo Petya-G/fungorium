@@ -31,19 +31,9 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
     }
 
     /**
-     * visszaadja, hogy egy adott játékosnak mennyi spórája van a tektonon
-     * 
-     * @param p A játékos, akinek a spóráit számoljuk
-     * @return A játékos spóráinak száma a tektonon
-     */
-    public Integer getSporeCount(Player p) {
-        return spores.stream().filter(sp -> sp.getOwner() == p).toArray().length;
-    }
-
-    /**
      * Széttöri a tekton kettő darabra úgy, hogy megtartja az eredeti tekton,
      * létrehoz egy újat, beállítja a szomszédságokat és visszaadja az új tektont
-     * 
+     *
      * @return Az új tekton
      */
     public Tecton split() {
@@ -85,7 +75,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Visszaadja a tekton szomszédjainak listáját
-     * 
+     *
      * @return A tekton szomszédjainak listája
      */
     public List<Tecton> getNeighbours() {
@@ -94,7 +84,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Visszaadja a tektonon lévő fonalak listáját
-     * 
+     *
      * @return A tektonon lévő fonalak listája
      */
     @Override
@@ -104,7 +94,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Visszaadja a tektonon lévő spórák listáját
-     * 
+     *
      * @return A tektonon lévő spórák listája
      */
     @Override
@@ -118,19 +108,8 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
     }
 
     /**
-     * Visszaadja a tektonon lévő spórák listáját, amelyek az adott játékoshoz
-     * tartoznak
-     * 
-     * @param owner A játékos, akinek a spóráit keressük
-     * @return A játékos spórái, amik a tektonon vannak
-     */
-    public List<Spore> getSpores(Player owner) {
-        return spores.stream().filter(sp -> sp.getOwner() == owner).toList();
-    }
-
-    /**
      * Hozzáadja a kapott tekton a tekton szomszédjaihoz
-     * 
+     *
      * @param t Az új szomszéd
      */
     public void addNeighbour(Tecton t) {
@@ -139,7 +118,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Visszadja, hogy az adott játékosnak van-e fonala a tektonon
-     * 
+     *
      * @param p A játékos, akinek a fonalát keressük
      * @return van-e a játékosnak fonala? (bool)
      */
@@ -149,7 +128,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Visszadja, hogy az adott játékosnak van-e fonala a tekton bármely szomszédján
-     * 
+     *
      * @param p A játékos, akinek a fonalait vizsgáljuk
      * @return van-e a játékosnak fonala szomszédon? (bool)
      */
@@ -163,7 +142,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Visszaadja, hogy a tektonon van-e gombatest
-     * 
+     *
      * @return van-e gombatest a tektonon (bool)
      */
     public boolean hasStem() {
@@ -172,7 +151,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Rárak egy gombafonalat a tektonra
-     * 
+     *
      * @param th A rárakandó gombafonál
      * @return Az add sikeressége (bool)
      */
@@ -183,7 +162,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Eltávolít egy gombafonalat a tektonról
-     * 
+     *
      * @param th Az eltávolítandó gombafonál
      * @return Az remove sikeressége (bool)
      */
@@ -194,7 +173,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Rárak egy gombatestet a tektonra
-     * 
+     *
      * @param ms A rárakandó gombatest
      * @return Az add sikeressége (bool)
      */
@@ -209,7 +188,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Eltávolít egy gombatestet a tektonról
-     * 
+     *
      * @param ms A eltávolítandó gombatest
      * @return A remove sikeressége (bool)
      */
@@ -221,7 +200,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Hozzáad egy spórát a tektonon lévő spórákhoz
-     * 
+     *
      * @param sp A hozzáadott spóra
      * @return Az add sikeressége (bool)
      */
@@ -232,7 +211,7 @@ public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
 
     /**
      * Eltávolít egy spórát a tektonról
-     * 
+     *
      * @param sp A eltávolítandó spóra
      * @return A remove sikeressége (bool)
      */

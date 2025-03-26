@@ -9,7 +9,7 @@ import java.util.List;
 public interface IStem {
     /**
      * Gombatest hozzáadás.
-     * 
+     *
      * @param ms A hozzáadandó gombatest.
      * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
      */
@@ -17,7 +17,7 @@ public interface IStem {
 
     /**
      * Eltávolít egy gombatestet.
-     * 
+     *
      * @param ms Az eltávolítandó gombatest.
      * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
      */

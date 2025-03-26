@@ -36,7 +36,7 @@ public class Insect extends Entity {
 
     /**
      * Megállapítja, hogy a rovar bénult állapotban van-e.
-     * 
+     *
      * @return igaz, ha bénult, egyébként hamis
      */
     public boolean isParalyzed() {
@@ -46,7 +46,7 @@ public class Insect extends Entity {
 
     /**
      * Beállítja a rovar bénulási állapotát.
-     * 
+     *
      * @param paralyzed igaz esetén megbénítja a rovart, hamis esetén visszaállítja
      *                  nem bénultra.
      */
@@ -57,7 +57,7 @@ public class Insect extends Entity {
 
     /**
      * Megállapítja, hogy a rovar csáprágója képes-e fonalat vágni.
-     * 
+     *
      * @return igaz, ha a csáprágói bénultak, egyébként hamis
      */
     public boolean isClawParalyzed() {
@@ -67,7 +67,7 @@ public class Insect extends Entity {
 
     /**
      * Beállítja a karom bénulás állapotát.
-     * 
+     *
      * @param clawParalyzed igaz esetén megbénítja a csáprágókat, hamis esetén
      *                      visszaállítja nem bénultra.
      */
@@ -78,7 +78,7 @@ public class Insect extends Entity {
 
     /**
      * Visszaadja a rovar módisítók nélküli mozgási sebességét.
-     * 
+     *
      * @return alapsebesség, módosítók nélkül
      */
     public int getBaseSpeed() {
@@ -88,7 +88,7 @@ public class Insect extends Entity {
 
     /**
      * Beállítja a módisítók nélküli mozgási sebességet.
-     * 
+     *
      * @param baseSpeed új alapsebesség érték
      */
     public void setBaseSpeed(int baseSpeed) {
@@ -98,7 +98,7 @@ public class Insect extends Entity {
 
     /**
      * Lekéri a sebességmódosítót.
-     * 
+     *
      * @return visszaadja a sebességmódosítót
      */
     public double getSpeedModifier() {
@@ -108,7 +108,7 @@ public class Insect extends Entity {
 
     /**
      * Beállítja a sebességmódosítót.
-     * 
+     *
      * @param speedModifier sebességmódosító
      */
     public void setSpeedModifier(double speedModifier) {
@@ -118,7 +118,7 @@ public class Insect extends Entity {
 
     /**
      * Eltávolít egy hatást a rovarról.
-     * 
+     *
      * @param e eltávolítandó hatás
      */
     public void remove(Effect e) {
@@ -129,7 +129,7 @@ public class Insect extends Entity {
 
     /**
      * Új hatást ad a rovarhoz.
-     * 
+     *
      * @param e hatás, amit hozzáadunk a rovarhoz
      */
     public void add(Effect e) {
@@ -140,7 +140,7 @@ public class Insect extends Entity {
 
     /**
      * Beállítja a rovar helyét
-     * 
+     *
      * @param location A tekton, amin a rovar van
      */
     @Override
@@ -152,7 +152,7 @@ public class Insect extends Entity {
 
     /**
      * Megpróbál elfogyasztani egy gombaspórát.
-     * 
+     *
      * @param sp Elfogyasztandó spóra.
      * @return igaz, ha sikerült megenni, egyébként hamis.
      */
@@ -168,7 +168,7 @@ public class Insect extends Entity {
 
     /**
      * Megpróbál mozogni.
-     * 
+     *
      * @param targetTecton A tekton, amelyre menni szeretne a rovar.
      * @return igaz, ha a mozgás sikerült, egyébként hamis
      */
@@ -185,13 +185,13 @@ public class Insect extends Entity {
 
     /**
      * Megpróbál elvágni egy gombafonalat.
-     * 
+     *
      * @param th Elvágandó gombafonal.
      * @return igaz, ha sikerült elvágni, egyébként hamis.
      */
     public boolean cut(MushroomThread th) {
         Debug.DBGFUNC("Gombafonal elvágása");
-        if(clawParalyzed || paralyzed)
+        if (clawParalyzed || paralyzed)
             return false;
 
         th.setCutoff(true);

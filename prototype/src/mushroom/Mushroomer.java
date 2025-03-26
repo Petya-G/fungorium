@@ -20,7 +20,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     /**
      * Konstruktor, amely inicializálja a gombász spóráit, gombatestjeit és
      * gombafonalait.
-     * 
+     *
      * @param spores  A gombász spóráinak listája.
      * @param stems   A gombász gombatestjeinek listája.
      * @param threads A gombász gombafonalainak listája.
@@ -44,7 +44,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * Visszaadja a gombászhoz tartozó gombatestek listáját.
-     * 
+     *
      * @return A gombászhoz tartozó gombatestek listája.
      */
     @Override
@@ -55,7 +55,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * Visszaadja a gombászhoz tartozó gombafonalak listáját.
-     * 
+     *
      * @return A gombászhoz tartozó gombafonalak listája.
      */
     @Override
@@ -69,13 +69,17 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         return spores;
     }
 
+    public List<Spore> getSpores(Tecton tecton) {
+        return spores.stream().filter(spore -> spore.getLocation() == tecton).toList();
+    }
+
     public boolean hasThread(Tecton tecton) {
         return threads.stream().filter(th -> th.getLocation() == tecton).toArray().length == 1;
     }
 
     /**
      * Gombatestet helyez el egy adott tektonon.
-     * 
+     *
      * @param tecton A tekton, ahová a gombatestet elhelyezzük.
      * @return Igaz, ha a gombatest elhelyezése sikeres, egyébként hamis.
      */
@@ -92,7 +96,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
             return true;
         }
 
-        List<Spore> sp = new ArrayList<>(tecton.getSpores(this));
+        List<Spore> sp = getSpores(tecton);
         if (sp.size() >= ms.getCost() && tecton.add(ms)) {
             for (int i = 0; i < ms.getCost(); i++)
                 sp.get(i).remove();
@@ -107,7 +111,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * Gombafonalat növeszt egy adott tektonon.
-     * 
+     *
      * @param tecton A tekton, ahová a gombafonalat növesztjük.
      * @return Igaz, ha a gombafonal növesztése sikeres, egyébként hamis.
      */
@@ -127,7 +131,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * Spórát dob egy gombatestből egy adott tektonra.
-     * 
+     *
      * @param ms     A gombatest, amelyből a spórát dobjuk.
      * @param tecton A tekton, ahová a spórát dobjuk.
      * @return Igaz, ha a spóra dobása sikeres, egyébként hamis.
@@ -142,7 +146,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * A gombatest szintet lép.
-     * 
+     *
      * @param ms A szintet lépő gombatest.
      * @return Igaz, ha a fejlesztés sikeres, egyébként hamis.
      */
@@ -153,7 +157,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * Hozzáad egy gombafonalat a gombászhoz.
-     * 
+     *
      * @param th A hozzáadandó gombafonal.
      * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
      */
@@ -165,7 +169,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * Elvesz egy gombafonalat a gombásztól.
-     * 
+     *
      * @param th Az eltávolítandó gombafonal.
      * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
      */
@@ -177,7 +181,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * Hozzáad egy gombatestet a gombászhoz.
-     * 
+     *
      * @param ms A hozzáadandó gombatest.
      * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
      */
@@ -191,7 +195,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * Elvesz egy gombatestet a gombásztól.
-     * 
+     *
      * @param ms Az eltávolítandó gombatest.
      * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
      */
@@ -203,7 +207,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * Hozzáad egy spórát a gombászhoz.
-     * 
+     *
      * @param sp A hozzáadandó spóra.
      * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
      */
@@ -215,7 +219,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     /**
      * Elvesz egy spórát a gombásztól.
-     * 
+     *
      * @param sp Az eltávolítandó spóra.
      * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
      */

@@ -9,7 +9,7 @@ import java.util.List;
 public interface IThread {
     /**
      * Gombafonal hozzáadás.
-     * 
+     *
      * @param th A hozzáadandó gombafonal.
      * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
      */
@@ -17,7 +17,7 @@ public interface IThread {
 
     /**
      * Eltávolít egy gombafonalat.
-     * 
+     *
      * @param th Az eltávolítandó gombafonal.
      * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
      */

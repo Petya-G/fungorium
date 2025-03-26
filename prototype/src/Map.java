@@ -15,7 +15,7 @@ public class Map implements IRound {
 
     /**
      * Összeköt két tektont a pályán
-     * 
+     *
      * @param a Egyik összekötendő tekton
      * @param b Másik összekötendő tekton
      */

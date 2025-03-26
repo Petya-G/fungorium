@@ -6,7 +6,7 @@ public interface ISpore {
 
     /**
      * Hozzáad valamihez egy spórát
-     * 
+     *
      * @param sp A hozzáadandó spóra
      * @return A művelet sikeressége
      */
@@ -14,7 +14,7 @@ public interface ISpore {
 
     /**
      * Eltávolít valahonnan egy spórát
-     * 
+     *
      * @param sp A eltávolítandó spóra
      * @return A művelet sikeressége
      */

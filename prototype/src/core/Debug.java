@@ -4,6 +4,7 @@ public class Debug {
 
     /**
      * Debuggolást segítő függvény, kiírja a hivóját és egy üzenetet
+     *
      * @param msg A kiírandó üzenet
      */
     public static void DBGFUNC(String msg) {
