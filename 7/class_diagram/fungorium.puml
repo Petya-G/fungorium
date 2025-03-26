@@ -1,0 +1,13 @@
+@startuml fungorium
+package fungorium{
+    !include core/core.puml
+    !include insect/effect.puml
+    !include insect/insect.puml
+    !include mushroom/spore.puml
+    !include mushroom/mushroomStem.puml
+    !include mushroom/mushroomThread.puml
+    !include core/tecton.puml
+    !include player/player.puml
+    !include player/mushroomer.puml
+    !include player/insecter.puml
+}
