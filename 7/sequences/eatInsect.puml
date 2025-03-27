@@ -1,0 +1,25 @@
+@startuml eatInsect
+title Eat Insect
+
+actor Controller
+participant "m:Mushroomer" as M
+participant "t:MushroomThread" as T
+participant "i : Insect" as I
+
+activate M
+Controller-> M
+activate T
+    M->T: eatWith(i,t)
+    activate I
+        T->I : eat() 
+        alt stunned      
+            I-->I : remove()  
+            I-->T : true  
+        end 
+        I-->T : false
+    deactivate I
+    T-->M
+deactivate T
+M-->Controller
+deactivate M
+@enduml

@@ -1,0 +1,19 @@
+@startuml splitSpore
+'nem vágom hogy kéne
+title SplitSpore
+actor Controller
+participant "in:Insecter" as In
+participant "i1:Insect" as I
+participant "s:Spore" as S
+participant "t:tecton" as T
+
+activate In
+Controller->In: eatSpore
+activate I
+In-> I: eatWith(i1,s)
+I->I : split()
+
+deactivate I
+deactivate In
+
+@enduml
