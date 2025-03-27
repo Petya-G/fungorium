@@ -140,6 +140,7 @@ public class Insect extends Entity {
             return false;
 
         add(sp.getEffect());
+        owner.addScore(sp.getNutrition());
         sp.remove();
         return true;
     }

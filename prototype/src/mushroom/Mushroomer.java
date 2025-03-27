@@ -58,6 +58,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         if (thread != null && tecton.add(ms)) {
             thread.setEaten(false);
             add(ms);
+            addScore(1);
             return true;
         }
 
@@ -67,7 +68,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
                 sp.get(i).remove();
 
             add(ms);
-
+            addScore(1);
             return true;
         }
 

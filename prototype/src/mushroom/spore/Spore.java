@@ -19,6 +19,10 @@ public abstract class Spore extends Entity {
         return effect;
     }
 
+    public int getNutrition() {
+        return nutrition;
+    }
+
     /**
      * Spóra törlése a játékból
      */
