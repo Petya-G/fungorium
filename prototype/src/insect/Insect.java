@@ -87,16 +87,6 @@ public class Insect extends Entity {
     }
 
     /**
-     * Beállítja a módisítók nélküli mozgási sebességet.
-     *
-     * @param baseSpeed új alapsebesség érték
-     */
-    public void setBaseSpeed(int baseSpeed) {
-        Debug.DBGFUNC("Alapsebesség beállítása");
-        this.baseSpeed = baseSpeed;
-    }
-
-    /**
      * Lekéri a sebességmódosítót.
      *
      * @return visszaadja a sebességmódosítót
@@ -117,17 +107,6 @@ public class Insect extends Entity {
     }
 
     /**
-     * Eltávolít egy hatást a rovarról.
-     *
-     * @param e eltávolítandó hatás
-     */
-    public void remove(Effect e) {
-        Debug.DBGFUNC("Effekt eltávolítása a rovarról");
-        effects.remove(e);
-        e.remove(this);
-    }
-
-    /**
      * Új hatást ad a rovarhoz.
      *
      * @param e hatás, amit hozzáadunk a rovarhoz
@@ -139,15 +118,14 @@ public class Insect extends Entity {
     }
 
     /**
-     * Beállítja a rovar helyét
+     * Eltávolít egy hatást a rovarról.
      *
-     * @param location A tekton, amin a rovar van
+     * @param e eltávolítandó hatás
      */
-    @Override
-    public void setLocation(Tecton location) {
-        this.location.remove(this);
-        location.add(this);
-        super.setLocation(location);
+    public void remove(Effect e) {
+        Debug.DBGFUNC("Effekt eltávolítása a rovarról");
+        effects.remove(e);
+        e.remove(this);
     }
 
     /**
@@ -197,7 +175,24 @@ public class Insect extends Entity {
         th.setCutoff(true);
         return true;
     }
+    
+    public void split() {
+        Insect insect = new Insect((Insecter) getOwner(), getLocation());
+        ((Insecter) getOwner()).add(insect);
+        getLocation().add(insect);
+    }
 
+    /**
+     * Beállítja a rovar helyét
+     *
+     * @param location A tekton, amin a rovar van
+     */
+    @Override
+    public void setLocation(Tecton location) {
+        this.location.remove(this);
+        location.add(this);
+        super.setLocation(location);}
+    
     /**
      * Végrehajtja a kör végén szükséges folyamatokat.
      * Törli a lejáró hatásokat
@@ -220,11 +215,5 @@ public class Insect extends Entity {
     public void remove() {
         getLocation().remove(this);
         ((Insecter) getOwner()).remove(this);
-    }
-
-    public void Split() {
-        Insect insect = new Insect((Insecter) getOwner(), getLocation());
-        ((Insecter) getOwner()).add(insect);
-        getLocation().add(insect);
     }
 }

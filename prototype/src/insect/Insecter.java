@@ -26,29 +26,6 @@ public class Insecter extends Player implements IInsect {
         this.insects = insects;
     }
 
-    @Override
-    public boolean add(Insect insect) {
-        return insects.add(insect);
-    }
-
-    @Override
-    public boolean remove(Insect insect) {
-        return insects.remove(insect);
-    }
-
-    @Override
-    public List<Insect> getInsects() {
-        return insects;
-    }
-
-    /**
-     * A kör végén végrehajtandó műveletek.
-     */
-    @Override
-    public void endTurn() {
-        Debug.DBGFUNC("Kör vége");
-    }
-
     public boolean eatWith(Insect insect, Spore sp) {
         Debug.DBGFUNC("Spóra megevése");
         return insect.eat(sp);
@@ -62,5 +39,28 @@ public class Insecter extends Player implements IInsect {
     public boolean cutWith(Insect insect, MushroomThread th) {
         Debug.DBGFUNC("Rovarász gombafonalat vág");
         return insect.cut(th);
+    }
+
+    /**
+     * A kör végén végrehajtandó műveletek.
+     */
+    @Override
+    public void endTurn() {
+        Debug.DBGFUNC("Kör vége");
+    }
+
+    @Override
+    public boolean add(Insect insect) {
+        return insects.add(insect);
+    }
+
+    @Override
+    public boolean remove(Insect insect) {
+        return insects.remove(insect);
+    }
+
+    @Override
+    public List<Insect> getInsects() {
+        return insects;
     }
 }

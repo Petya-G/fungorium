@@ -43,41 +43,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     }
 
     /**
-     * Visszaadja a gombászhoz tartozó gombatestek listáját.
-     *
-     * @return A gombászhoz tartozó gombatestek listája.
-     */
-    @Override
-    public List<MushroomStem> getStems() {
-        Debug.DBGFUNC("Gombászhoz tartozó gombatestek lekérése");
-        return stems;
-    }
-
-    /**
-     * Visszaadja a gombászhoz tartozó gombafonalak listáját.
-     *
-     * @return A gombászhoz tartozó gombafonalak listája.
-     */
-    @Override
-    public List<MushroomThread> getThreads() {
-        Debug.DBGFUNC("Gombászhoz tartozó gombafonalak lekérése");
-        return threads;
-    }
-
-    @Override
-    public List<Spore> getSpores() {
-        return spores;
-    }
-
-    public List<Spore> getSpores(Tecton tecton) {
-        return spores.stream().filter(spore -> spore.getLocation() == tecton).toList();
-    }
-
-    public boolean hasThread(Tecton tecton) {
-        return threads.stream().filter(th -> th.getLocation() == tecton).toArray().length == 1;
-    }
-
-    /**
      * Gombatestet helyez el egy adott tektonon.
      *
      * @param tecton A tekton, ahová a gombatestet elhelyezzük.
@@ -155,28 +120,54 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         return ms.levelUp();
     }
 
+    public List<Spore> getSpores(Tecton tecton) {
+        return spores.stream().filter(spore -> spore.getLocation() == tecton).toList();
+    }
+
+    public boolean hasThread(Tecton tecton) {
+        return threads.stream().filter(th -> th.getLocation() == tecton).toArray().length == 1;
+    }
+    
     /**
-     * Hozzáad egy gombafonalat a gombászhoz.
-     *
-     * @param th A hozzáadandó gombafonal.
-     * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
+     * A kör végén végrehajtandó műveletek.
+     * Meghívja a gombászhoz tartozó gombatestek, gombafonalak és spórák endTurn
+     * metódusait.
      */
     @Override
-    public boolean add(MushroomThread th) {
-        Debug.DBGFUNC("Gombafonal hozzáadása");
-        return threads.add(th);
+    public void endTurn() {
+        Debug.DBGFUNC("Kör vége");
+        stems.forEach(ms -> ms.endTurn());
+        threads.forEach(th -> th.endTurn());
+        spores.forEach(sp -> sp.endTurn());
     }
 
     /**
-     * Elvesz egy gombafonalat a gombásztól.
+     * Hozzáad egy spórát a gombászhoz.
      *
-     * @param th Az eltávolítandó gombafonal.
+     * @param sp A hozzáadandó spóra.
+     * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
+     */
+    @Override
+    public boolean add(Spore sp) {
+        Debug.DBGFUNC("Spóra hozzáadása");
+        return spores.add(sp);
+    }
+
+    /**
+     * Elvesz egy spórát a gombásztól.
+     *
+     * @param sp Az eltávolítandó spóra.
      * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
      */
     @Override
-    public boolean remove(MushroomThread th) {
-        Debug.DBGFUNC("Gombafonal eltávolítása");
-        return threads.remove(th);
+    public boolean remove(Spore sp) {
+        Debug.DBGFUNC("Spóra eltávolítása");
+        return spores.remove(sp);
+    }
+
+    @Override
+    public List<Spore> getSpores() {
+        return spores;
     }
 
     /**
@@ -206,39 +197,48 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     }
 
     /**
-     * Hozzáad egy spórát a gombászhoz.
+     * Visszaadja a gombászhoz tartozó gombatestek listáját.
      *
-     * @param sp A hozzáadandó spóra.
+     * @return A gombászhoz tartozó gombatestek listája.
+     */
+    @Override
+    public List<MushroomStem> getStems() {
+        Debug.DBGFUNC("Gombászhoz tartozó gombatestek lekérése");
+        return stems;
+    }
+
+    /**
+     * Hozzáad egy gombafonalat a gombászhoz.
+     *
+     * @param th A hozzáadandó gombafonal.
      * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
      */
     @Override
-    public boolean add(Spore sp) {
-        Debug.DBGFUNC("Spóra hozzáadása");
-        return spores.add(sp);
+    public boolean add(MushroomThread th) {
+        Debug.DBGFUNC("Gombafonal hozzáadása");
+        return threads.add(th);
     }
 
     /**
-     * Elvesz egy spórát a gombásztól.
+     * Elvesz egy gombafonalat a gombásztól.
      *
-     * @param sp Az eltávolítandó spóra.
+     * @param th Az eltávolítandó gombafonal.
      * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
      */
     @Override
-    public boolean remove(Spore sp) {
-        Debug.DBGFUNC("Spóra eltávolítása");
-        return spores.remove(sp);
+    public boolean remove(MushroomThread th) {
+        Debug.DBGFUNC("Gombafonal eltávolítása");
+        return threads.remove(th);
     }
 
     /**
-     * A kör végén végrehajtandó műveletek.
-     * Meghívja a gombászhoz tartozó gombatestek, gombafonalak és spórák endTurn
-     * metódusait.
+     * Visszaadja a gombászhoz tartozó gombafonalak listáját.
+     *
+     * @return A gombászhoz tartozó gombafonalak listája.
      */
     @Override
-    public void endTurn() {
-        Debug.DBGFUNC("Kör vége");
-        stems.forEach(ms -> ms.endTurn());
-        threads.forEach(th -> th.endTurn());
-        spores.forEach(sp -> sp.endTurn());
+    public List<MushroomThread> getThreads() {
+        Debug.DBGFUNC("Gombászhoz tartozó gombafonalak lekérése");
+        return threads;
     }
 }

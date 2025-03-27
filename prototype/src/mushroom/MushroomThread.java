@@ -27,30 +27,6 @@ public class MushroomThread extends Entity {
         Debug.DBGFUNC("Gombafonal létrehozva");
     }
 
-    /**
-     * Thread törlése a pályáról
-     */
-    @Override
-    public void remove() {
-        getLocation().remove(this);
-        ((Mushroomer) getOwner()).remove(this);
-        Debug.DBGFUNC("Gombafonal törölve");
-    }
-
-    /**
-     * Kör vége
-     */
-    @Override
-    public void endTurn() {
-        if (cutOff) {
-            cutOffDuration++;
-            if (cutOffDuration == maxCutOffDuration) {
-                remove();
-            }
-        }
-        Debug.DBGFUNC("Kör vége");
-    }
-
     public boolean isConnected() {
         // TODO:
         return true;
@@ -75,5 +51,29 @@ public class MushroomThread extends Entity {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Thread törlése a pályáról
+     */
+    @Override
+    public void remove() {
+        getLocation().remove(this);
+        ((Mushroomer) getOwner()).remove(this);
+        Debug.DBGFUNC("Gombafonal törölve");
+    }
+
+    /**
+     * Kör vége
+     */
+    @Override
+    public void endTurn() {
+        if (cutOff) {
+            cutOffDuration++;
+            if (cutOffDuration == maxCutOffDuration) {
+                remove();
+            }
+        }
+        Debug.DBGFUNC("Kör vége");
     }
 }
