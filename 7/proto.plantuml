@@ -1,4 +1,4 @@
-@startuml
+@startuml prototype
 
 !theme plain
 left to right direction
@@ -8,280 +8,282 @@ skinparam classAttributeIconSize 0
 skinparam nodesep 10
 skinparam rackagePadding 5
 
-package core{
-  class Entity {
-    # location: Tecton
-    # owner: Player
-    + endTurn(): void
-    + remove(): void
-    location: Tecton
-    owner: Player
-  }
+package prototype{
+  package core{
+    abstract class Entity {
+      {abstract}   # location: Tecton
+      {abstract}   # owner: Player
+      {abstract}   + endTurn(): void
+      {abstract}   + remove(): void
+      {abstract}   location: Tecton
+      {abstract}   owner: Player
+    }
 
-  class Player {
-    # score: Integer
-    + addScore(Integer): void
-    + endTurn(): void
-    score: Integer
-  }
+    abstract class Player {
+      {abstract} # score: Integer
+      {abstract}   + addScore(Integer): void
+      {abstract}   + endTurn(): void
+      {abstract}   score: Integer
+    }
 
-  interface IRound << interface >> {
-    + endRound(): void
-  }
+    interface IRound {
+      {abstract}   + endRound(): void
+    }
 
-  interface ITurn << interface >> {
-    + endTurn(): void
+    interface ITurn {
+      {abstract}   + endTurn(): void
+    }
   }
-}
   class Map {
     ~ connect(Tecton, Tecton): void
     + endRound(): void
     + generate(): void
   }
 
-package effect {
-  class ClawParalyzeEffect {
-    + apply(Insect): void
-    + remove(Insect): void
-  }
-
-  class Effect {
-    ~ duration: int
-    + apply(Insect): void
-    + remove(Insect): void
-    duration: int
-  }
-
-  class FastEffect {
-    + apply(Insect): void
-    + remove(Insect): void
-  }
-
-  class ParalyzeEffect {
-    + apply(Insect): void
-    + remove(Insect): void
-  }
-
-  class SlowEffect {
-    + apply(Insect): void
-    + remove(Insect): void
-  }
-
-  class SplitEffect {
-    + apply(Insect): void
-    + remove(Insect): void
-  }
-}
-
-package insect {
-  interface IInsect << interface >> {
-    + add(Insect): boolean
-    + remove(Insect): boolean
-    insects: List<Insect>
-  }
-
-  class Insect {
-    # baseSpeed: int
-    # clawParalyzed: boolean
-    # paralyzed: boolean
-    # speedModifier: double
-    + add(Effect): void
-    + cut(MushroomThread): boolean
-    + eat(Spore): boolean
-    + endTurn(): void
-    + move(Tecton): boolean
-    + remove(Effect): void
-    + remove(): void
-    + split(): void
-    baseSpeed: int
-    clawParalyzed: boolean
-    location: Tecton
-    paralyzed: boolean
-    speedModifier: double
-  }
-
-  class Insecter {
-    - insects: List<Insect>
-    + add(Insect): boolean
-    + cutWith(Insect, MushroomThread): boolean
-    + eatWith(Insect, Spore): boolean
-    + endTurn(): void
-    + moveWith(Insect, Tecton): boolean
-    + remove(Insect): boolean
-    insects: List<Insect>
-  }
-}
-
-package mushroom {
-  interface IStem << interface >> {
-    + add(MushroomStem): boolean
-    + remove(MushroomStem): boolean
-    stems: List<MushroomStem>
-  }
-
-  interface IThread << interface >> {
-    + add(MushroomThread): boolean
-    + remove(MushroomThread): boolean
-    threads: List<MushroomThread>
-  }
-
-  class MushroomStem {
-    - cost: int
-    - maxSporeThrows: int
-    - numThrownSpores: int
-    + endTurn(): void
-    + levelUp(): boolean
-    + remove(): void
-    + throwSpore(Tecton): boolean
-    cost: int
-    maxSporeThrows: int
-    numThrownSpores: int
-  }
-
-  class MushroomThread {
-    - eaten: boolean
-    + eat(Insect): boolean
-    + endTurn(): void
-    + hasEaten(): boolean
-    + remove(): void
-    connected: boolean
-    cutoff: boolean
-    eaten: boolean
-  }
-
-  class Mushroomer {
-    - spores: List<Spore>
-    - stems: List<MushroomStem>
-    - threads: List<MushroomThread>
-    + add(MushroomThread): boolean
-    + add(Spore): boolean
-    + add(MushroomStem): boolean
-    + eatWith(MushroomThread, Insect): boolean
-    + endTurn(): void
-    + getSpores(Tecton): List<Spore>
-    + growMushroomthread(Tecton): Boolean
-    + hasThread(Tecton): boolean
-    + levelUp(MushroomStem): Boolean
-    + plantMushroomstem(Tecton): Boolean
-    + remove(Spore): boolean
-    + remove(MushroomStem): boolean
-    + remove(MushroomThread): boolean
-    + throwSpore(MushroomStem, Tecton): Boolean
-    spores: List<Spore>
-    stems: List<MushroomStem>
-    threads: List<MushroomThread>
-  }
-
-  package mushroom.spore {
-    interface ISpore << interface >> {
-      + add(Spore): boolean
-      + remove(Spore): boolean
-      spores: List<Spore>
+  package effect {
+    class ClawParalyzeEffect {
+      + apply(Insect): void
+      + remove(Insect): void
     }
 
-    class ClawParalyzingSpore
-    class ParalyzingSpore
-    class SlowingSpore
-    class SpeedingSpore
-    class SplitterSpore
-    class Spore {
-      ~ effect: Effect
+    abstract class Effect {
+      {abstract}   ~ duration: int
+      {abstract}   + apply(Insect): void
+      {abstract}   + remove(Insect): void
+      {abstract}   duration: int
+    }
+
+    class FastEffect {
+      + apply(Insect): void
+      + remove(Insect): void
+    }
+
+    class ParalyzeEffect {
+      + apply(Insect): void
+      + remove(Insect): void
+    }
+
+    class SlowEffect {
+      + apply(Insect): void
+      + remove(Insect): void
+    }
+
+    class SplitEffect {
+      + apply(Insect): void
+      + remove(Insect): void
+    }
+  }
+
+  package insect {
+    interface IInsect {
+      + add(Insect): boolean
+      + remove(Insect): boolean
+      insects: List<Insect>
+    }
+
+    class Insect {
+      # baseSpeed: int
+      # clawParalyzed: boolean
+      # paralyzed: boolean
+      # speedModifier: double
+      + add(Effect): void
+      + cut(MushroomThread): boolean
+      + eat(Spore): boolean
+      + endTurn(): void
+      + move(Tecton): boolean
+      + remove(Effect): void
       + remove(): void
-      effect: Effect
+      + split(): void
+      baseSpeed: int
+      clawParalyzed: boolean
       location: Tecton
+      paralyzed: boolean
+      speedModifier: double
+    }
+
+    class Insecter {
+      - insects: List<Insect>
+      + add(Insect): boolean
+      + cutWith(Insect, MushroomThread): boolean
+      + eatWith(Insect, Spore): boolean
+      + endTurn(): void
+      + moveWith(Insect, Tecton): boolean
+      + remove(Insect): boolean
+      insects: List<Insect>
     }
   }
+
+  package mushroom {
+    interface IStem {
+      {abstract}   + add(MushroomStem): boolean
+      {abstract}        + remove(MushroomStem): boolean
+      {abstract}        stems: List<MushroomStem>
+    }
+
+    interface IThread {
+      {abstract}   + add(MushroomThread): boolean
+      {abstract}   + remove(MushroomThread): boolean
+      {abstract}   threads: List<MushroomThread>
+    }
+
+    class MushroomStem {
+      - cost: int
+      - maxSporeThrows: int
+      - numThrownSpores: int
+      + endTurn(): void
+      + levelUp(): boolean
+      + remove(): void
+      + throwSpore(Tecton): boolean
+      cost: int
+      maxSporeThrows: int
+      numThrownSpores: int
+    }
+
+    class MushroomThread {
+      - eaten: boolean
+      + eat(Insect): boolean
+      + endTurn(): void
+      + hasEaten(): boolean
+      + remove(): void
+      connected: boolean
+      cutoff: boolean
+      eaten: boolean
+    }
+
+    class Mushroomer {
+      - spores: List<Spore>
+      - stems: List<MushroomStem>
+      - threads: List<MushroomThread>
+      + add(MushroomThread): boolean
+      + add(Spore): boolean
+      + add(MushroomStem): boolean
+      + eatWith(MushroomThread, Insect): boolean
+      + endTurn(): void
+      + getSpores(Tecton): List<Spore>
+      + growMushroomthread(Tecton): Boolean
+      + hasThread(Tecton): boolean
+      + levelUp(MushroomStem): Boolean
+      + plantMushroomstem(Tecton): Boolean
+      + remove(Spore): boolean
+      + remove(MushroomStem): boolean
+      + remove(MushroomThread): boolean
+      + throwSpore(MushroomStem, Tecton): Boolean
+      spores: List<Spore>
+      stems: List<MushroomStem>
+      threads: List<MushroomThread>
+    }
+
+    package mushroom.spore {
+      interface ISpore {
+        {abstract}     + add(Spore): boolean
+        {abstract}     + remove(Spore): boolean
+        {abstract}     spores: List<Spore>
+      }
+
+      class ClawParalyzingSpore
+      class ParalyzingSpore
+      class SlowingSpore
+      class SpeedingSpore
+      class SplitterSpore
+      abstract class Spore {
+        {abstract} ~ effect: Effect
+        {abstract}      + remove(): void
+        {abstract}      effect: Effect
+        {abstract}      location: Tecton
+      }
+    }
+  }
+
+  package tecton {
+    class LifeSupportTecton {
+      + removeUnconnectedThreads(): void
+    }
+
+    class SingleThreadedTecton {
+      + add(MushroomThread): boolean
+    }
+
+    class StemlessTecton {
+      + add(MushroomStem): boolean
+    }
+
+    class Tecton {
+      # insects: List<Insect>
+      # neighbours: List<Tecton>
+      # spores: List<Spore>
+      # threads: List<MushroomThread>
+      + add(Spore): boolean
+      + add(MushroomStem): boolean
+      + add(Insect): boolean
+      + add(MushroomThread): boolean
+      + addNeighbour(Tecton): void
+      + endRound(): void
+      + hasStem(): boolean
+      + hasThread(Player): boolean
+      + neighbourHasThread(Player): boolean
+      + remove(Insect): boolean
+      + remove(MushroomStem): boolean
+      + remove(Spore): boolean
+      + remove(MushroomThread): boolean
+      + removeUnconnectedThreads(): void
+      + split(): Tecton
+      insects: List<Insect>
+      neighbours: List<Tecton>
+      spores: List<Spore>
+      stems: List<MushroomStem>
+      threads: List<MushroomThread>
+    }
+
+    class ThreadConsumingTecton {
+      + endRound(): void
+    }
+  }
+
+  ClawParalyzeEffect     -[#000082,plain]-^  Effect
+  ClawParalyzingSpore    -[#000082,plain]-^  Spore
+  Entity                 -[#008200,dashed]-^  ITurn
+  Entity                "1" -[#595959,plain]-> "owner\n1" Player
+  Entity                "1" -[#595959,plain]-> "location\n1" Tecton
+  FastEffect             -[#000082,plain]-^  Effect
+  Insect                "1" *-[#595959,plain]-> "effects\n*" Effect
+  Insect                 -[#000082,plain]-^  Entity
+  Insecter               -[#008200,dashed]-^  IInsect
+  Insecter              "1" *-[#595959,plain]-> "insects\n*" Insect
+  Insecter               -[#000082,plain]-^  Player
+  LifeSupportTecton      -[#000082,plain]-^  Tecton
+  Map                    -[#008200,dashed]-^  IRound
+  Map                   "1" *-[#595959,plain]-> "tectons\n*" Tecton
+  MushroomStem           -[#000082,plain]-^  Entity
+  MushroomThread         -[#000082,plain]-^  Entity
+  Mushroomer             -[#008200,dashed]-^  ISpore
+  Mushroomer             -[#008200,dashed]-^  IStem
+  Mushroomer             -[#008200,dashed]-^  IThread
+  Mushroomer            "1" *-[#595959,plain]-> "stems\n*" MushroomStem
+  Mushroomer            "1" *-[#595959,plain]-> "threads\n*" MushroomThread
+  Mushroomer             -[#000082,plain]-^  Player
+  Mushroomer            "1" *-[#595959,plain]-> "spores\n*" Spore
+  ParalyzeEffect         -[#000082,plain]-^  Effect
+  ParalyzingSpore        -[#000082,plain]-^  Spore
+  Player                 -[#008200,dashed]-^  ITurn
+  SingleThreadedTecton   -[#000082,plain]-^  Tecton
+  SlowEffect             -[#000082,plain]-^  Effect
+  SlowingSpore           -[#000082,plain]-^  Spore
+  SpeedingSpore          -[#000082,plain]-^  Spore
+  SplitEffect            -[#000082,plain]-^  Effect
+  SplitterSpore          -[#000082,plain]-^  Spore
+  Spore                 "1" *-[#595959,plain]-> "effect\n1" Effect
+  Spore                  -[#000082,plain]-^  Entity
+  StemlessTecton         -[#000082,plain]-^  Tecton
+  Tecton                 -[#008200,dashed]-^  IInsect
+  Tecton                 -[#008200,dashed]-^  IRound
+  Tecton                 -[#008200,dashed]-^  ISpore
+  Tecton                 -[#008200,dashed]-^  IStem
+  Tecton                 -[#008200,dashed]-^  IThread
+  Tecton                "1" o-[#595959,plain]-> "insects\n*" Insect
+  Tecton                "1" o-[#595959,plain]-> "stem\n1" MushroomStem
+  Tecton                "1" o-[#595959,plain]-> "threads\n*" MushroomThread
+  Tecton                "1" o-[#595959,plain]-> "spores\n*" Spore
+  Tecton                "1" -[#595959,plain]-> "neighbours\n*" Tecton
+  ThreadConsumingTecton  -[#000082,plain]-^  Tecton
 }
-
-package tecton {
-  class LifeSupportTecton {
-    + removeUnconnectedThreads(): void
-  }
-
-  class SingleThreadedTecton {
-    + add(MushroomThread): boolean
-  }
-
-  class StemlessTecton {
-    + add(MushroomStem): boolean
-  }
-
-  class Tecton {
-    # insects: List<Insect>
-    # neighbours: List<Tecton>
-    # spores: List<Spore>
-    # threads: List<MushroomThread>
-    + add(Spore): boolean
-    + add(MushroomStem): boolean
-    + add(Insect): boolean
-    + add(MushroomThread): boolean
-    + addNeighbour(Tecton): void
-    + endRound(): void
-    + hasStem(): boolean
-    + hasThread(Player): boolean
-    + neighbourHasThread(Player): boolean
-    + remove(Insect): boolean
-    + remove(MushroomStem): boolean
-    + remove(Spore): boolean
-    + remove(MushroomThread): boolean
-    + removeUnconnectedThreads(): void
-    + split(): Tecton
-    insects: List<Insect>
-    neighbours: List<Tecton>
-    spores: List<Spore>
-    stems: List<MushroomStem>
-    threads: List<MushroomThread>
-  }
-
-  class ThreadConsumingTecton {
-    + endRound(): void
-  }
-}
-
-ClawParalyzeEffect     -[#000082,plain]-^  Effect                
-ClawParalyzingSpore    -[#000082,plain]-^  Spore                 
-Entity                 -[#008200,dashed]-^  ITurn                 
-Entity                "1" -[#595959,plain]-> "owner\n1" Player                
-Entity                "1" -[#595959,plain]-> "location\n1" Tecton                
-FastEffect             -[#000082,plain]-^  Effect                
-Insect                "1" *-[#595959,plain]-> "effects\n*" Effect                
-Insect                 -[#000082,plain]-^  Entity                
-Insecter               -[#008200,dashed]-^  IInsect               
-Insecter              "1" *-[#595959,plain]-> "insects\n*" Insect                
-Insecter               -[#000082,plain]-^  Player                
-LifeSupportTecton      -[#000082,plain]-^  Tecton                
-Map                    -[#008200,dashed]-^  IRound                
-Map                   "1" *-[#595959,plain]-> "tectons\n*" Tecton                
-MushroomStem           -[#000082,plain]-^  Entity                
-MushroomThread         -[#000082,plain]-^  Entity                
-Mushroomer             -[#008200,dashed]-^  ISpore                
-Mushroomer             -[#008200,dashed]-^  IStem                 
-Mushroomer             -[#008200,dashed]-^  IThread               
-Mushroomer            "1" *-[#595959,plain]-> "stems\n*" MushroomStem          
-Mushroomer            "1" *-[#595959,plain]-> "threads\n*" MushroomThread        
-Mushroomer             -[#000082,plain]-^  Player                
-Mushroomer            "1" *-[#595959,plain]-> "spores\n*" Spore                 
-ParalyzeEffect         -[#000082,plain]-^  Effect                
-ParalyzingSpore        -[#000082,plain]-^  Spore                 
-Player                 -[#008200,dashed]-^  ITurn                 
-SingleThreadedTecton   -[#000082,plain]-^  Tecton                
-SlowEffect             -[#000082,plain]-^  Effect                
-SlowingSpore           -[#000082,plain]-^  Spore                 
-SpeedingSpore          -[#000082,plain]-^  Spore                 
-SplitEffect            -[#000082,plain]-^  Effect                
-SplitterSpore          -[#000082,plain]-^  Spore                 
-Spore                 "1" *-[#595959,plain]-> "effect\n1" Effect                
-Spore                  -[#000082,plain]-^  Entity                
-StemlessTecton         -[#000082,plain]-^  Tecton                
-Tecton                 -[#008200,dashed]-^  IInsect               
-Tecton                 -[#008200,dashed]-^  IRound                
-Tecton                 -[#008200,dashed]-^  ISpore                
-Tecton                 -[#008200,dashed]-^  IStem                 
-Tecton                 -[#008200,dashed]-^  IThread               
-Tecton                "1" o-[#595959,plain]-> "insects\n*" Insect                
-Tecton                "1" o-[#595959,plain]-> "stem\n1" MushroomStem          
-Tecton                "1" o-[#595959,plain]-> "threads\n*" MushroomThread        
-Tecton                "1" o-[#595959,plain]-> "spores\n*" Spore                 
-Tecton                "1" -[#595959,plain]-> "neighbours\n*" Tecton                 
-ThreadConsumingTecton  -[#000082,plain]-^  Tecton                
 @enduml
