@@ -7,7 +7,7 @@ participant "t:MushroomThread" as T
 participant "i : Insect" as I
 
 activate M
-Controller-> M
+Controller-> M : endTurn()
 activate T
     M->T: eat(Insect i)
     activate I

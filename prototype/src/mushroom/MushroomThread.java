@@ -28,7 +28,7 @@ public class MushroomThread extends Entity {
     }
 
     public boolean isConnected() {
-        // TODO:
+        // TODO: van-e gombatest melyhez csatlakozunk?
         return true;
     }
 

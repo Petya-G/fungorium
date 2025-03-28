@@ -1,6 +1,36 @@
 @startuml
 
+' Kész: Dúcz
 
+title Unconnected thread dies
 
+actor Controller
+participant "m:Map" as M
+participant "t:Tecton" as T
+participant "th:Thread" as Th
+
+Controller -> M : endRound()
+
+activate M
+
+    loop for tecton t in Map.tectons
+        M -> T : removeUnconnectedThreads()
+        activate T
+
+            loop for th thread in tecton.threads
+            alt !th.isConnected
+
+                T -> Th : remove()
+                activate Th
+                Th --> T
+                deactivate Th
+            end
+            end
+
+        T --> M
+        deactivate T
+    end
+M --> Controller
+deactivate M
 
 @enduml
