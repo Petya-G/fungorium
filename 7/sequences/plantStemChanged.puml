@@ -24,5 +24,6 @@ MR <-- T : false
 deactivate T
 end
 
+MR --> Controller
 deactivate MR
 @enduml
