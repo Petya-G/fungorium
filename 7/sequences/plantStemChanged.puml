@@ -1,0 +1,28 @@
+@startuml MushroomerPlantsStemOnTecton
+title Mushroomer plants stem on tecton
+
+actor Controller
+participant "mr : Mushroomer" as MR
+participant "t : Tecton" as T
+participant "s : Stem" as S
+
+activate Controller
+Controller -> MR : plantStem(t, s)
+activate MR
+
+MR -> T : add(t, s)
+activate T
+
+alt empty && t.hasThread
+alt t.getSpores(p).size() >= s.getCost() || t.getThread(p).hasEaten()
+MR <-- T : true
+else
+MR <-- T : false
+end
+else
+MR <-- T : false
+deactivate T
+end
+
+deactivate MR
+@enduml
