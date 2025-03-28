@@ -1,0 +1,35 @@
+@startuml insectCutThread
+
+title Insect cuts thread
+
+actor Controller
+participant "ir : Insecter" as IR
+participant  "i : Insect" as I
+participant "mt : MushroomThread" as M
+
+activate Controller
+Controller -> IR: cutWith(i, mt)
+
+activate IR
+IR -> I: cut(mt)
+activate I
+
+alt clawParalized or paralyzed
+    IR <-- I : false
+
+else
+    I -> M: setCutoff(true)
+    activate M
+    
+
+
+    I <-- M
+    deactivate M
+
+    IR <-- I : true
+end
+
+IR --> Controller
+deactivate I
+
+@enduml
