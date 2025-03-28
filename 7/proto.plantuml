@@ -7,6 +7,7 @@ hide empty members
 skinparam classAttributeIconSize 0
 skinparam nodesep 10
 skinparam rackagePadding 5
+
 package core{
   class Entity {
     # location: Tecton
@@ -240,8 +241,8 @@ package tecton {
 ClawParalyzeEffect     -[#000082,plain]-^  Effect                
 ClawParalyzingSpore    -[#000082,plain]-^  Spore                 
 Entity                 -[#008200,dashed]-^  ITurn                 
-Entity                "1" *-[#595959,plain]-> "owner\n1" Player                
-Entity                "1" *-[#595959,plain]-> "location\n1" Tecton                
+Entity                "1" -[#595959,plain]-> "owner\n1" Player                
+Entity                "1" -[#595959,plain]-> "location\n1" Tecton                
 FastEffect             -[#000082,plain]-^  Effect                
 Insect                "1" *-[#595959,plain]-> "effects\n*" Effect                
 Insect                 -[#000082,plain]-^  Entity                
@@ -277,9 +278,10 @@ Tecton                 -[#008200,dashed]-^  IRound
 Tecton                 -[#008200,dashed]-^  ISpore                
 Tecton                 -[#008200,dashed]-^  IStem                 
 Tecton                 -[#008200,dashed]-^  IThread               
-Tecton                "1" *-[#595959,plain]-> "insects\n*" Insect                
-Tecton                "1" *-[#595959,plain]-> "stem\n1" MushroomStem          
-Tecton                "1" *-[#595959,plain]-> "threads\n*" MushroomThread        
-Tecton                "1" *-[#595959,plain]-> "spores\n*" Spore                 
+Tecton                "1" o-[#595959,plain]-> "insects\n*" Insect                
+Tecton                "1" o-[#595959,plain]-> "stem\n1" MushroomStem          
+Tecton                "1" o-[#595959,plain]-> "threads\n*" MushroomThread        
+Tecton                "1" o-[#595959,plain]-> "spores\n*" Spore                 
+Tecton                "1" -[#595959,plain]-> "neighbours\n*" Tecton                 
 ThreadConsumingTecton  -[#000082,plain]-^  Tecton                
 @enduml
