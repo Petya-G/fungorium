@@ -1,19 +1,48 @@
 @startuml splitSpore
-'nem vágom hogy kéne
+
+' KÉSZ : Dúcz
+
 title SplitSpore
 actor Controller
 participant "in:Insecter" as In
 participant "i1:Insect" as I
-participant "s:Spore" as S
-participant "t:tecton" as T
+
+participant "s:SplitEffect" as S
+participant "i2:Insect" as I2
+'participant "t:tecton" as T
 
 activate In
-Controller->In: eatSpore
+Controller->In: endTurn()
 activate I
-In-> I: eatWith(i1,s)
-I->I : split()
+In-> I: endTurn()
+I->S : decreaseDuration()
+activate S
+
+S-->I
+deactivate S
+
+I->S : apply(Insect i1)
+activate S
+
+S->I : split()
+activate I
+
+I -> I2 : <<create>>
+I -> In : add(Insect i2)
+In --> I
+
+I-->S
+deactivate I
+
+S-->I
+deactivate S
+
+I --> In
 
 deactivate I
+In --> Controller
 deactivate In
+
+
 
 @enduml

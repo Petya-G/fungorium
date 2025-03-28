@@ -9,7 +9,7 @@ participant "i : Insect" as I
 activate M
 Controller-> M
 activate T
-    M->T: eatWith(i,t)
+    M->T: eat(Insect i)
     activate I
         T->I : eat() 
         alt stunned      
