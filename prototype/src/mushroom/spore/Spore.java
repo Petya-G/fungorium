@@ -4,9 +4,17 @@ import mushroom.Mushroomer;
 import tecton.Tecton;
 import core.Debug;
 import core.Entity;
+import core.Player;
 import effect.*;
 
 public abstract class Spore extends Entity {
+
+    protected Spore(Tecton location, Player owner, int nutrition, Effect effect) {
+        super(location, owner);
+        this.nutrition = nutrition;
+        this.effect = effect;
+    }
+
     int nutrition; // A tápérték, ennyi pontot kap a rovar, mikor megeszi a spórát
     Effect effect; // A spóra rovarra gyakorolt hatása
 
@@ -35,7 +43,7 @@ public abstract class Spore extends Entity {
 
     @Override
     public void setLocation(Tecton location) {
-        this.location.remove(this);
+        getLocation().remove(this);
         location.add(this);
         super.setLocation(location);
     }

@@ -6,9 +6,6 @@ import tecton.Tecton;
 
 public class SplitterSpore extends Spore {
     public SplitterSpore(Mushroomer owner, Tecton location) {
-        this.owner = owner;
-        this.location = location;
-        nutrition = 10;
-        effect = new SplitEffect();
+        super(location, owner, 10, new SplitEffect());
     }
 }

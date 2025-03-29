@@ -38,8 +38,8 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     public Mushroomer(Tecton location) {
         Debug.DBGFUNC("Mushroomer alapértelmezett konstruktor");
-        stems.add(new MushroomStem(this, location));
-        threads.add(new MushroomThread(this, location));
+        stems.add(new MushroomStem(location, this));
+        threads.add(new MushroomThread(location, this));
     }
 
     /**
@@ -49,7 +49,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * @return Igaz, ha a gombatest elhelyezése sikeres, egyébként hamis.
      */
     public Boolean plantMushroomstem(Tecton tecton) {
-        MushroomStem ms = new MushroomStem(this, tecton);
+        MushroomStem ms = new MushroomStem(tecton, this);
 
         if (!hasThread(tecton))
             return false;
@@ -86,7 +86,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         Debug.DBGFUNC("Gombafonal növesztése" + tecton.hasThread(this) + " neighbourHasThread="
                 + tecton.neighbourHasThread(this));
 
-        MushroomThread mt = new MushroomThread(this, tecton);
+        MushroomThread mt = new MushroomThread(tecton, this);
         if (!tecton.hasThread(this) && tecton.neighbourHasThread(this)) {
             if (tecton.add(mt)) {
                 return add(mt);

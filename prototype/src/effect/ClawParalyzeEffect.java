@@ -6,13 +6,6 @@ import insect.*;
 public class ClawParalyzeEffect extends Effect {
 
     /**
-     * Konstruktor, beállítja a hatás időtartamát
-     */
-    public ClawParalyzeEffect() {
-        duration = 3;
-    }
-
-    /**
      * Érvényesíti a hatást egy rovarra
      *
      * @param i A rovar, amire kifejti hatását

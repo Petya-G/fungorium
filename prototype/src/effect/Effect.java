@@ -8,6 +8,10 @@ import insect.*;
 public abstract class Effect {
     int duration;
 
+    protected Effect() {
+        this.duration = 3;
+    }
+
     /**
      * Visszaadja a hatás leteltéig hátralévő időt
      *

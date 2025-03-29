@@ -4,14 +4,6 @@ import core.Debug;
 import insect.*;
 
 public class SlowEffect extends Effect {
-
-    /**
-     * Konstruktor, beállítja a hatás időtartamát
-     */
-    public SlowEffect() {
-        duration = 3;
-    }
-
     /**
      * Érvényesíti a hatást egy rovarra
      *

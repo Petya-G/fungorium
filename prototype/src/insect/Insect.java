@@ -25,8 +25,7 @@ public class Insect extends Entity {
     protected double speedModifier;
 
     public Insect(Insecter owner, Tecton location) {
-        this.owner = owner;
-        this.location = location;
+        super(location, owner);
         effects = new ArrayList<>();
         paralyzed = false;
         clawParalyzed = false;
@@ -140,7 +139,7 @@ public class Insect extends Entity {
             return false;
 
         add(sp.getEffect());
-        owner.addScore(sp.getNutrition());
+        getOwner().addScore(sp.getNutrition());
         sp.remove();
         return true;
     }
@@ -190,7 +189,7 @@ public class Insect extends Entity {
      */
     @Override
     public void setLocation(Tecton location) {
-        this.location.remove(this);
+        getLocation().remove(this);
         location.add(this);
         super.setLocation(location);}
     

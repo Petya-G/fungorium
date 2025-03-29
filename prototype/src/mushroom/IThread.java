@@ -24,4 +24,11 @@ public interface IThread {
     boolean remove(MushroomThread th);
 
     List<MushroomThread> getThreads();
+
+    default MushroomThread getThread(int id) {
+        return getThreads().stream()
+                .filter(thread -> thread.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

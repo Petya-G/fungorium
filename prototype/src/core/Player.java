@@ -1,7 +1,7 @@
 package core;
 
-public abstract class Player implements ITurn {
-    protected Integer score;
+public abstract class Player extends Identifiable implements ITurn {
+    private Integer score;
 
     /**
      * Visszaadja a játékos pontszámát

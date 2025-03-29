@@ -16,10 +16,7 @@ public class SlowingSpore extends Spore {
      * @param location A tekton, amin a spóra van
      */
     public SlowingSpore(Mushroomer owner, Tecton location) {
-        this.owner = owner;
-        this.location = location;
-        nutrition = 10;
-        effect = new SlowEffect();
+        super(location, owner, 10, new SlowEffect());
         Debug.DBGFUNC("Lassító spóra lerakva");
     }
 }

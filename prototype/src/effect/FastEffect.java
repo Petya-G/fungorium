@@ -4,14 +4,6 @@ import core.Debug;
 import insect.*;
 
 public class FastEffect extends Effect {
-
-    /**
-     * Konstruktor, beállítja a hatás időtartamát
-     */
-    public FastEffect() {
-        duration = 3;
-    }
-
     /**
      * Érvényesíti a hatást egy rovarra
      *

@@ -24,4 +24,11 @@ public interface IStem {
     boolean remove(MushroomStem ms);
 
     List<MushroomStem> getStems();
+
+    default MushroomStem getStem(int id){
+        return getStems().stream()
+                .filter(stem -> stem.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

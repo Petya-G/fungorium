@@ -4,14 +4,6 @@ import core.Debug;
 import insect.*;
 
 public class ParalyzeEffect extends Effect {
-
-    /**
-     * Konstruktor, beállítja a hatás időtartamát
-     */
-    public ParalyzeEffect() {
-        duration = 3;
-    }
-
     /**
      * Érvényesíti a hatást egy rovarra
      *

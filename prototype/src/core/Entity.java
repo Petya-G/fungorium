@@ -2,9 +2,14 @@ package core;
 
 import tecton.Tecton;
 
-public abstract class Entity implements ITurn {
-    protected Tecton location;
-    protected Player owner;
+public abstract class Entity extends Identifiable implements ITurn {
+    private Tecton location;
+    private Player owner;
+
+    protected Entity(Tecton location, Player owner) {
+        this.location = location;
+        this.owner = owner;
+    }
 
     public abstract void remove();
 

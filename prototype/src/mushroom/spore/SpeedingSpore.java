@@ -16,10 +16,7 @@ public class SpeedingSpore extends Spore {
      * @param location A tekton, amin a spóra van
      */
     public SpeedingSpore(Mushroomer owner, Tecton location) {
-        this.owner = owner;
-        this.location = location;
-        nutrition = 10;
-        effect = new FastEffect();
+        super(location, owner, 10, new FastEffect());
         Debug.DBGFUNC("Gyorsító spóra lerakva");
     }
 }

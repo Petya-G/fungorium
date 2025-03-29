@@ -21,4 +21,11 @@ public interface ISpore {
     boolean remove(Spore sp);
 
     List<Spore> getSpores();
+
+    default Spore getSpore(int id) {
+        return getSpores().stream()
+                .filter(spore -> spore.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

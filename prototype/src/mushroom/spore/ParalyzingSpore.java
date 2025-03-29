@@ -16,10 +16,7 @@ public class ParalyzingSpore extends Spore {
      * @param location A tekton, amin a spóra van
      */
     public ParalyzingSpore(Mushroomer owner, Tecton location) {
-        this.owner = owner;
-        this.location = location;
-        nutrition = 10;
-        effect = new ParalyzeEffect();
+        super(location, owner, 10, new ParalyzeEffect());
         Debug.DBGFUNC("Kábító spóra lerakva");
     }
 }

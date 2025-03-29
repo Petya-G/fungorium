@@ -3,9 +3,16 @@ package insect;
 import java.util.List;
 
 public interface IInsect {
-    public boolean add(Insect insect);
+    boolean add(Insect insect);
 
-    public boolean remove(Insect insect);
+    boolean remove(Insect insect);
 
-    public List<Insect> getInsects();
+    List<Insect> getInsects();
+
+    default Insect getInsect(int id) {
+        return getInsects().stream()
+                .filter(insect -> insect.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

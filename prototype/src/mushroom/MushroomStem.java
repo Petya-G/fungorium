@@ -20,9 +20,8 @@ public class MushroomStem extends Entity {
      * @param owner    A gombatestet tulajdonló játékos
      * @param location A gombetest helye, vagyis, hogy melyik tektonon van
      */
-    public MushroomStem(Mushroomer owner, Tecton location) {
-        this.owner = owner;
-        this.location = location;
+    public MushroomStem(Tecton location, Mushroomer owner) {
+        super(location, owner);
         this.maxSporeThrows = 5;
         this.numThrownSpores = 0;
         this.level = 0;
@@ -48,20 +47,20 @@ public class MushroomStem extends Entity {
      */
     public boolean throwSpore(Tecton tecton) {
         // TODO implement range check
-        Spore spore = new SpeedingSpore((Mushroomer) owner, tecton);
+        Spore spore = new SpeedingSpore((Mushroomer) getOwner(), tecton);
         if (level == 1)
-            spore = new SlowingSpore((Mushroomer) owner, tecton);
+            spore = new SlowingSpore((Mushroomer) getOwner(), tecton);
         if (level == 2)
-            spore = new ClawParalyzingSpore((Mushroomer) owner, tecton);
+            spore = new ClawParalyzingSpore((Mushroomer) getOwner(), tecton);
         if (level == 3)
-            spore = new ParalyzingSpore((Mushroomer) owner, tecton);
+            spore = new ParalyzingSpore((Mushroomer) getOwner(), tecton);
 
         if (thrown || !tecton.add(spore)) {
             Debug.DBGFUNC("Failed to throw spore");
             return false;
         }
 
-        ((Mushroomer) owner).add(spore);
+        ((Mushroomer) getOwner()).add(spore);
         thrown = true;
         numThrownSpores++;
 
@@ -78,7 +77,7 @@ public class MushroomStem extends Entity {
      * @return true, ha szintet, egyébként false
      */
     public boolean levelUp() {
-        List<Spore> spores = ((Mushroomer) owner).getSpores(location);
+        List<Spore> spores = ((Mushroomer) getOwner()).getSpores(getLocation());
         if (!spores.isEmpty()) {
             level++;
             spores.get(0).remove();
