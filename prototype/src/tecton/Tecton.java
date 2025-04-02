@@ -8,7 +8,7 @@ import java.util.*;
 import mushroom.*;
 import mushroom.spore.*;
 
-public class Tecton implements IRound, ISpore, IStem, IThread, IInsect {
+public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThread, IInsect {
     protected MushroomStem stem;
     protected List<Spore> spores = new ArrayList<Spore>();
     protected List<MushroomThread> threads = new ArrayList<MushroomThread>();

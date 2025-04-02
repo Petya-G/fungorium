@@ -1,11 +1,12 @@
 package effect;
 
+import core.Identifiable;
 import insect.*;
 
 /**
  * A rovarokra érvényes hatások őse, absztrakt, nem példányosítható
  */
-public abstract class Effect {
+public abstract class Effect extends Identifiable{
     int duration;
 
     protected Effect() {

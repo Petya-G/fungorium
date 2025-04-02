@@ -20,7 +20,4 @@ public abstract class Player extends Identifiable implements ITurn {
     public void addScore(Integer score) {
         this.score += score;
     }
-
-    @Override
-    public abstract void endTurn();
 }
