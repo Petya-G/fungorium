@@ -172,6 +172,7 @@ public class Insect extends Entity implements IInsect {
     @Override
     public void endTurn() {
         Debug.DBGFUNC("Kör vége");
+
         for(Effect e : effects){
             if(e.getDuration()==1){
                 remove(e);
@@ -179,6 +180,10 @@ public class Insect extends Entity implements IInsect {
                 e.decreaseDuration();
             }
         }
+
+        paralyzed=false;
+        clawParalyzed=false;
+        speedModifier=baseSpeed;
 
         for(Effect e : effects){
             e.apply(this);

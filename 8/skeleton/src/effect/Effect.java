@@ -23,12 +23,6 @@ public abstract class Effect {
     public abstract void apply(Insect i);
 
     /**
-     * Érvényteleníti a hatást egy rovarra
-     * @param i A rovar, amire érvényteleníti hatását
-     */
-    public abstract void remove(Insect i);
-
-    /**
      * Csökkenti a hatás hátralévő időtartamát
      */
     public void decreaseDuration(){

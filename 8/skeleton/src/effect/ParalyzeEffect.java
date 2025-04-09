@@ -21,13 +21,4 @@ public class ParalyzeEffect extends Effect {
         duration--;
         Debug.DBGFUNC("Kábító hatás van érvényben a rovaron");
     }
-
-    /**
-     * Érvényteleníti a hatást egy rovarra
-     * @param i A rovar, amire érvényteleníti hatását
-     */
-    public void remove(Insect i) {
-        i.setParalyzed(false);
-        Debug.DBGFUNC("Kábító hatás lejárt");
-    }
 }
