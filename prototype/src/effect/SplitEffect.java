@@ -9,6 +9,7 @@ public class SplitEffect extends Effect {
 
     @Override
     public void apply(Insect i) {
+        duration--;
         i.split();
     }
 

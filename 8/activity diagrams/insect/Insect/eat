@@ -1,0 +1,16 @@
+@startuml
+title Insect eat
+
+start
+
+if (Is insect paralyzed / claw paralyzed?) then (yes)
+  :Cannot eat spore;
+  stop
+else (no)
+  :Add spore effect to insect;
+  :Add spore nutrition to insecter score;
+  :Remove spore from tecton;
+end if
+
+stop
+@enduml

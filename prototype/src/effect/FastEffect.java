@@ -10,6 +10,7 @@ public class FastEffect extends Effect {
      * @param i A rovar, amire kifejti hatását
      */
     public void apply(Insect i) {
+        duration--;
         i.setSpeedModifier(2);
         Debug.DBGFUNC("Gyorsító hatás van érvényben a rovaron");
     }

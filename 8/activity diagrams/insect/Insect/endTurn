@@ -1,0 +1,13 @@
+@startuml
+title Insect end turn
+
+start
+
+:Find effects where duration is 1;
+:Delete effects if duration is 1;
+
+:For each remaining effect, apply said effect;
+
+stop
+@enduml
+

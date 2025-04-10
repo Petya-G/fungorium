@@ -1,0 +1,14 @@
+@startuml
+title Insect move
+
+start
+
+if (Is insect paralyzed?) then (yes)
+  :Cannot move;
+  stop
+else (no)
+  :Set location to target tecton;
+end if
+
+stop
+@enduml

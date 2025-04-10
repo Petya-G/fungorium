@@ -1,0 +1,14 @@
+@startuml
+title Insect cut
+
+start
+
+if (Is insect paralyzed / claw paralyzed?) then (yes)
+  :Cannot cut thread;
+  stop
+else (no)
+  :Mushroom thread is cut off;
+end if
+
+stop
+@enduml

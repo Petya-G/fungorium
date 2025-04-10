@@ -10,6 +10,7 @@ public class ParalyzeEffect extends Effect {
      * @param i A rovar, amire kifejti hatását
      */
     public void apply(Insect i) {
+        duration--;
         i.setParalyzed(true);
         Debug.DBGFUNC("Kábító hatás van érvényben a rovaron");
     }
