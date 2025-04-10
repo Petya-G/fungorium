@@ -1,0 +1,17 @@
+@startuml
+title ParalyzeEffect.apply(Insect) - Activity Diagram
+
+start
+
+:Check if insect already has ParalyzeEffect;
+if (ParalyzeEffect already applied?) then (yes)
+  :Do nothing or refresh duration;
+  stop
+else (no)
+  :Set insect.isParalyzed = true;
+  :Add ParalyzeEffect to insect.effects;
+  :Initialize duration counter;
+end if
+
+stop
+@enduml

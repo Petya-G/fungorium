@@ -1,0 +1,23 @@
+@startuml
+title Insect states
+
+[*] --> NP
+
+state "Not paralyzed" as NP {
+    state "Normal" as N
+    state "Claw paralyzed" as CP
+
+    [*] --> N
+
+    N --> N : Eats slowing/speeding/splitting spore
+    N --> CP : Eats claw paralyzing spore
+    CP --> N : After duration
+}
+
+state "Paralyzed" as P
+
+NP --> P : Eats paralyzing spore
+P --> NP : Effect duration over
+P --> Dead : Eaten by mushroom thread
+
+@enduml

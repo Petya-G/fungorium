@@ -1,0 +1,10 @@
+@startuml
+title MushroomThread states
+
+[*] --> Alive : is on normal tecton
+[*] --> Dying : is on thread consuming tecton
+
+Alive --> Dying : loses connection to sustaining mushroomstem
+Dying --> Dead :  certain number of turns later
+
+@enduml
