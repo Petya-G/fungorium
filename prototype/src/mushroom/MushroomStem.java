@@ -1,11 +1,10 @@
 package mushroom;
 
-import java.util.List;
-
-import mushroom.spore.*;
-import core.Entity;
-import tecton.Tecton;
 import core.Debug;
+import core.Entity;
+import java.util.List;
+import mushroom.spore.*;
+import tecton.Tecton;
 
 public class MushroomStem extends Entity {
     private boolean thrown;
