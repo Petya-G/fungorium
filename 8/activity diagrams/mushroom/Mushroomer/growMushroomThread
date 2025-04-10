@@ -1,0 +1,16 @@
+@startuml
+title Mushroomer grow mushroom thread
+
+start
+
+:Make new mushroom thread on selected tecton;
+
+if (Player does not have thread on tecton and a neighbour has thread from this player) then (true)
+  :Add thread to tecton;
+  :Add thread to mushroomer;
+else (false)
+end if
+
+stop
+@enduml
+

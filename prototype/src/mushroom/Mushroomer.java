@@ -54,7 +54,11 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         if (!hasThread(tecton))
             return false;
 
-        MushroomThread thread = threads.stream().filter(th -> th.hasEaten()).findFirst().get();
+        MushroomThread thread =
+            threads.stream()
+            .filter(th -> th.hasEaten() && th.getLocation() ==tecton)
+            .findFirst().get();
+            
         if (thread != null && tecton.add(ms)) {
             thread.setEaten(false);
             add(ms);
