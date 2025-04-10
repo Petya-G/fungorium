@@ -1,0 +1,16 @@
+@startuml
+title MushroomStem levels up
+
+start
+
+:Find owned spores on tecton;
+
+if (Are there enough spores on the tecton?) then (yes)
+    :Level up the stem;
+    :Consume the necesarry amount of spores;
+    stop
+else (no)
+end if
+stop
+@enduml
+

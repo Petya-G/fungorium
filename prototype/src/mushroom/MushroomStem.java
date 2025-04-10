@@ -75,9 +75,10 @@ public class MushroomStem extends Entity {
     /**
      * Test fejlesztése, amennyiben van a játékosnak spórája a tektonon
      *
-     * @return true, ha szintet, egyébként false
+     * @return true, ha szintet lép, egyébként false
      */
     public boolean levelUp() {
+        //TODO megbeszélni
         List<Spore> spores = ((Mushroomer) getOwner()).getSpores(getLocation());
         if (!spores.isEmpty()) {
             level++;

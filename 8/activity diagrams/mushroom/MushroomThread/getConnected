@@ -1,16 +1,16 @@
+//TODO ez nincs meg!!!
+
 @startuml
 title idk
 
 start
 
-:Check if insect already has ParalyzeEffect;
-if (ParalyzeEffect already applied?) then (yes)
-  :Do nothing or refresh duration;
+:idk;
+if (idk?) then (yes)
+  :idk;
   stop
 else (no)
-  :Set insect.isParalyzed = true;
-  :Add ParalyzeEffect to insect.effects;
-  :Initialize duration counter;
+  :idk;
 end if
 
 stop
