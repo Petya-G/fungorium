@@ -28,11 +28,4 @@ public abstract class Effect extends Identifiable{
      * @param i A rovar, amire kifejti hatását
      */
     public abstract void apply(Insect i);
-
-    /**
-     * Érvényteleníti a hatást egy rovarra
-     *
-     * @param i A rovar, amire érvényteleníti hatását
-     */
-    public abstract void remove(Insect i);
 }

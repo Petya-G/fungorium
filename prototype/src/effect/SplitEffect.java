@@ -12,7 +12,4 @@ public class SplitEffect extends Effect {
         i.split();
     }
 
-    @Override
-    public void remove(Insect i) {
-    }
 }
