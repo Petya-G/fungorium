@@ -46,6 +46,8 @@ public class MushroomStem extends Entity {
      */
     public boolean throwSpore(Tecton tecton) {
         // TODO implement range check
+        // TODO make spore throws random?
+        // TODO cap mushroomstem max level ?
         Spore spore = new SpeedingSpore((Mushroomer) getOwner(), tecton);
         if (level == 1)
             spore = new SlowingSpore((Mushroomer) getOwner(), tecton);

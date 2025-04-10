@@ -3,7 +3,7 @@ title MushroomStem states
 
 [*] --> Level1
 
-Level1 --> Level2 : throws spore for the 3rd time
-Level2 --> Dead : throws spore for the 5th time
+Level1 --> Level2 : consumes X spores on tecton
+Level2 --> Dead : throws spore Y times
 
 @enduml
