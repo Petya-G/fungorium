@@ -18,7 +18,6 @@ public class FastEffect extends Effect {
      */
     public void apply(Insect i) {
         i.setSpeedModifier(2);
-        duration--;
         Debug.DBGFUNC("Gyorsító hatás van érvényben a rovaron");
     }
 }

@@ -18,7 +18,6 @@ public class ClawParalyzeEffect extends Effect {
      */
     public void apply(Insect i) {
        i.setClawParalyzed(true);
-       duration--;
        Debug.DBGFUNC("Rágó kábító hatás van érvényben a rovaron");
     }
 
