@@ -1,0 +1,32 @@
+@startuml
+title Mushroomer plants stem
+
+start
+
+:Make new mushroom stem on selected tecton;
+
+if (Does selected tecton have threads?) then (yes)
+  :Find thread on selected tecton, and consumed an insect;
+    if (Did we find a thread, and was planting on tecton successful?) then (yes)
+        :Remove the eaten token from thread;
+        :Add mushroomstem to the mushroomer;
+        :Increase mushroomer score;
+        stop
+    else (no)
+        :Find spores on selected tecton;
+        if (Do we have enough spores for planting, and was planting on tecton successful?) then (yes)
+            :Remove spores that we spent for planting;
+            :Add mushroomstem to the mushroomer;
+            :Increase mushroomer score;
+        stop
+        end if
+
+    end if
+
+else (no)
+  :Cannot plant stem here;
+end if
+
+stop
+@enduml
+
