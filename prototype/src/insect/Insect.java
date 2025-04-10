@@ -3,13 +3,11 @@ package insect;
 import core.Debug;
 import core.Entity;
 import effect.Effect;
-import tecton.Tecton;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import mushroom.MushroomThread;
 import mushroom.spore.Spore;
+import tecton.Tecton;
 
 /**
  * Egy rovart reprezentál a játékban.
@@ -124,7 +122,6 @@ public class Insect extends Entity {
     public void remove(Effect e) {
         Debug.DBGFUNC("Effekt eltávolítása a rovarról");
         effects.remove(e);
-        e.remove(this);
     }
 
     /**
@@ -202,9 +199,7 @@ public class Insect extends Entity {
     public void endTurn() {
         Debug.DBGFUNC("Kör vége");
         List<Effect> endingEffects = effects.stream().filter(e -> e.getDuration() == 1).toList();
-        endingEffects.forEach(e -> e.remove(this));
         effects.removeAll(endingEffects);
-
         effects.forEach(e -> e.apply(this));
     }
 
