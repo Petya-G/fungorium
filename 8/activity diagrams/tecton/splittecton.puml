@@ -1,0 +1,28 @@
+@startuml
+title SplitTecton
+
+start
+
+:Check if map should be random;
+
+if (Random map?) then (yes)
+    :Generate random value;
+
+    if (Create a new SingleThreadedTecton) then (0)
+    elseif (Create a new StemlessTecton) then (1)
+    elseif (Create a new ThreadConsumingTecton) then (2)
+    else (value>2)
+        stop
+    endif
+
+    :Randomly connect to other tectons;
+    :Randomly decide the location of the spore;
+    :Randomly decide the location of the insect;
+    stop
+
+else (no)
+    :Generate fixed map;
+    stop
+endif
+
+@enduml
