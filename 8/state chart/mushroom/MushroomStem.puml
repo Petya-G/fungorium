@@ -1,4 +1,4 @@
-@startuml
+@startuml MushroomStem states
 title MushroomStem states
 
 [*] --> Level1

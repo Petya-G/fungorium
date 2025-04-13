@@ -1,4 +1,4 @@
-@startuml
+@startuml MushroomThread states
 title MushroomThread states
 
 [*] --> Alive : is on normal tecton

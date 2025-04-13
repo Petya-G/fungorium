@@ -1,4 +1,4 @@
-@startuml
+@startuml Insect states
 title Insect states
 
 [*] --> NP

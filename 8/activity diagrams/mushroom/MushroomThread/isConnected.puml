@@ -1,0 +1,37 @@
+@startuml MushroomThread isConnected
+title MushroomThread isConnected
+
+start
+
+:Initialize startTecton = this.location;
+if (Does startTecton have MushroomSteam?) then (yes)
+  :Return true;
+  stop
+else (no)
+endif
+
+:Initialize visited set;
+:Initialize queue;
+:Push startTecton to queue;
+:Add startTecton to visited;
+
+while (Queue is not empty?)
+  :Pop current from queue;
+  if (Does current have MushroomSteam?) then (yes)
+    :Return true;
+    stop
+  else (no)
+  endif
+  :For each neighbor in current.getNeighbors();
+  if (Neighbor not visited and has MushroomThread?) then (yes)
+    :Push neighbor to queue;
+    :Add neighbor to visited;
+  else (no)
+  endif
+endwhile
+
+:Return false;
+stop
+
+@enduml
+
