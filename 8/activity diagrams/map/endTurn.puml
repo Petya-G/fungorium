@@ -1,0 +1,18 @@
+@startuml Map EndTurn
+title Map EndRound 
+
+start
+
+:Iterate over tectons;
+:Call endRound() on each tecton;
+
+:Iterate over tectons ;
+
+if (Random returns true?) then (yes)
+  :Call split() on current tecton;
+  :Add split result to tectons;
+else (no)
+endif
+
+stop
+@enduml

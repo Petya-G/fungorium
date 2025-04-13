@@ -1,0 +1,23 @@
+@startuml MushroomerEndTurnSequence
+title Mushroomer End Turn Sequence
+
+start
+
+:For each stem in stems:
+  [call MushroomStem.endTurn]
+    :thrown = false;
+:For each thread in threads:
+  [call MushroomThread.endTurn]
+  if (Is thread cut off?) then (yes)
+    :Increment cutOffDuration;
+    if (cutOffDuration == maxCutOffDuration?) then (yes)
+      :Call remove();
+    endif
+  else (no)
+  endif
+
+:For each spore in spores:
+  [call Spore.endTurn]
+
+stop
+@enduml

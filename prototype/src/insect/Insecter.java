@@ -46,6 +46,7 @@ public class Insecter extends Player implements IInsect {
      */
     @Override
     public void endTurn() {
+        insects.forEach(Insect::endTurn);
         Debug.DBGFUNC("Kör vége");
     }
 

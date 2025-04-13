@@ -1,0 +1,24 @@
+@startuml
+title MushroomStem throw spore
+
+start
+
+:Select tecton for new mushroom stem;
+
+if (Is target tecton in range?) then (yes)
+  :Create new random spore;
+  if (Has the stem already thrown a spore this turn?) then (yes)
+    stop
+  else (no)
+    :Add spore to mushroomer;
+    :Increment thrown spore count;
+    if (Has the thrown spore count reached the maximum?) then (yes)
+      :Stem dies;
+    endif
+    stop
+  endif
+else (no)
+  :Cannot throw spore - target out of range;
+endif
+
+stop
