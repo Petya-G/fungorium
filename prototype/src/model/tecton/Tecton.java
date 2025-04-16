@@ -19,10 +19,10 @@ import java.util.Random;
 
 public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThread, IInsect {
     protected MushroomStem stem;
-    protected List<Spore> spores = new ArrayList<Spore>();
-    protected List<MushroomThread> threads = new ArrayList<MushroomThread>();
-    protected List<Insect> insects = new ArrayList<Insect>();
-    protected List<Tecton> neighbours = new ArrayList<Tecton>();
+    protected List<Spore> spores = new ArrayList<>();
+    protected List<MushroomThread> threads = new ArrayList<>();
+    protected List<Insect> insects = new ArrayList<>();
+    protected List<Tecton> neighbours = new ArrayList<>();
 
     /**
      * A Tecton osztály konstruktora, üresen inicializálja a lista típusú
@@ -48,12 +48,9 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
         Tecton t = new Tecton();
 
         int rnd = new Random().nextInt(4);
-        if (rnd == 0)
-            t = new SingleThreadedTecton();
-        else if (rnd == 1)
-            t = new StemlessTecton();
-        else if (rnd == 2)
-            t = new ThreadConsumingTecton();
+        if (rnd == 0) t = new SingleThreadedTecton();
+        else if (rnd == 1) t = new StemlessTecton();
+        else if (rnd == 2) t = new ThreadConsumingTecton();
 
         for (Tecton n : neighbours) {
             if (new Random().nextBoolean()) {
@@ -63,16 +60,12 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
 
         threads.clear();
 
-        List<Spore> sporesToMove = spores.stream()
-                .filter(sp -> new Random().nextBoolean())
-                .toList();
+        List<Spore> sporesToMove = spores.stream().filter(sp -> new Random().nextBoolean()).toList();
 
         for (Spore sp : sporesToMove)
             sp.setLocation(t);
 
-        List<Insect> insectsToMove = insects.stream()
-                .filter(i -> new Random().nextBoolean())
-                .toList();
+        List<Insect> insectsToMove = insects.stream().filter(i -> new Random().nextBoolean()).toList();
 
         for (Insect i : insectsToMove)
             i.setLocation(t);
@@ -111,7 +104,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
 
     @Override
     public List<MushroomStem> getStems() {
-        return stem == null ? new ArrayList<MushroomStem>() : List.of(stem);
+        return stem == null ? new ArrayList<>() : List.of(stem);
     }
 
     /**
@@ -141,8 +134,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      */
     public boolean neighbourHasThread(Player p) {
         for (Tecton t : neighbours)
-            if (t.hasThread(p))
-                return true;
+            if (t.hasThread(p)) return true;
 
         return false;
     }
@@ -186,8 +178,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      */
     @Override
     public boolean add(MushroomStem ms) {
-        if (hasStem())
-            return false;
+        if (hasStem()) return false;
 
         stem = ms;
         return true;
@@ -250,9 +241,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     }
 
     public void removeUnconnectedThreads() {
-        threads.stream()
-                .filter(t -> !t.isConnected())
-                .toList().forEach(th -> th.remove());
+        threads.stream().filter(t -> !t.isConnected()).toList().forEach(MushroomThread::remove);
     }
 
     @Override

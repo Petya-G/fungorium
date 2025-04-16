@@ -3,7 +3,14 @@ package model.core;
 import java.util.Objects;
 
 public abstract class Player extends Identifiable implements ITurn {
-    private Integer score;
+    private Integer score = 0;
+
+    protected Player() {
+    }
+
+    protected Player(int id) {
+        super(id);
+    }
 
     /**
      * Visszaadja a játékos pontszámát

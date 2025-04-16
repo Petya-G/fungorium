@@ -5,10 +5,16 @@ import model.tecton.Tecton;
 import java.util.Objects;
 
 public abstract class Entity extends Identifiable implements ITurn {
+    private final Player owner;
     private Tecton location;
-    private Player owner;
 
     protected Entity(Tecton location, Player owner) {
+        this.location = location;
+        this.owner = owner;
+    }
+
+    protected Entity(Tecton location, Player owner, int id) {
+        super(id);
         this.location = location;
         this.owner = owner;
     }
@@ -46,7 +52,6 @@ public abstract class Entity extends Identifiable implements ITurn {
      * Minden kör végén lefut
      */
     public void endTurn() {
-        System.out.println("Kör vége");
     }
 
     @Override

@@ -17,19 +17,18 @@ import java.util.Objects;
  * A különböző spórák befolyásolják a képességeiket.
  */
 public class Insect extends Entity {
-    protected List<Effect> effects;
-    protected boolean paralyzed;
-    protected boolean clawParalyzed;
-    protected int baseSpeed;
-    protected double speedModifier;
+    protected List<Effect> effects = new ArrayList<>();
+    protected boolean paralyzed = false;
+    protected boolean clawParalyzed = false;
+    protected int baseSpeed = 1;
+    protected double speedModifier = 1.0;
 
     public Insect(Insecter owner, Tecton location) {
         super(location, owner);
-        effects = new ArrayList<>();
-        paralyzed = false;
-        clawParalyzed = false;
-        baseSpeed = 1;
-        speedModifier = 1.0;
+    }
+
+    public Insect(Insecter owner, Tecton location, int id) {
+        super(location, owner, id);
     }
 
     /**

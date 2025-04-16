@@ -17,12 +17,16 @@ import java.util.Objects;
 public class Insecter extends Player implements IInsect {
     private List<Insect> insects = new ArrayList<Insect>();
 
-    public Insecter(Tecton location) {
-        this.insects.add(new Insect(this, location));
+    public Insecter() {
     }
 
-    public Insecter(List<Insect> insects) {
-        this.insects = insects;
+    public Insecter(Tecton location) {
+        createInsect(location);
+    }
+
+    public Insecter(Tecton location, int id) {
+        super(id);
+        createInsect(location);
     }
 
     public boolean eatWith(Insect insect, Spore sp) {

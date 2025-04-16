@@ -4,8 +4,18 @@ import java.util.Objects;
 
 public abstract class Identifiable {
     private static int sId = 0;
-    private final int id = sId++;
-    private final String name = getClass().getSimpleName() + "_" + id;
+    private final int id;
+    private final String name;
+
+    public Identifiable() {
+        this.id = sId++;
+        this.name = getClass().getSimpleName() + "_" + id;
+    }
+
+    public Identifiable(int id) {
+        this.id = id;
+        this.name = getClass().getSimpleName() + "_" + id;
+    }
 
     public long getId() {
         return id;

@@ -9,10 +9,14 @@ import java.util.Objects;
  * A rovarokra érvényes hatások őse, absztrakt, nem példányosítható
  */
 public abstract class Effect extends Identifiable{
-    int duration;
+    int duration = 3;
 
-    protected Effect() {
-        this.duration = 3;
+    public Effect() {
+        super();
+    }
+
+    public Effect(int id) {
+        super(id);
     }
 
     /**

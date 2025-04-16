@@ -19,7 +19,7 @@ import java.util.Objects;
 public class Game implements ITurn, IRound {
     private Map map = new Map();
     private final int maxTurn = 10;
-    private final boolean ended = false;
+    private boolean ended = false;
     int id = 0;
     private List<Player> players = new ArrayList<>();
     private int turn = 0;
@@ -78,12 +78,16 @@ public class Game implements ITurn, IRound {
 
     @Override
     public void endRound() {
-        //TODO
+        map.endRound();
     }
 
     @Override
     public void endTurn() {
         turn++;
+        if (turn % players.size() == 0)
+            ended = true;
+        if (turn == maxTurn)
+            ended = true;
     }
 
     @Override
