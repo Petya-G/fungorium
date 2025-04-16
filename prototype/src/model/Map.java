@@ -31,8 +31,6 @@ public class Map implements IRound {
      * random lesz
      */
     public void generate() {
-        Debug.DBGFUNC("generating map");
-
         // test map generation. Final version will feature randomly generated maps
 
         Tecton t1 = new Tecton();

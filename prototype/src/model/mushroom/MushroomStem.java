@@ -1,6 +1,5 @@
 package model.mushroom;
 
-import model.core.Debug;
 import model.core.Entity;
 import java.util.List;
 import model.mushroom.spore.*;
@@ -26,7 +25,6 @@ public class MushroomStem extends Entity {
         this.level = 0;
         this.thrown = false;
         this.cost = 3;
-        Debug.DBGFUNC("Gomba létrehozva");
     }
 
     /**
@@ -57,7 +55,6 @@ public class MushroomStem extends Entity {
             spore = new ParalyzingSpore((Mushroomer) getOwner(), tecton);
 
         if (thrown || !tecton.add(spore)) {
-            Debug.DBGFUNC("Failed to throw spore");
             return false;
         }
 
@@ -68,7 +65,6 @@ public class MushroomStem extends Entity {
         if (numThrownSpores == maxSporeThrows)
             remove();
 
-        Debug.DBGFUNC("Spore thrown successfully");
         return true;
     }
 
@@ -83,7 +79,6 @@ public class MushroomStem extends Entity {
         if (!spores.isEmpty()) {
             level++;
             spores.get(0).remove();
-            Debug.DBGFUNC("Gomba szintet lép");
             return true;
         }
         return false;
@@ -110,7 +105,6 @@ public class MushroomStem extends Entity {
     public void remove() {
         getLocation().remove(this);
         ((Mushroomer) getOwner()).remove(this);
-        Debug.DBGFUNC("GOmba törlése");
     }
 
     /**
@@ -119,6 +113,5 @@ public class MushroomStem extends Entity {
     @Override
     public void endTurn() {
         thrown = false;
-        Debug.DBGFUNC("Kör vége");
     }
 }

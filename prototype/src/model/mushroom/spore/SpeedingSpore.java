@@ -1,7 +1,6 @@
 package model.mushroom.spore;
 
 import model.mushroom.Mushroomer;
-import model.core.Debug;
 import model.effect.*;
 import model.tecton.Tecton;
 
@@ -17,6 +16,5 @@ public class SpeedingSpore extends Spore {
      */
     public SpeedingSpore(Mushroomer owner, Tecton location) {
         super(location, owner, 10, new FastEffect());
-        Debug.DBGFUNC("Gyorsító spóra lerakva");
     }
 }

@@ -2,7 +2,6 @@ package model.mushroom.spore;
 
 import model.mushroom.Mushroomer;
 import model.tecton.Tecton;
-import model.core.Debug;
 import model.core.Entity;
 import model.core.Player;
 import model.effect.*;
@@ -38,7 +37,6 @@ public abstract class Spore extends Entity {
     public void remove() {
         getLocation().remove(this);
         ((Mushroomer) getOwner()).remove(this);
-        Debug.DBGFUNC("Spóra törlése");
     }
 
     @Override

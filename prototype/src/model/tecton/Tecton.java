@@ -20,7 +20,6 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * tagváltozókat
      */
     public Tecton() {
-        Debug.DBGFUNC("Tecton lerakva");
     }
 
     public Tecton(List<Spore> spores, List<MushroomThread> threads, List<Insect> insects, List<Tecton> neighbours) {
@@ -37,7 +36,6 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * @return Az új tekton
      */
     public Tecton split() {
-        Debug.DBGFUNC("Tecton szétválik");
         Tecton t = new Tecton();
 
         int rnd = new Random().nextInt(4);

@@ -3,7 +3,6 @@ package model.mushroom;
 import java.util.*;
 
 import model.mushroom.spore.*;
-import model.core.Debug;
 import model.core.Player;
 import model.insect.Insect;
 import model.tecton.*;
@@ -26,7 +25,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * @param threads A gombász gombafonalainak listája.
      */
     public Mushroomer(List<Spore> spores, List<MushroomStem> stems, List<MushroomThread> threads) {
-        Debug.DBGFUNC("Mushroomer konstruktor");
         this.spores = spores;
         this.stems = stems;
         this.threads = threads;
@@ -37,7 +35,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * Üres listákat hoz létre a spóráknak, gombatesteknek és gombafonalaknak.
      */
     public Mushroomer(Tecton location) {
-        Debug.DBGFUNC("Mushroomer alapértelmezett konstruktor");
         stems.add(new MushroomStem(location, this));
         threads.add(new MushroomThread(location, this));
     }
@@ -87,8 +84,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     public Boolean growMushroomthread(Tecton tecton) {
         // TODO: limit per turn
-        Debug.DBGFUNC("Gombafonal növesztése" + tecton.hasThread(this) + " neighbourHasThread="
-                + tecton.neighbourHasThread(this));
 
         MushroomThread mt = new MushroomThread(tecton, this);
         if (!tecton.hasThread(this) && tecton.neighbourHasThread(this)) {
@@ -121,7 +116,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * @return Igaz, ha a fejlesztés sikeres, egyébként hamis.
      */
     public Boolean levelUp(MushroomStem ms) {
-        Debug.DBGFUNC("Gombatest szintlépés");
         return ms.levelUp();
     }
 
@@ -140,7 +134,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public void endTurn() {
-        Debug.DBGFUNC("Kör vége");
         stems.forEach(ms -> ms.endTurn());
         threads.forEach(th -> th.endTurn());
         spores.forEach(sp -> sp.endTurn());
@@ -154,7 +147,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public boolean add(Spore sp) {
-        Debug.DBGFUNC("Spóra hozzáadása");
         return spores.add(sp);
     }
 
@@ -166,7 +158,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public boolean remove(Spore sp) {
-        Debug.DBGFUNC("Spóra eltávolítása");
         return spores.remove(sp);
     }
 
@@ -183,7 +174,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public boolean add(MushroomStem ms) {
-        Debug.DBGFUNC("Gombatest hozzáadása");
         stems.add(ms);
         System.out.println(stems);
         return true;
@@ -197,7 +187,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public boolean remove(MushroomStem ms) {
-        Debug.DBGFUNC("Gombatest eltávolítása");
         return stems.remove(ms);
     }
 
@@ -208,7 +197,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public List<MushroomStem> getStems() {
-        Debug.DBGFUNC("Gombászhoz tartozó gombatestek lekérése");
         return stems;
     }
 
@@ -220,7 +208,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public boolean add(MushroomThread th) {
-        Debug.DBGFUNC("Gombafonal hozzáadása");
         return threads.add(th);
     }
 
@@ -232,7 +219,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public boolean remove(MushroomThread th) {
-        Debug.DBGFUNC("Gombafonal eltávolítása");
         return threads.remove(th);
     }
 
@@ -243,7 +229,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public List<MushroomThread> getThreads() {
-        Debug.DBGFUNC("Gombászhoz tartozó gombafonalak lekérése");
         return threads;
     }
 }

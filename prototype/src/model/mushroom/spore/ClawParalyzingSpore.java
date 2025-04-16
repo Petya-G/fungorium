@@ -1,7 +1,6 @@
 package model.mushroom.spore;
 
 import model.mushroom.Mushroomer;
-import model.core.Debug;
 import model.effect.*;
 import model.tecton.Tecton;
 
@@ -17,6 +16,5 @@ public class ClawParalyzingSpore extends Spore {
      */
     public ClawParalyzingSpore(Mushroomer owner, Tecton location) {
         super(location, owner, 10, new ClawParalyzeEffect());
-        Debug.DBGFUNC("Rágó kábító spóra lerakva");
     }
 }

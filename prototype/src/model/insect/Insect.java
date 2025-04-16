@@ -1,6 +1,5 @@
 package model.insect;
 
-import model.core.Debug;
 import model.core.Entity;
 import model.effect.Effect;
 import java.util.ArrayList;
@@ -37,7 +36,6 @@ public class Insect extends Entity {
      * @return igaz, ha bénult, egyébként hamis
      */
     public boolean isParalyzed() {
-        Debug.DBGFUNC("Bénulás lekérdezése");
         return paralyzed;
     }
 
@@ -48,7 +46,6 @@ public class Insect extends Entity {
      *                  nem bénultra.
      */
     public void setParalyzed(boolean paralyzed) {
-        Debug.DBGFUNC("Bénulás beállítása");
         this.paralyzed = paralyzed;
     }
 
@@ -58,7 +55,6 @@ public class Insect extends Entity {
      * @return igaz, ha a csáprágói bénultak, egyébként hamis
      */
     public boolean isClawParalyzed() {
-        Debug.DBGFUNC("Csáprágó bénulás lekérdezése");
         return clawParalyzed;
     }
 
@@ -69,7 +65,6 @@ public class Insect extends Entity {
      *                      visszaállítja nem bénultra.
      */
     public void setClawParalyzed(boolean clawParalyzed) {
-        Debug.DBGFUNC("Csáprágó bénulás beállítása");
         this.clawParalyzed = clawParalyzed;
     }
 
@@ -79,7 +74,6 @@ public class Insect extends Entity {
      * @return alapsebesség, módosítók nélkül
      */
     public int getBaseSpeed() {
-        Debug.DBGFUNC("Alapsebesség lekérdezése");
         return baseSpeed;
     }
 
@@ -89,7 +83,6 @@ public class Insect extends Entity {
      * @return visszaadja a sebességmódosítót
      */
     public double getSpeedModifier() {
-        Debug.DBGFUNC("Sebességmódosító lekérdezése");
         return speedModifier;
     }
 
@@ -99,7 +92,6 @@ public class Insect extends Entity {
      * @param speedModifier sebességmódosító
      */
     public void setSpeedModifier(double speedModifier) {
-        Debug.DBGFUNC("Sebességmódosító beállítása");
         this.speedModifier = speedModifier;
     }
 
@@ -109,7 +101,6 @@ public class Insect extends Entity {
      * @param e hatás, amit hozzáadunk a rovarhoz
      */
     public void add(Effect e) {
-        Debug.DBGFUNC("Effekt hozzáadása a rovarhoz");
         effects.add(e);
         e.apply(this);
     }
@@ -120,7 +111,6 @@ public class Insect extends Entity {
      * @param e eltávolítandó hatás
      */
     public void remove(Effect e) {
-        Debug.DBGFUNC("Effekt eltávolítása a rovarról");
         effects.remove(e);
     }
 
@@ -131,7 +121,6 @@ public class Insect extends Entity {
      * @return igaz, ha sikerült megenni, egyébként hamis.
      */
     public boolean eat(Spore sp) {
-        Debug.DBGFUNC("Spora megevése");
         if (paralyzed || clawParalyzed)
             return false;
 
@@ -150,7 +139,6 @@ public class Insect extends Entity {
     public boolean move(Tecton targetTecton) {
         //TODO check if any player has thread connection betwen the model.insect location and the target location
         //TODO somwhere take into account speedModifier
-        Debug.DBGFUNC("Rovar mozog");
         if (paralyzed)
             return false;
 
@@ -165,7 +153,6 @@ public class Insect extends Entity {
      * @return igaz, ha sikerült elvágni, egyébként hamis.
      */
     public boolean cut(MushroomThread th) {
-        Debug.DBGFUNC("Gombafonal elvágása");
         if (clawParalyzed || paralyzed)
             return false;
 
@@ -197,7 +184,6 @@ public class Insect extends Entity {
      */
     @Override
     public void endTurn() {
-        Debug.DBGFUNC("Kör vége");
         List<Effect> endingEffects = effects.stream().filter(e -> e.getDuration() == 1).toList();
         effects.removeAll(endingEffects);
         effects.forEach(e -> e.apply(this));

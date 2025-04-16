@@ -6,7 +6,6 @@ import model.mushroom.spore.Spore;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.core.Debug;
 import model.core.Player;
 import model.tecton.Tecton;
 
@@ -27,18 +26,19 @@ public class Insecter extends Player implements IInsect {
     }
 
     public boolean eatWith(Insect insect, Spore sp) {
-        Debug.DBGFUNC("Spóra megevése");
         return insect.eat(sp);
     }
 
     public boolean moveWith(Insect insect, Tecton t) {
-        Debug.DBGFUNC("Rovarász mozog");
         return insect.move(t);
     }
 
     public boolean cutWith(Insect insect, MushroomThread th) {
-        Debug.DBGFUNC("Rovarász gombafonalat vág");
         return insect.cut(th);
+    }
+
+    public boolean createInsect(Tecton location) {
+        return add(new Insect(this, location));
     }
 
     /**
@@ -47,7 +47,6 @@ public class Insecter extends Player implements IInsect {
     @Override
     public void endTurn() {
         insects.forEach(Insect::endTurn);
-        Debug.DBGFUNC("Kör vége");
     }
 
     @Override

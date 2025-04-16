@@ -1,6 +1,5 @@
 package model.mushroom;
 
-import model.core.Debug;
 import model.core.Entity;
 import model.insect.Insect;
 import model.tecton.Tecton;
@@ -23,7 +22,6 @@ public class MushroomThread extends Entity {
         cutOff = false;
         cutOffDuration = 0;
         maxCutOffDuration = 2;
-        Debug.DBGFUNC("Gombafonal létrehozva");
     }
 
     public boolean isConnected() {
@@ -59,7 +57,6 @@ public class MushroomThread extends Entity {
     public void remove() {
         getLocation().remove(this);
         ((Mushroomer) getOwner()).remove(this);
-        Debug.DBGFUNC("Gombafonal törölve");
     }
 
     /**
@@ -73,6 +70,5 @@ public class MushroomThread extends Entity {
                 remove();
             }
         }
-        Debug.DBGFUNC("Kör vége");
     }
 }
