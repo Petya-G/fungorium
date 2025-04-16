@@ -15,7 +15,7 @@ import java.util.Objects;
  * mozogni és gombafonalakat elvágni.
  */
 public class Insecter extends Player implements IInsect {
-    private List<Insect> insects = new ArrayList<Insect>();
+    private List<Insect> insects = new ArrayList<>();
 
     public Insecter() {
     }
@@ -29,15 +29,15 @@ public class Insecter extends Player implements IInsect {
         createInsect(location);
     }
 
-    public boolean eatWith(Insect insect, Spore sp) {
+    public boolean eat(Insect insect, Spore sp) {
         return insect.eat(sp);
     }
 
-    public boolean moveWith(Insect insect, Tecton t) {
+    public boolean move(Insect insect, Tecton t) {
         return insect.move(t);
     }
 
-    public boolean cutWith(Insect insect, MushroomThread th) {
+    public boolean cut(Insect insect, MushroomThread th) {
         return insect.cut(th);
     }
 

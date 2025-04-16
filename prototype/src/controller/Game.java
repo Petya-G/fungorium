@@ -6,6 +6,7 @@ import model.core.IRound;
 import model.core.ITurn;
 import model.core.Player;
 import model.insect.Insect;
+import model.insect.Insecter;
 import model.mushroom.MushroomStem;
 import model.mushroom.MushroomThread;
 import model.mushroom.Mushroomer;
@@ -13,6 +14,7 @@ import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,12 +26,12 @@ public class Game implements ITurn, IRound {
     private List<Player> players = new ArrayList<>();
     private int turn = 0;
 
-    public int getNextId() {
-        return id++;
+    private boolean hasCurrentTurn(Entity entity) {
+        return getCurrentPlayer().equals(entity.getOwner());
     }
 
-    private boolean hasCurrentTurn(Entity entity) {
-        return false;
+    private boolean hasCurrentTurn(Player player) {
+        return getCurrentPlayer().equals(player);
     }
 
     public Player getCurrentPlayer() {
@@ -37,43 +39,50 @@ public class Game implements ITurn, IRound {
     }
 
     public Player getWinner() {
-        //TODO
-        return new Mushroomer();
+        return players.stream().max(Comparator.comparingInt(Player::getScore)).orElse(null);
     }
 
     public boolean move(Insect insect, Tecton location) {
-        //TODO
-        return false;
+        if (!hasCurrentTurn(insect))
+            return false;
+        return ((Insecter) insect.getOwner()).move(insect, location);
     }
 
     public boolean eat(Insect insect, Spore spore) {
-        //TODO
-        return false;
+        if (!hasCurrentTurn(insect))
+            return false;
+        return ((Insecter) insect.getOwner()).eat(insect, spore);
     }
 
     public boolean cut(Insect insect, MushroomThread mushroomThread) {
-        //TODO
-        return false;
+        if (!hasCurrentTurn(insect))
+            return false;
+        return ((Insecter) insect.getOwner()).cut(insect, mushroomThread);
+
     }
 
-    public boolean plantStem(Mushroomer mushroomer, Tecton location) {
-        //TODO
-        return false;
+    public boolean plantMushroomStem(Mushroomer mushroomer, Tecton location) {
+        if (!hasCurrentTurn(mushroomer))
+            return false;
+        return mushroomer.plantMushroomstem(location);
     }
 
     public boolean growThread(Mushroomer mushroomer, Tecton location) {
-        //TODO
-        return false;
+        if (!hasCurrentTurn(mushroomer))
+            return false;
+        return mushroomer.growMushroomthread(location);
     }
 
     public boolean eat(MushroomThread mushroomThread, Insect insect) {
-        //TODO
-        return false;
+        if (!hasCurrentTurn(mushroomThread))
+            return false;
+        return ((Mushroomer) mushroomThread.getOwner()).eat(mushroomThread, insect);
     }
 
     public boolean levelUp(MushroomStem mushroomStem) {
-        //TODO
-        return false;
+        if (!hasCurrentTurn(mushroomStem))
+            return false;
+        return ((Mushroomer) mushroomStem.getOwner()).levelUp(mushroomStem);
     }
 
     @Override

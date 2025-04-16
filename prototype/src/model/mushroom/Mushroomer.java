@@ -1,5 +1,6 @@
 package model.mushroom;
 
+import model.core.Entity;
 import model.core.Player;
 import model.insect.Insect;
 import model.mushroom.spore.ISpore;
@@ -14,12 +15,13 @@ import java.util.List;
  * A gombász képes spórákat, gombatesteket és gombafonalakat kezelni.
  */
 public class Mushroomer extends Player implements ISpore, IStem, IThread {
-    private List<Spore> spores = new ArrayList<Spore>();
-    private List<MushroomStem> stems = new ArrayList<MushroomStem>();
-    private List<MushroomThread> threads = new ArrayList<MushroomThread>();
+    private List<Spore> spores = new ArrayList<>();
+    private List<MushroomStem> stems = new ArrayList<>();
+    private List<MushroomThread> threads = new ArrayList<>();
 
     public Mushroomer() {
     }
+
     /**
      * Konstruktor, amely inicializálja a gombász spóráit, gombatestjeit és
      * gombafonalait.
@@ -52,14 +54,10 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     public Boolean plantMushroomstem(Tecton tecton) {
         MushroomStem ms = new MushroomStem(tecton, this);
 
-        if (!hasThread(tecton))
-            return false;
+        if (!hasThread(tecton)) return false;
 
-        MushroomThread thread =
-            threads.stream()
-            .filter(th -> th.hasEaten() && th.getLocation() ==tecton)
-            .findFirst().get();
-            
+        MushroomThread thread = threads.stream().filter(th -> th.hasEaten() && th.getLocation() == tecton).findFirst().get();
+
         if (thread != null && tecton.add(ms)) {
             thread.setEaten(false);
             add(ms);
@@ -109,7 +107,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         return ms.throwSpore(tecton);
     }
 
-    public boolean eatWith(MushroomThread thread, Insect insect) {
+    public boolean eat(MushroomThread thread, Insect insect) {
         return thread.eat(insect);
     }
 
@@ -130,7 +128,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     public boolean hasThread(Tecton tecton) {
         return threads.stream().filter(th -> th.getLocation() == tecton).toArray().length == 1;
     }
-    
+
     /**
      * A kör végén végrehajtandó műveletek.
      * Meghívja a gombászhoz tartozó gombatestek, gombafonalak és spórák endTurn
@@ -138,9 +136,9 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     @Override
     public void endTurn() {
-        stems.forEach(ms -> ms.endTurn());
-        threads.forEach(th -> th.endTurn());
-        spores.forEach(sp -> sp.endTurn());
+        stems.forEach(MushroomStem::endTurn);
+        threads.forEach(MushroomThread::endTurn);
+        spores.forEach(Entity::endTurn);
     }
 
     /**
