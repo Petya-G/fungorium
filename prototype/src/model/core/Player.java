@@ -1,5 +1,7 @@
 package model.core;
 
+import java.util.Objects;
+
 public abstract class Player extends Identifiable implements ITurn {
     private Integer score;
 
@@ -19,5 +21,18 @@ public abstract class Player extends Identifiable implements ITurn {
      */
     public void addScore(Integer score) {
         this.score += score;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Player player = (Player) o;
+        return Objects.equals(score, player.score);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), score);
     }
 }

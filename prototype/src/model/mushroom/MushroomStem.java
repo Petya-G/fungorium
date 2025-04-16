@@ -1,9 +1,11 @@
 package model.mushroom;
 
 import model.core.Entity;
-import java.util.List;
 import model.mushroom.spore.*;
 import model.tecton.Tecton;
+
+import java.util.List;
+import java.util.Objects;
 
 public class MushroomStem extends Entity {
     private boolean thrown;
@@ -113,5 +115,18 @@ public class MushroomStem extends Entity {
     @Override
     public void endTurn() {
         thrown = false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        MushroomStem that = (MushroomStem) o;
+        return thrown == that.thrown && maxSporeThrows == that.maxSporeThrows && numThrownSpores == that.numThrownSpores && level == that.level && cost == that.cost;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), thrown, maxSporeThrows, numThrownSpores, level, cost);
     }
 }

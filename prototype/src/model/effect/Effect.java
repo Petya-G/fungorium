@@ -1,7 +1,9 @@
 package model.effect;
 
 import model.core.Identifiable;
-import model.insect.*;
+import model.insect.Insect;
+
+import java.util.Objects;
 
 /**
  * A rovarokra érvényes hatások őse, absztrakt, nem példányosítható
@@ -28,4 +30,17 @@ public abstract class Effect extends Identifiable{
      * @param i A rovar, amire kifejti hatását
      */
     public abstract void apply(Insect i);
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Effect effect = (Effect) o;
+        return duration == effect.duration;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), duration);
+    }
 }

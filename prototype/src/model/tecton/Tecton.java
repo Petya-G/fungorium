@@ -1,12 +1,21 @@
 package model.tecton;
 
-import model.core.*;
-import model.insect.*;
+import model.core.IRound;
+import model.core.Identifiable;
+import model.core.Player;
+import model.insect.IInsect;
+import model.insect.Insect;
+import model.mushroom.IStem;
+import model.mushroom.IThread;
+import model.mushroom.MushroomStem;
+import model.mushroom.MushroomThread;
+import model.mushroom.spore.ISpore;
+import model.mushroom.spore.Spore;
 
-import java.util.*;
-
-import model.mushroom.*;
-import model.mushroom.spore.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThread, IInsect {
     protected MushroomStem stem;
@@ -244,5 +253,18 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
         threads.stream()
                 .filter(t -> !t.isConnected())
                 .toList().forEach(th -> th.remove());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Tecton tecton = (Tecton) o;
+        return Objects.equals(stem, tecton.stem) && Objects.equals(spores, tecton.spores) && Objects.equals(threads, tecton.threads) && Objects.equals(insects, tecton.insects) && Objects.equals(neighbours, tecton.neighbours);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), stem, spores, threads, insects, neighbours);
     }
 }

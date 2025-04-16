@@ -1,9 +1,15 @@
 package model;
 
-import java.util.*;
+import model.core.IRound;
+import model.tecton.SingleThreadedTecton;
+import model.tecton.StemlessTecton;
+import model.tecton.Tecton;
+import model.tecton.ThreadConsumingTecton;
 
-import model.tecton.*;
-import model.core.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 public class Map implements IRound {
     public List<Tecton> tectons; // a model.Map tektonjait tartalmazó lista
@@ -68,5 +74,17 @@ public class Map implements IRound {
                 tectons.add(t.split());
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Map map = (Map) o;
+        return Objects.equals(tectons, map.tectons);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(tectons);
     }
 }

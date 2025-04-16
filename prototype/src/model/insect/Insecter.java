@@ -1,13 +1,13 @@
 package model.insect;
 
+import model.core.Player;
 import model.mushroom.MushroomThread;
 import model.mushroom.spore.Spore;
+import model.tecton.Tecton;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import model.core.Player;
-import model.tecton.Tecton;
+import java.util.Objects;
 
 /**
  * Az Insecter osztály egy játékos, aki egy rovart irányít.
@@ -62,5 +62,18 @@ public class Insecter extends Player implements IInsect {
     @Override
     public List<Insect> getInsects() {
         return insects;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Insecter insecter = (Insecter) o;
+        return Objects.equals(insects, insecter.insects);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), insects);
     }
 }

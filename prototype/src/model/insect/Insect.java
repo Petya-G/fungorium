@@ -2,11 +2,13 @@ package model.insect;
 
 import model.core.Entity;
 import model.effect.Effect;
-import java.util.ArrayList;
-import java.util.List;
 import model.mushroom.MushroomThread;
 import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Egy rovart reprezentál a játékban.
@@ -196,5 +198,18 @@ public class Insect extends Entity {
     public void remove() {
         getLocation().remove(this);
         ((Insecter) getOwner()).remove(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Insect insect = (Insect) o;
+        return paralyzed == insect.paralyzed && clawParalyzed == insect.clawParalyzed && baseSpeed == insect.baseSpeed && Double.compare(speedModifier, insect.speedModifier) == 0 && Objects.equals(effects, insect.effects);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), effects, paralyzed, clawParalyzed, baseSpeed, speedModifier);
     }
 }

@@ -2,6 +2,8 @@ package model.core;
 
 import model.tecton.Tecton;
 
+import java.util.Objects;
+
 public abstract class Entity extends Identifiable implements ITurn {
     private Tecton location;
     private Player owner;
@@ -45,5 +47,18 @@ public abstract class Entity extends Identifiable implements ITurn {
      */
     public void endTurn() {
         System.out.println("Kör vége");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Entity entity = (Entity) o;
+        return Objects.equals(location, entity.location) && Objects.equals(owner, entity.owner);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), location, owner);
     }
 }

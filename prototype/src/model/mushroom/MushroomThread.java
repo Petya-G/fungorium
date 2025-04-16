@@ -4,6 +4,8 @@ import model.core.Entity;
 import model.insect.Insect;
 import model.tecton.Tecton;
 
+import java.util.Objects;
+
 public class MushroomThread extends Entity {
     private boolean eaten;
     private boolean cutOff;
@@ -70,5 +72,18 @@ public class MushroomThread extends Entity {
                 remove();
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        MushroomThread that = (MushroomThread) o;
+        return eaten == that.eaten && cutOff == that.cutOff && cutOffDuration == that.cutOffDuration && maxCutOffDuration == that.maxCutOffDuration;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), eaten, cutOff, cutOffDuration, maxCutOffDuration);
     }
 }

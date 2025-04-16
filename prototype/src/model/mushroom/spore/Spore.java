@@ -1,10 +1,12 @@
 package model.mushroom.spore;
 
-import model.mushroom.Mushroomer;
-import model.tecton.Tecton;
 import model.core.Entity;
 import model.core.Player;
-import model.effect.*;
+import model.effect.Effect;
+import model.mushroom.Mushroomer;
+import model.tecton.Tecton;
+
+import java.util.Objects;
 
 public abstract class Spore extends Entity {
 
@@ -44,5 +46,18 @@ public abstract class Spore extends Entity {
         getLocation().remove(this);
         location.add(this);
         super.setLocation(location);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Spore spore = (Spore) o;
+        return nutrition == spore.nutrition && Objects.equals(effect, spore.effect);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), nutrition, effect);
     }
 }

@@ -1,11 +1,13 @@
 package model.mushroom;
 
-import java.util.*;
-
-import model.mushroom.spore.*;
 import model.core.Player;
 import model.insect.Insect;
-import model.tecton.*;
+import model.mushroom.spore.ISpore;
+import model.mushroom.spore.Spore;
+import model.tecton.Tecton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Mushroomer osztály egy játékost reprezentál, aki gombákat kezel.
@@ -16,6 +18,8 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     private List<MushroomStem> stems = new ArrayList<MushroomStem>();
     private List<MushroomThread> threads = new ArrayList<MushroomThread>();
 
+    public Mushroomer() {
+    }
     /**
      * Konstruktor, amely inicializálja a gombász spóráit, gombatestjeit és
      * gombafonalait.
