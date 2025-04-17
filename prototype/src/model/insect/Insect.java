@@ -1,6 +1,7 @@
 package model.insect;
 
 import model.core.Entity;
+import model.core.Player;
 import model.effect.Effect;
 import model.mushroom.MushroomThread;
 import model.mushroom.spore.Spore;
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
+
 
 /**
  * Egy rovart reprezentál a játékban.
@@ -138,14 +140,14 @@ public class Insect extends Entity {
     }
 
     /**
-     * Megvizsgálja, hogy van-e a megadott {@code Tecton}-on legalább egy érvényes {@code MushroomThread}.
+     * Megvizsgálja, hogy van-e a megadott {@code Tecton}-on legalább egy érvényes {@code MushroomThread} és az ownere megegyezik.
      *
      * @param tecton A vizsgált {@code Tecton}.
-     * @return {@code true}, ha van rajta legalább egy nem "eaten" és nem "cutOff" gombafonál, különben {@code false}.
+     * @return {@code true}, ha van rajta legalább egy nem "eaten" gombafonál, és az ownere megegyezik, különben {@code false}.
      */
-    private boolean hasValidThread(Tecton tecton) {
+    private boolean hasValidThread(Tecton tecton,Player owner) {
         for (MushroomThread thread : tecton.getThreads()) {
-            if (!thread.hasEaten()) {
+            if (!thread.hasEaten() && thread.getOwner() == owner) {
                 return true;
             }
         }
@@ -182,10 +184,12 @@ public class Insect extends Entity {
             }
 
             for (Tecton neighbor : current.getNeighbours()) {
-                if (!visited.contains(neighbor) && hasValidThread(target)) {
-                    visited.add(neighbor);
-                    queue.add(neighbor);
-                    distance.put(neighbor, currentDistance + 1);
+                for (MushroomThread thread : neighbor.getThreads()) {             
+                    if (!visited.contains(neighbor) && hasValidThread(neighbor,thread.getOwner())) {
+                        visited.add(neighbor);
+                        queue.add(neighbor);
+                        distance.put(neighbor, currentDistance + 1);
+                    }
                 }
             }
         }
