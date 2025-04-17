@@ -8,7 +8,7 @@ if (Is insect paralyzed?) then (yes)
   stop
 else (no)
   :Set location to target tecton;
-end if
+endif
 
 stop
 @enduml

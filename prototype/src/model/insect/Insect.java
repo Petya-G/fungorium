@@ -7,8 +7,14 @@ import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Queue;
+import java.util.Set;
 
 /**
  * Egy rovart reprezentál a játékban.
@@ -132,18 +138,64 @@ public class Insect extends Entity {
     }
 
     /**
+     * Meghatározza a távolságot az aktuális {@code Tecton} és a megadott cél {@code Tecton} között,
+     * a szomszédsági kapcsolatok (gráfélek) alapján.
+     * A távolság azt jelenti, hogy hány szomszédon keresztül lehet eljutni a célpontig.
+     * 
+     * Breadth-First Search (BFS) algoritmust használ a legrövidebb út megtalálásához.
+     *
+     * @param target A cél {@code Tecton}, amelynek a távolságát szeretnénk meghatározni.
+     * @return A legrövidebb lépések száma az aktuális {@code Tecton}-tól a célhoz,
+     *         vagy {@code -1}, ha a cél nem elérhető.
+     */
+    
+    public int getDistanceTo(Tecton target) {
+        Set<Tecton> visited = new HashSet<>();
+        Queue<Tecton> queue = new LinkedList<>();
+        Map<Tecton, Integer> distance = new HashMap<>();
+
+        queue.add(getLocation());
+        distance.put(getLocation(), 0);
+        visited.add(getLocation());
+
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+            int currentDistance = distance.get(current);
+
+            if (current == target) {
+                return currentDistance;
+            }
+
+            for (Tecton neighbor : current.getNeighbours()) {
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                    distance.put(neighbor, currentDistance + 1);
+                }
+            }
+        }
+
+        return -1; 
+}
+
+    /**
      * Megpróbál mozogni.
      *
      * @param targetTecton A tekton, amelyre menni szeretne a rovar.
      * @return igaz, ha a mozgás sikerült, egyébként hamis
      */
     public boolean move(Tecton targetTecton) {
-        //TODO check if any player has thread connection betwen the model.insect location and the target location
-        //TODO somwhere take into account speedModifier
+        int distance = getDistanceTo(targetTecton);
+        
         if (paralyzed)
             return false;
 
-        setLocation(targetTecton);
+        if(distance == -1)
+            return false;
+        
+        if(distance < baseSpeed*speedModifier)
+            setLocation(targetTecton);
+        
         return true;
     }
 

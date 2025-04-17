@@ -1,6 +1,6 @@
 package model.effect;
 
-import model.core.Debug;
+//import model.core.Debug;
 import model.insect.*;
 
 public class ParalyzeEffect extends Effect {
@@ -12,6 +12,6 @@ public class ParalyzeEffect extends Effect {
     public void apply(Insect i) {
         duration--;
         i.setParalyzed(true);
-        Debug.DBGFUNC("Kábító hatás van érvényben a rovaron");
+        //Debug.DBGFUNC("Kábító hatás van érvényben a rovaron");
     }
 }
