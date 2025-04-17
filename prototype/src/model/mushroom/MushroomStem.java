@@ -21,7 +21,7 @@ public class MushroomStem extends Entity {
      * @param location A gombetest helye, vagyis, hogy melyik tektonon van
      */
     public MushroomStem(Tecton location, Mushroomer owner) {
-        super(location, owner);
+        super(owner, location);
     }
 
     /**

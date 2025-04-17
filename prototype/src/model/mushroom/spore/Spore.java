@@ -9,13 +9,11 @@ import model.tecton.Tecton;
 import java.util.Objects;
 
 public abstract class Spore extends Entity {
-    int nutrition; // A tápérték, ennyi pontot kap a rovar, mikor megeszi a spórát
-    Effect effect; // A spóra rovarra gyakorolt hatása
+    protected int nutrition; // A tápérték, ennyi pontot kap a rovar, mikor megeszi a spórát
+    protected Effect effect; // A spóra rovarra gyakorolt hatása
 
-    protected Spore(Tecton location, Player owner, int nutrition, Effect effect) {
-        super(location, owner);
-        this.nutrition = nutrition;
-        this.effect = effect;
+    protected Spore(Player owner, Tecton location) {
+        super(owner, location);
     }
 
     /**

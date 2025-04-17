@@ -7,15 +7,7 @@ import model.mushroom.MushroomThread;
 import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -32,11 +24,11 @@ public class Insect extends Entity {
     protected double speedModifier = 1.0;
 
     public Insect(Insecter owner, Tecton location) {
-        super(location, owner);
+        super(owner, location);
     }
 
     public Insect(Insecter owner, Tecton location, int id) {
-        super(location, owner, id);
+        super(owner, location, id);
     }
 
     /**

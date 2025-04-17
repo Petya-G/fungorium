@@ -7,10 +7,10 @@ import model.tecton.Tecton;
 import java.util.Objects;
 
 public class MushroomThread extends Entity {
-    private boolean eaten;
-    private boolean cutOff;
-    private int cutOffDuration;
-    private int maxCutOffDuration;
+    private final int maxCutOffDuration = 2;
+    private boolean eaten = false;
+    private boolean cutOff = false;
+    private int cutOffDuration = 0;
 
     /**
      * Konstruktor
@@ -18,12 +18,8 @@ public class MushroomThread extends Entity {
      * @param owner    A gombafonalat tulajdonló gombász
      * @param location A tekton, amin a gombafonál van
      */
-    public MushroomThread(Tecton location, Mushroomer owner) {
-        super(location, owner);
-        eaten = false;
-        cutOff = false;
-        cutOffDuration = 0;
-        maxCutOffDuration = 2;
+    public MushroomThread(Mushroomer owner, Tecton location) {
+        super(owner, location);
     }
 
     public boolean isConnected() {
@@ -86,6 +82,7 @@ public class MushroomThread extends Entity {
     public int hashCode() {
         return Objects.hash(super.hashCode(), eaten, cutOff, cutOffDuration, maxCutOffDuration);
     }
+
     /**
      * Megvizsgálja, hogy van-e a megadott {@code Tecton}-on legalább egy érvényes {@code MushroomThread}.
      *

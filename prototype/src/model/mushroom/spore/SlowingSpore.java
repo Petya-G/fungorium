@@ -1,20 +1,14 @@
 package model.mushroom.spore;
 
+import model.effect.SlowEffect;
 import model.mushroom.Mushroomer;
-import model.effect.*;
 import model.tecton.Tecton;
 
 public class SlowingSpore extends Spore {
 
-    /**
-     * Konstruktor, beállítja a spóra owner-ét (a játékos, akihez tartozik), a
-     * helyét (a tekton, amin van), a tapértékét, illetve a rovarokra gyakorolt
-     * hatását
-     *
-     * @param owner    A spórát tulajdonló játékos
-     * @param location A tekton, amin a spóra van
-     */
     public SlowingSpore(Mushroomer owner, Tecton location) {
-        super(location, owner, 10, new SlowEffect());
+        super(owner, location);
+        effect = new SlowEffect();
+        nutrition = 10;
     }
 }

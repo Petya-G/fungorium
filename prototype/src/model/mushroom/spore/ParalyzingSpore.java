@@ -1,20 +1,14 @@
 package model.mushroom.spore;
 
-import model.mushroom.Mushroomer;
-import model.effect.*;
+import model.core.Player;
+import model.effect.ParalyzeEffect;
 import model.tecton.Tecton;
 
 public class ParalyzingSpore extends Spore {
 
-    /**
-     * Konstruktor, beállítja a spóra owner-ét (a játékos, akihez tartozik), a
-     * helyét (a tekton, amin van), a tapértékét, illetve a rovarokra gyakorolt
-     * hatását
-     *
-     * @param owner    A spórát tulajdonló játékos
-     * @param location A tekton, amin a spóra van
-     */
-    public ParalyzingSpore(Mushroomer owner, Tecton location) {
-        super(location, owner, 10, new ParalyzeEffect());
+    public ParalyzingSpore(Player owner, Tecton location) {
+        super(owner, location);
+        effect = new ParalyzeEffect();
+        nutrition = 10;
     }
 }

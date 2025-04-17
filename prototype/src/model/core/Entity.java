@@ -8,15 +8,15 @@ public abstract class Entity extends Identifiable implements ITurn {
     private final Player owner;
     private Tecton location;
 
-    protected Entity(Tecton location, Player owner) {
-        this.location = location;
+    protected Entity(Player owner, Tecton location) {
         this.owner = owner;
+        this.location = location;
     }
 
-    protected Entity(Tecton location, Player owner, int id) {
+    protected Entity(Player owner, Tecton location, int id) {
         super(id);
-        this.location = location;
         this.owner = owner;
+        this.location = location;
     }
 
     public abstract void remove();
