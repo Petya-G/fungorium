@@ -1,5 +1,6 @@
 package model;
 
+import model.core.GlobalRandom;
 import model.core.IRound;
 import model.tecton.SingleThreadedTecton;
 import model.tecton.StemlessTecton;
@@ -9,17 +10,9 @@ import model.tecton.ThreadConsumingTecton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class Map implements IRound {
-    public List<Tecton> tectons; // a model.Map tektonjait tartalmazó lista
-
-    /**
-     * Konstruktor, üresen inicializálja a tectons tagváltozót
-     */
-    public Map() {
-        tectons = new ArrayList<Tecton>();
-    }
+    public List<Tecton> tectons = new ArrayList<>();
 
     /**
      * Összeköt két tektont a pályán
@@ -68,9 +61,9 @@ public class Map implements IRound {
      */
     @Override
     public void endRound() {
-        tectons.forEach(t -> t.endRound());
+        tectons.forEach(Tecton::endRound);
         for (Tecton t : tectons) {
-            if (new Random().nextBoolean()) {
+            if (GlobalRandom.getInstance().nextBoolean()) {
                 tectons.add(t.split());
             }
         }

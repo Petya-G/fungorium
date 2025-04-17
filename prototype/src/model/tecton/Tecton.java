@@ -1,5 +1,6 @@
 package model.tecton;
 
+import model.core.GlobalRandom;
 import model.core.IRound;
 import model.core.Identifiable;
 import model.core.Player;
@@ -15,7 +16,6 @@ import model.mushroom.spore.Spore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThread, IInsect {
     protected MushroomStem stem;
@@ -31,7 +31,8 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     public Tecton() {
     }
 
-    public Tecton(List<Spore> spores, List<MushroomThread> threads, List<Insect> insects, List<Tecton> neighbours) {
+    public Tecton(MushroomStem stem, List<Spore> spores, List<MushroomThread> threads, List<Insect> insects, List<Tecton> neighbours) {
+        this.stem = stem;
         this.spores = spores;
         this.threads = threads;
         this.insects = insects;
@@ -47,25 +48,26 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     public Tecton split() {
         Tecton t = new Tecton();
 
-        int rnd = new Random().nextInt(4);
+        int rnd = GlobalRandom.getInstance().nextInt(5);
         if (rnd == 0) t = new SingleThreadedTecton();
         else if (rnd == 1) t = new StemlessTecton();
         else if (rnd == 2) t = new ThreadConsumingTecton();
+        else if (rnd == 3) t = new LifeSupportTecton();
 
         for (Tecton n : neighbours) {
-            if (new Random().nextBoolean()) {
+            if (GlobalRandom.getInstance().nextBoolean()) {
                 t.addNeighbour(n);
             }
         }
 
         threads.clear();
 
-        List<Spore> sporesToMove = spores.stream().filter(sp -> new Random().nextBoolean()).toList();
+        List<Spore> sporesToMove = spores.stream().filter(sp -> GlobalRandom.getInstance().nextBoolean()).toList();
 
         for (Spore sp : sporesToMove)
             sp.setLocation(t);
 
-        List<Insect> insectsToMove = insects.stream().filter(i -> new Random().nextBoolean()).toList();
+        List<Insect> insectsToMove = insects.stream().filter(i -> GlobalRandom.getInstance().nextBoolean()).toList();
 
         for (Insect i : insectsToMove)
             i.setLocation(t);
@@ -123,7 +125,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * @return van-e a játékosnak fonala? (bool)
      */
     public boolean hasThread(Player p) {
-        return threads.stream().filter(m -> m.getOwner() == p).toArray().length == 1;
+        return threads.stream().filter(m -> m.getOwner().equals(p)).toArray().length == 1;
     }
 
     /**

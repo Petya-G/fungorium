@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class MushroomStem extends Entity {
-    private boolean thrown;
-    private int maxSporeThrows;
-    private int numThrownSpores;
-    private int level;
-    private int cost;
+    private final int maxSporeThrows = 5;
+    private boolean thrown = false;
+    private int numThrownSpores = 0;
+    private int level = 0;
+    private int cost = 3;
 
     /**
      * Konstruktor
@@ -22,11 +22,6 @@ public class MushroomStem extends Entity {
      */
     public MushroomStem(Tecton location, Mushroomer owner) {
         super(location, owner);
-        this.maxSporeThrows = 5;
-        this.numThrownSpores = 0;
-        this.level = 0;
-        this.thrown = false;
-        this.cost = 3;
     }
 
     /**
