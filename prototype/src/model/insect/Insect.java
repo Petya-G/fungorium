@@ -147,7 +147,7 @@ public class Insect extends Entity {
      */
     private boolean hasValidThread(Tecton tecton,Player owner) {
         for (MushroomThread thread : tecton.getThreads()) {
-            if (!thread.hasEaten() && thread.getOwner() == owner) {
+            if (!thread.hasEaten() && owner.equals(thread.getOwner())) {
                 return true;
             }
         }
@@ -179,7 +179,7 @@ public class Insect extends Entity {
             Tecton current = queue.poll();
             int currentDistance = distance.get(current);
 
-            if (current == target) {
+            if (current.equals(target)) {
                 return currentDistance;
             }
 
