@@ -138,11 +138,26 @@ public class Insect extends Entity {
     }
 
     /**
+     * Megvizsgálja, hogy van-e a megadott {@code Tecton}-on legalább egy érvényes {@code MushroomThread}.
+     *
+     * @param tecton A vizsgált {@code Tecton}.
+     * @return {@code true}, ha van rajta legalább egy nem "eaten" és nem "cutOff" gombafonál, különben {@code false}.
+     */
+    private boolean hasValidThread(Tecton tecton) {
+        for (MushroomThread thread : tecton.getThreads()) {
+            if (!thread.hasEaten()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Meghatározza a távolságot az aktuális {@code Tecton} és a megadott cél {@code Tecton} között,
-     * a szomszédsági kapcsolatok (gráfélek) alapján.
-     * A távolság azt jelenti, hogy hány szomszédon keresztül lehet eljutni a célpontig.
+     * kizárólag olyan útvonalakon, amelyeken van legalább egy aktív {@code MushroomThread}.
      * 
-     * Breadth-First Search (BFS) algoritmust használ a legrövidebb út megtalálásához.
+     * A távolság azt jelenti, hogy hány lépésben (szomszédokon keresztül) lehet eljutni a célpontig,
+     * csak érvényes átjárható Tectonokon keresztül.
      *
      * @param target A cél {@code Tecton}, amelynek a távolságát szeretnénk meghatározni.
      * @return A legrövidebb lépések száma az aktuális {@code Tecton}-tól a célhoz,
@@ -167,7 +182,7 @@ public class Insect extends Entity {
             }
 
             for (Tecton neighbor : current.getNeighbours()) {
-                if (!visited.contains(neighbor)) {
+                if (!visited.contains(neighbor) && hasValidThread(target)) {
                     visited.add(neighbor);
                     queue.add(neighbor);
                     distance.put(neighbor, currentDistance + 1);
@@ -176,7 +191,7 @@ public class Insect extends Entity {
         }
 
         return -1; 
-}
+    }
 
     /**
      * Megpróbál mozogni.

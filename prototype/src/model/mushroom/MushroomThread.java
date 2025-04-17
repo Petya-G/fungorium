@@ -86,4 +86,18 @@ public class MushroomThread extends Entity {
     public int hashCode() {
         return Objects.hash(super.hashCode(), eaten, cutOff, cutOffDuration, maxCutOffDuration);
     }
+    /**
+     * Megvizsgálja, hogy van-e a megadott {@code Tecton}-on legalább egy érvényes {@code MushroomThread}.
+     *
+     * @param tecton A vizsgált {@code Tecton}.
+     * @return {@code true}, ha van rajta legalább egy nem "eaten" és nem "cutOff" gombafonál, különben {@code false}.
+     */
+    public boolean hasValidThread(Tecton tecton) {
+        for (MushroomThread thread : tecton.getThreads()) {
+            if (!thread.hasEaten()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
