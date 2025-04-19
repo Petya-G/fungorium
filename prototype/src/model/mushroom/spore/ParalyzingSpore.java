@@ -9,6 +9,5 @@ public class ParalyzingSpore extends Spore {
     public ParalyzingSpore(Player owner, Tecton location) {
         super(owner, location);
         effect = new ParalyzeEffect();
-        nutrition = 10;
     }
 }

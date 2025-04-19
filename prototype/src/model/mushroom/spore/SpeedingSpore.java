@@ -9,6 +9,5 @@ public class SpeedingSpore extends Spore {
     public SpeedingSpore(Mushroomer owner, Tecton location) {
         super(owner, location);
         effect = new FastEffect();
-        nutrition = 10;
     }
 }

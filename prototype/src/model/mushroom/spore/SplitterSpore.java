@@ -9,6 +9,5 @@ public class SplitterSpore extends Spore {
     public SplitterSpore(Mushroomer owner, Tecton location) {
         super(owner, location);
         effect = new SplitEffect();
-        nutrition = 10;
     }
 }

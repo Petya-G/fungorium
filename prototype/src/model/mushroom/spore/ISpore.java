@@ -20,8 +20,19 @@ public interface ISpore {
      */
     boolean remove(Spore sp);
 
+    /**
+     * A spórákat adja vissza
+     *
+     * @return Spórák listája
+     */
     List<Spore> getSpores();
 
+    /**
+     * Egy megadott spórát ad vissza
+     *
+     * @param id Adott spóra azonosítója
+     * @return Keresett spóra
+     */
     default Spore getSpore(int id) {
         return getSpores().stream()
                 .filter(spore -> spore.getId() == id)
