@@ -24,7 +24,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     /**
      * Konstruktor, amely inicializálja a gombász spóráit, gombatestjeit és
      * gombafonalait.
-     *
+     *4
      * @param spores  A gombász spóráinak listája.
      * @param stems   A gombász gombatestjeinek listája.
      * @param threads A gombász gombafonalainak listája.

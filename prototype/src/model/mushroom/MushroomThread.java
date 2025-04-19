@@ -1,16 +1,22 @@
 package model.mushroom;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Queue;
+import java.util.Set;
 import model.core.Entity;
 import model.insect.Insect;
 import model.tecton.Tecton;
 
-import java.util.Objects;
-
 public class MushroomThread extends Entity {
-    private final int maxCutOffDuration = 2;
+    
     private boolean eaten = false;
     private boolean cutOff = false;
     private int cutOffDuration = 0;
+    
+    private final int MAX_CUTOFF_DURATION = 2;
 
     /**
      * Konstruktor
@@ -22,23 +28,71 @@ public class MushroomThread extends Entity {
         super(owner, location);
     }
 
+    /**
+     * Megmondja, hogy a gombafonal kapcsolódik-e gombatesthez
+     *
+     * @return Igaz, hogyha kapcsolódik, egyébként hamis.
+     */
     public boolean isConnected() {
-        // TODO: van-e gombatest melyhez csatlakozunk?
-        return true;
+        Set<Tecton> visited = new HashSet<>();
+        Queue<Tecton> queue = new LinkedList<>();
+
+        Tecton start = getLocation();
+        queue.add(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+
+            if (current.hasStem()) return true;
+
+            List<Tecton> connectedNeighbourList=current.getConnectedNeighbours((Mushroomer)getOwner());
+
+            for (Tecton t : connectedNeighbourList) {
+                if (visited.contains(t)) continue;
+                if(!visited.contains(t)){
+                    visited.add(t);
+                    queue.add(t);
+                }
+            }
+        }
+
+        return false;
     }
 
+    /**
+     * Megmondja, hogy a gombafonal evett-e rovart a körben
+     *
+     * @return Igaz, hogyha evett, egyébként hamis.
+     */
     public boolean hasEaten() {
         return eaten;
     }
 
+    /**
+     * Állíthatjuk vele az értéket, ami megmondja, hogy a fonal evett-e rovart a körben
+     *
+     * @param b Amire állítjuk az értéket
+     */
     public void setEaten(boolean b) {
         this.eaten = b;
     }
 
+    /**
+     * Állíthatjuk vele az értéket, ami megmondja, hogy a fonal kapcsolódik-e gombateshez
+     *
+     * @param b Amire állítjuk az értéket
+     */
     public void setCutoff(boolean b) {
         this.cutOff = b;
     }
 
+    /**
+     * Segítségével a gombafonal megpróbálhat megenni egy rovart
+     *
+     * @param insect Rovar, amit próbál megenni a gombafonal
+     * @return Igaz, hogyha meg tudta enni a rovart, egyébként hamis
+     */
     public boolean eat(Insect insect) {
         if (insect.isParalyzed()) {
             insect.remove();
@@ -64,23 +118,28 @@ public class MushroomThread extends Entity {
     public void endTurn() {
         if (cutOff) {
             cutOffDuration++;
-            if (cutOffDuration == maxCutOffDuration) {
+            if (cutOffDuration == MAX_CUTOFF_DURATION) {
                 remove();
             }
         }
     }
 
+    /**
+     *Összehasonlít 2 objektumot
+     * @param o    Objektum, amivel összehasonlítjuk
+     *@return  Igaz, ha megegyezik a 2 objektum, egyébként hamis
+     */
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         MushroomThread that = (MushroomThread) o;
-        return eaten == that.eaten && cutOff == that.cutOff && cutOffDuration == that.cutOffDuration && maxCutOffDuration == that.maxCutOffDuration;
+        return eaten == that.eaten && cutOff == that.cutOff && cutOffDuration == that.cutOffDuration && MAX_CUTOFF_DURATION == that.MAX_CUTOFF_DURATION;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), eaten, cutOff, cutOffDuration, maxCutOffDuration);
+        return Objects.hash(super.hashCode(), eaten, cutOff, cutOffDuration, MAX_CUTOFF_DURATION);
     }
 
     /**

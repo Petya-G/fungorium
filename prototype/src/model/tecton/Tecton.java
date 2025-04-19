@@ -1,5 +1,12 @@
 package model.tecton;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Queue;
+import java.util.Set;
 import model.core.GlobalRandom;
 import model.core.IRound;
 import model.core.Identifiable;
@@ -10,12 +17,9 @@ import model.mushroom.IStem;
 import model.mushroom.IThread;
 import model.mushroom.MushroomStem;
 import model.mushroom.MushroomThread;
+import model.mushroom.Mushroomer;
 import model.mushroom.spore.ISpore;
 import model.mushroom.spore.Spore;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThread, IInsect {
     protected MushroomStem stem;
@@ -37,6 +41,44 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
         this.threads = threads;
         this.insects = insects;
         this.neighbours = neighbours;
+    }
+
+    /**
+     * Kiszámolja a legrövidebb távolságot (lépésszámot) a jelenlegi tekton és a megadott tekton között.
+     *
+     * @param other A cél tekton.
+     * @return A minimális lépésszám, vagy Integer.MAX_VALUE, ha nem elérhető.
+     */
+    public int distanceTo(Tecton other) {
+        //TODO ez nem jó
+        if (this == other) return 0;
+
+        Set<Tecton> visited = new HashSet<>();
+        Queue<Tecton> queue = new LinkedList<>();
+        Queue<Integer> depths = new LinkedList<>();
+
+        queue.add(this);
+        depths.add(0);
+        visited.add(this);
+
+        while (!queue.isEmpty()) {
+            Tecton current = queue.poll();
+            int currentDepth = depths.poll();
+
+            for (Tecton neighbor : current.getNeighbours()) {
+                if (neighbor == other) {
+                    return currentDepth + 1;
+                }
+
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                    depths.add(currentDepth + 1);
+                }
+            }
+        }
+
+        return Integer.MAX_VALUE;
     }
 
     /**
@@ -82,6 +124,20 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      */
     public List<Tecton> getNeighbours() {
         return neighbours;
+    }
+
+    /**
+     * Visszaadja a tekton szomszédjainak listáját, amik össze vannak kötve a megadott Mushroomer fonalával
+     *
+     * @return Összekötött tekton szomszédjainak listája
+     */
+    public List<Tecton> getConnectedNeighbours(Mushroomer owner) {
+        return getNeighbours().stream()
+            .filter(neighbour -> neighbour.getThreads().stream()
+            .anyMatch(thread ->
+                thread.getOwner().equals(owner) &&
+                getThreads().contains(thread)))
+            .toList();
     }
 
     /**
