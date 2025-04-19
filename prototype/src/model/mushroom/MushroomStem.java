@@ -1,11 +1,10 @@
 package model.mushroom;
 
+import java.util.List;
+import java.util.Objects;
 import model.core.Entity;
 import model.mushroom.spore.*;
 import model.tecton.Tecton;
-
-import java.util.List;
-import java.util.Objects;
 
 public class MushroomStem extends Entity {
     private final int maxSporeThrows = 5;
@@ -20,7 +19,7 @@ public class MushroomStem extends Entity {
      * @param owner    A gombatestet tulajdonló játékos
      * @param location A gombetest helye, vagyis, hogy melyik tektonon van
      */
-    public MushroomStem(Tecton location, Mushroomer owner) {
+    public MushroomStem(Mushroomer owner, Tecton location) {
         super(owner, location);
     }
 

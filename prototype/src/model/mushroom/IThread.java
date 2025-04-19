@@ -23,8 +23,19 @@ public interface IThread {
      */
     boolean remove(MushroomThread th);
 
+    /**
+     * Kezelt gombafonalak listáját adja vissza.
+     * 
+     * @return Gombafonalak objektumok listája. A lista üres is lehet, ha nincsenek gombafonalak.
+     */
     List<MushroomThread> getThreads();
 
+    /**
+     * Megkeresi a megadott azonosítójú MushroomThread objektumot.
+     *
+     * @param id A keresett gombafonal egyedi azonosítója.
+     * @return A megtalált MushroomThread példány, vagy null, ha nem található.
+     */
     default MushroomThread getThread(int id) {
         return getThreads().stream()
                 .filter(thread -> thread.getId() == id)

@@ -23,8 +23,19 @@ public interface IStem {
      */
     boolean remove(MushroomStem ms);
 
+    /**
+     * Kezelt gombatestek listáját adja vissza.
+     * 
+     * @return Gombatest objektumok listája. A lista üres is lehet, ha nincsenek gombatestek.
+     */
     List<MushroomStem> getStems();
 
+    /**
+     * Megkeresi a megadott azonosítójú MushroomStem objektumot.
+     *
+     * @param id A keresett gombatest egyedi azonosítója.
+     * @return A megtalált MushroomStem példány, vagy null, ha nem található.
+     */
     default MushroomStem getStem(int id){
         return getStems().stream()
                 .filter(stem -> stem.getId() == id)

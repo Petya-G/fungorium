@@ -1,5 +1,7 @@
 package model.mushroom;
 
+import java.util.ArrayList;
+import java.util.List;
 import model.core.Entity;
 import model.core.Player;
 import model.insect.Insect;
@@ -7,21 +9,18 @@ import model.mushroom.spore.ISpore;
 import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * A Mushroomer osztály egy játékost reprezentál, aki gombákat kezel.
  * A gombász képes spórákat, gombatesteket és gombafonalakat kezelni.
  */
 public class Mushroomer extends Player implements ISpore, IStem, IThread {
+
     private List<Spore> spores = new ArrayList<>();
     private List<MushroomStem> stems = new ArrayList<>();
     private List<MushroomThread> threads = new ArrayList<>();
 
-    public Mushroomer() {
-    }
-
+    private int grownThreadsThisTurn = 0;
+    private static final int  MAX_THREADS_PER_TURN = 2;
     /**
      * Konstruktor, amely inicializálja a gombász spóráit, gombatestjeit és
      * gombafonalait.
@@ -39,10 +38,11 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     /**
      * Alapértelmezett konstruktor
      * Üres listákat hoz létre a spóráknak, gombatesteknek és gombafonalaknak.
+     * @param location Gombász kezdeti pozícióját meghatározó tekton.
      */
     public Mushroomer(Tecton location) {
-        stems.add(new MushroomStem(location, this));
-        threads.add(new MushroomThread(location, this));
+        stems.add(new MushroomStem(this, location));
+        threads.add(new MushroomThread(this, location));
     }
 
     /**
@@ -52,7 +52,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * @return Igaz, ha a gombatest elhelyezése sikeres, egyébként hamis.
      */
     public Boolean plantMushroomstem(Tecton tecton) {
-        MushroomStem ms = new MushroomStem(tecton, this);
+        MushroomStem ms = new MushroomStem(this, tecton);
 
         if (!hasThread(tecton)) return false;
 
@@ -85,12 +85,15 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * @return Igaz, ha a gombafonal növesztése sikeres, egyébként hamis.
      */
     public Boolean growMushroomthread(Tecton tecton) {
-        // TODO: limit per turn
-
-        MushroomThread mt = new MushroomThread(tecton, this);
+        if(grownThreadsThisTurn>=MAX_THREADS_PER_TURN){
+            return false;
+        }
+        
+        MushroomThread mt = new MushroomThread(this, tecton);
         if (!tecton.hasThread(this) && tecton.neighbourHasThread(this)) {
-            if (tecton.add(mt)) {
-                return add(mt);
+            if (tecton.add(mt) && add(mt)) {
+                grownThreadsThisTurn++;
+                return true;
             }
         }
         return false;
