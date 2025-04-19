@@ -14,7 +14,7 @@ public class MushroomStem extends Entity {
     private int level = 0;
     private int cost = 3;
 
-    //TODO cost az mire kell még? lehetne final
+    //TODO cost az mire kell konkrétan?
     private static final int  MAX_LEVEL = 2;
 
     /**

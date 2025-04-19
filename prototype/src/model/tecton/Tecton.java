@@ -45,13 +45,13 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
 
     /**
      * Kiszámolja a legrövidebb távolságot (lépésszámot) a jelenlegi tekton és a megadott tekton között.
+     * Nem a fonalakon keresztül számoljuk, csak szomszédságra alapul.
      *
      * @param other A cél tekton.
      * @return A minimális lépésszám, vagy Integer.MAX_VALUE, ha nem elérhető.
      */
-    public int distanceTo(Tecton other) {
-        //TODO ez nem jó
-        if (this == other) return 0;
+    public int distanceTo(Tecton destination) {
+        if (this == destination) return 0;
 
         Set<Tecton> visited = new HashSet<>();
         Queue<Tecton> queue = new LinkedList<>();
@@ -66,7 +66,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
             int currentDepth = depths.poll();
 
             for (Tecton neighbor : current.getNeighbours()) {
-                if (neighbor == other) {
+                if (neighbor == destination) {
                     return currentDepth + 1;
                 }
 
@@ -304,6 +304,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
 
     @Override
     public boolean equals(Object o) {
+        if(this==o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Tecton tecton = (Tecton) o;

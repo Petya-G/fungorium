@@ -21,10 +21,11 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     private int grownThreadsThisTurn = 0;
     private static final int  MAX_THREADS_PER_TURN = 2;
+    
     /**
      * Konstruktor, amely inicializálja a gombász spóráit, gombatestjeit és
      * gombafonalait.
-     *4
+     *
      * @param spores  A gombász spóráinak listája.
      * @param stems   A gombász gombatestjeinek listája.
      * @param threads A gombász gombafonalainak listája.
