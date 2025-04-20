@@ -2,8 +2,9 @@ package model.mushroom;
 
 import java.util.List;
 import java.util.Objects;
+
+import controller.Game;
 import model.core.Entity;
-import model.core.GlobalRandom;
 import model.mushroom.spore.*;
 import model.tecton.Tecton;
 
@@ -46,7 +47,7 @@ public class MushroomStem extends Entity {
         int range = level + 1;
         if (getLocation().distanceTo(tecton) > range) return false;
 
-        int rnd = GlobalRandom.getInstance().nextInt(5);
+        int rnd = Game.random.nextInt(5);
         Spore spore;
 
         switch (rnd) {
