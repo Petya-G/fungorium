@@ -7,5 +7,5 @@ public interface IRound {
     /**
      * Minden kör után végrehajtódik
      */
-    public abstract void endRound();
+    void endRound();
 }

@@ -7,5 +7,5 @@ public interface ITurn {
     /**
      * Minden lépés végén végrehajtódik
      */
-    public abstract void endTurn();
+    void endTurn();
 }
