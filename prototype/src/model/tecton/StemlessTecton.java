@@ -2,6 +2,9 @@ package model.tecton;
 
 import model.mushroom.MushroomStem;
 
+/**
+ * Olyan tekton fajta, amin nem lehet gombatest.
+ */
 public class StemlessTecton extends Tecton {
 
     /**

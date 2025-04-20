@@ -1,31 +1,40 @@
 package model.tecton;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Queue;
-import java.util.Set;
-import model.core.GlobalRandom;
+import controller.Game;
 import model.core.IRound;
 import model.core.Identifiable;
 import model.core.Player;
 import model.insect.IInsect;
 import model.insect.Insect;
-import model.mushroom.IStem;
-import model.mushroom.IThread;
-import model.mushroom.MushroomStem;
-import model.mushroom.MushroomThread;
-import model.mushroom.Mushroomer;
+import model.mushroom.*;
 import model.mushroom.spore.ISpore;
 import model.mushroom.spore.Spore;
 
+import java.util.*;
+
+/**
+ * Tekton osztály, tárolja a hozzá tartozó gombatest, fonalakat, spórákat, rovarokat és szomszédos tektonokat.
+ */
 public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThread, IInsect {
+    /**
+     * Tektonon lévő gombatest.
+     */
     protected MushroomStem stem;
+    /**
+     * Tektonon lévő spórák.
+     */
     protected List<Spore> spores = new ArrayList<>();
+    /**
+     * Tektonon lévő gombafonalak.
+     */
     protected List<MushroomThread> threads = new ArrayList<>();
+    /**
+     * Tektonon lévő rovarok.
+     */
     protected List<Insect> insects = new ArrayList<>();
+    /**
+     * Tektonon szomszédjai.
+     */
     protected List<Tecton> neighbours = new ArrayList<>();
 
     /**
@@ -35,6 +44,15 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     public Tecton() {
     }
 
+    /**
+     * Létrehoz egy új Tecton példányt, a megadott tagokkal inicializálva.
+     *
+     * @param stem       A gombatest, ami a tektonhoz tartozik.
+     * @param spores     A tektonhoz tartozó spórák listája.
+     * @param threads    A tektonhoz tartozó fonalak listája.
+     * @param insects    A tektonhoz tartozó rovarok listája.
+     * @param neighbours A szomszéd telepek listája.
+     */
     public Tecton(MushroomStem stem, List<Spore> spores, List<MushroomThread> threads, List<Insect> insects, List<Tecton> neighbours) {
         this.stem = stem;
         this.spores = spores;
@@ -47,7 +65,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * Kiszámolja a legrövidebb távolságot (lépésszámot) a jelenlegi tekton és a megadott tekton között.
      * Nem a fonalakon keresztül számoljuk, csak szomszédságra alapul.
      *
-     * @param other A cél tekton.
+     * @param destination A cél tekton.
      * @return A minimális lépésszám, vagy Integer.MAX_VALUE, ha nem elérhető.
      */
     public int distanceTo(Tecton destination) {
@@ -90,26 +108,26 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     public Tecton split() {
         Tecton t = new Tecton();
 
-        int rnd = GlobalRandom.getInstance().nextInt(5);
+        int rnd = Game.random.nextInt(5);
         if (rnd == 0) t = new SingleThreadedTecton();
         else if (rnd == 1) t = new StemlessTecton();
         else if (rnd == 2) t = new ThreadConsumingTecton();
         else if (rnd == 3) t = new LifeSupportTecton();
 
         for (Tecton n : neighbours) {
-            if (GlobalRandom.getInstance().nextBoolean()) {
+            if (Game.random.nextBoolean()) {
                 t.addNeighbour(n);
             }
         }
 
         threads.clear();
 
-        List<Spore> sporesToMove = spores.stream().filter(sp -> GlobalRandom.getInstance().nextBoolean()).toList();
+        List<Spore> sporesToMove = spores.stream().filter(sp -> Game.random.nextBoolean()).toList();
 
         for (Spore sp : sporesToMove)
             sp.setLocation(t);
 
-        List<Insect> insectsToMove = insects.stream().filter(i -> GlobalRandom.getInstance().nextBoolean()).toList();
+        List<Insect> insectsToMove = insects.stream().filter(i -> Game.random.nextBoolean()).toList();
 
         for (Insect i : insectsToMove)
             i.setLocation(t);
@@ -132,12 +150,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * @return Összekötött tekton szomszédjainak listája
      */
     public List<Tecton> getConnectedNeighbours(Mushroomer owner) {
-        return getNeighbours().stream()
-            .filter(neighbour -> neighbour.getThreads().stream()
-            .anyMatch(thread ->
-                thread.getOwner().equals(owner) &&
-                getThreads().contains(thread)))
-            .toList();
+        return getNeighbours().stream().filter(neighbour -> neighbour.getThreads().stream().anyMatch(thread -> thread.getOwner().equals(owner) && getThreads().contains(thread))).toList();
     }
 
     /**
@@ -160,6 +173,12 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
         return spores;
     }
 
+    /**
+     * Visszaadja a tektonhoz tartozó gombatestek listáját.
+     * Ha nincs gombatest, üres listát ad vissza.
+     *
+     * @return A tektonhoz tartozó gombatestek listája
+     */
     @Override
     public List<MushroomStem> getStems() {
         return stem == null ? new ArrayList<>() : List.of(stem);
@@ -277,40 +296,72 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     }
 
     /**
-     * Minden kör végén lefut
+     * Minden kör végén lefut. Alapértelmezetten nem csinál semmit, szükség esetén felüldefiniálható.
      */
     @Override
     public void endRound() {
     }
 
+    /**
+     * Hozzáad egy rovart a tektonhoz.
+     *
+     * @param insect A hozzáadni kívánt rovar
+     * @return Az add művelet sikeressége (bool)
+     */
     @Override
     public boolean add(Insect insect) {
         return insects.add(insect);
     }
 
+    /**
+     * Eltávolít egy rovart a tektonról.
+     *
+     * @param insect Az eltávolítani kívánt rovar
+     * @return Az eltávolítás sikeressége (bool)
+     */
     @Override
     public boolean remove(Insect insect) {
         return insects.remove(insect);
     }
 
+    /**
+     * Visszaadja a tektonon lévő rovarok listáját.
+     *
+     * @return Rovarok listája
+     */
     @Override
     public List<Insect> getInsects() {
         return insects;
     }
 
+    /**
+     * Eltávolítja azokat a fonalakat, amelyek már nem kapcsolódnak máshová.
+     */
     public void removeUnconnectedThreads() {
         threads.stream().filter(t -> !t.isConnected()).toList().forEach(MushroomThread::remove);
     }
 
+    /**
+     * Két Tecton egyenlőségének meghatározása.
+     * A stem, spores, threads, insects, neighbours és az ősök alapján hasonlítja össze az objektumokat.
+     *
+     * @param o Az összehasonlítandó objektum
+     * @return Igaz, ha megegyeznek, egyébként hamis.
+     */
     @Override
     public boolean equals(Object o) {
-        if(this==o) return true;
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Tecton tecton = (Tecton) o;
         return Objects.equals(stem, tecton.stem) && Objects.equals(spores, tecton.spores) && Objects.equals(threads, tecton.threads) && Objects.equals(insects, tecton.insects) && Objects.equals(neighbours, tecton.neighbours);
     }
 
+    /**
+     * Visszaadja a Tecton objektum hash kódját.
+     *
+     * @return Hash kód
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), stem, spores, threads, insects, neighbours);

@@ -2,38 +2,70 @@ package model.core;
 
 import java.util.Objects;
 
+/**
+ * Absztrakt osztály, amely egyedi azonosítóval lát el minden leszármazott objektumot.
+ */
 public abstract class Identifiable {
+    /**
+     * Eddig használt legnagyob azonosító
+     */
     private static int sId = 0;
-    private final int id;
-    private final String name;
 
+    /**
+     * Egyedi azonosító
+     */
+    private final int id;
+
+    /**
+     * Létrehoz egy példányt automatikusan generált azonosítóval.
+     */
     public Identifiable() {
         this.id = sId++;
-        this.name = getClass().getSimpleName() + "_" + id;
     }
 
+    /**
+     * Létrehoz egy példányt a megadott azonosítóval.
+     *
+     * @param id Az objektum egyedi azonosítója
+     */
     public Identifiable(int id) {
         this.id = id;
-        this.name = getClass().getSimpleName() + "_" + id;
     }
 
+    /**
+     * Lekérdezi az objektum egyedi azonosítóját.
+     * @return Az azonosító értéke
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Visszaadja az objektum nevét, amely a típusából és azonosítójából áll.
+     * @return Az objektum neve
+     */
     public String getName() {
-        return name;
+        return getClass().getSimpleName() + "_" + id;
     }
 
+    /**
+     * Meghatározza, hogy két objektum azonosnak számít-e az azonosító alapján.
+     * @param o Az összehasonlítandó objektum
+     * @return true, ha az objektumok azonosak, egyébként false
+     */
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Identifiable that = (Identifiable) o;
-        return id == that.id && Objects.equals(name, that.name);
+        return id == that.id;
     }
 
+    /**
+     * Az objektum hash-kódját adja vissza azonosító alapján.
+     * @return Hash-kód érték
+     */
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 }

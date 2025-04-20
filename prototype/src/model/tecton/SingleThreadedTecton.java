@@ -2,6 +2,9 @@ package model.tecton;
 
 import model.mushroom.MushroomThread;
 
+/**
+ * Olyan tekton fajta, amin csak egy gombafonal lehet.
+ */
 public class SingleThreadedTecton extends Tecton {
 
     /**
@@ -13,8 +16,7 @@ public class SingleThreadedTecton extends Tecton {
      */
     @Override
     public boolean add(MushroomThread th) {
-
-        if (threads.size() == 0) {
+        if (threads.isEmpty()) {
             threads.add(th);
             return true;
         }
