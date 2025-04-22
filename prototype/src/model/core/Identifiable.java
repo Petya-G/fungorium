@@ -36,7 +36,7 @@ public abstract class Identifiable {
      * Lekérdezi az objektum egyedi azonosítóját.
      * @return Az azonosító értéke
      */
-    public long getId() {
+    public int getId() {
         return id;
     }
 

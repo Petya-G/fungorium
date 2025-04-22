@@ -1,13 +1,14 @@
 package model.mushroom;
 
-import java.util.ArrayList;
-import java.util.List;
 import model.core.Entity;
 import model.core.Player;
 import model.insect.Insect;
 import model.mushroom.spore.ISpore;
 import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Mushroomer osztály egy játékost reprezentál, aki gombákat kezel.
@@ -44,6 +45,10 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     public Mushroomer(Tecton location) {
         stems.add(new MushroomStem(this, location));
         threads.add(new MushroomThread(this, location));
+    }
+
+    public Mushroomer() {
+
     }
 
     /**

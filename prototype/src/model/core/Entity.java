@@ -101,6 +101,6 @@ public abstract class Entity extends Identifiable implements ITurn {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), location, owner);
+        return Objects.hash(super.hashCode());
     }
 }

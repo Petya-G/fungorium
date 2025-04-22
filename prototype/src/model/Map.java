@@ -25,7 +25,7 @@ public class Map implements IRound, Serializable {
      * @param a Egyik összekötendő tekton
      * @param b Másik összekötendő tekton
      */
-    void connect(Tecton a, Tecton b) {
+    public static void connect(Tecton a, Tecton b) {
         a.addNeighbour(b);
         b.addNeighbour(a);
     }

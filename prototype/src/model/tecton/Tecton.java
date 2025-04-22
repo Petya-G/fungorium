@@ -45,23 +45,6 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     }
 
     /**
-     * Létrehoz egy új Tecton példányt, a megadott tagokkal inicializálva.
-     *
-     * @param stem       A gombatest, ami a tektonhoz tartozik.
-     * @param spores     A tektonhoz tartozó spórák listája.
-     * @param threads    A tektonhoz tartozó fonalak listája.
-     * @param insects    A tektonhoz tartozó rovarok listája.
-     * @param neighbours A szomszéd telepek listája.
-     */
-    public Tecton(MushroomStem stem, List<Spore> spores, List<MushroomThread> threads, List<Insect> insects, List<Tecton> neighbours) {
-        this.stem = stem;
-        this.spores = spores;
-        this.threads = threads;
-        this.insects = insects;
-        this.neighbours = neighbours;
-    }
-
-    /**
      * Kiszámolja a legrövidebb távolságot (lépésszámot) a jelenlegi tekton és a megadott tekton között.
      * Nem a fonalakon keresztül számoljuk, csak szomszédságra alapul.
      *
@@ -150,7 +133,16 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * @return Összekötött tekton szomszédjainak listája
      */
     public List<Tecton> getConnectedNeighbours(Mushroomer owner) {
-        return getNeighbours().stream().filter(neighbour -> neighbour.getThreads().stream().anyMatch(thread -> thread.getOwner().equals(owner) && getThreads().contains(thread))).toList();
+        List<Tecton> connectedNeighbours = new ArrayList<>();
+        for (Tecton neighbour : getNeighbours()) {
+            for (MushroomThread thread : neighbour.getThreads()) {
+                if (thread.getOwner().equals(owner) && getThreads().contains(thread)) {
+                    connectedNeighbours.add(neighbour);
+                    break;
+                }
+            }
+        }
+        return connectedNeighbours;
     }
 
     /**
@@ -338,7 +330,9 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * Eltávolítja azokat a fonalakat, amelyek már nem kapcsolódnak máshová.
      */
     public void removeUnconnectedThreads() {
-        threads.stream().filter(t -> !t.isConnected()).toList().forEach(MushroomThread::remove);
+        List<MushroomThread> threadsToRemove = threads.stream().filter(MushroomThread::isConnected).toList();
+
+        threadsToRemove.forEach(MushroomThread::remove);
     }
 
     /**
