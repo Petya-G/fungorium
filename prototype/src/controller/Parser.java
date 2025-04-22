@@ -4,8 +4,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Random;
 
 public class Parser {
+
+    static final Random r = new Random();
 
     Game game;
     public Game getGame() {
@@ -60,10 +63,19 @@ public class Parser {
 
     }
     public void CMD_rand(String[] args) {
-
+        if(args.length != 2) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        if(args[1] == "-disable") game.random.setSeed(1);
+        else if(args[1] == "-enable") game.random.setSeed(r.nextInt());
     }
     public void CMD_addplayers(String[] args) {
-
+        if(args.length != 1) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        game.addPlayers();
     }
     public void CMD_manualtrigger(String[] args) {
 
@@ -75,7 +87,12 @@ public class Parser {
 
     }
     public void CMD_help(String[] args) {
-
+        if(args.length != 1) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        System.out.println("/start: Starts the game, after this point, no more players can be added");
+        System.out.println("/load: Loads a saved game file, from the given path");
     }
     public void CMD_move(String[] args) {
 
@@ -96,7 +113,11 @@ public class Parser {
 
     }
     public void CMD_endturn(String[] args) {
-
+        if(args.length != 1) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        game.endTurn();
     }
     
 
@@ -155,6 +176,9 @@ public class Parser {
                 break;
             case "!endturn":
                 CMD_endturn(tokens);
+                break;
+            case "/exit":
+                System.exit(0);
                 break;
             default:
                 System.out.println("invalid command!");

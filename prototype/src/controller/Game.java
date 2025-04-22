@@ -43,6 +43,11 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     private int turn = 0;
 
     /**
+     * Nyilvántartja, elkezdődött-e már a játék
+     */
+    private boolean hasStarted = false;
+
+    /**
      * Ellenőrzi, hogy az adott entitás gazdája az aktuális játékos-e.
      *
      * @param entity Az entitás, amelyhez az ellenőrzést végezzük.
@@ -60,6 +65,29 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      */
     private boolean hasCurrentTurn(Player player) {
         return getCurrentPlayer().equals(player);
+    }
+
+
+    /**
+     * Elindítja a játékot, a hasStarted változó beállításával
+     */
+    public void Start()
+    {
+        if(hasStarted) return;
+        hasStarted = true;
+    }
+
+    public boolean addPlayers()
+    {
+        try {
+            players.add(new Mushroomer());
+            players.add(new Insecter());
+
+            return true;
+        } catch (Exception e) {
+            System.out.println("error: " + e.toString());
+            return false;
+        }
     }
 
     /**
