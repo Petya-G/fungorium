@@ -1,8 +1,16 @@
 package controller;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class Parser {
 
     Game game;
+    public Game getGame() {
+        return game;
+    }
     public Parser(Game game) {
         this.game = game;
     }
@@ -11,10 +19,41 @@ public class Parser {
 
     }
     public void CMD_load(String[] args) {
+        if (args.length != 2) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        try{
+        FileInputStream file = new FileInputStream(args[1]);
+            ObjectInputStream in = new ObjectInputStream(file);
 
+            // Method for deserialization of object
+            game = (Game)in.readObject();
+
+            in.close();
+            file.close();
+        }  catch (Exception e){
+            System.out.println("error: " + e.toString());
+            return;
+        }
     }
     public void CMD_save(String[] args) {
+        if(args.length != 2) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        try {
+            FileOutputStream file = new FileOutputStream(args[1]);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+ 
+            out.writeObject(game);
 
+            out.close();
+            file.close();
+        } catch (Exception e){
+            System.out.println("error: " + e.toString());
+            return;
+        }
     }
 
     public void CMD_exec(String[] args) {

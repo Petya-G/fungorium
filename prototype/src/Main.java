@@ -2,8 +2,7 @@ import java.util.Scanner;
 import controller.*;
 public class Main {
     
-    static Game game = new Game();
-    static Parser parser = new Parser(game);
+    static Parser parser = new Parser(new Game());
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         while(true) {

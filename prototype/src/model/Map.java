@@ -4,6 +4,7 @@ import controller.Game;
 import model.core.IRound;
 import model.tecton.Tecton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +13,7 @@ import java.util.Objects;
  * A pályát reprezentáló osztály, amely tartalmazza a pályán lévő tektonokat.
  * Kezeli a tektonok összekötését, valamint körök végén a hozzájuk tartozó műveleteket.
  */
-public class Map implements IRound {
+public class Map implements IRound, Serializable {
     /**
      * Pályához tartozó tektonok
      */

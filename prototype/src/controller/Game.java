@@ -10,6 +10,7 @@ import model.mushroom.Mushroomer;
 import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -17,7 +18,7 @@ import java.util.*;
  * és a különböző műveleteket (pl. mozgás, támadás, növekedés).
  * Irányítja a játék logikáját, valamint nyilvántartja az aktuális játékállapotot.
  */
-public class Game extends Identifiable implements ITurn, IRound {
+public class Game extends Identifiable implements ITurn, IRound, Serializable {
 
     public static final Random random = new Random();
     /**
