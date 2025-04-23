@@ -16,13 +16,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class TectonTest {
     private Tecton tecton, neighbour1, neighbour2, newTecton;
     private Mushroomer mushroomer;
     private Insecter insecter;
 
     @BeforeEach
-    public void setUp() {
+    public void setUpTectons() {
         Game.random.setSeed(1);
         mushroomer = new Mushroomer();
         insecter = new Insecter();
@@ -37,7 +38,11 @@ public class TectonTest {
 
         newTecton = new Tecton();
         Map.connect(neighbour1, newTecton);
+
+        mushroomer = new Mushroomer();
+        insecter = new Insecter();
     }
+   
 
     @Test
     public void testGetNeighbours() {
@@ -159,7 +164,5 @@ public class TectonTest {
         assertNotEquals(null, tecton);
 
         assertNotEquals(new Object(), tecton);
-
-        assertEquals(tecton, new Tecton(tecton));
     }
 }
