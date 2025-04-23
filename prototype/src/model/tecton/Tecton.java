@@ -42,9 +42,11 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * tagváltozókat
      */
     public Tecton() {
+        super();
     }
 
     public Tecton(Tecton tecton) {
+        super(tecton);
         this.stem = tecton.stem;
         this.spores.addAll(tecton.spores);
         this.threads.addAll(tecton.threads);
@@ -74,7 +76,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
             Tecton current = queue.poll();
             int currentDepth = depths.poll();
 
-            for (Tecton neighbor : current.getNeighbours()) {
+            for (final Tecton neighbor : current.neighbours) {
                 if (neighbor == destination) {
                     return currentDepth + 1;
                 }

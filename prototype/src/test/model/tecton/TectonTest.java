@@ -37,9 +37,6 @@ public class TectonTest {
 
         newTecton = new Tecton();
         Map.connect(neighbour1, newTecton);
-
-        mushroomer = new Mushroomer();
-        insecter = new Insecter();
     }
 
     @Test
@@ -162,5 +159,7 @@ public class TectonTest {
         assertNotEquals(null, tecton);
 
         assertNotEquals(new Object(), tecton);
+
+        assertEquals(tecton, new Tecton(tecton));
     }
 }
