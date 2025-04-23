@@ -162,10 +162,26 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @param location   A helyszín.
      * @return true, ha az elhelyezés sikeres.
      */
-    public boolean plantMushroomStem(Mushroomer mushroomer, Tecton location) {
-        if (!hasCurrentTurn(mushroomer)) return false;
-        return mushroomer.plantMushroomStem(location);
+    public boolean plantMushroomStem(Tecton location) {
+        try {
+            return ((Mushroomer)getCurrentPlayer()).plantMushroomStem(location);
+        } catch (Exception e) {
+            // TODO: handle exception
+            return false;
+        }
     }
+
+    public boolean throwSpore(MushroomStem mushroomStem, Tecton location)
+    {
+        try {
+        if (!hasCurrentTurn(mushroomStem)) return false;
+        return ((Mushroomer) mushroomStem.getOwner()).throwSpore(mushroomStem, location);
+        } catch (Exception e) {
+            // TODO: handle exception
+            return false;
+        }
+    }
+
 
     /**
      * Gombafonal növesztése adott pozícióba.
@@ -174,9 +190,13 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @param location   A célhely.
      * @return true ha a növesztés sikeres.
      */
-    public boolean growThread(Mushroomer mushroomer, Tecton location) {
-        if (!hasCurrentTurn(mushroomer)) return false;
-        return mushroomer.growMushroomThread(location);
+    public boolean growThread(Tecton location) {
+        try {
+        return ((Mushroomer)getCurrentPlayer()).growMushroomThread(location);
+        } catch (Exception e) {
+            // TODO: handle exception
+            return false;
+        }
     }
 
     /**
@@ -223,6 +243,11 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
             // }
             System.out.println(player.getName() + player.getId() + "\n");
         }
+    }
+
+    public Identifiable findObject(int id)
+    {
+        return null;
     }
 
     /**
