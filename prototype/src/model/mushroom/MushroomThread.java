@@ -1,14 +1,10 @@
 package model.mushroom;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Queue;
-import java.util.Set;
 import model.core.Entity;
 import model.insect.Insect;
 import model.tecton.Tecton;
+
+import java.util.*;
 
 public class MushroomThread extends Entity {
     
@@ -34,6 +30,7 @@ public class MushroomThread extends Entity {
      * @return Igaz, hogyha kapcsolódik, egyébként hamis.
      */
     public boolean isConnected() {
+        //TODO stack overflow
         Set<Tecton> visited = new HashSet<>();
         Queue<Tecton> queue = new LinkedList<>();
 
@@ -134,7 +131,7 @@ public class MushroomThread extends Entity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         MushroomThread that = (MushroomThread) o;
-        return eaten == that.eaten && cutOff == that.cutOff && cutOffDuration == that.cutOffDuration && MAX_CUTOFF_DURATION == that.MAX_CUTOFF_DURATION;
+        return eaten == that.eaten && cutOff == that.cutOff && cutOffDuration == that.cutOffDuration;
     }
 
     /**

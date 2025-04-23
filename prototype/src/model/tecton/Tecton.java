@@ -146,7 +146,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
         List<Tecton> connectedNeighbours = new ArrayList<>();
         for (Tecton neighbour : getNeighbours()) {
             for (MushroomThread thread : neighbour.getThreads()) {
-                if (thread.getOwner().equals(owner) && getThreads().contains(thread)) {
+                if (thread.getOwner().equals(owner)) {
                     connectedNeighbours.add(neighbour);
                     break;
                 }
@@ -340,7 +340,12 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * Eltávolítja azokat a fonalakat, amelyek már nem kapcsolódnak máshová.
      */
     public void removeUnconnectedThreads() {
-        List<MushroomThread> threadsToRemove = threads.stream().filter(MushroomThread::isConnected).toList();
+        List<MushroomThread> threadsToRemove = new ArrayList<>();
+        for (MushroomThread th : threads) {
+            if (th.isConnected()) {
+                threadsToRemove.add(th);
+            }
+        }
 
         threadsToRemove.forEach(MushroomThread::remove);
     }
