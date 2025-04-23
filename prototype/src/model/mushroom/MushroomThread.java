@@ -43,11 +43,9 @@ public class MushroomThread extends Entity {
 
             if (current.hasStem()) return true;
 
-            List<Tecton> connectedNeighbourList=current.getConnectedNeighbours((Mushroomer)getOwner());
-
-            for (Tecton t : connectedNeighbourList) {
-                if (visited.contains(t)) continue;
-                if(!visited.contains(t)){
+            // Itt jön a kritikus szűrés:
+            for (Tecton t : current.getConnectedNeighbours((Mushroomer) getOwner())) {
+                if (!visited.contains(t)) {
                     visited.add(t);
                     queue.add(t);
                 }

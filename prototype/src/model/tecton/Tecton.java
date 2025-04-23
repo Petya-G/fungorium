@@ -339,6 +339,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     /**
      * Eltávolítja azokat a fonalakat, amelyek már nem kapcsolódnak máshová.
      */
+
     public void removeUnconnectedThreads() {
         List<MushroomThread> threadsToRemove = new ArrayList<>();
         for (MushroomThread th : threads) {
@@ -357,6 +358,8 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * @param o Az összehasonlítandó objektum
      * @return Igaz, ha megegyeznek, egyébként hamis.
      */
+
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -365,14 +368,30 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
         Tecton tecton = (Tecton) o;
         return Objects.equals(stem, tecton.stem) && Objects.equals(spores, tecton.spores) && Objects.equals(threads, tecton.threads) && Objects.equals(insects, tecton.insects) && Objects.equals(neighbours, tecton.neighbours);
     }
+    */
 
     /**
      * Visszaadja a Tecton objektum hash kódját.
      *
      * @return Hash kód
      */
+    /*
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), stem, spores, threads, insects, neighbours);
+    }
+
+    */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return getId() == ((Tecton) o).getId(); // vagy equals ha ID egyedi
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId()); // csak ID alapján
     }
 }
