@@ -17,29 +17,105 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MushroomerTest {
 
     private Mushroomer mushroomer;
-    private MushroomStem stem1;
     private Tecton tecton;
 
 
     @BeforeEach
     void setup() {
         mushroomer = new Mushroomer();
-        stem1 = new MushroomStem(mushroomer, new Tecton());
         tecton = new Tecton();
     }
 
     @Test
-    void testAddAndGetSpores() {
-        Spore spore = new ParalyzingSpore(mushroomer, tecton);
-        assertTrue(mushroomer.add(spore));
-        assertTrue(mushroomer.getSpores(tecton).contains(spore));
+    void testConstructor_Tecton() {
+        Tecton tecton2=new Tecton();
+        Mushroomer mushroomer2 = new Mushroomer(tecton2);
+
+        assertTrue(mushroomer2.hasThread(tecton2));
+        assertTrue(mushroomer2.hasStem(tecton2));
     }
 
     @Test
-    void testRemoveStem() {
-        MushroomStem stem = new MushroomStem(mushroomer, tecton);
-        assertTrue(mushroomer.add(stem));
-        assertTrue(mushroomer.remove(stem));
+    void testGetStems() {
+        MushroomStem ms=new MushroomStem(mushroomer, tecton);
+        mushroomer.add(ms);
+        tecton.add(ms);
+        assertTrue(mushroomer.hasStem(tecton));
+
+        assertEquals(mushroomer.getStems(), Arrays.asList(ms));
+    }
+
+    @Test
+    void testGetStems_NoStems() {
+        assertFalse(mushroomer.hasStem(tecton));
+        assertEquals(mushroomer.getStems(), Arrays.asList());
+    }
+
+    @Test
+    void testHasStems() {
+        MushroomStem ms=new MushroomStem(mushroomer, tecton);
+        mushroomer.add(ms);
+        tecton.add(ms);
+        assertTrue(mushroomer.hasStem(tecton));
+    }
+
+    @Test
+    void testHasStems_NoStems() {
+        assertFalse(mushroomer.hasStem(tecton));
+    }
+
+    @Test
+    void testGetThreads() {
+        MushroomThread mt=new MushroomThread(mushroomer, tecton);
+        mushroomer.add(mt);
+        tecton.add(mt);
+        assertTrue(mushroomer.hasThread(tecton));
+
+        assertEquals(mushroomer.getThreads(), Arrays.asList(mt));
+    }
+
+    @Test
+    void testGetThreads_NoThreads() {
+        assertFalse(mushroomer.hasThread(tecton));
+        assertEquals(mushroomer.getThreads(), Arrays.asList());
+    }
+
+    @Test
+    void testHasThreads() {
+        MushroomThread mt=new MushroomThread(mushroomer, tecton);
+        mushroomer.add(mt);
+        tecton.add(mt);
+        assertTrue(mushroomer.hasThread(tecton));
+    }
+
+    @Test
+    void testHasThreads_NoThreads() {
+        assertFalse(mushroomer.hasThread(tecton));
+    }
+
+    @Test
+    void testGetSpores() {
+        Spore s1=new ParalyzingSpore(mushroomer, tecton);
+        Spore s2=new ParalyzingSpore(mushroomer, tecton);
+        Spore s3=new ParalyzingSpore(mushroomer, tecton);
+        mushroomer.add(s1);
+        mushroomer.add(s2);
+        mushroomer.add(s3);
+        assertEquals(mushroomer.getSpores(), Arrays.asList(s1, s2, s3));
+    }
+
+    @Test
+    void testGetSpores_Tecton() {
+        Tecton tecton2=new Tecton();
+
+        Spore s1=new ParalyzingSpore(mushroomer, tecton);
+        Spore s2=new ParalyzingSpore(mushroomer, tecton);
+        Spore s3=new ParalyzingSpore(mushroomer, tecton2);
+
+        mushroomer.add(s1);
+        mushroomer.add(s2);
+        mushroomer.add(s3);
+        assertEquals(mushroomer.getSpores(tecton), Arrays.asList(s1, s2));
     }
 
     @Test
@@ -48,7 +124,9 @@ public class MushroomerTest {
         tecton.add(thread);
         mushroomer.add(thread);
 
-        for(int i=0; i<stem1.getCost(); i++){
+        MushroomStem stem = new MushroomStem(mushroomer, tecton);
+
+        for(int i=0; i<stem.getCost(); i++){
             Spore s1=new ParalyzingSpore(mushroomer, tecton);
             tecton.add(s1);
             mushroomer.add(s1);
@@ -63,7 +141,8 @@ public class MushroomerTest {
         tecton.add(thread);
         mushroomer.add(thread);
 
-        for(int i=0; i<stem1.getCost()-1; i++){
+        MushroomStem stem = new MushroomStem(mushroomer, tecton);
+        for(int i=0; i<stem.getCost()-1; i++){
             Spore s1=new ParalyzingSpore(mushroomer, tecton);
             tecton.add(s1);
             mushroomer.add(s1);
@@ -71,6 +150,7 @@ public class MushroomerTest {
 
         assertFalse(mushroomer.plantMushroomStem(tecton));
     }
+
 
     @Test
     void testPlantMushroomStem_AlreadyHasStem() {
@@ -82,7 +162,8 @@ public class MushroomerTest {
         tecton.add(stem2);
         mushroomer.add(stem2);
 
-        for(int i=0; i<stem1.getCost(); i++){
+
+        for(int i=0; i<stem2.getCost(); i++){
             Spore s1=new ParalyzingSpore(mushroomer, tecton);
             tecton.add(s1);
             mushroomer.add(s1);
@@ -93,7 +174,8 @@ public class MushroomerTest {
 
     @Test
     void testPlantMushroomStem_NoThread() {
-        for(int i=0; i<stem1.getCost(); i++){
+        MushroomStem stem = new MushroomStem(mushroomer, tecton);
+        for(int i=0; i<stem.getCost(); i++){
             Spore s1=new ParalyzingSpore(mushroomer, tecton);
             tecton.add(s1);
             mushroomer.add(s1);
@@ -113,159 +195,76 @@ public class MushroomerTest {
         assertFalse(thread.hasEaten());
     }
 
-    /*
+    @Test
+    void testGrowMushroomThread() {
+        MushroomStem stem = new MushroomStem(mushroomer, tecton);
+        tecton.add(stem);
+        mushroomer.add(stem);
+
+        MushroomThread thread = new MushroomThread(mushroomer, tecton);
+        tecton.add(thread);
+        mushroomer.add(thread);
+
+        for(int i=0; i<mushroomer.getMaxThreadsPerTurn(); i++){
+            Tecton t1=new Tecton();
+            tecton.addNeighbour(t1); // alapból map csinálná
+            t1.addNeighbour(tecton); // alapból map csinálná
+            assertTrue(mushroomer.growMushroomThread(t1));
+        }
+    }
+
     @Test
     void testGrowMushroomThread_AlreadyGrown() {
         MushroomStem stem = new MushroomStem(mushroomer, tecton);
         tecton.add(stem);
         mushroomer.add(stem);
 
-        for(int i=0; i<stem1.getCost(); i++){}
-
-        DummyTecton neighbor = new DummyTecton();
-        tecton.getNeighbours().add(neighbor);
-
-        assertTrue(mushroomer.growMushroomThread(neighbor));
-        assertFalse(neighbor.getThreads().isEmpty());
-    }
-    */
-
-    /*
-    @Test
-    void testEat_ParalyzedInsect() {
-        DummyInsect insect = new DummyInsect(true);
-        MushroomThread thread = new MushroomThread(mushroomer, tecton);
-
-        tecton.add(thread);
-        tecton.add(insect);
-
-        assertTrue(mushroomer.eat(thread, insect));
-        assertTrue(tecton.getInsects().isEmpty());
-    }
-
-    @Test
-    void testEat_NotParalyzedInsect() {
-        DummyInsect insect = new DummyInsect(false);
         MushroomThread thread = new MushroomThread(mushroomer, tecton);
         tecton.add(thread);
-        tecton.add(insect);
+        mushroomer.add(thread);
 
-        assertFalse(mushroomer.eat(thread, insect));
-        assertFalse(thread.hasEaten());
+        for(int i=0; i<mushroomer.getMaxThreadsPerTurn(); i++){
+            Tecton t1=new Tecton();
+            tecton.addNeighbour(t1); // alapból map csinálná
+            t1.addNeighbour(tecton); // alapból map csinálná
+            assertTrue(mushroomer.growMushroomThread(t1));
+        }
+
+
+        Tecton t2=new Tecton();
+        tecton.addNeighbour(t2);
+
+        assertFalse(mushroomer.growMushroomThread(t2));
     }
 
     @Test
-    void testLevelUpSuccess() {
-        MushroomStem stem = new MushroomStem(mushroomer, tecton);
-        DummySpore spore = new DummySpore(mushroomer, tecton);
-
-        tecton.add(stem);
-        tecton.add(spore);
-        mushroomer.add(stem);
-        mushroomer.add(spore);
-
-        assertTrue(mushroomer.levelUp(stem));
-    }
-
-    @Test
-    void testLevelUpFail_NoSpores() {
+    void testGrowMushroomThread_AlreadyHasThread() {
         MushroomStem stem = new MushroomStem(mushroomer, tecton);
         tecton.add(stem);
         mushroomer.add(stem);
 
-        assertFalse(mushroomer.levelUp(stem));
+        MushroomThread thread = new MushroomThread(mushroomer, tecton);
+        tecton.add(thread);
+        mushroomer.add(thread);
+
+        assertFalse(mushroomer.growMushroomThread(tecton));
     }
 
     @Test
-    void testEndTurn_ClearsSporeThrows() {
+    void testGrowMushroomThread_NeighbourNoThread() {
         MushroomStem stem = new MushroomStem(mushroomer, tecton);
         tecton.add(stem);
         mushroomer.add(stem);
 
-        // Verify initial state
-        stem.throwSpore(new DummyTecton(0));
-        assertEquals(1, stem.getNumThrownSpores());
+        MushroomThread thread = new MushroomThread(mushroomer, tecton);
+        tecton.add(thread);
+        mushroomer.add(thread);
 
-        // Reset and verify
-        mushroomer.endTurn();
-        assertEquals(0, stem.getNumThrownSpores());
+        Tecton tecton2=new Tecton();
+        tecton2.addNeighbour(tecton);
+        tecton.addNeighbour(tecton2);
+
+        assertFalse(mushroomer.growMushroomThread(tecton));
     }
-
-    // --- Enhanced Dummy Classes ---
-
-    static class DummyTecton extends Tecton {
-        private final List<Tecton> neighbours = new ArrayList<>();
-        private final List<MushroomStem> stems = new ArrayList<>();
-        private final List<MushroomThread> threads = new ArrayList<>();
-        private final List<Insect> insects = new ArrayList<>();
-        private int mockDistance = 0;
-
-        public DummyTecton() {
-            super();
-        }
-
-        public DummyTecton(int dist) {
-            super();
-            this.mockDistance = dist;
-        }
-
-        @Override
-        public List<Tecton> getNeighbours() {
-            return neighbours;
-        }
-
-        @Override
-        public int distanceTo(Tecton target) {
-            return mockDistance;
-        }
-
-        @Override
-        public boolean hasStem() {
-            return !stems.isEmpty();
-        }
-
-        @Override
-        public boolean add(MushroomStem stem) {
-            if (hasStem()) return false;
-            return stems.add(stem);
-        }
-
-        @Override
-        public boolean add(MushroomThread thread) {
-            return threads.add(thread);
-        }
-
-        @Override
-        public boolean add(Insect insect) {
-            return insects.add(insect);
-        }
-
-        @Override
-        public List<MushroomStem> getStems() {
-            return stems;
-        }
-
-        @Override
-        public List<MushroomThread> getThreads() {
-            return threads;
-        }
-
-        @Override
-        public List<Insect> getInsects() {
-            return insects;
-        }
-    }
-
-    static class DummySpore extends Spore {
-        public DummySpore(Mushroomer owner, Tecton location) {
-            super(owner, location);
-        }
-
-        @Override
-        public void remove() {
-            Mushroomer owner = (Mushroomer) getOwner();
-            owner.getSpores(getLocation()).remove(this);
-        }
-    }
-    */
+    
 }

@@ -17,11 +17,11 @@ import java.util.Objects;
  */
 public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
-    private static final int MAX_THREADS_PER_TURN = 2;
-
-    private final List<Spore> spores = new ArrayList<>();
     private final List<MushroomStem> stems = new ArrayList<>();
     private final List<MushroomThread> threads = new ArrayList<>();
+    private final List<Spore> spores = new ArrayList<>();
+
+    private static final int MAX_THREADS_PER_TURN = 2;
     private int grownThreadsThisTurn = 0;
 
     public Mushroomer() {
@@ -34,8 +34,13 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * @param location Gombász kezdeti pozícióját meghatározó tekton.
      */
     public Mushroomer(Tecton location) {
-        stems.add(new MushroomStem(this, location));
+        MushroomStem s1=new MushroomStem(this, location);
+        stems.add(s1);
+        location.add(s1);
+
+        MushroomThread t1=new MushroomThread(this, location);
         threads.add(new MushroomThread(this, location));
+        location.add(t1);
     }
 
     /**
@@ -48,8 +53,13 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     public Mushroomer(Tecton location, int id) {
         super(id);
-        stems.add(new MushroomStem(this, location));
+        MushroomStem s1=new MushroomStem(this, location);
+        stems.add(s1);
+        location.add(s1);
+
+        MushroomThread t1=new MushroomThread(this, location);
         threads.add(new MushroomThread(this, location));
+        location.add(t1);
     }
 
     /**
@@ -67,11 +77,149 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         this.grownThreadsThisTurn = mushroomer.grownThreadsThisTurn;
     }
 
+
+    /**
+     * Visszaadja a gombászhoz tartozó gombatestek listáját.
+     *
+     * @return A gombászhoz tartozó gombatestek listája.
+     */
+    @Override
+    public List<MushroomStem> getStems() {
+        return stems;
+    }
+
+    /**
+     * Megvizsgálja, hogy a gombásznak van-e gombateste a megadott tektonon.
+     *
+     * @param tecton A tekton, amelyen gombatestet keresünk.
+     * @return {@code true}, ha van teste a tektonon, különben {@code false}.
+     */
+    public boolean hasStem(Tecton tecton) {
+        return stems.stream().anyMatch(stem -> stem.getLocation().equals(tecton));
+    }
+
+    /**
+     * Visszaadja a gombászhoz tartozó gombafonalak listáját.
+     *
+     * @return A gombászhoz tartozó gombafonalak listája.
+     */
+    @Override
+    public List<MushroomThread> getThreads() {
+        return threads;
+    }
+
+    /**
+     * Megvizsgálja, hogy a gombásznak van-e gombafonala a megadott tektonon.
+     *
+     * @param tecton A tekton, amelyen fonalat keresünk.
+     * @return {@code true}, ha van fonala a tektonon, különben {@code false}.
+     */
+    public boolean hasThread(Tecton tecton) {
+        return threads.stream().anyMatch(th -> th.getLocation().equals(tecton));
+    }
+
+    /**
+     * Visszaadja a gombász összes spóráját.
+     *
+     * @return A gombászhoz tartozó spórák listája.
+     */
+    @Override
+    public List<Spore> getSpores() {
+        return spores;
+    }
+
+    /**
+     * Visszaadja azokat a spórákat, amelyek a megadott tektonon találhatók, és a gombásztól származnak.
+     *
+     * @param tecton A tekton, amelyen a keresett spórák helyezkednek el.
+     * @return A tektonon található spórák listája.
+     */
+    public List<Spore> getSpores(Tecton tecton) {
+        return spores.stream().filter(spore -> spore.getLocation().equals(tecton)).toList();
+    }
+
+    /**
+     * Visszaadja, hogy egy körben legfeljebb hány gombafonál növeszthető a gombásszal.
+     *
+     * @return A maximálisan növeszthető gombafonalak száma körönként.
+     */
+    public int getMaxThreadsPerTurn() {
+        return MAX_THREADS_PER_TURN;
+    }
+
+
+    /**
+     * Hozzáad egy spórát a gombászhoz.
+     *
+     * @param sp A hozzáadandó spóra.
+     * @return {@code true}, ha a hozzáadás sikeres, egyébként {@code false}.
+     */
+    @Override
+    public boolean add(Spore sp) {
+        return spores.add(sp);
+    }
+
+    /**
+     * Elvesz egy spórát a gombásztól.
+     *
+     * @param sp Az eltávolítandó spóra.
+     * @return {@code true}, ha az eltávolítás sikeres, egyébként {@code false}.
+     */
+    @Override
+    public boolean remove(Spore sp) {
+        return spores.remove(sp);
+    }
+
+    /**
+     * Hozzáad egy gombatestet a gombászhoz.
+     *
+     * @param ms A hozzáadandó gombatest.
+     * @return {@code true}, ha a hozzáadás sikeres, egyébként {@code false}.
+     */
+    @Override
+    public boolean add(MushroomStem ms) {
+        return stems.add(ms);
+    }
+
+    /**
+     * Elvesz egy gombatestet a gombásztól.
+     *
+     * @param ms Az eltávolítandó gombatest.
+     * @return {@code true}, ha az eltávolítás sikeres, egyébként {@code false}.
+     */
+    @Override
+    public boolean remove(MushroomStem ms) {
+        return stems.remove(ms);
+    }
+
+    /**
+     * Hozzáad egy gombafonalat a gombászhoz.
+     *
+     * @param th A hozzáadandó gombafonal.
+     * @return {@code true}, ha a hozzáadás sikeres, egyébként {@code false}.
+     */
+    @Override
+    public boolean add(MushroomThread th) {
+        return threads.add(th);
+    }
+
+    /**
+     * Elvesz egy gombafonalat a gombásztól.
+     *
+     * @param th Az eltávolítandó gombafonal.
+     * @return {@code true}, ha az eltávolítás sikeres, egyébként {@code false}.
+     */
+    @Override
+    public boolean remove(MushroomThread th) {
+        return threads.remove(th);
+    }
+
+
     /**
      * Gombatestet helyez el egy adott tektonon.
      *
      * @param tecton A tekton, ahová a gombatestet elhelyezzük.
-     * @return Igaz, ha a gombatest elhelyezése sikeres, egyébként hamis.
+     * @return {@code true}, ha a gombatest elhelyezése sikeres, egyébként {@code false}.
      */
     public Boolean plantMushroomStem(Tecton tecton) {
         MushroomStem ms = new MushroomStem(this, tecton);
@@ -109,7 +257,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * Gombafonalat növeszt egy adott tektonon.
      *
      * @param tecton A tekton, ahová a gombafonalat növesztjük.
-     * @return Igaz, ha a gombafonal növesztése sikeres, egyébként hamis.
+     * @return {@code true}, ha a gombafonal növesztése sikeres, egyébként {@code false}.
      */
     public Boolean growMushroomThread(Tecton tecton) {
         if (grownThreadsThisTurn >= MAX_THREADS_PER_TURN) {
@@ -158,25 +306,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         return ms.levelUp();
     }
 
-    /**
-     * Visszaadja azokat a spórákat, amelyek a megadott tektonon találhatók, és a gombásztól származnak.
-     *
-     * @param tecton A tekton, amelyen a keresett spórák helyezkednek el.
-     * @return A tektonon található spórák listája.
-     */
-    public List<Spore> getSpores(Tecton tecton) {
-        return spores.stream().filter(spore -> spore.getLocation().equals(tecton)).toList();
-    }
-
-    /**
-     * Megvizsgálja, hogy a gombásznak van-e gombafonala a megadott tektonon.
-     *
-     * @param tecton A tekton, amelyen fonalat keresünk.
-     * @return {@code true}, ha van fonala a tektonon, különben {@code false}.
-     */
-    public boolean hasThread(Tecton tecton) {
-        return threads.stream().filter(th -> th.getLocation().equals(tecton)).toArray().length >= 1;
-    }
 
     /**
      * A kör végén végrehajtandó műveletek.
@@ -190,102 +319,6 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         spores.forEach(Entity::endTurn);
 
         grownThreadsThisTurn = 0;
-    }
-
-    /**
-     * Hozzáad egy spórát a gombászhoz.
-     *
-     * @param sp A hozzáadandó spóra.
-     * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
-     */
-    @Override
-    public boolean add(Spore sp) {
-        return spores.add(sp);
-    }
-
-    /**
-     * Elvesz egy spórát a gombásztól.
-     *
-     * @param sp Az eltávolítandó spóra.
-     * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
-     */
-    @Override
-    public boolean remove(Spore sp) {
-        return spores.remove(sp);
-    }
-
-    /**
-     * Visszaadja a gombász összes spóráját.
-     *
-     * @return A gombászhoz tartozó spórák listája.
-     */
-    @Override
-    public List<Spore> getSpores() {
-        return spores;
-    }
-
-    /**
-     * Hozzáad egy gombatestet a gombászhoz.
-     *
-     * @param ms A hozzáadandó gombatest.
-     * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
-     */
-    @Override
-    public boolean add(MushroomStem ms) {
-        return stems.add(ms);
-    }
-
-    /**
-     * Elvesz egy gombatestet a gombásztól.
-     *
-     * @param ms Az eltávolítandó gombatest.
-     * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
-     */
-    @Override
-    public boolean remove(MushroomStem ms) {
-        return stems.remove(ms);
-    }
-
-    /**
-     * Visszaadja a gombászhoz tartozó gombatestek listáját.
-     *
-     * @return A gombászhoz tartozó gombatestek listája.
-     */
-    @Override
-    public List<MushroomStem> getStems() {
-        return stems;
-    }
-
-    /**
-     * Hozzáad egy gombafonalat a gombászhoz.
-     *
-     * @param th A hozzáadandó gombafonal.
-     * @return Igaz, ha a hozzáadás sikeres, egyébként hamis.
-     */
-    @Override
-    public boolean add(MushroomThread th) {
-        return threads.add(th);
-    }
-
-    /**
-     * Elvesz egy gombafonalat a gombásztól.
-     *
-     * @param th Az eltávolítandó gombafonal.
-     * @return Igaz, ha az eltávolítás sikeres, egyébként hamis.
-     */
-    @Override
-    public boolean remove(MushroomThread th) {
-        return threads.remove(th);
-    }
-
-    /**
-     * Visszaadja a gombászhoz tartozó gombafonalak listáját.
-     *
-     * @return A gombászhoz tartozó gombafonalak listája.
-     */
-    @Override
-    public List<MushroomThread> getThreads() {
-        return threads;
     }
 
     /**
@@ -316,5 +349,5 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     public int hashCode() {
         return Objects.hash(super.hashCode(), spores, stems, threads, grownThreadsThisTurn);
     }
-    
+
 }
