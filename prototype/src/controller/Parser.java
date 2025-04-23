@@ -1,11 +1,14 @@
 package controller;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Scanner;
 
 import model.insect.Insect;
 import model.tecton.Tecton;
@@ -99,15 +102,16 @@ public class Parser {
             return;
         }
         try {
-            FileInputStream file = new FileInputStream(args[1]);
-            ObjectInputStream in = new ObjectInputStream(file);
-
-            //foreach-el végig kéne menni a parancsokon amik a fájlba vannak és átadni egy új, lokális parser példánynak 
-
-            in.close();
-            file.close();
-        } catch (Exception e) {
-            System.out.println("error: " + e);
+            File myObj = new File(args[1]);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                parseCommand(data);
+            }
+        myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
     }
 
