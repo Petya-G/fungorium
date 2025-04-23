@@ -229,7 +229,7 @@ public class Insect extends Entity {
         if (clawParalyzed || paralyzed)
             return false;
 
-        th.setCutoff(true);
+        th.setCutOff(true);
         return true;
     }
     

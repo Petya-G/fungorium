@@ -142,5 +142,5 @@ class MushroomStemTest {
         assertFalse(mushroomer.getStems().contains(stem));
         assertFalse(tecton.getStems().contains(stem));
     }
-    
+
 }

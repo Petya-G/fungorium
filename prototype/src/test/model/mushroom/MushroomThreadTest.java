@@ -2,6 +2,7 @@ package test.model.mushroom;
 
 import model.insect.Insect;
 import model.insect.Insecter;
+import model.mushroom.MushroomStem;
 import model.mushroom.MushroomThread;
 import model.mushroom.Mushroomer;
 import model.tecton.Tecton;
@@ -14,111 +15,123 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MushroomThreadTest {
 
-    private DummyMushroomer mushroomer;
-    private DummyTecton tecton;
+    private Mushroomer mushroomer;
+    private Tecton tecton;
     private MushroomThread thread;
 
     @BeforeEach
     void setup() {
-        mushroomer = new DummyMushroomer();
-        tecton = new DummyTecton();
+        mushroomer = new Mushroomer();
+        tecton = new Tecton();
         thread = new MushroomThread(mushroomer, tecton);
     }
 
     @Test
-    void testHasEatenAndSetter() {
+    void testHasEaten() {
         assertFalse(thread.hasEaten());
         thread.setEaten(true);
         assertTrue(thread.hasEaten());
     }
 
     @Test
-    void testSetCutOffAndEndTurn_RemovesAfter2Turns() {
-        DummyTecton dummyTecton = new DummyTecton();
-        MushroomThread cutThread = new MushroomThread(mushroomer, dummyTecton);
-
-        cutThread.setCutoff(true);
-        cutThread.endTurn();
-        assertFalse(dummyTecton.removeCalled);
-
-        cutThread.endTurn();
-        assertTrue(dummyTecton.removeCalled);
-    }
-
-    @Test
     void testEat_ParalyzedInsect() {
-        Insect insect = new DummyInsect(true);
+        Insecter insecter = new Insecter();
+        Insect insect = new Insect(insecter, tecton);
+        insect.setParalyzed(true);
         assertTrue(thread.eat(insect));
         assertTrue(thread.hasEaten());
     }
 
     @Test
-    void testEat_NotParalyzedInsect() {
-        Insect insect = new DummyInsect(false);
+    void testEat_Cutoff() {
+        thread.setCutOff(true);
+        Insecter insecter = new Insecter();
+        Insect insect = new Insect(insecter, tecton);
+        insect.setParalyzed(true);
         assertFalse(thread.eat(insect));
         assertFalse(thread.hasEaten());
     }
 
     @Test
-    void testIsConnected_WhenStemPresent() {
-        tecton.setHasStem(true);
-        assertTrue(thread.isConnected());
+    void testEat_NotParalyzed() {
+        Insecter insecter = new Insecter();
+        Insect insect = new Insect(insecter, tecton);
+        insect.setParalyzed(false);
+        assertFalse(thread.eat(insect));
+        assertFalse(thread.hasEaten());
     }
 
     @Test
-    void testIsConnected_WhenNoStemAndNoNeighbours() {
-        tecton.setHasStem(false);
-        tecton.getNeighbours().clear();
+    void testIsConnected_Failure() {
         assertFalse(thread.isConnected());
     }
 
     @Test
-    void testHasValidThreadReturnsTrue() {
-        MushroomThread mt = new MushroomThread(mushroomer, tecton);
-        tecton.add(mt);
-        assertTrue(mt.hasValidThread(tecton));
+    void testIsConnected_Failure2() {
+        Tecton tecton2=new Tecton();
+        Tecton tecton3=new Tecton();
+        tecton2.addNeighbour(tecton);
+        tecton.addNeighbour(tecton2);
+
+        tecton2.addNeighbour(tecton3);
+        tecton3.addNeighbour(tecton2);
+
+        MushroomStem stem = new MushroomStem(mushroomer, tecton3);
+        tecton3.add(stem);
+        mushroomer.add(stem);
+        assertFalse(thread.isConnected());
     }
 
-    static class DummyTecton extends Tecton {
-        public boolean removeCalled = false;
-        private boolean hasStem = false;
-
-        public void setHasStem(boolean hasStem) {
-            this.hasStem = hasStem;
-        }
-
-        @Override
-        public boolean hasStem() {
-            return hasStem;
-        }
-
-        @Override
-        public boolean remove(MushroomThread th) {
-            removeCalled = true;
-            return true;
-        }
+    @Test
+    void testIsConnected_Success1() {
+        MushroomStem stem = new MushroomStem(mushroomer, tecton);
+        tecton.add(stem);
+        mushroomer.add(stem);
+        assertTrue(thread.isConnected());
     }
 
-    static class DummyMushroomer extends Mushroomer {}
+    @Test
+    void testIsConnected_Success2() {
+        Tecton tecton2=new Tecton();
+        Tecton tecton3=new Tecton();
+        tecton2.addNeighbour(tecton);
+        tecton.addNeighbour(tecton2);
 
-    static class DummyInsecter extends Insecter {}
+        tecton2.addNeighbour(tecton3);
+        tecton3.addNeighbour(tecton2);
 
-    static class DummyInsect extends Insect {
-        private final boolean paralyzed;
+        MushroomStem stem = new MushroomStem(mushroomer, tecton3);
+        tecton3.add(stem);
+        mushroomer.add(stem);
 
-        public DummyInsect(boolean paralyzed) {
-            super(new DummyInsecter(), new Tecton());
-            this.paralyzed = paralyzed;
+        MushroomThread thread2 = new MushroomThread(mushroomer, tecton2);
+        tecton2.add(thread2);
+        mushroomer.add(thread2);
+        MushroomThread thread3 = new MushroomThread(mushroomer, tecton3);
+        tecton3.add(thread3);
+        mushroomer.add(thread3);
+
+        assertTrue(thread.isConnected());
+    }
+
+    @Test
+    void testIsConnected_OtherStem() {
+        Mushroomer mushroomer2 = new Mushroomer();
+        MushroomStem stem = new MushroomStem(mushroomer2, tecton);
+        tecton.add(stem);
+        mushroomer2.add(stem);
+        assertFalse(thread.isConnected());
+    }
+
+    @Test
+    void testRemove(){
+
+        thread.setCutOff(true);
+        for(int i=0; i<thread.getMaxCutOffDuration(); i++){
+            thread.endTurn();
         }
 
-        @Override
-        public boolean isParalyzed() {
-            return paralyzed;
-        }
-
-        @Override
-        public void remove() {
-
-        }
+        assertFalse(mushroomer.getThreads().contains(thread));
+        assertFalse(tecton.getThreads().contains(thread));
     }
 }
