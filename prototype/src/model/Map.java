@@ -30,6 +30,17 @@ public class Map implements IRound, Serializable {
         b.addNeighbour(a);
     }
 
+    public void printSelf()
+    {
+        for (Tecton tecton : tectons) {
+            String help = tecton.getName() + tecton.getId()+": ";
+            for (Tecton neighbour : tecton.getNeighbours()) {
+                help += neighbour.getName() + neighbour.getId() + ", ";
+            }
+            System.out.println(help.substring(0, help.lastIndexOf(',')));
+        }
+    }
+
     /**
      * A kör végén minden tekton végrehajtja saját EndRound műveletét és véletlenszerűen új tektonok jöhetnek létre.
      */

@@ -82,14 +82,22 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     /**
      * Elindítja a játékot, a hasStarted változó beállításával
      */
-    public void Start() {
-        if (hasStarted) return;
+    public boolean startGame() {
+        if (hasStarted) return false;
         hasStarted = true;
+        turn = 0;
+        //PÁLYA GENERÁLÁS, HA MÉG NINCS MEGFELELŐ PÁLYA
+        return true;
     }
 
-    public void addPlayers() {
-        players.add(new Mushroomer());
-        players.add(new Insecter());
+    public boolean addPlayers() {
+        if (players.size() < 7)
+        {
+            players.add(new Mushroomer());
+            players.add(new Insecter());
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -192,6 +200,29 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     public boolean levelUp(MushroomStem mushroomStem) {
         if (!hasCurrentTurn(mushroomStem)) return false;
         return ((Mushroomer) mushroomStem.getOwner()).levelUp(mushroomStem);
+    }
+
+    public void printMap()
+    {
+        map.printSelf();
+    }
+
+    public void listPlayers()
+    {
+        for (Player player : players) {
+            System.out.println(player.getName() + player.getId() + "\n");
+        }
+    }
+
+    
+    public void listShroomStem()
+    {
+        for (Player player : players) {
+            // for (MushroomStem stem : player.getName().) {
+                
+            // }
+            System.out.println(player.getName() + player.getId() + "\n");
+        }
     }
 
     /**

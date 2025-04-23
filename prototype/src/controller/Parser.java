@@ -10,6 +10,27 @@ import java.util.Random;
 public class Parser {
 
     static final Random r = new Random();
+    static final String[] helpGuide =  {"-----------------------------------------SYSTEM COMMANDS-----------------------------------------",
+                                        "/start: Starts the game, after this point, no more players can be added",
+                                        "/load PATH: Loads a saved game file, from the given path",
+                                        "/save PATH: Saves the current state of the game to a file, at the given path",
+                                        "/exec PATH: Executes the commands in the given file",
+                                        "/rand: Enables or disables the randomness of the random elements (-disable/-enable)",
+                                        "/addplayers: Adds a Mushroomer and an Insecter player to the game",
+                                        "/manualtrigger: Forces the execution of the given game command",
+                                        "/list: Lists all objects of the given type (-player, -mushroomstem, -mushroomthread, -insect, -spore)",
+                                        "/map: Prints the Map (All tectons with their neighbours)",
+                                        "/help: Prints this guide",
+                                        "------------------------------------------GAME COMMANDS------------------------------------------",
+                                        "!move INSECT TECTON: Moves the insect to another tecton, if it's legal",
+                                        "!eat INSECT: The given insect eats a random (or not) spore on its tecton, if it can",
+                                        "!cut INSECT: The given insect cuts a random (or not) mushroom thread on its tecton, if it can",
+                                        "!grow TECTON: Grows a mushroom thread on the given tecton, if it's legal",
+                                        "!plant TECTON: Plants a mushroom stem on the given tecton, if it's legal",
+                                        "!throw MUSHROOMSTEM TECTON: The given mushroom stem throws a spore to the given tecton, if it can",
+                                        "!endturn: Ends the current players turn, if all of its obligatory actions have been taken",
+                                        "/exit: exits the game (DOES NOT SAVE)"
+                                    };
 
     Game game;
 
@@ -22,7 +43,11 @@ public class Parser {
     }
 
     public void CMD_start(String[] args) {
-
+        if (args.length != 1) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        if(!game.startGame()) System.out.println("THhe game couldn't have been started (maybe it already has...)");
     }
 
     public void CMD_load(String[] args) {
@@ -63,7 +88,21 @@ public class Parser {
     }
 
     public void CMD_exec(String[] args) {
+        if (args.length != 2) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        try {
+            FileInputStream file = new FileInputStream(args[1]);
+            ObjectInputStream in = new ObjectInputStream(file);
 
+            //foreach-el végig kéne menni a parancsokon amik a fájlba vannak és átadni egy új, lokális parser példánynak 
+
+            in.close();
+            file.close();
+        } catch (Exception e) {
+            System.out.println("error: " + e);
+        }
     }
 
     public void CMD_rand(String[] args) {
@@ -80,7 +119,7 @@ public class Parser {
             System.out.println("invalid argument count!");
             return;
         }
-        game.addPlayers();
+        if(!game.addPlayers()) System.out.println("Players couldn't have been added");
     }
 
     public void CMD_manualtrigger(String[] args) {
@@ -88,11 +127,18 @@ public class Parser {
     }
 
     public void CMD_list(String[] args) {
-
+        if (args.length != 1) {
+            System.out.println("invalid argument count!");
+            return;
+        }
     }
 
     public void CMD_map(String[] args) {
-
+        if (args.length != 1) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        game.printMap();
     }
 
     public void CMD_help(String[] args) {
@@ -100,8 +146,9 @@ public class Parser {
             System.out.println("invalid argument count!");
             return;
         }
-        System.out.println("/start: Starts the game, after this point, no more players can be added");
-        System.out.println("/load: Loads a saved game file, from the given path");
+        for (String item : helpGuide) System.out.println(item);
+    
+
     }
 
     public void CMD_move(String[] args) {
