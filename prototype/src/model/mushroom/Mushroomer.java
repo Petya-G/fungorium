@@ -56,12 +56,12 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * @param tecton A tekton, ahová a gombatestet elhelyezzük.
      * @return Igaz, ha a gombatest elhelyezése sikeres, egyébként hamis.
      */
-    public Boolean plantMushroomstem(Tecton tecton) {
+    public Boolean plantMushroomStem(Tecton tecton) {
         MushroomStem ms = new MushroomStem(this, tecton);
 
         if (!hasThread(tecton)) return false;
 
-        MushroomThread thread = threads.stream().filter(th -> th.hasEaten() && th.getLocation() == tecton).findFirst().get();
+        MushroomThread thread = threads.stream().filter(th -> th.hasEaten() && th.getLocation() == tecton).findFirst().orElse(null);;
 
         if (thread != null && tecton.add(ms)) {
             thread.setEaten(false);
@@ -89,7 +89,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * @param tecton A tekton, ahová a gombafonalat növesztjük.
      * @return Igaz, ha a gombafonal növesztése sikeres, egyébként hamis.
      */
-    public Boolean growMushroomthread(Tecton tecton) {
+    public Boolean growMushroomThread(Tecton tecton) {
         if (grownThreadsThisTurn >= MAX_THREADS_PER_TURN) {
             return false;
         }
