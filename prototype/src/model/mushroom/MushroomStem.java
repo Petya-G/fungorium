@@ -9,13 +9,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class MushroomStem extends Entity {
-    private final int maxSporeThrows = 5;
+
     private boolean thrown = false;
     private int numThrownSpores = 0;
     private int level = 0;
-    private int cost = 3;
 
+    private static final int  LEVEL_UP_COST = 3;
     private static final int  MAX_LEVEL = 2;
+    private static final int MAX_SPORE_THROWS = 5;
 
     /**
      * Konstruktor
@@ -28,13 +29,58 @@ public class MushroomStem extends Entity {
     }
 
     /**
+     * Megadja, hogy a gombatest az adott körben dobott-e már spórát.
+     *
+     * @return {@code true}, ha már dobott spórát ebben a körben, különben {@code false}.
+     */
+    public boolean hasThrown() {
+        return thrown;
+    }
+
+    /**
+     * Eddigi spóradobások száma
+     * @return  Eddigi spóradobások száma
+     */
+    public int getNumThrownSpores() {
+        return numThrownSpores;
+    }
+
+    /**
+     * Visszaadja a gombatest aktuális szintjét.
+     *
+     * @return A gombatest szintje (0-tól indul, legfeljebb 2).
+     */
+    public int getLevel() {
+        return level;
+    }
+
+
+    /**
      * Gombatest árának lekérése
      *
      * @return A gombatest ára
      */
-    public int getCost() {
-        return cost;
+    public int getLevelUpCost() {
+        return LEVEL_UP_COST;
     }
+
+    /**
+     * Visszaadja a gombatest elérhető maximális szintjét.
+     *
+     * @return A maximálisan elérhető szint.
+     */
+    public int getMaxLevel() {
+        return MAX_LEVEL;
+    }
+
+    /**
+     * Maximum spóradobások száma
+     *@return  Maximum spóradobások száma
+     */
+    public int getMaxSporeThrows() {
+        return MAX_SPORE_THROWS;
+    }
+
 
     /**
      * Spóra dobása, ahol a spóratípus random
@@ -65,7 +111,7 @@ public class MushroomStem extends Entity {
         thrown = true;
         numThrownSpores++;
 
-        if (numThrownSpores == maxSporeThrows)
+        if (numThrownSpores == MAX_SPORE_THROWS)
             remove();
 
         return true;
@@ -77,39 +123,30 @@ public class MushroomStem extends Entity {
      * @return true, ha szintet lép, egyébként false
      */
     public boolean levelUp() {
-        if(level>MAX_LEVEL) return false;
+        if(level>=MAX_LEVEL) return false;
 
         List<Spore> spores = ((Mushroomer) getOwner()).getSpores(getLocation());
-        if (!spores.isEmpty()) {
+
+        if (spores.size() >= LEVEL_UP_COST) {
             level++;
-            spores.get(0).remove();
+            for (int i = 0; i < LEVEL_UP_COST; i++) {
+                spores.get(i).remove();
+            }
             return true;
         }
+
         return false;
     }
 
-    /**
-     * Maximum spóradobások száma
-     *@return  Maximum spóradobások száma
-     */
-    public int getMaxSporeThrows() {
-        return maxSporeThrows;
-    }
-
-    /**
-     * Eddigi spóradobások száma
-     * @return  Eddigi spóradobások száma
-     */
-    public int getNumThrownSpores() {
-        return numThrownSpores;
-    }
 
     /**
      * Stem törlése a játékból
      */
     @Override
     public void remove() {
-        getLocation().remove(this);
+        if (getLocation() != null) {
+            getLocation().remove(this);
+        }
         ((Mushroomer) getOwner()).remove(this);
     }
 
@@ -124,14 +161,14 @@ public class MushroomStem extends Entity {
     /**
      *Összehasonlít 2 objektumot
      * @param o    Objektum, amivel összehasonlítjuk
-     *@return  Igaz, ha megegyezik a 2 objektum, egyébként hamis
+     *@return  {@code true}, ha megegyezik a 2 objektum, egyébként {@code false}
      */
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         MushroomStem that = (MushroomStem) o;
-        return thrown == that.thrown && maxSporeThrows == that.maxSporeThrows && numThrownSpores == that.numThrownSpores && level == that.level && cost == that.cost;
+        return thrown == that.thrown && numThrownSpores == that.numThrownSpores && level == that.level;
     }
 
     /**
@@ -140,6 +177,6 @@ public class MushroomStem extends Entity {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), thrown, maxSporeThrows, numThrownSpores, level, cost);
+        return Objects.hash(super.hashCode(), thrown, numThrownSpores, level);
     }
 }

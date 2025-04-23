@@ -238,8 +238,8 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         }
 
         List<Spore> sp = getSpores(tecton);
-        if (sp.size() >= ms.getCost() && tecton.add(ms)) {
-            for (int i = 0; i < ms.getCost(); i++) {
+        if (sp.size() >= ms.getLevelUpCost() && tecton.add(ms)) {
+            for (int i = 0; i < ms.getLevelUpCost(); i++) {
                 Spore s = sp.get(i);
                 s.remove();
                 this.remove(s);

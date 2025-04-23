@@ -126,7 +126,7 @@ public class MushroomerTest {
 
         MushroomStem stem = new MushroomStem(mushroomer, tecton);
 
-        for(int i=0; i<stem.getCost(); i++){
+        for(int i=0; i<stem.getLevelUpCost(); i++){
             Spore s1=new ParalyzingSpore(mushroomer, tecton);
             tecton.add(s1);
             mushroomer.add(s1);
@@ -142,7 +142,7 @@ public class MushroomerTest {
         mushroomer.add(thread);
 
         MushroomStem stem = new MushroomStem(mushroomer, tecton);
-        for(int i=0; i<stem.getCost()-1; i++){
+        for(int i=0; i<stem.getLevelUpCost()-1; i++){
             Spore s1=new ParalyzingSpore(mushroomer, tecton);
             tecton.add(s1);
             mushroomer.add(s1);
@@ -163,7 +163,7 @@ public class MushroomerTest {
         mushroomer.add(stem2);
 
 
-        for(int i=0; i<stem2.getCost(); i++){
+        for(int i=0; i<stem2.getLevelUpCost(); i++){
             Spore s1=new ParalyzingSpore(mushroomer, tecton);
             tecton.add(s1);
             mushroomer.add(s1);
@@ -175,7 +175,7 @@ public class MushroomerTest {
     @Test
     void testPlantMushroomStem_NoThread() {
         MushroomStem stem = new MushroomStem(mushroomer, tecton);
-        for(int i=0; i<stem.getCost(); i++){
+        for(int i=0; i<stem.getLevelUpCost(); i++){
             Spore s1=new ParalyzingSpore(mushroomer, tecton);
             tecton.add(s1);
             mushroomer.add(s1);
@@ -266,5 +266,5 @@ public class MushroomerTest {
 
         assertFalse(mushroomer.growMushroomThread(tecton));
     }
-    
+
 }
