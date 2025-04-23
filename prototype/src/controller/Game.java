@@ -164,7 +164,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      */
     public boolean plantMushroomStem(Mushroomer mushroomer, Tecton location) {
         if (!hasCurrentTurn(mushroomer)) return false;
-        return mushroomer.plantMushroomstem(location);
+        return mushroomer.plantMushroomStem(location);
     }
 
     /**
@@ -176,7 +176,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      */
     public boolean growThread(Mushroomer mushroomer, Tecton location) {
         if (!hasCurrentTurn(mushroomer)) return false;
-        return mushroomer.growMushroomthread(location);
+        return mushroomer.growMushroomThread(location);
     }
 
     /**
