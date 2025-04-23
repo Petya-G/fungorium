@@ -70,7 +70,7 @@ public class InsectTest {
     public void eatTest(){
         spore = new SpeedingSpore(mushroomer, tecton);
         insect.eat(spore);
-        assertEquals(insect.getSpeedModifier(),2 );
+        assertEquals(2, insect.getSpeedModifier());
     }
 
     @Test
@@ -78,7 +78,7 @@ public class InsectTest {
         splitSpore = new SplitterSpore(mushroomer, tecton);
         insect.eat(splitSpore);
         int insectCount = insecter.getInsects().size();
-        assertEquals(insectCount, 2);
+        assertEquals(2, insectCount);
         
     }
 
