@@ -44,6 +44,14 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     public Tecton() {
     }
 
+    public Tecton(Tecton tecton) {
+        this.stem = tecton.stem;
+        this.spores.addAll(tecton.spores);
+        this.threads.addAll(tecton.threads);
+        this.insects.addAll(tecton.insects);
+        this.neighbours.addAll(tecton.neighbours);
+    }
+
     /**
      * Kiszámolja a legrövidebb távolságot (lépésszámot) a jelenlegi tekton és a megadott tekton között.
      * Nem a fonalakon keresztül számoljuk, csak szomszédságra alapul.

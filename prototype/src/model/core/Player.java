@@ -26,6 +26,11 @@ public abstract class Player extends Identifiable implements ITurn {
         super(id);
     }
 
+    protected Player(Player player) {
+        super(player);
+        this.score = player.score;
+    }
+
     /**
      * Visszaadja a játékos aktuális pontszámát.
      * @return Jelenlegi pontszám

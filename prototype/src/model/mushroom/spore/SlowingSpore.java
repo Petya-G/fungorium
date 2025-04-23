@@ -10,4 +10,13 @@ public class SlowingSpore extends Spore {
         super(owner, location);
         effect = new SlowEffect();
     }
+
+    public SlowingSpore(Mushroomer owner, Tecton location, int id) {
+        super(owner, location, id);
+        effect = new SlowEffect();
+    }
+
+    public SlowingSpore(SlowingSpore spore) {
+        super(spore);
+    }
 }

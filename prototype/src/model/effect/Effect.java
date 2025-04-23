@@ -11,12 +11,17 @@ import java.util.Objects;
 public abstract class Effect extends Identifiable{
     int duration = 3;
 
-    public Effect() {
+    protected Effect() {
         super();
     }
 
-    public Effect(int id) {
+    protected Effect(int id) {
         super(id);
+    }
+
+    protected Effect(Effect effect) {
+        super(effect);
+        this.duration = effect.duration;
     }
 
     /**

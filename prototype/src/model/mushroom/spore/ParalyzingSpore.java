@@ -10,4 +10,13 @@ public class ParalyzingSpore extends Spore {
         super(owner, location);
         effect = new ParalyzeEffect();
     }
+
+    public ParalyzingSpore(Player owner, Tecton location, int id) {
+        super(owner, location, id);
+        effect = new ParalyzeEffect();
+    }
+
+    public ParalyzingSpore(ParalyzingSpore spore) {
+        super(spore);
+    }
 }

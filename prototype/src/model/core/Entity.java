@@ -41,6 +41,12 @@ public abstract class Entity extends Identifiable implements ITurn {
         this.location = location;
     }
 
+    protected Entity(Entity entity) {
+        super(entity);
+        this.owner = entity.getOwner();
+        this.location = entity.getLocation();
+    }
+
     /**
      * Az entitás eltávolítását végző absztrakt metódus.
      * Minden konkrét entitás típusnak implementálnia kell.

@@ -1,12 +1,12 @@
 package model.mushroom;
 
-import java.util.List;
-import java.util.Objects;
-
 import controller.Game;
 import model.core.Entity;
 import model.mushroom.spore.*;
 import model.tecton.Tecton;
+
+import java.util.List;
+import java.util.Objects;
 
 public class MushroomStem extends Entity {
     private final int maxSporeThrows = 5;
@@ -15,7 +15,6 @@ public class MushroomStem extends Entity {
     private int level = 0;
     private int cost = 3;
 
-    //TODO cost az mire kell konkrétan?
     private static final int  MAX_LEVEL = 2;
 
     /**

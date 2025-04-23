@@ -19,7 +19,7 @@ public abstract class Identifiable {
     /**
      * Létrehoz egy példányt automatikusan generált azonosítóval.
      */
-    public Identifiable() {
+    protected Identifiable() {
         this.id = sId++;
     }
 
@@ -28,8 +28,12 @@ public abstract class Identifiable {
      *
      * @param id Az objektum egyedi azonosítója
      */
-    public Identifiable(int id) {
+    protected Identifiable(int id) {
         this.id = id;
+    }
+
+    protected Identifiable(Identifiable identifiable) {
+        this.id = identifiable.id;
     }
 
     /**

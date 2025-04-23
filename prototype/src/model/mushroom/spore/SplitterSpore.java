@@ -10,4 +10,13 @@ public class SplitterSpore extends Spore {
         super(owner, location);
         effect = new SplitEffect();
     }
+
+    public SplitterSpore(Mushroomer owner, Tecton location, int id) {
+        super(owner, location, id);
+        effect = new SplitEffect();
+    }
+
+    public SplitterSpore(SplitterSpore spore) {
+        super(spore);
+    }
 }

@@ -31,6 +31,15 @@ public class Insect extends Entity {
         super(owner, location, id);
     }
 
+    public Insect(Insect insect) {
+        super(insect);
+        this.effects = new ArrayList<>(insect.effects);
+        this.paralyzed = insect.paralyzed;
+        this.clawParalyzed = insect.clawParalyzed;
+        this.baseSpeed = insect.baseSpeed;
+        this.speedModifier = insect.speedModifier;
+    }
+
     /**
      * Megállapítja, hogy a rovar bénult állapotban van-e.
      *

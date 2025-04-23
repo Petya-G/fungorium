@@ -29,6 +29,11 @@ public class Insecter extends Player implements IInsect {
         createInsect(location);
     }
 
+    public Insecter(Insecter insecter) {
+        super(insecter);
+        insects.addAll(insecter.insects);
+    }
+
     public boolean eat(Insect insect, Spore sp) {
         return insect.eat(sp);
     }

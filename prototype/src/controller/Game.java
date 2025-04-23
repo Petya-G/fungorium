@@ -19,7 +19,6 @@ import java.util.*;
  * Irányítja a játék logikáját, valamint nyilvántartja az aktuális játékállapotot.
  */
 public class Game extends Identifiable implements ITurn, IRound, Serializable {
-
     public static final Random random = new Random();
     /**
      * Egy körben lejátszható lépések maximális száma.
@@ -28,7 +27,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     /**
      * A játék pályája
      */
-    private Map map = new Map();
+    private final Map map = new Map();
     /**
      * Azt jelzi, hogy a játék véget ért-e.
      */
@@ -36,7 +35,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     /**
      * A játékban résztvevő játékosok listája.
      */
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
     /**
      * Az aktuális kör sorszáma.
      */
@@ -46,6 +45,18 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * Nyilvántartja, elkezdődött-e már a játék
      */
     private boolean hasStarted = false;
+
+    public Game() {
+    }
+
+    public Game(Game game) {
+        super(game);
+        this.map.tectons.addAll(game.map.tectons);
+        this.players.addAll(game.players);
+        this.ended = game.ended;
+        this.turn = game.turn;
+        this.hasStarted = game.hasStarted;
+    }
 
     /**
      * Ellenőrzi, hogy az adott entitás gazdája az aktuális játékos-e.
@@ -71,23 +82,14 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     /**
      * Elindítja a játékot, a hasStarted változó beállításával
      */
-    public void Start()
-    {
-        if(hasStarted) return;
+    public void Start() {
+        if (hasStarted) return;
         hasStarted = true;
     }
 
-    public boolean addPlayers()
-    {
-        try {
-            players.add(new Mushroomer());
-            players.add(new Insecter());
-
-            return true;
-        } catch (Exception e) {
-            System.out.println("error: " + e.toString());
-            return false;
-        }
+    public void addPlayers() {
+        players.add(new Mushroomer());
+        players.add(new Insecter());
     }
 
     /**
@@ -116,8 +118,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true, ha a mozgás sikerült, különben false.
      */
     public boolean move(Insect insect, Tecton location) {
-        if (!hasCurrentTurn(insect))
-            return false;
+        if (!hasCurrentTurn(insect)) return false;
         return ((Insecter) insect.getOwner()).move(insect, location);
     }
 
@@ -125,25 +126,23 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * Egy rovar egy spórát próbál enni.
      *
      * @param insect A bogár.
-     * @param spore A spóra.
+     * @param spore  A spóra.
      * @return true, ha a művelet sikeres volt.
      */
     public boolean eat(Insect insect, Spore spore) {
-        if (!hasCurrentTurn(insect))
-            return false;
+        if (!hasCurrentTurn(insect)) return false;
         return ((Insecter) insect.getOwner()).eat(insect, spore);
     }
 
     /**
      * Megkísérli, hogy a bogár elvágjon egy gombafonalat.
      *
-     * @param insect A bogár.
+     * @param insect         A bogár.
      * @param mushroomThread A gombafonal.
      * @return true, ha a szeletelés sikeres.
      */
     public boolean cut(Insect insect, MushroomThread mushroomThread) {
-        if (!hasCurrentTurn(insect))
-            return false;
+        if (!hasCurrentTurn(insect)) return false;
         return ((Insecter) insect.getOwner()).cut(insect, mushroomThread);
 
     }
@@ -152,12 +151,11 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * Új gombatest elhelyezése adott helyre.
      *
      * @param mushroomer A műveletet végző gombász.
-     * @param location A helyszín.
+     * @param location   A helyszín.
      * @return true, ha az elhelyezés sikeres.
      */
     public boolean plantMushroomStem(Mushroomer mushroomer, Tecton location) {
-        if (!hasCurrentTurn(mushroomer))
-            return false;
+        if (!hasCurrentTurn(mushroomer)) return false;
         return mushroomer.plantMushroomstem(location);
     }
 
@@ -165,12 +163,11 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * Gombafonal növesztése adott pozícióba.
      *
      * @param mushroomer A gombász.
-     * @param location A célhely.
+     * @param location   A célhely.
      * @return true ha a növesztés sikeres.
      */
     public boolean growThread(Mushroomer mushroomer, Tecton location) {
-        if (!hasCurrentTurn(mushroomer))
-            return false;
+        if (!hasCurrentTurn(mushroomer)) return false;
         return mushroomer.growMushroomthread(location);
     }
 
@@ -178,12 +175,11 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * Gombafonal megpróbál bekebelezni egy rovart.
      *
      * @param mushroomThread A támadó gombafonal.
-     * @param insect Az áldozat bogár.
+     * @param insect         Az áldozat bogár.
      * @return true, ha a támadás sikeres.
      */
     public boolean eat(MushroomThread mushroomThread, Insect insect) {
-        if (!hasCurrentTurn(mushroomThread))
-            return false;
+        if (!hasCurrentTurn(mushroomThread)) return false;
         return ((Mushroomer) mushroomThread.getOwner()).eat(mushroomThread, insect);
     }
 
@@ -194,8 +190,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true, ha a fejlesztés sikeres.
      */
     public boolean levelUp(MushroomStem mushroomStem) {
-        if (!hasCurrentTurn(mushroomStem))
-            return false;
+        if (!hasCurrentTurn(mushroomStem)) return false;
         return ((Mushroomer) mushroomStem.getOwner()).levelUp(mushroomStem);
     }
 
@@ -213,10 +208,8 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     @Override
     public void endTurn() {
         turn++;
-        if (turn % players.size() == 0)
-            ended = true;
-        if (turn == maxTurn)
-            ended = true;
+        if (turn % players.size() == 0) ended = true;
+        if (turn == maxTurn) ended = true;
     }
 
     @Override

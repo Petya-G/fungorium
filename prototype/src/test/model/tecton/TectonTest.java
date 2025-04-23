@@ -22,7 +22,7 @@ public class TectonTest {
     private Insecter insecter;
 
     @BeforeEach
-    public void setUpTectons() {
+    public void setUp() {
         Game.random.setSeed(1);
         mushroomer = new Mushroomer();
         insecter = new Insecter();

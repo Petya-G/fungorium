@@ -1,5 +1,6 @@
 package model.mushroom.spore;
 
+import model.effect.ClawParalyzeEffect;
 import model.mushroom.Mushroomer;
 import model.tecton.Tecton;
 
@@ -15,5 +16,15 @@ public class ClawParalyzingSpore extends Spore {
      */
     public ClawParalyzingSpore(Mushroomer owner, Tecton location) {
         super(owner, location);
+        effect = new ClawParalyzeEffect();
+    }
+
+    public ClawParalyzingSpore(Mushroomer owner, Tecton location, int id) {
+        super(owner, location, id);
+        effect = new ClawParalyzeEffect();
+    }
+
+    public ClawParalyzingSpore(ClawParalyzingSpore spore) {
+        super(spore);
     }
 }
