@@ -55,6 +55,8 @@ public class InsectTest {
     public void moveTest(){
         thread = new MushroomThread(mushroomer,tecton);
         thread2 = new MushroomThread(mushroomer,neighbour1);
+        tecton.add(thread);
+        neighbour1.add(thread2);
         insect.move(neighbour1);
         assertTrue(neighbour1.getInsects().contains(insect));
     }

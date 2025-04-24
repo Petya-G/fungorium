@@ -148,12 +148,15 @@ public class Insect extends Entity {
      * @param tecton A vizsgált {@code Tecton}.
      * @return {@code true}, ha van rajta legalább egy nem "eaten" gombafonál, és az ownere megegyezik, különben {@code false}.
      */
-    private boolean hasValidThread(Tecton tecton,Player owner) {
+    private boolean hasValidThread(Tecton tecton,Tecton neighbor) {
         for (MushroomThread thread : tecton.getThreads()) {
-            if (!thread.hasEaten() && owner.equals(thread.getOwner())) {
-                return true;
+            for(MushroomThread neighborThread : neighbor.getThreads()){
+                if(!thread.hasEaten() && !neighborThread.hasEaten() && thread.getOwner().equals(neighborThread.getOwner())){
+                    return true;
+                }
             }
         }
+
         return false;
     }
 
@@ -187,13 +190,12 @@ public class Insect extends Entity {
             }
 
             for (Tecton neighbor : current.getNeighbours()) {
-                //for (MushroomThread thread : neighbor.getThreads()) {
-                    if (!visited.contains(neighbor) ) { //&& hasValidThread(neighbor,thread.getOwner())
+                    if (!visited.contains(neighbor) && hasValidThread(current,neighbor)) {
                         visited.add(neighbor);
                         queue.add(neighbor);
                         distance.put(neighbor, currentDistance + 1);
                     }
-                //}
+
             }
         }
 
