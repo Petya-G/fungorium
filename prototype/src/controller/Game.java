@@ -248,6 +248,10 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
         }
     }
 
+    public int getTurn() {
+        return turn;
+    }
+
     public Identifiable findObject(int id) {
         List<Identifiable> identifiable = new ArrayList<>();
         identifiable.addAll(map.tectons);
