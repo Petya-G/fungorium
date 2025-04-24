@@ -183,12 +183,9 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true, ha az elhelyezés sikeres.
      */
     public boolean plantMushroomStem(Tecton location) {
-        try {
-            return ((Mushroomer) getCurrentPlayer()).plantMushroomStem(location);
-        } catch (Exception e) {
-            // TODO: handle exception
-            return false;
-        }
+        if(turn % 2 == 0) return ((Mushroomer) getCurrentPlayer()).plantMushroomStem(location);
+        return false;
+        
     }
 
     public boolean throwSpore(MushroomStem mushroomStem, Tecton location) {
@@ -204,8 +201,8 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true ha a növesztés sikeres.
      */
     public boolean growThread(Tecton location) {
-        return ((Mushroomer) getCurrentPlayer()).growMushroomThread(location);
-
+        if(turn % 2 == 0) return ((Mushroomer) getCurrentPlayer()).growMushroomThread(location);
+        return false;
     }
 
     /**
