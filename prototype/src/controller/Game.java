@@ -82,17 +82,24 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     /**
      * Elindítja a játékot, a hasStarted változó beállításával
      */
-    public boolean startGame() {
+    public boolean startGame(int playerCount) {
         if (hasStarted) return false;
         hasStarted = true;
-        turn = 0;
+
+
         //PÁLYA GENERÁLÁS, HA MÉG NINCS MEGFELELŐ PÁLYA
         return true;
     }
 
+    public boolean addPlayer(Player player) {
+        if (players.size() <= 8) {
+            return players.add(player);
+        }
+        return false;
+    }
+
     public boolean addPlayers() {
-        if (players.size() < 7)
-        {
+        if (players.size() <= 8) {
             players.add(new Mushroomer());
             players.add(new Insecter());
             return true;
@@ -110,12 +117,15 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     }
 
     /**
-     * Visszaadja a játék jelenlegi győztesét a pontszámok alapján.
+     * Visszaadja a játék jelenlegi győzteseit, az első a gombászok közül, a második a rovarászok közül
      *
-     * @return A legtöbb pontot elért játékos, vagy null ha nincs ilyen.
+     * @return A legtöbb pontot elért játékosok, vagy null ha nincs ilyen.
      */
-    public Player getWinner() {
-        return players.stream().max(Comparator.comparingInt(Player::getScore)).orElse(null);
+    public List<Player> getWinners() {
+        List<Player> winners = new ArrayList<>();
+        winners.add(players.stream().filter(p -> p instanceof Mushroomer).max(Comparator.comparingInt(Player::getScore)).orElse(null));
+        winners.add(players.stream().filter(p -> p instanceof Insecter).max(Comparator.comparingInt(Player::getScore)).orElse(null));
+        return winners;
     }
 
     /**
@@ -158,45 +168,33 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     /**
      * Új gombatest elhelyezése adott helyre.
      *
-     * @param mushroomer A műveletet végző gombász.
-     * @param location   A helyszín.
+     * @param location A helyszín.
      * @return true, ha az elhelyezés sikeres.
      */
     public boolean plantMushroomStem(Tecton location) {
         try {
-            return ((Mushroomer)getCurrentPlayer()).plantMushroomStem(location);
+            return ((Mushroomer) getCurrentPlayer()).plantMushroomStem(location);
         } catch (Exception e) {
             // TODO: handle exception
             return false;
         }
     }
 
-    public boolean throwSpore(MushroomStem mushroomStem, Tecton location)
-    {
-        try {
+    public boolean throwSpore(MushroomStem mushroomStem, Tecton location) {
         if (!hasCurrentTurn(mushroomStem)) return false;
         return ((Mushroomer) mushroomStem.getOwner()).throwSpore(mushroomStem, location);
-        } catch (Exception e) {
-            // TODO: handle exception
-            return false;
-        }
     }
 
 
     /**
      * Gombafonal növesztése adott pozícióba.
      *
-     * @param mushroomer A gombász.
-     * @param location   A célhely.
+     * @param location A célhely.
      * @return true ha a növesztés sikeres.
      */
     public boolean growThread(Tecton location) {
-        try {
-        return ((Mushroomer)getCurrentPlayer()).growMushroomThread(location);
-        } catch (Exception e) {
-            // TODO: handle exception
-            return false;
-        }
+        return ((Mushroomer) getCurrentPlayer()).growMushroomThread(location);
+
     }
 
     /**
@@ -222,32 +220,36 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
         return ((Mushroomer) mushroomStem.getOwner()).levelUp(mushroomStem);
     }
 
-    public void printMap()
-    {
+    public void printMap() {
         map.printSelf();
     }
 
-    public void listPlayers()
-    {
+    public void listPlayers() {
         for (Player player : players) {
             System.out.println(player.getName() + player.getId() + "\n");
         }
     }
 
-    
-    public void listShroomStem()
-    {
+
+    public void listShroomStem() {
         for (Player player : players) {
             // for (MushroomStem stem : player.getName().) {
-                
+
             // }
             System.out.println(player.getName() + player.getId() + "\n");
         }
     }
 
-    public Identifiable findObject(int id)
-    {
-        return null;
+    public Identifiable findObject(int id) {
+        List<Identifiable> identifiable = new ArrayList<>();
+        identifiable.addAll(map.tectons);
+        identifiable.addAll(players);
+        map.tectons.forEach(t -> identifiable.addAll(t.getStems()));
+        map.tectons.forEach(t -> identifiable.addAll(t.getSpores()));
+        map.tectons.forEach(t -> identifiable.addAll(t.getThreads()));
+        map.tectons.forEach(t -> identifiable.addAll(t.getInsects()));
+
+        return identifiable.stream().filter(i -> i.getId() == id).findFirst().orElse(null);
     }
 
     /**

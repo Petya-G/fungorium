@@ -19,27 +19,27 @@ import model.mushroom.spore.Spore;
 public class Parser {
 
     static final Random r = new Random();
-    static final String[] helpGuide =  {"-----------------------------------------SYSTEM COMMANDS-----------------------------------------",
-                                        "/start: Starts the game, after this point, no more players can be added",
-                                        "/load PATH: Loads a saved game file, from the given path",
-                                        "/save PATH: Saves the current state of the game to a file, at the given path",
-                                        "/exec PATH: Executes the commands in the given file",
-                                        "/rand: Enables or disables the randomness of the random elements (-disable/-enable)",
-                                        "/addplayers: Adds a Mushroomer and an Insecter player to the game",
-                                        "/manualtrigger: Forces the execution of the given game command",
-                                        "/list: Lists all objects of the given type (-player, -mushroomstem, -mushroomthread, -insect, -spore)",
-                                        "/map: Prints the Map (All tectons with their neighbours)",
-                                        "/help: Prints this guide",
-                                        "------------------------------------------GAME COMMANDS------------------------------------------",
-                                        "!move INSECTID TECTONID: Moves the insect to another tecton, if it's legal",
-                                        "!eat INSECTID: The given insect eats a random (or not) spore on its tecton, if it can",
-                                        "!cut INSECTID: The given insect cuts a random (or not) mushroom thread on its tecton, if it can",
-                                        "!grow TECTONID: Grows a mushroom thread on the given tecton, if it's legal",
-                                        "!plant TECTONID: Plants a mushroom stem on the given tecton, if it's legal",
-                                        "!throw MUSHROOMSTEMID TECTONID: The given mushroom stem throws a spore to the given tecton, if it can",
-                                        "!endturn: Ends the current players turn, if all of its obligatory actions have been taken",
-                                        "/exit: exits the game (DOES NOT SAVE)"
-                                    };
+    static final String[] helpGuide = {"-----------------------------------------SYSTEM COMMANDS-----------------------------------------",
+            "/start: Starts the game, after this point, no more players can be added",
+            "/load PATH: Loads a saved game file, from the given path",
+            "/save PATH: Saves the current state of the game to a file, at the given path",
+            "/exec PATH: Executes the commands in the given file",
+            "/rand: Enables or disables the randomness of the random elements (-disable/-enable)",
+            "/addplayers: Adds a Mushroomer and an Insecter player to the game",
+            "/manualtrigger: Forces the execution of the given game command",
+            "/list: Lists all objects of the given type (-player, -mushroomstem, -mushroomthread, -insect, -spore)",
+            "/map: Prints the Map (All tectons with their neighbours)",
+            "/help: Prints this guide",
+            "------------------------------------------GAME COMMANDS------------------------------------------",
+            "!move INSECTID TECTONID: Moves the insect to another tecton, if it's legal",
+            "!eat INSECTID: The given insect eats a random (or not) spore on its tecton, if it can",
+            "!cut INSECTID: The given insect cuts a random (or not) mushroom thread on its tecton, if it can",
+            "!grow TECTONID: Grows a mushroom thread on the given tecton, if it's legal",
+            "!plant TECTONID: Plants a mushroom stem on the given tecton, if it's legal",
+            "!throw MUSHROOMSTEMID TECTONID: The given mushroom stem throws a spore to the given tecton, if it can",
+            "!endturn: Ends the current players turn, if all of its obligatory actions have been taken",
+            "/exit: exits the game (DOES NOT SAVE)"
+    };
 
     Game game;
 
@@ -56,7 +56,7 @@ public class Parser {
             System.out.println("invalid argument count!");
             return;
         }
-        if(!game.startGame()) System.out.println("THhe game couldn't have been started (maybe it already has...)");
+        if (!game.startGame()) System.out.println("THhe game couldn't have been started (maybe it already has...)");
     }
 
     public void CMD_load(String[] args) {
@@ -108,7 +108,7 @@ public class Parser {
                 String data = myReader.nextLine();
                 parseCommand(data);
             }
-        myReader.close();
+            myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
@@ -129,7 +129,7 @@ public class Parser {
             System.out.println("invalid argument count!");
             return;
         }
-        if(!game.addPlayers()) System.out.println("Players couldn't have been added");
+        if (!game.addPlayers()) System.out.println("Players couldn't have been added");
     }
 
     public void CMD_manualtrigger(String[] args) {
@@ -157,7 +157,7 @@ public class Parser {
             return;
         }
         for (String item : helpGuide) System.out.println(item);
-    
+
 
     }
 
@@ -166,7 +166,8 @@ public class Parser {
             System.out.println("invalid argument count!");
             return;
         }
-        if(!game.move((Insect)game.findObject(Integer.parseInt(args[1])), (Tecton)game.findObject(Integer.parseInt(args[2])))) System.out.println("Couldn't move");
+        if (!game.move((Insect) game.findObject(Integer.parseInt(args[1])), (Tecton) game.findObject(Integer.parseInt(args[2]))))
+            System.out.println("Couldn't move");
     }
 
     public void CMD_eat(String[] args) {
@@ -174,8 +175,10 @@ public class Parser {
             System.out.println("invalid argument count!");
             return;
         }
-        if(game.eat((Insect)game.findObject(Integer.parseInt(args[1])), (Spore)game.findObject(Integer.parseInt(args[2])))) return;
-        if(game.eat((MushroomThread)game.findObject(Integer.parseInt(args[1])), (Insect)game.findObject(Integer.parseInt(args[2])))) return;
+        if (game.eat((Insect) game.findObject(Integer.parseInt(args[1])), (Spore) game.findObject(Integer.parseInt(args[2]))))
+            return;
+        if (game.eat((MushroomThread) game.findObject(Integer.parseInt(args[1])), (Insect) game.findObject(Integer.parseInt(args[2]))))
+            return;
         System.out.println("Couldn't eat");
     }
 
@@ -184,7 +187,8 @@ public class Parser {
             System.out.println("invalid argument count!");
             return;
         }
-        if(!game.cut((Insect)game.findObject(Integer.parseInt(args[1])), (MushroomThread)game.findObject(Integer.parseInt(args[2])))) System.out.println("Couldn't cut");
+        if (!game.cut((Insect) game.findObject(Integer.parseInt(args[1])), (MushroomThread) game.findObject(Integer.parseInt(args[2]))))
+            System.out.println("Couldn't cut");
     }
 
     public void CMD_grow(String[] args) {
@@ -192,7 +196,7 @@ public class Parser {
             System.out.println("invalid argument count!");
             return;
         }
-        if(!game.growThread((Tecton)game.findObject(Integer.parseInt(args[1])))) System.out.println("Couldn't grow");
+        if (!game.growThread((Tecton) game.findObject(Integer.parseInt(args[1])))) System.out.println("Couldn't grow");
     }
 
     public void CMD_plant(String[] args) {
@@ -200,7 +204,8 @@ public class Parser {
             System.out.println("invalid argument count!");
             return;
         }
-        if(!game.plantMushroomStem((Tecton)game.findObject(Integer.parseInt(args[1])))) System.out.println("Couldn't grow");
+        if (!game.plantMushroomStem((Tecton) game.findObject(Integer.parseInt(args[1]))))
+            System.out.println("Couldn't grow");
     }
 
     public void CMD_throw(String[] args) {
@@ -208,7 +213,8 @@ public class Parser {
             System.out.println("invalid argument count!");
             return;
         }
-        if(!game.throwSpore((MushroomStem)game.findObject(Integer.parseInt(args[1])), (Tecton)game.findObject(Integer.parseInt(args[2])))) System.out.println("Couldn't grow");
+        if (!game.throwSpore((MushroomStem) game.findObject(Integer.parseInt(args[1])), (Tecton) game.findObject(Integer.parseInt(args[2]))))
+            System.out.println("Couldn't grow");
     }
 
     public void CMD_endturn(String[] args) {
