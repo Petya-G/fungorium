@@ -144,7 +144,10 @@ public class Parser {
         }
 
         for (int i = 0; i <= Identifiable.getMaxId(); i++) {
-            System.out.println("(" + i + ") : " + game.findObject(i));
+            Identifiable obj = game.findObject(i);
+            if (obj != null) {
+                System.out.println("(" + i + ") : " + obj);
+            }
         }
     }
 
