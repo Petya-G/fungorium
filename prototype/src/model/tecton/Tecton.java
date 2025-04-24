@@ -11,6 +11,8 @@ import model.mushroom.spore.ISpore;
 import model.mushroom.spore.Spore;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Tekton osztály, tárolja a hozzá tartozó gombatest, fonalakat, spórákat, rovarokat és szomszédos tektonokat.
@@ -379,5 +381,11 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), stem, spores, threads, insects);
+    }
+
+    @Override
+    public String toString() {
+        
+        return super.toString() + " (connected to: " + neighbours.stream().map(x -> x.getId()).collect(Collectors.toList()) + ")";
     }
 }

@@ -234,6 +234,10 @@ public class Parser {
     public void parseCommand(String cmd) {
         String[] tokens = cmd.split(" ");
 
+        if (game.getCurrentPlayer() != null) {
+            System.out.println("current turn: (" + game.getCurrentPlayer().getId() + "): " + game.getCurrentPlayer());
+        }
+
         switch (tokens[0]) {
             case "/start":
                 CMD_start(tokens);

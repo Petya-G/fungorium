@@ -121,6 +121,9 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return Az aktuális játékos.
      */
     public Player getCurrentPlayer() {
+        if (players.size() == 0) {
+            return null;
+        }
         return players.get(turn % players.size());
     }
 
