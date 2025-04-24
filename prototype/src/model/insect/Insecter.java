@@ -47,7 +47,9 @@ public class Insecter extends Player implements IInsect {
     }
 
     public boolean createInsect(Tecton location) {
-        return add(new Insect(this, location));
+        Insect i = new Insect(this, location);
+        location.add(i);
+        return add(i);
     }
 
     /**

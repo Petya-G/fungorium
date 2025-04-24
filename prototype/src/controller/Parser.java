@@ -172,7 +172,7 @@ public class Parser {
             return;
         }
         try {
-            if (!game.move((Insect) Identifiable.findObject(Integer.parseInt(args[1])), (Tecton) Identifiable.findObject(Integer.parseInt(args[2])))) System.out.println("Couldn't move");
+            if (!game.move((Insect) game.findObject(Integer.parseInt(args[1])), (Tecton) game.findObject(Integer.parseInt(args[2])))) System.out.println("Couldn't move");
         } catch (Exception e) {
             System.out.println("Invalid ID(s)");
         }
@@ -185,13 +185,13 @@ public class Parser {
         }
         boolean oneEx = false;
         try {
-            if (game.eat((Insect) Identifiable.findObject(Integer.parseInt(args[1])), (Spore) Identifiable.findObject(Integer.parseInt(args[2])))) return;   
+            if (game.eat((Insect) game.findObject(Integer.parseInt(args[1])), (Spore) game.findObject(Integer.parseInt(args[2])))) return;   
         } catch (Exception e) {
             oneEx = true;
         }
 
         try {
-            if (game.eat((MushroomThread) Identifiable.findObject(Integer.parseInt(args[1])), (Insect) Identifiable.findObject(Integer.parseInt(args[2])))) return;            
+            if (game.eat((MushroomThread) game.findObject(Integer.parseInt(args[1])), (Insect) game.findObject(Integer.parseInt(args[2])))) return;            
         } catch (Exception e) {
             if (oneEx) System.out.println("Invalid ID(s)");
         }
@@ -204,7 +204,7 @@ public class Parser {
             return;
         }
         try {
-            if (!game.cut((Insect) Identifiable.findObject(Integer.parseInt(args[1])), (MushroomThread) Identifiable.findObject(Integer.parseInt(args[2]))))
+            if (!game.cut((Insect) game.findObject(Integer.parseInt(args[1])), (MushroomThread) game.findObject(Integer.parseInt(args[2]))))
                 System.out.println("Couldn't cut");
         } catch (Exception e) {
             System.out.println("Invalid ID(s)");
@@ -217,7 +217,7 @@ public class Parser {
             return;
         }
         try {
-            if (!game.growThread((Tecton) Identifiable.findObject(Integer.parseInt(args[1])))) System.out.println("Couldn't grow");
+            if (!game.growThread((Tecton) game.findObject(Integer.parseInt(args[1])))) System.out.println("Couldn't grow");
         } catch (Exception e) {
             System.out.println("Invalid ID(s)");
         }
@@ -229,7 +229,7 @@ public class Parser {
             return;
         }
         try {
-            if (!game.plantMushroomStem((Tecton) Identifiable.findObject(Integer.parseInt(args[1])))) System.out.println("Couldn't grow");
+            if (!game.plantMushroomStem((Tecton) game.findObject(Integer.parseInt(args[1])))) System.out.println("Couldn't grow");
         } catch (Exception e) {
             System.out.println("Invalid ID(s)");
         }
@@ -241,7 +241,7 @@ public class Parser {
             return;
         }
         try {
-            if (!game.throwSpore((MushroomStem) Identifiable.findObject(Integer.parseInt(args[1])), (Tecton) Identifiable.findObject(Integer.parseInt(args[2]))))
+            if (!game.throwSpore((MushroomStem) game.findObject(Integer.parseInt(args[1])), (Tecton) game.findObject(Integer.parseInt(args[2]))))
                 System.out.println("Couldn't throw");
         } catch (Exception e) {
             System.out.println("Invalid ID(s)");

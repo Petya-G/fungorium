@@ -248,7 +248,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
         }
     }
 
-    /*public Identifiable findObject(int id) {
+    public Identifiable findObject(int id) {
         List<Identifiable> identifiable = new ArrayList<>();
         identifiable.addAll(map.tectons);
         identifiable.addAll(players);
@@ -257,8 +257,14 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
         map.tectons.forEach(t -> identifiable.addAll(t.getThreads()));
         map.tectons.forEach(t -> identifiable.addAll(t.getInsects()));
 
-        return identifiable.stream().filter(i -> i.getId() == id).findFirst().orElse(null);
-    }*/
+        //return identifiable.stream().filter(i -> i.getId() == id).findFirst().orElse(null);
+        for (Identifiable obj : identifiable) {
+            if (obj.getId() == id) {
+                return obj;
+            }
+        }
+        return null;
+    }
 
     /**
      * Lezárja az aktuális kört, végrehajtja a kör végén szükséges műveleteket.

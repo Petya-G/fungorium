@@ -11,7 +11,7 @@ public abstract class Identifiable {
      * Eddig használt legnagyob azonosító
      */
     private static int sId = 0;
-    private static HashMap<Integer, Identifiable> objects = new HashMap();
+    //private static HashMap<Integer, Identifiable> objects = new HashMap();
     /**
      * Egyedi azonosító
      */
@@ -22,7 +22,7 @@ public abstract class Identifiable {
      */
     protected Identifiable() {
         this.id = sId++;
-        objects.put(this.id, this);
+        //objects.put(this.id, this);
     }
 
     /**
@@ -32,12 +32,12 @@ public abstract class Identifiable {
      */
     protected Identifiable(int id) {
         this.id = id;
-        objects.put(this.id, this);
+       // objects.put(this.id, this);
     }
 
     protected Identifiable(Identifiable identifiable) {
         this.id = identifiable.id;
-        objects.put(this.id, this);
+        //objects.put(this.id, this);
     }
 
     /**
@@ -52,9 +52,9 @@ public abstract class Identifiable {
         return sId;
     }
 
-    public static Identifiable findObject(Integer id) {
+    /*public static Identifiable findObject(Integer id) {
         return objects.get(id);
-    }
+    }*/
 
     /**
      * Visszaadja az objektum nevét, amely a típusából és azonosítójából áll.
