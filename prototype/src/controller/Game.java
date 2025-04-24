@@ -265,6 +265,10 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      */
     @Override
     public void endTurn() {
+        if (players.size() == 0) {
+            System.out.println("there are no players in the game!");
+            return;
+        }
         turn++;
         if (turn % players.size() == 0) ended = true;
         if (turn == maxTurn) ended = true;
@@ -281,5 +285,10 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), map, maxTurn, ended, players, turn);
+    }
+
+    public boolean startGame() {
+        //TODO
+        return true;
     }
 }
