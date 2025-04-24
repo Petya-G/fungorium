@@ -20,15 +20,17 @@ public class Insect extends Entity {
     protected List<Effect> effects = new ArrayList<>();
     protected boolean paralyzed = false;
     protected boolean clawParalyzed = false;
-    protected int baseSpeed = 1;
+    protected int baseSpeed = 3;
     protected double speedModifier = 1.0;
 
     public Insect(Insecter owner, Tecton location) {
         super(owner, location);
+        owner.add(this);
     }
 
     public Insect(Insecter owner, Tecton location, int id) {
         super(owner, location, id);
+        owner.add(this);
     }
 
     public Insect(Insect insect) {
@@ -185,13 +187,13 @@ public class Insect extends Entity {
             }
 
             for (Tecton neighbor : current.getNeighbours()) {
-                for (MushroomThread thread : neighbor.getThreads()) {             
-                    if (!visited.contains(neighbor) && hasValidThread(neighbor,thread.getOwner())) {
+                //for (MushroomThread thread : neighbor.getThreads()) {
+                    if (!visited.contains(neighbor) ) { //&& hasValidThread(neighbor,thread.getOwner())
                         visited.add(neighbor);
                         queue.add(neighbor);
                         distance.put(neighbor, currentDistance + 1);
                     }
-                }
+                //}
             }
         }
 
@@ -213,7 +215,7 @@ public class Insect extends Entity {
         if(distance == -1)
             return false;
         
-        if(distance < baseSpeed*speedModifier)
+        if(distance <= baseSpeed*speedModifier)
             setLocation(targetTecton);
         
         return true;
@@ -235,8 +237,8 @@ public class Insect extends Entity {
     
     public void split() {
         Insect insect = new Insect((Insecter) getOwner(), getLocation());
-        ((Insecter) getOwner()).add(insect);
-        getLocation().add(insect);
+        //((Insecter) getOwner()).add(insect); // These are not needed because I already added them in the Insect constructor
+        //getLocation().add(insect);
     }
 
     /**
