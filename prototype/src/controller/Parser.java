@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
+import model.core.Identifiable;
 import model.insect.Insect;
 import model.tecton.Tecton;
 import model.mushroom.MushroomStem;
@@ -140,6 +141,10 @@ public class Parser {
         if (args.length != 1) {
             System.out.println("invalid argument count!");
             return;
+        }
+
+        for (int i = 0; i <= Identifiable.getMaxId(); i++) {
+            System.out.println("(" + i + ") : " + game.findObject(i));
         }
     }
 

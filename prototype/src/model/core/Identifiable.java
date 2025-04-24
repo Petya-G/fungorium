@@ -1,5 +1,6 @@
 package model.core;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -10,7 +11,7 @@ public abstract class Identifiable {
      * Eddig használt legnagyob azonosító
      */
     private static int sId = 0;
-
+    private static HashMap<Integer, Identifiable> objects = new HashMap();
     /**
      * Egyedi azonosító
      */
@@ -21,6 +22,7 @@ public abstract class Identifiable {
      */
     protected Identifiable() {
         this.id = sId++;
+        objects.put(this.id, this);
     }
 
     /**
@@ -30,10 +32,12 @@ public abstract class Identifiable {
      */
     protected Identifiable(int id) {
         this.id = id;
+        objects.put(this.id, this);
     }
 
     protected Identifiable(Identifiable identifiable) {
         this.id = identifiable.id;
+        objects.put(this.id, this);
     }
 
     /**
@@ -42,6 +46,14 @@ public abstract class Identifiable {
      */
     public int getId() {
         return id;
+    }
+
+    public static int getMaxId() {
+        return sId;
+    }
+
+    public static Identifiable findObject(Integer id) {
+        return objects.get(id);
     }
 
     /**

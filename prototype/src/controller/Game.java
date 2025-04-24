@@ -27,7 +27,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     /**
      * A játék pályája
      */
-    private final Map map = new Map();
+    private Map map = new Map();
     /**
      * Azt jelzi, hogy a játék véget ért-e.
      */
@@ -86,8 +86,12 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
         if (hasStarted) return false;
         hasStarted = true;
 
-
+        
         //PÁLYA GENERÁLÁS, HA MÉG NINCS MEGFELELŐ PÁLYA
+        if (!map.isGenerated()) {
+            map.generate(random);
+        }
+
         return true;
     }
 
@@ -99,9 +103,13 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     }
 
     public boolean addPlayers() {
+        if (!map.isGenerated()) {
+            System.out.println("map must be generated first using /start!");
+            return false;
+        }
         if (players.size() <= 8) {
-            players.add(new Mushroomer());
-            players.add(new Insecter());
+            players.add(new Mushroomer(map.tectons.get(random.nextInt(map.tectons.size()))));
+            players.add(new Insecter(map.tectons.get(random.nextInt(map.tectons.size()))));
             return true;
         }
         return false;
@@ -240,7 +248,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
         }
     }
 
-    public Identifiable findObject(int id) {
+    /*public Identifiable findObject(int id) {
         List<Identifiable> identifiable = new ArrayList<>();
         identifiable.addAll(map.tectons);
         identifiable.addAll(players);
@@ -250,7 +258,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
         map.tectons.forEach(t -> identifiable.addAll(t.getInsects()));
 
         return identifiable.stream().filter(i -> i.getId() == id).findFirst().orElse(null);
-    }
+    }*/
 
     /**
      * Lezárja az aktuális kört, végrehajtja a kör végén szükséges műveleteket.
