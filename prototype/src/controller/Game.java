@@ -82,7 +82,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     /**
      * Elindítja a játékot, a hasStarted változó beállításával
      */
-    public boolean startGame(int playerCount) {
+    public boolean startGame() {
         if (hasStarted) return false;
         hasStarted = true;
 
@@ -285,10 +285,5 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), map, maxTurn, ended, players, turn);
-    }
-
-    public boolean startGame() {
-        //TODO
-        return true;
     }
 }
