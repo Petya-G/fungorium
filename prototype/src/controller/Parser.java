@@ -123,6 +123,9 @@ public class Parser {
         }
         if (Objects.equals(args[1], "-disable")) Game.random.setSeed(1);
         else if (Objects.equals(args[1], "-enable")) Game.random.setSeed(r.nextInt());
+        else {
+            System.out.println("invalid flag: use -disable or -enable");
+        }
     }
 
     public void CMD_addplayers(String[] args) {
