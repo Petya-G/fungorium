@@ -263,8 +263,8 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     @Override
     public void endTurn() {
         if (!started) return;
+        getCurrentPlayer().endTurn();
         turn++;
-        players.forEach(Player::endTurn);
         if (turn == maxTurn) ended = true;
     }
 
