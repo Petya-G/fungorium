@@ -109,4 +109,9 @@ public class Map implements IRound, Serializable {
     public int hashCode() {
         return Objects.hashCode(tectons);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " tectons=" + tectons;
+    }
 }

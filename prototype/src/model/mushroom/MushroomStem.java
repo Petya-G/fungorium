@@ -14,8 +14,8 @@ public class MushroomStem extends Entity {
     private int numThrownSpores = 0;
     private int level = 0;
 
-    private static final int  LEVEL_UP_COST = 3;
-    private static final int  MAX_LEVEL = 2;
+    private static final int LEVEL_UP_COST = 3;
+    private static final int MAX_LEVEL = 2;
     private static final int MAX_SPORE_THROWS = 5;
 
     /**
@@ -39,7 +39,8 @@ public class MushroomStem extends Entity {
 
     /**
      * Eddigi spóradobások száma
-     * @return  Eddigi spóradobások száma
+     *
+     * @return Eddigi spóradobások száma
      */
     public int getNumThrownSpores() {
         return numThrownSpores;
@@ -75,7 +76,8 @@ public class MushroomStem extends Entity {
 
     /**
      * Maximum spóradobások száma
-     *@return  Maximum spóradobások száma
+     *
+     * @return Maximum spóradobások száma
      */
     public int getMaxSporeThrows() {
         return MAX_SPORE_THROWS;
@@ -123,7 +125,7 @@ public class MushroomStem extends Entity {
      * @return true, ha szintet lép, egyébként false
      */
     public boolean levelUp() {
-        if(level>=MAX_LEVEL) return false;
+        if (level >= MAX_LEVEL) return false;
 
         List<Spore> spores = ((Mushroomer) getOwner()).getSpores(getLocation());
 
@@ -159,9 +161,10 @@ public class MushroomStem extends Entity {
     }
 
     /**
-     *Összehasonlít 2 objektumot
-     * @param o    Objektum, amivel összehasonlítjuk
-     *@return  {@code true}, ha megegyezik a 2 objektum, egyébként {@code false}
+     * Összehasonlít 2 objektumot
+     *
+     * @param o Objektum, amivel összehasonlítjuk
+     * @return {@code true}, ha megegyezik a 2 objektum, egyébként {@code false}
      */
     @Override
     public boolean equals(Object o) {
@@ -173,10 +176,19 @@ public class MushroomStem extends Entity {
 
     /**
      * Visszaadja az objektum hash-kódját, amely a jelenlegi példány mezői alapján kerül kiszámításra.
+     *
      * @return Az objektum hash-kódja.
      */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), thrown, numThrownSpores, level);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + "thrown=" + thrown +
+                ", numThrownSpores=" + numThrownSpores +
+                ", level=" + level;
     }
 }

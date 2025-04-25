@@ -1,6 +1,7 @@
 package model.insect;
 
 import model.core.Player;
+import model.effect.Effect;
 import model.mushroom.MushroomThread;
 import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
@@ -8,6 +9,7 @@ import model.tecton.Tecton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Az Insecter osztály egy játékos, aki egy rovart irányít.
@@ -86,5 +88,11 @@ public class Insecter extends Player implements IInsect {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), insects);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+        + "insects=[" + insects.stream().map(Insect::getName).collect(Collectors.joining(", ")) + "]";
     }
 }

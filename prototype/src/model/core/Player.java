@@ -68,4 +68,9 @@ public abstract class Player extends Identifiable implements ITurn {
     public int hashCode() {
         return Objects.hash(super.hashCode(), score);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " score=" + score;
+    }
 }

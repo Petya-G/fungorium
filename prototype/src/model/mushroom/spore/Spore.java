@@ -10,7 +10,6 @@ import java.util.Objects;
 
 public abstract class Spore extends Entity {
     protected int NUTRITION = 10; // A tápérték, ennyi pontot kap a rovar, mikor megeszi a spórát
-    //TODO nutrition így jó?
     protected Effect effect; // A spóra rovarra gyakorolt hatása
 
     /**
@@ -94,5 +93,12 @@ public abstract class Spore extends Entity {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), NUTRITION, effect);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + " nutrition=" + NUTRITION
+                + ", effect=" + effect.toString();
     }
 }

@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * A rovarokra érvényes hatások őse, absztrakt, nem példányosítható
  */
-public abstract class Effect extends Identifiable{
+public abstract class Effect extends Identifiable {
     int duration = 3;
 
     protected Effect() {
@@ -51,5 +51,11 @@ public abstract class Effect extends Identifiable{
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), duration);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + "duration=";
     }
 }

@@ -112,6 +112,6 @@ public abstract class Entity extends Identifiable implements ITurn {
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + location.getId() + ", owner: " + owner.getId() + ")";
+        return super.toString() + " location=" + location.getName() + ", owner=" + owner.getName();
     }
 }

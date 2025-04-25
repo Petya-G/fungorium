@@ -2,6 +2,7 @@ package controller;
 
 import model.Map;
 import model.core.*;
+import model.effect.Effect;
 import model.insect.Insect;
 import model.insect.Insecter;
 import model.mushroom.MushroomStem;
@@ -12,6 +13,7 @@ import model.tecton.Tecton;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A játékmenet kezeléséért felelős osztály, amely kezeli a köröket, a játékosokat
@@ -78,12 +80,12 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * Elindítja a játékot, a started változó beállításával
      */
     public boolean startGame(int playerCount) {
-        if (started || playerCount < 0 || playerCount > 8 || playerCount % 2 == 0) return false;
+        if (started || playerCount < 0 || playerCount > 8 || playerCount % 2 != 0) return false;
         started = true;
 
         map.generate(playerCount * 2);
 
-        for (int i = 0; i < playerCount; i++) {
+        for (int i = 0; i < playerCount / 2; i++) {
             players.add(new Mushroomer(map.tectons.get(random.nextInt(map.tectons.size()))));
             players.add(new Insecter(map.tectons.get(random.nextInt(map.tectons.size()))));
         }
@@ -276,5 +278,16 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), map, maxTurn, ended, players, turn);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                ", maxTurn=" + maxTurn +
+                ", started=" + ended +
+                ", ended=" + ended +
+                ", turn=" + turn +
+                ", players=[" + players.stream().map(Player::getName).collect(Collectors.joining(", ")) + "]" +
+                ", map=" + map.toString();
     }
 }

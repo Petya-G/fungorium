@@ -8,6 +8,7 @@ import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
@@ -25,12 +26,10 @@ public class Insect extends Entity {
 
     public Insect(Insecter owner, Tecton location) {
         super(owner, location);
-        owner.add(this);
     }
 
     public Insect(Insecter owner, Tecton location, int id) {
         super(owner, location, id);
-        owner.add(this);
     }
 
     public Insect(Insect insect) {
@@ -148,10 +147,10 @@ public class Insect extends Entity {
      * @param tecton A vizsgált {@code Tecton}.
      * @return {@code true}, ha van rajta legalább egy nem "eaten" gombafonál, és az ownere megegyezik, különben {@code false}.
      */
-    private boolean hasValidThread(Tecton tecton,Tecton neighbor) {
+    private boolean hasValidThread(Tecton tecton, Tecton neighbor) {
         for (MushroomThread thread : tecton.getThreads()) {
-            for(MushroomThread neighborThread : neighbor.getThreads()){
-                if(!thread.hasEaten() && !neighborThread.hasEaten() && thread.getOwner().equals(neighborThread.getOwner())){
+            for (MushroomThread neighborThread : neighbor.getThreads()) {
+                if (!thread.hasEaten() && !neighborThread.hasEaten() && thread.getOwner().equals(neighborThread.getOwner())) {
                     return true;
                 }
             }
@@ -163,15 +162,15 @@ public class Insect extends Entity {
     /**
      * Meghatározza a távolságot az aktuális {@code Tecton} és a megadott cél {@code Tecton} között,
      * kizárólag olyan útvonalakon, amelyeken van legalább egy aktív {@code MushroomThread}.
-     * 
+     * <p>
      * A távolság azt jelenti, hogy hány lépésben (szomszédokon keresztül) lehet eljutni a célpontig,
      * csak érvényes átjárható Tectonokon keresztül.
      *
      * @param target A cél {@code Tecton}, amelynek a távolságát szeretnénk meghatározni.
      * @return A legrövidebb lépések száma az aktuális {@code Tecton}-tól a célhoz,
-     *         vagy {@code -1}, ha a cél nem elérhető.
+     * vagy {@code -1}, ha a cél nem elérhető.
      */
-    
+
     public int getDistanceTo(Tecton target) {
         Set<Tecton> visited = new HashSet<>();
         Queue<Tecton> queue = new LinkedList<>();
@@ -190,16 +189,16 @@ public class Insect extends Entity {
             }
 
             for (Tecton neighbor : current.getNeighbours()) {
-                    if (!visited.contains(neighbor) && hasValidThread(current,neighbor)) {
-                        visited.add(neighbor);
-                        queue.add(neighbor);
-                        distance.put(neighbor, currentDistance + 1);
-                    }
+                if (!visited.contains(neighbor) && hasValidThread(current, neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                    distance.put(neighbor, currentDistance + 1);
+                }
 
             }
         }
 
-        return -1; 
+        return -1;
     }
 
     /**
@@ -210,16 +209,16 @@ public class Insect extends Entity {
      */
     public boolean move(Tecton targetTecton) {
         int distance = getDistanceTo(targetTecton);
-        
+
         if (paralyzed)
             return false;
 
-        if(distance == -1)
+        if (distance == -1)
             return false;
-        
-        if(distance <= baseSpeed*speedModifier)
+
+        if (distance <= baseSpeed * speedModifier)
             setLocation(targetTecton);
-        
+
         return true;
     }
 
@@ -236,7 +235,7 @@ public class Insect extends Entity {
         th.setCutOff(true);
         return true;
     }
-    
+
     public void split() {
         Insect insect = new Insect((Insecter) getOwner(), getLocation());
         //((Insecter) getOwner()).add(insect); // These are not needed because I already added them in the Insect constructor
@@ -252,8 +251,9 @@ public class Insect extends Entity {
     public void setLocation(Tecton location) {
         getLocation().remove(this);
         location.add(this);
-        super.setLocation(location);}
-    
+        super.setLocation(location);
+    }
+
     /**
      * Végrehajtja a kör végén szükséges folyamatokat.
      * Törli a lejáró hatásokat
@@ -286,5 +286,15 @@ public class Insect extends Entity {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), effects, paralyzed, clawParalyzed, baseSpeed, speedModifier);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + ", paralyzed=" + paralyzed +
+                ", clawParalyzed=" + clawParalyzed +
+                ", baseSpeed=" + baseSpeed +
+                ", speedModifier=" + speedModifier +
+                "effects=[" + effects.stream().map(Effect::getName).collect(Collectors.joining(", ")) + "]";
     }
 }

@@ -10,6 +10,7 @@ import model.tecton.Tecton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * A Mushroomer osztály egy játékost reprezentál, aki gombákat kezel.
@@ -17,12 +18,12 @@ import java.util.Objects;
  */
 public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
+    private static final int MAX_THREADS_PER_TURN = 2;
+    private int grownThreadsThisTurn = 0;
+
     private final List<MushroomStem> stems = new ArrayList<>();
     private final List<MushroomThread> threads = new ArrayList<>();
     private final List<Spore> spores = new ArrayList<>();
-
-    private static final int MAX_THREADS_PER_TURN = 2;
-    private int grownThreadsThisTurn = 0;
 
     public Mushroomer() {
     }
@@ -34,11 +35,11 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * @param location Gombász kezdeti pozícióját meghatározó tekton.
      */
     public Mushroomer(Tecton location) {
-        MushroomStem s1=new MushroomStem(this, location);
+        MushroomStem s1 = new MushroomStem(this, location);
         stems.add(s1);
         location.add(s1);
 
-        MushroomThread t1=new MushroomThread(this, location);
+        MushroomThread t1 = new MushroomThread(this, location);
         threads.add(new MushroomThread(this, location));
         location.add(t1);
     }
@@ -49,15 +50,15 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * A létrehozott entitások hozzáadásra kerülnek a tektonhoz is.
      *
      * @param location A gombász kezdeti pozícióját meghatározó tekton.
-     * @param id Azonosító, amely egyedileg azonosítja a gombászt.
+     * @param id       Azonosító, amely egyedileg azonosítja a gombászt.
      */
     public Mushroomer(Tecton location, int id) {
         super(id);
-        MushroomStem s1=new MushroomStem(this, location);
+        MushroomStem s1 = new MushroomStem(this, location);
         stems.add(s1);
         location.add(s1);
 
-        MushroomThread t1=new MushroomThread(this, location);
+        MushroomThread t1 = new MushroomThread(this, location);
         threads.add(new MushroomThread(this, location));
         location.add(t1);
     }
@@ -227,8 +228,9 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         if (!hasThread(tecton)) return false;
 
         MushroomThread thread = threads.stream()
-                                        .filter(th -> th.hasEaten() && th.getLocation()
-                                        .equals(tecton)).findFirst().orElse(null);;
+                .filter(th -> th.hasEaten() && th.getLocation()
+                        .equals(tecton)).findFirst().orElse(null);
+        ;
 
         if (thread != null && tecton.add(ms)) {
             thread.setEaten(false);
@@ -350,4 +352,11 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         return Objects.hash(super.hashCode(), spores, stems, threads, grownThreadsThisTurn);
     }
 
+    @Override
+    public String toString() {
+        return super.toString()
+                + " stems=[" + stems.stream().map(MushroomStem::getName).collect(Collectors.joining(", ")) + "], "
+                + "spores=[" + spores.stream().map(Spore::getName).collect(Collectors.joining(", ")) + "], "
+                + "threads=[" + threads.stream().map(MushroomThread::getName).collect(Collectors.joining(", ")) + "]";
+    }
 }

@@ -180,4 +180,12 @@ public class MushroomThread extends Entity {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + "eaten=" + eaten +
+                ", cutOff=" + cutOff +
+                ", cutOffDuration=" + cutOffDuration;
+    }
 }
