@@ -20,42 +20,48 @@ import java.util.*;
  */
 public class Game extends Identifiable implements ITurn, IRound, Serializable {
     public static final Random random = new Random();
+
     /**
      * Egy körben lejátszható lépések maximális száma.
      */
     private final int maxTurn = 10;
+
     /**
      * A játék pályája
      */
     private Map map = new Map();
-    /**
-     * Azt jelzi, hogy a játék véget ért-e.
-     */
-    private boolean ended = false;
-    /**
-     * A játékban résztvevő játékosok listája.
-     */
-    private final List<Player> players = new ArrayList<>();
-    /**
-     * Az aktuális kör sorszáma.
-     */
-    private int turn = 0;
 
     /**
      * Nyilvántartja, elkezdődött-e már a játék
      */
-    private boolean hasStarted = false;
+    private boolean started = false;
+
+    /**
+     * Azt jelzi, hogy a játék véget ért-e.
+     */
+    private boolean ended = false;
+
+    /**
+     * A játékban résztvevő játékosok listája.
+     */
+    private final List<Player> players = new ArrayList<>();
+
+    /**
+     * Az aktuális kör sorszáma.
+     */
+    private int turn = 0;
 
     public Game() {
     }
 
     public Game(Game game) {
         super(game);
+        this.map = game.map;
         this.map.tectons.addAll(game.map.tectons);
         this.players.addAll(game.players);
         this.ended = game.ended;
         this.turn = game.turn;
-        this.hasStarted = game.hasStarted;
+        this.started = game.started;
     }
 
     /**
@@ -65,54 +71,24 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true, ha a gazda az aktuális játékos, egyébként false.
      */
     private boolean hasCurrentTurn(Entity entity) {
-        return getCurrentPlayer().equals(entity.getOwner());
+        return started && getCurrentPlayer().equals(entity.getOwner());
     }
 
     /**
-     * Ellenőrzi, hogy a megadott játékos-e az aktuális játékos.
-     *
-     * @param player A játékos, akit ellenőrzünk.
-     * @return true, ha az aktuális játékos, különben false.
+     * Elindítja a játékot, a started változó beállításával
      */
-    private boolean hasCurrentTurn(Player player) {
-        return getCurrentPlayer().equals(player);
-    }
+    public boolean startGame(int playerCount) {
+        if (started || playerCount < 0 || playerCount > 8 || playerCount % 2 == 0) return false;
+        started = true;
 
+        map.generate(playerCount * 2);
 
-    /**
-     * Elindítja a játékot, a hasStarted változó beállításával
-     */
-    public boolean startGame() {
-        if (hasStarted) return false;
-        hasStarted = true;
-
-        
-        //PÁLYA GENERÁLÁS, HA MÉG NINCS MEGFELELŐ PÁLYA
-        if (!map.isGenerated()) {
-            map.generate(random);
+        for (int i = 0; i < playerCount; i++) {
+            players.add(new Mushroomer(map.tectons.get(random.nextInt(map.tectons.size()))));
+            players.add(new Insecter(map.tectons.get(random.nextInt(map.tectons.size()))));
         }
 
         return true;
-    }
-
-    public boolean addPlayer(Player player) {
-        if (players.size() <= 8) {
-            return players.add(player);
-        }
-        return false;
-    }
-
-    public boolean addPlayers() {
-        if (!map.isGenerated()) {
-            System.out.println("map must be generated first using /start!");
-            return false;
-        }
-        if (players.size() <= 8) {
-            players.add(new Mushroomer(map.tectons.get(random.nextInt(map.tectons.size()))));
-            players.add(new Insecter(map.tectons.get(random.nextInt(map.tectons.size()))));
-            return true;
-        }
-        return false;
     }
 
     /**
@@ -121,9 +97,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return Az aktuális játékos.
      */
     public Player getCurrentPlayer() {
-        if (players.size() == 0) {
-            return null;
-        }
+        if (!started) return null;
         return players.get(turn % players.size());
     }
 
@@ -133,6 +107,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return A legtöbb pontot elért játékosok, vagy null ha nincs ilyen.
      */
     public List<Player> getWinners() {
+        if (!started) return null;
         List<Player> winners = new ArrayList<>();
         winners.add(players.stream().filter(p -> p instanceof Mushroomer).max(Comparator.comparingInt(Player::getScore)).orElse(null));
         winners.add(players.stream().filter(p -> p instanceof Insecter).max(Comparator.comparingInt(Player::getScore)).orElse(null));
@@ -147,7 +122,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true, ha a mozgás sikerült, különben false.
      */
     public boolean move(Insect insect, Tecton location) {
-        if (!hasCurrentTurn(insect)) return false;
+        if (started && !hasCurrentTurn(insect)) return false;
         return ((Insecter) insect.getOwner()).move(insect, location);
     }
 
@@ -159,7 +134,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true, ha a művelet sikeres volt.
      */
     public boolean eat(Insect insect, Spore spore) {
-        if (!hasCurrentTurn(insect)) return false;
+        if (started && !hasCurrentTurn(insect)) return false;
         return ((Insecter) insect.getOwner()).eat(insect, spore);
     }
 
@@ -171,7 +146,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true, ha a szeletelés sikeres.
      */
     public boolean cut(Insect insect, MushroomThread mushroomThread) {
-        if (!hasCurrentTurn(insect)) return false;
+        if (started && !hasCurrentTurn(insect)) return false;
         return ((Insecter) insect.getOwner()).cut(insect, mushroomThread);
 
     }
@@ -183,16 +158,15 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true, ha az elhelyezés sikeres.
      */
     public boolean plantMushroomStem(Tecton location) {
-        if(turn % 2 == 0) return ((Mushroomer) getCurrentPlayer()).plantMushroomStem(location);
+        if (started && turn % 2 == 0) return ((Mushroomer) getCurrentPlayer()).plantMushroomStem(location);
         return false;
-        
+
     }
 
     public boolean throwSpore(MushroomStem mushroomStem, Tecton location) {
-        if (!hasCurrentTurn(mushroomStem)) return false;
+        if (started && !hasCurrentTurn(mushroomStem)) return false;
         return ((Mushroomer) mushroomStem.getOwner()).throwSpore(mushroomStem, location);
     }
-
 
     /**
      * Gombafonal növesztése adott pozícióba.
@@ -201,7 +175,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true ha a növesztés sikeres.
      */
     public boolean growThread(Tecton location) {
-        if(turn % 2 == 0) return ((Mushroomer) getCurrentPlayer()).growMushroomThread(location);
+        if (started && turn % 2 == 0) return ((Mushroomer) getCurrentPlayer()).growMushroomThread(location);
         return false;
     }
 
@@ -213,7 +187,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true, ha a támadás sikeres.
      */
     public boolean eat(MushroomThread mushroomThread, Insect insect) {
-        if (!hasCurrentTurn(mushroomThread)) return false;
+        if (started && !hasCurrentTurn(mushroomThread)) return false;
         return ((Mushroomer) mushroomThread.getOwner()).eat(mushroomThread, insect);
     }
 
@@ -224,15 +198,17 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      * @return true, ha a fejlesztés sikeres.
      */
     public boolean levelUp(MushroomStem mushroomStem) {
-        if (!hasCurrentTurn(mushroomStem)) return false;
+        if (started && !hasCurrentTurn(mushroomStem)) return false;
         return ((Mushroomer) mushroomStem.getOwner()).levelUp(mushroomStem);
     }
 
     public void printMap() {
+        if (!started) return;
         map.printSelf();
     }
 
     public void listPlayers() {
+        if (!started) return;
         for (Player player : players) {
             System.out.println(player.getName() + player.getId() + "\n");
         }
@@ -240,19 +216,19 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
 
 
     public void listShroomStem() {
+        if (!started) return;
         for (Player player : players) {
-            // for (MushroomStem stem : player.getName().) {
-
-            // }
             System.out.println(player.getName() + player.getId() + "\n");
         }
     }
 
     public int getTurn() {
+        if (!started) return -1;
         return turn;
     }
 
     public Identifiable findObject(int id) {
+        if (!started) return null;
         List<Identifiable> identifiable = new ArrayList<>();
         identifiable.addAll(map.tectons);
         identifiable.addAll(players);
@@ -275,6 +251,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      */
     @Override
     public void endRound() {
+        if (!started) return;
         map.endRound();
     }
 
@@ -283,12 +260,8 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
      */
     @Override
     public void endTurn() {
-        if (players.size() == 0) {
-            System.out.println("there are no players in the game!");
-            return;
-        }
+        if (!started) return;
         turn++;
-        if (turn % players.size() == 0) ended = true;
         if (turn == maxTurn) ended = true;
     }
 

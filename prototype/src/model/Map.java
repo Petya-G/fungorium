@@ -7,6 +7,7 @@ import model.tecton.SingleThreadedTecton;
 import model.tecton.StemlessTecton;
 import model.tecton.Tecton;
 import model.tecton.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,19 +24,13 @@ public class Map implements IRound, Serializable {
      */
     public List<Tecton> tectons = new ArrayList<>();
 
-    private boolean generated = false;
     public Map() {
-        
-    }
-    public boolean isGenerated() {
-        return generated;
+
     }
 
-    public void generate(Random rand) {
-        generated = true;
-
-        for (int i = 0; i < rand.nextInt(5, 15); i++) {
-            switch (rand.nextInt(5)) {
+    public void generate(int size) {
+        for (int i = 0; i < size; i++) {
+            switch (Game.random.nextInt(4)) {
                 case 0:
                     tectons.add(new Tecton());
                     break;
@@ -46,19 +41,14 @@ public class Map implements IRound, Serializable {
                     tectons.add(new SingleThreadedTecton());
                     break;
                 case 3:
-                    tectons.add(new StemlessTecton());
-                    break;
-                case 4:
                     tectons.add(new ThreadConsumingTecton());
-                    break;
-                default:
                     break;
             }
         }
 
         for (int i = 0; i < tectons.size(); i++) {
-            for (int j = i+1; j < tectons.size(); j++) {
-                if (rand.nextBoolean()) {
+            for (int j = i + 1; j < tectons.size(); j++) {
+                if (Game.random.nextBoolean()) {
                     connect(tectons.get(i), tectons.get(j));
                 }
             }
@@ -76,10 +66,9 @@ public class Map implements IRound, Serializable {
         b.addNeighbour(a);
     }
 
-    public void printSelf()
-    {
+    public void printSelf() {
         for (Tecton tecton : tectons) {
-            String help = tecton.getName() + tecton.getId()+": ";
+            String help = tecton.getName() + tecton.getId() + ": ";
             for (Tecton neighbour : tecton.getNeighbours()) {
                 help += neighbour.getName() + neighbour.getId() + ", ";
             }

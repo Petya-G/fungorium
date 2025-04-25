@@ -53,11 +53,12 @@ public class Parser {
     }
 
     public void CMD_start(String[] args) {
-        if (args.length != 1) {
+        if (args.length != 2) {
             System.out.println("invalid argument count!");
             return;
         }
-        if (!game.startGame()) System.out.println("THhe game couldn't have been started (maybe it already has...)");
+        if (!game.startGame(Integer.parseInt(args[1])))
+            System.out.println("The game couldn't have been started (maybe it already has...)");
     }
 
     public void CMD_load(String[] args) {
@@ -128,14 +129,6 @@ public class Parser {
         }
     }
 
-    public void CMD_addplayers(String[] args) {
-        if (args.length != 1) {
-            System.out.println("invalid argument count!");
-            return;
-        }
-        if (!game.addPlayers()) System.out.println("Players couldn't have been added");
-    }
-
     public void CMD_manualtrigger(String[] args) {
 
     }
@@ -168,8 +161,6 @@ public class Parser {
             return;
         }
         for (String item : helpGuide) System.out.println(item);
-
-
     }
 
     public void CMD_move(String[] args) {
@@ -178,7 +169,8 @@ public class Parser {
             return;
         }
         try {
-            if (!game.move((Insect) game.findObject(Integer.parseInt(args[1])), (Tecton) game.findObject(Integer.parseInt(args[2])))) System.out.println("Couldn't move");
+            if (!game.move((Insect) game.findObject(Integer.parseInt(args[1])), (Tecton) game.findObject(Integer.parseInt(args[2]))))
+                System.out.println("Couldn't move");
         } catch (Exception e) {
             System.out.println("Invalid ID(s)");
         }
@@ -191,13 +183,15 @@ public class Parser {
         }
         boolean oneEx = false;
         try {
-            if (game.eat((Insect) game.findObject(Integer.parseInt(args[1])), (Spore) game.findObject(Integer.parseInt(args[2])))) return;   
+            if (game.eat((Insect) game.findObject(Integer.parseInt(args[1])), (Spore) game.findObject(Integer.parseInt(args[2]))))
+                return;
         } catch (Exception e) {
             oneEx = true;
         }
 
         try {
-            if (game.eat((MushroomThread) game.findObject(Integer.parseInt(args[1])), (Insect) game.findObject(Integer.parseInt(args[2])))) return;            
+            if (game.eat((MushroomThread) game.findObject(Integer.parseInt(args[1])), (Insect) game.findObject(Integer.parseInt(args[2]))))
+                return;
         } catch (Exception e) {
             if (oneEx) System.out.println("Invalid ID(s)");
         }
@@ -223,7 +217,8 @@ public class Parser {
             return;
         }
         try {
-            if (!game.growThread((Tecton) game.findObject(Integer.parseInt(args[1])))) System.out.println("Couldn't grow");
+            if (!game.growThread((Tecton) game.findObject(Integer.parseInt(args[1]))))
+                System.out.println("Couldn't grow");
         } catch (Exception e) {
             System.out.println("Invalid ID(s)");
         }
@@ -235,7 +230,8 @@ public class Parser {
             return;
         }
         try {
-            if (!game.plantMushroomStem((Tecton) game.findObject(Integer.parseInt(args[1])))) System.out.println("Couldn't grow");
+            if (!game.plantMushroomStem((Tecton) game.findObject(Integer.parseInt(args[1]))))
+                System.out.println("Couldn't grow");
         } catch (Exception e) {
             System.out.println("Invalid ID(s)");
         }
@@ -262,7 +258,6 @@ public class Parser {
         game.endTurn();
     }
 
-
     public void parseCommand(String cmd) {
         String[] tokens = cmd.split(" ");
 
@@ -281,9 +276,6 @@ public class Parser {
                 break;
             case "/rand":
                 CMD_rand(tokens);
-                break;
-            case "/addplayers":
-                CMD_addplayers(tokens);
                 break;
             case "/manualtrigger":
                 CMD_manualtrigger(tokens);
