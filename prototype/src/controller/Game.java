@@ -264,6 +264,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     public void endTurn() {
         if (!started) return;
         turn++;
+        players.forEach(Player::endTurn);
         if (turn == maxTurn) ended = true;
     }
 
