@@ -131,6 +131,11 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
         map.tectons.get(1).add(sp4);
         m1.add(sp4);
 
+        // legyen thread a 2-es tektonon is
+        MushroomThread t2 = new MushroomThread(m1, map.tectons.get(2));
+        map.tectons.get(2).add(t2);
+        m1.add(t2);
+
         return true;
     }
 

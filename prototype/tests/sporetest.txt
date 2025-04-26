@@ -1,0 +1,20 @@
+# spore tests
+/test
+
+# INFO: insect ID's are: 10 (at start) and 23 (after splitting)
+
+!endturn
+
+# eat splitter spore, now theres two of us
+!eat 10 20
+
+# first one eat speeding, second one eat slowing
+!eat 10 12
+!eat 23 14
+
+# first one eat clawparalyzer, second one eat paralizer
+!eat 10 18
+!eat 23 16
+
+# list all parameters
+/list

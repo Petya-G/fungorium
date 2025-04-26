@@ -246,8 +246,8 @@ public class Insect extends Entity {
 
     public void split() {
         Insect insect = new Insect((Insecter) getOwner(), getLocation());
-        //((Insecter) getOwner()).add(insect); // These are not needed because I already added them in the Insect constructor
-        //getLocation().add(insect);
+        ((Insecter) getOwner()).add(insect); // You are WRONG! (These are not needed because I already added them in the Insect constructor)
+        getLocation().add(insect);
     }
 
     /**
