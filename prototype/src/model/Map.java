@@ -90,7 +90,7 @@ public class Map implements IRound, Serializable {
         }
     }
 
-    private boolean enableSplitting = false;
+    private boolean enableSplitting = true;
     public boolean isSplittingEnabled() {
         return enableSplitting;
     }

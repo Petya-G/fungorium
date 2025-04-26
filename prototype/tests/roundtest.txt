@@ -1,0 +1,16 @@
+/rand -disable
+# test end of rounds and tecton splitting
+/test
+
+!endturn
+!endturn
+!endturn
+!endturn
+
+!endturn
+!endturn
+!endturn
+!endturn
+
+/list
+/exit
