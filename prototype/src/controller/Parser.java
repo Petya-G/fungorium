@@ -28,11 +28,11 @@ public class Parser {
             "/save PATH: Saves the current state of the game to a file, at the given path",
             "/exec PATH: Executes the commands in the given file",
             "/rand: Enables or disables the randomness of the random elements (-disable/-enable)",
-            "/addplayers: Adds a Mushroomer and an Insecter player to the game",
             "/manualtrigger: Forces the execution of the given game command",
             "/list: Lists all objects of the given type (-player, -mushroomstem, -mushroomthread, -insect, -spore)",
             "/map: Prints the Map (All tectons with their neighbours)",
             "/help: Prints this guide",
+            "/exit: exits the game (DOES NOT SAVE)",
             "------------------------------------------GAME COMMANDS------------------------------------------",
             "!move [INSECT_ID] [TECTON_ID]: Moves the insect to another tecton, if it's legal",
             "!eat [INSECT_ID]: The given insect eats a random (or not) spore on its tecton, if it can",
@@ -41,8 +41,7 @@ public class Parser {
             "!plant [TECTON_ID]: Plants a mushroom stem on the given tecton, if it's legal",
             "!throw [MUSHROOMSTEM_ID] [TECTON_ID]: The given mushroom stem throws a spore to the given tecton, if it can",
             "!levelup [MUSHROOMSTEM_ID]: increases the level of the given mushroomstem, if possible",
-            "!endturn: Ends the current players turn, if all of its obligatory actions have been taken",
-            "/exit: exits the game (DOES NOT SAVE)"
+            "!endturn: Ends the current players turn, if all of its obligatory actions have been taken"
     };
 
     Game game;
@@ -322,12 +321,8 @@ public class Parser {
         game.endTurn();
     }
 
-    
 
     public void parseCommand(String cmd) {
-
-        
-
         String[] tokens = cmd.split(" ");
 
         switch (tokens[0]) {

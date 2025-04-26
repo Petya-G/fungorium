@@ -316,7 +316,9 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
         if (!started) return;
         getCurrentPlayer().endTurn();
         turn++;
-        if (turn % players.size() == 0) {endRound();}
+        if (turn % players.size() == 0) {
+            endRound();
+        }
         if (turn == maxTurn) ended = true;
     }
 

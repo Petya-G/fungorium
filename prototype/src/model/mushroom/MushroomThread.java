@@ -7,11 +7,11 @@ import model.tecton.Tecton;
 import java.util.*;
 
 public class MushroomThread extends Entity {
-    
+
     private boolean eaten = false;
     private boolean cutOff = false;
     private int cutOffDuration = 0;
-    
+
     private static final int MAX_CUTOFF_DURATION = 2;
 
     /**
@@ -47,7 +47,9 @@ public class MushroomThread extends Entity {
      *
      * @return {@code true}, ha a gombafonal leválasztott állapotban van, különben {@code false}.
      */
-    public boolean isCutOff() { return cutOff; }
+    public boolean isCutOff() {
+        return cutOff;
+    }
 
     /**
      * Állíthatjuk vele az értéket, ami megmondja, hogy a fonal kapcsolódik-e gombateshez
@@ -145,9 +147,10 @@ public class MushroomThread extends Entity {
     }
 
     /**
-     *Összehasonlít 2 objektumot
-     * @param o    Objektum, amivel összehasonlítjuk
-     *@return  {@code true}, ha megegyezik a 2 objektum, egyébként {@code false}
+     * Összehasonlít 2 objektumot
+     *
+     * @param o Objektum, amivel összehasonlítjuk
+     * @return {@code true}, ha megegyezik a 2 objektum, egyébként {@code false}
      */
     @Override
     public boolean equals(Object o) {
@@ -159,6 +162,7 @@ public class MushroomThread extends Entity {
 
     /**
      * Visszaadja az objektum hash-kódját, amely a jelenlegi példány mezői alapján kerül kiszámításra.
+     *
      * @return Az objektum hash-kódja.
      */
     @Override
@@ -170,7 +174,7 @@ public class MushroomThread extends Entity {
      * Megvizsgálja, hogy van-e a megadott Tecton-on legalább egy érvényes MushroomThread}.
      *
      * @param tecton A vizsgált Tecton.
-     * @return  true, ha van rajta legalább egy nem "eaten" és nem "cutOff" gombafonál, különben false.
+     * @return true, ha van rajta legalább egy nem "eaten" és nem "cutOff" gombafonál, különben false.
      */
     public boolean hasValidThread(Tecton tecton) {
         for (MushroomThread thread : tecton.getThreads()) {

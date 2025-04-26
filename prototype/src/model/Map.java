@@ -91,9 +91,11 @@ public class Map implements IRound, Serializable {
     }
 
     private boolean enableSplitting = true;
+
     public boolean isSplittingEnabled() {
         return enableSplitting;
     }
+
     public void setSplittingEnabled(boolean b) {
         enableSplitting = b;
     }
@@ -103,7 +105,7 @@ public class Map implements IRound, Serializable {
      */
     @Override
     public void endRound() {
-        
+
         // avoid comodification
         ArrayList<Tecton> tectonsClone = new ArrayList<Tecton>(tectons);
         tectonsClone.forEach(Tecton::endRound);
