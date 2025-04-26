@@ -90,15 +90,29 @@ public class Map implements IRound, Serializable {
         }
     }
 
+    private boolean enableSplitting = false;
+    public boolean isSplittingEnabled() {
+        return enableSplitting;
+    }
+    public void setSplittingEnabled(boolean b) {
+        enableSplitting = b;
+    }
+
     /**
      * A kör végén minden tekton végrehajtja saját EndRound műveletét és véletlenszerűen új tektonok jöhetnek létre.
      */
     @Override
     public void endRound() {
-        tectons.forEach(Tecton::endRound);
-        for (Tecton t : tectons) {
-            if (Game.random.nextBoolean()) {
-                tectons.add(t.split());
+        
+        // avoid comodification
+        ArrayList<Tecton> tectonsClone = new ArrayList<Tecton>(tectons);
+        tectonsClone.forEach(Tecton::endRound);
+
+        if (enableSplitting) {
+            for (Tecton t : tectonsClone) {
+                if (Game.random.nextBoolean()) {
+                    tectons.add(t.split());
+                }
             }
         }
     }

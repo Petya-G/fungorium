@@ -1,3 +1,4 @@
+/splitting -disable 
 /rand -disable
 # spore tests
 /test
@@ -19,3 +20,4 @@
 
 # list all parameters
 /list
+/exit

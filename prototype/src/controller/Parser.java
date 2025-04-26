@@ -119,6 +119,9 @@ public class Parser {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.isBlank() || line.charAt(0) == '#') {
+                    if (!line.isBlank()) {
+                        System.out.println(line);
+                    }
                     continue;
                 }
                 if (getGame().getCurrentPlayer() != null) {
@@ -159,6 +162,18 @@ public class Parser {
         }
         if (Objects.equals(args[1], "-disable")) Game.random.setSeed(1);
         else if (Objects.equals(args[1], "-enable")) Game.random.setSeed(r.nextInt());
+        else {
+            System.out.println("invalid flag: use -disable or -enable");
+        }
+    }
+
+    public void CMD_splitting(String[] args) {
+        if (args.length != 2) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        if (Objects.equals(args[1], "-disable")) game.getMap().setSplittingEnabled(false);
+        else if (Objects.equals(args[1], "-enable")) game.getMap().setSplittingEnabled(true);
         else {
             System.out.println("invalid flag: use -disable or -enable");
         }
@@ -336,6 +351,9 @@ public class Parser {
                 break;
             case "/rand":
                 CMD_rand(tokens);
+                break;
+            case "/splitting":
+                CMD_splitting(tokens);
                 break;
             case "/manualtrigger":
                 CMD_manualtrigger(tokens);

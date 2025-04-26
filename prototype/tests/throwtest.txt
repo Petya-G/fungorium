@@ -1,0 +1,31 @@
+/splitting -disable 
+/rand -disable
+# throw spore test
+/test
+
+# try to throw too far
+!throw 7 3
+
+# throw at same tecton as stem
+!throw 7 1
+
+# now we cant throw again in same turn
+!throw 7 1
+
+# throw 2 more at out feet
+!endturn
+!endturn
+!throw 7 1
+!endturn
+!endturn
+!throw 7 1
+
+# we can now level up
+!levelup 7
+!endturn
+!endturn
+
+# and now we can throw farther
+!throw 7 3
+
+/exit

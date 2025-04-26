@@ -1,3 +1,4 @@
+/splitting -disable 
 /rand -disable
 # thread cutting test
 /test
@@ -25,3 +26,4 @@
 
 # now we can't cut
 !cut 10 11
+/exit

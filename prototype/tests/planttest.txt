@@ -1,0 +1,17 @@
+/splitting -disable 
+/rand -disable
+# plant stem test
+/test
+
+# plant where there is already a stem
+!plant 1
+
+# plant where there are not enough spores
+!plant 3
+
+# plant where there is no thread
+!plant 5
+
+# plant at correct place
+!plant 2
+/exit

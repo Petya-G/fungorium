@@ -57,6 +57,10 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     public Game() {
     }
 
+    public Map getMap() {
+        return map;
+    }
+
     public Game(Game game) {
         super(game);
         this.map = game.map;
@@ -301,6 +305,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
     public void endRound() {
         if (!started) return;
         map.endRound();
+        System.out.println("[ROUND OVER]");
     }
 
     /**
@@ -311,6 +316,7 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
         if (!started) return;
         getCurrentPlayer().endTurn();
         turn++;
+        if (turn % players.size() == 0) {endRound();}
         if (turn == maxTurn) ended = true;
     }
 

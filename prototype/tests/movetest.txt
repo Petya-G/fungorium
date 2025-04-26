@@ -1,3 +1,4 @@
+/splitting -disable 
 /rand -disable
 # testing movement of insects
 /test
@@ -30,3 +31,4 @@
 !move 10 2
 
 # TODO: test speeding/slowing spores
+/exit
