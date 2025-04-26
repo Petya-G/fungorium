@@ -236,6 +236,10 @@ public class Insect extends Entity {
         if (clawParalyzed || paralyzed)
             return false;
 
+        if (th.getLocation() != this.getLocation()) {
+            return false;
+        }
+
         th.setCutOff(true);
         return true;
     }

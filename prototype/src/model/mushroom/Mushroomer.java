@@ -317,7 +317,11 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     @Override
     public void endTurn() {
         stems.forEach(MushroomStem::endTurn);
-        threads.forEach(MushroomThread::endTurn);
+
+        // concurrent modification fix
+        ArrayList<MushroomThread> threadsCopy = new ArrayList<MushroomThread>(threads);
+        threadsCopy.forEach(MushroomThread::endTurn);
+
         spores.forEach(Entity::endTurn);
 
         grownThreadsThisTurn = 0;

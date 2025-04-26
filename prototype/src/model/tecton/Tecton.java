@@ -385,7 +385,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
 
     @Override
     public String toString() {
-        return super.toString()
+        return super.toString() + " "
                 + "stem=" + (stem != null ? stem.getName() : "null") + ", "
                 + "spores=[" + spores.stream().map(Spore::getName).collect(Collectors.joining(", ")) + "], "
                 + "threads=[" + threads.stream().map(MushroomThread::getName).collect(Collectors.joining(", ")) + "], "

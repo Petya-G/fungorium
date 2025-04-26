@@ -1,0 +1,8 @@
+# thread cutting test
+/test
+
+# INFO: insect is id 10
+
+!endturn
+!move 10 1
+!cut
