@@ -135,6 +135,10 @@ public class Insect extends Entity {
         if (paralyzed || clawParalyzed)
             return false;
 
+        if (sp.getLocation() != this.getLocation()) {
+            return false;
+        }
+
         add(sp.getEffect());
         getOwner().addScore(sp.getNutrition());
         sp.remove();

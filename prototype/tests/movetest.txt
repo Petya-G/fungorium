@@ -1,0 +1,31 @@
+# testing movement of insects
+/test
+
+# INFO: insect id is 10
+
+# this should not work as it is not insecter's turn
+!move 10 2
+
+# make sure insecter has current turn
+!endturn
+
+# move to current location, should be successful
+!move 10 2
+
+# move to other location along valid thread, should work
+!move 10 1
+
+# move to invalid location, should not work
+!move 10 5
+
+# move to nonexistent location / with nonexistent insect, should print error
+!move 100 0
+!move 10 100
+
+# eat paralyzing spore, should not be able to move
+!move 10 2
+!eat 10 16
+# this should not work
+!move 10 2
+
+# TODO: test speeding/slowing spores

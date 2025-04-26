@@ -9,7 +9,13 @@ public class Main {
             if (parser.getGame().getCurrentPlayer() != null) {
                 System.out.println("current turn: " + parser.getGame().getTurn() + " (" + parser.getGame().getCurrentPlayer().getId() + "): " + parser.getGame().getCurrentPlayer());
             }
-            parser.parseCommand(s.nextLine());
+            String line = s.nextLine();
+
+            //skip comments
+            while (line.isBlank() || line.charAt(0) == '#') {
+                line = s.nextLine();
+            }
+            parser.parseCommand(line);
         }
     }
 }

@@ -1,9 +1,11 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Objects;
@@ -61,6 +63,15 @@ public class Parser {
             System.out.println("The game couldn't have been started (maybe it already has...)");
     }
 
+    public void CMD_test(String[] args) {
+        if (args.length != 1) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        if (!game.startTestGame())
+            System.out.println("The game couldn't have been started (maybe it already has...)");
+    }
+
     public void CMD_load(String[] args) {
         if (args.length != 2) {
             System.out.println("invalid argument count!");
@@ -95,6 +106,26 @@ public class Parser {
             file.close();
         } catch (Exception e) {
             System.out.println("error: " + e);
+        }
+    }
+
+    public void CMD_script(String[] args) {
+        if (args.length != 2) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        try (BufferedReader br = new BufferedReader(new FileReader(args[1]))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (line.isBlank() || line.charAt(0) == '#') {
+                    continue;
+                }
+                System.out.println(line);
+                parseCommand(line);
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
     }
 
@@ -259,11 +290,20 @@ public class Parser {
     }
 
     public void parseCommand(String cmd) {
+
+        
+
         String[] tokens = cmd.split(" ");
 
         switch (tokens[0]) {
             case "/start":
                 CMD_start(tokens);
+                break;
+            case "/test":
+                CMD_test(tokens);
+                break;
+            case "/script":
+                CMD_script(tokens);
                 break;
             case "/load":
                 CMD_load(tokens);

@@ -2,10 +2,6 @@ package model;
 
 import controller.Game;
 import model.core.IRound;
-import model.tecton.LifeSupportTecton;
-import model.tecton.SingleThreadedTecton;
-import model.tecton.StemlessTecton;
-import model.tecton.Tecton;
 import model.tecton.*;
 
 import java.io.Serializable;
@@ -53,6 +49,24 @@ public class Map implements IRound, Serializable {
                 }
             }
         }
+    }
+
+    // teszt pálya, nagyon egyszerű de annál sokszínűbb :)
+    public void genTestMap() {
+        // 5 fajta tekton
+        tectons.add(new Tecton());
+        tectons.add(new LifeSupportTecton());
+        tectons.add(new SingleThreadedTecton());
+        tectons.add(new StemlessTecton());
+        tectons.add(new ThreadConsumingTecton());
+
+        // szépen sorba kötve
+        connect(tectons.get(0), tectons.get(1));
+        connect(tectons.get(1), tectons.get(2));
+        connect(tectons.get(2), tectons.get(3));
+        connect(tectons.get(3), tectons.get(4));
+
+
     }
 
     /**

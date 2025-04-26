@@ -8,6 +8,7 @@ import model.insect.Insecter;
 import model.mushroom.MushroomStem;
 import model.mushroom.MushroomThread;
 import model.mushroom.Mushroomer;
+import model.mushroom.spore.*;
 import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
 
@@ -89,6 +90,46 @@ public class Game extends Identifiable implements ITurn, IRound, Serializable {
             players.add(new Mushroomer(map.tectons.get(random.nextInt(map.tectons.size()))));
             players.add(new Insecter(map.tectons.get(random.nextInt(map.tectons.size()))));
         }
+
+        return true;
+    }
+
+    public boolean startTestGame() {
+        if (started) return false;
+        started = true;
+
+        map.genTestMap();
+
+        Mushroomer m1 = new Mushroomer(map.tectons.get(0));
+        Insecter i1 = new Insecter(map.tectons.get(1));
+        players.add(m1);
+        players.add(i1);
+
+        // legyen thread az 1-es tektonon is
+        MushroomThread t1 = new MushroomThread(m1, map.tectons.get(1));
+        map.tectons.get(1).add(t1);
+        m1.add(t1);
+
+        // legyen sok-sok spóra az 1-es tektonon
+        SpeedingSpore sp0 = new SpeedingSpore(m1, map.tectons.get(1));
+        map.tectons.get(1).add(sp0);
+        m1.add(sp0);
+
+        SlowingSpore sp1 = new SlowingSpore(m1, map.tectons.get(1));
+        map.tectons.get(1).add(sp1);
+        m1.add(sp1);
+
+        ParalyzingSpore sp2 = new ParalyzingSpore(m1, map.tectons.get(1));
+        map.tectons.get(1).add(sp2);
+        m1.add(sp2);
+
+        ClawParalyzingSpore sp3 = new ClawParalyzingSpore(m1, map.tectons.get(1));
+        map.tectons.get(1).add(sp3);
+        m1.add(sp3);
+
+        SplitterSpore sp4 = new SplitterSpore(m1, map.tectons.get(1));
+        map.tectons.get(1).add(sp4);
+        m1.add(sp4);
 
         return true;
     }
