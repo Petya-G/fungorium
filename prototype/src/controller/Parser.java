@@ -120,6 +120,9 @@ public class Parser {
                 if (line.isBlank() || line.charAt(0) == '#') {
                     continue;
                 }
+                if (getGame().getCurrentPlayer() != null) {
+                    System.out.println("current turn: " + getGame().getTurn() + " (" + getGame().getCurrentPlayer().getId() + "): " + getGame().getCurrentPlayer());
+                }
                 System.out.println(line);
                 parseCommand(line);
             }

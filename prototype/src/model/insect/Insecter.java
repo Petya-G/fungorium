@@ -92,7 +92,7 @@ public class Insecter extends Player implements IInsect {
 
     @Override
     public String toString() {
-        return super.toString()
+        return super.toString() + " "
         + "insects=[" + insects.stream().map(Insect::getName).collect(Collectors.joining(", ")) + "]";
     }
 }

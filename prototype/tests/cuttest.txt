@@ -2,7 +2,25 @@
 /test
 
 # INFO: insect is id 10
+# INFO: threads are 8 and 10 (at tectons 1 and 2 resp.)
 
 !endturn
+
+# cut thread at tecton 1 and move back to tecton 2
 !move 10 1
-!cut
+!cut 10 8
+!move 10 2
+
+# wait a few turns for the thread to die
+!endturn
+!endturn
+!endturn
+!endturn
+!endturn
+!endturn
+
+# now we eat claw paralyzing spore
+!eat 10 18
+
+# now we can't cut
+!cut 10 11
