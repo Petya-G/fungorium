@@ -1,3 +1,4 @@
+/rand -disable
 # testing movement of insects
 /test
 

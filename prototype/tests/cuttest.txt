@@ -1,3 +1,4 @@
+/rand -disable
 # thread cutting test
 /test
 
