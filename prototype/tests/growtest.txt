@@ -1,0 +1,12 @@
+/rand -disable
+# grow thread test
+/test
+
+# try to grow thread where there is already a thread
+!grow 1
+
+# try to grow to an unconnected point
+!grow 5
+
+# try to grow at correct place
+!grow 4
