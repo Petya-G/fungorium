@@ -42,7 +42,6 @@ public class TectonTest {
         mushroomer = new Mushroomer();
         insecter = new Insecter();
     }
-   
 
     @Test
     public void testGetNeighbours() {
@@ -146,13 +145,14 @@ public class TectonTest {
         tecton.add(new MushroomThread(mushroomer, tecton));
         tecton.add(new MushroomThread(mushroomer, tecton));
         tecton.add(new MushroomStem(mushroomer, tecton));
-        newTecton.add(new MushroomThread(mushroomer, tecton));
 
         tecton.removeUnconnectedThreads();
         assertFalse(tecton.getThreads().isEmpty());
 
-        newTecton.removeUnconnectedThreads();
-        assertTrue(newTecton.getThreads().isEmpty());
+        Tecton temp = new Tecton();
+        temp.add(new MushroomThread(mushroomer, temp));
+        temp.removeUnconnectedThreads();
+        assertTrue(temp.getThreads().isEmpty());
     }
 
     @Test

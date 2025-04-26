@@ -1,4 +1,5 @@
 package test.model.InsectTest;
+
 import model.mushroom.*;
 import model.mushroom.spore.ParalyzingSpore;
 import model.mushroom.spore.SpeedingSpore;
@@ -13,7 +14,9 @@ import model.Map;
 import model.insect.*;
 import model.tecton.*;
 import model.effect.*;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 public class InsectTest {
     private Insecter insecter;
     private Tecton tecton;
@@ -43,49 +46,40 @@ public class InsectTest {
         newTecton = new Tecton();
         Map.connect(neighbour1, newTecton);
 
-        insect = new Insect(insecter,tecton);
+        insect = new Insect(insecter, tecton);
         mushroomer = new Mushroomer();
-        
-        
-        
-
     }
 
     @Test
-    public void moveTest(){
-        thread = new MushroomThread(mushroomer,tecton);
-        thread2 = new MushroomThread(mushroomer,neighbour1);
+    public void moveTest() {
+        thread = new MushroomThread(mushroomer, tecton);
+        thread2 = new MushroomThread(mushroomer, neighbour1);
         tecton.add(thread);
         neighbour1.add(thread2);
         insect.move(neighbour1);
         assertTrue(neighbour1.getInsects().contains(insect));
     }
+
     @Test
-    public void moveFailTest(){
-        thread = new MushroomThread(mushroomer,tecton);
-        thread2 = new MushroomThread(mushroomer,neighbour1);
+    public void moveFailTest() {
+        thread = new MushroomThread(mushroomer, tecton);
+        thread2 = new MushroomThread(mushroomer, neighbour1);
         insect.move(neighbour2);
         assertFalse(neighbour2.getInsects().contains(insect));
     }
 
     @Test
-    public void eatTest(){
+    public void eatTest() {
         spore = new SpeedingSpore(mushroomer, tecton);
         insect.eat(spore);
         assertEquals(2, insect.getSpeedModifier());
     }
 
     @Test
-    public void splitSporeTest(){
+    public void splitSporeTest() {
         splitSpore = new SplitterSpore(mushroomer, tecton);
         insect.eat(splitSpore);
-        int insectCount = insecter.getInsects().size();
-        assertEquals(2, insectCount);
-        
+        insecter.endTurn();
+        assertEquals(2, insecter.getInsects().size());
     }
-
-
-
-
-
 }

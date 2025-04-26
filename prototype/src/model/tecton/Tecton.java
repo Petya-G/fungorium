@@ -345,7 +345,7 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     public void removeUnconnectedThreads() {
         List<MushroomThread> threadsToRemove = new ArrayList<>();
         for (MushroomThread th : threads) {
-            if (th.isConnected()) {
+            if (!th.isConnected()) {
                 threadsToRemove.add(th);
             }
         }

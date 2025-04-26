@@ -10,7 +10,6 @@ import model.tecton.Tecton;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
 /**
  * Egy rovart reprezentál a játékban.
  * A rovarok tudnak gombaspórákat enni, gombafonalakon átmenni, és
@@ -132,12 +131,8 @@ public class Insect extends Entity {
      * @return igaz, ha sikerült megenni, egyébként hamis.
      */
     public boolean eat(Spore sp) {
-        if (paralyzed || clawParalyzed)
+        if (paralyzed || clawParalyzed || !getLocation().equals(sp.getLocation()))
             return false;
-
-        if (sp.getLocation() != this.getLocation()) {
-            return false;
-        }
 
         add(sp.getEffect());
         getOwner().addScore(sp.getNutrition());
@@ -214,15 +209,10 @@ public class Insect extends Entity {
     public boolean move(Tecton targetTecton) {
         int distance = getDistanceTo(targetTecton);
 
-        if (paralyzed)
+        if (paralyzed || distance == -1 || distance > baseSpeed * speedModifier)
             return false;
 
-        if (distance == -1)
-            return false;
-
-        if (distance <= baseSpeed * speedModifier)
-            setLocation(targetTecton);
-
+        setLocation(targetTecton);
         return true;
     }
 
@@ -233,12 +223,8 @@ public class Insect extends Entity {
      * @return igaz, ha sikerült elvágni, egyébként hamis.
      */
     public boolean cut(MushroomThread th) {
-        if (clawParalyzed || paralyzed)
+        if (clawParalyzed || paralyzed || !getLocation().equals(th.getLocation()))
             return false;
-
-        if (th.getLocation() != this.getLocation()) {
-            return false;
-        }
 
         th.setCutOff(true);
         return true;
