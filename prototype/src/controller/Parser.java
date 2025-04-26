@@ -34,12 +34,13 @@ public class Parser {
             "/map: Prints the Map (All tectons with their neighbours)",
             "/help: Prints this guide",
             "------------------------------------------GAME COMMANDS------------------------------------------",
-            "!move INSECTID TECTONID: Moves the insect to another tecton, if it's legal",
-            "!eat INSECTID: The given insect eats a random (or not) spore on its tecton, if it can",
-            "!cut INSECTID: The given insect cuts a random (or not) mushroom thread on its tecton, if it can",
-            "!grow TECTONID: Grows a mushroom thread on the given tecton, if it's legal",
-            "!plant TECTONID: Plants a mushroom stem on the given tecton, if it's legal",
-            "!throw MUSHROOMSTEMID TECTONID: The given mushroom stem throws a spore to the given tecton, if it can",
+            "!move [INSECT_ID] [TECTON_ID]: Moves the insect to another tecton, if it's legal",
+            "!eat [INSECT_ID]: The given insect eats a random (or not) spore on its tecton, if it can",
+            "!cut [INSECT_ID]: The given insect cuts a random (or not) mushroom thread on its tecton, if it can",
+            "!grow [TECTON_ID]: Grows a mushroom thread on the given tecton, if it's legal",
+            "!plant [TECTON_ID]: Plants a mushroom stem on the given tecton, if it's legal",
+            "!throw [MUSHROOMSTEM_ID] [TECTON_ID]: The given mushroom stem throws a spore to the given tecton, if it can",
+            "!levelup [MUSHROOMSTEM_ID]: increases the level of the given mushroomstem, if possible",
             "!endturn: Ends the current players turn, if all of its obligatory actions have been taken",
             "/exit: exits the game (DOES NOT SAVE)"
     };
@@ -284,6 +285,20 @@ public class Parser {
         }
     }
 
+    public void CMD_levelup(String[] args) {
+        if (args.length != 2) {
+            System.out.println("invalid argument count!");
+            return;
+        }
+        try {
+            if (!game.levelUp((MushroomStem) game.findObject(Integer.parseInt(args[1]))))
+                System.out.println("Couldn't level up");
+        } catch (Exception e) {
+            System.out.println("Invalid ID(s)");
+        }
+    }
+
+
     public void CMD_endturn(String[] args) {
         if (args.length != 1) {
             System.out.println("invalid argument count!");
@@ -291,6 +306,8 @@ public class Parser {
         }
         game.endTurn();
     }
+
+    
 
     public void parseCommand(String cmd) {
 
@@ -350,6 +367,9 @@ public class Parser {
                 break;
             case "!throw":
                 CMD_throw(tokens);
+                break;
+            case "!levelup":
+                CMD_levelup(tokens);
                 break;
             case "!endturn":
                 CMD_endturn(tokens);
