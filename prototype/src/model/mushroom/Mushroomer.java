@@ -40,7 +40,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         location.add(s1);
 
         MushroomThread t1 = new MushroomThread(this, location);
-        threads.add(new MushroomThread(this, location));
+        threads.add(t1);
         location.add(t1);
     }
 
