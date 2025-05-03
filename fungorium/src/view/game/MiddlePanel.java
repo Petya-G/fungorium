@@ -10,6 +10,9 @@ import java.awt.*;
  * containing subpanels organized in a vertical layout.
  */
 public class MiddlePanel extends JPanel {
+    TurnOrderPanel turnOrderPanel = new TurnOrderPanel();
+    MapPanel mapPanel = new MapPanel();
+    TectonContentPanel tectonContentPanel = new TectonContentPanel();
 
     /**
      * Constructor for the MiddlePanel.
@@ -20,24 +23,11 @@ public class MiddlePanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
         setBorder(createTitledBorder("Game Area"));
+            add(turnOrderPanel, BorderLayout.NORTH);
 
-        try {
-            // Add the Game Info Panel to the top (NORTH)
-            add(new TurnOrderPanel(), BorderLayout.NORTH);
+            add(mapPanel, BorderLayout.CENTER);
 
-            // Add the Upper Middle Panel to the center (CENTER)
-            add(new MapPanel(), BorderLayout.CENTER);
-
-            // Add the Lower Middle Panel to the bottom (SOUTH)
-            add(new TectonContentPanel(), BorderLayout.SOUTH);
-
-        } catch (Exception e) {
-            // Display an error dialog if any exception occurs
-            JOptionPane.showMessageDialog(this,
-                    "Error initializing MiddlePanel: " + e.getMessage(),
-                    "Initialization Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+            add(tectonContentPanel, BorderLayout.SOUTH);
     }
 
     /**
