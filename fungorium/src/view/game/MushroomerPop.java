@@ -11,8 +11,10 @@ public class MushroomerPop extends JPanel{
         setBackground(new Color(240, 240, 240));
         JButton sporeButton = new JButton("Throw Spore");
         JButton eatButton = new JButton("Eat Insect");
-        sporeButton.setPreferredSize(new Dimension(1500, 30));
-        eatButton.setPreferredSize(new Dimension(1500, 30));
+        JButton threadButton = new JButton("Grow Thread");
+        sporeButton.setPreferredSize(new Dimension(1000, 30));
+        eatButton.setPreferredSize(new Dimension(1000, 30));
+        threadButton.setPreferredSize(new Dimension(1000, 30));
 
         sporeButton.addActionListener(new ActionListener() {
             @Override
@@ -29,7 +31,15 @@ public class MushroomerPop extends JPanel{
                 System.out.println("eat Gomb lett megnyomva.");
             }
         });
+        threadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO: meghívni a föggvényt, kitalálni, hogy hova fog nőni
+                System.out.println("thread  Gomb lett megnyomva.");
+            }
+        });
         add(sporeButton);
         add(eatButton);
+        add(threadButton);
     }
 }

@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MapPanel extends JPanel {
     private List<TectonView> tectons = new ArrayList<>();
@@ -25,8 +26,10 @@ public class MapPanel extends JPanel {
 
         setBackground(new Color(250, 250, 250));
 
-        tectons.add(new TectonView(640,360));
-        tectons.add(new TectonView(150, 150));
+        //tectons.add(new TectonView(640,360));
+        //tectons.add(new TectonView(150, 150));
+        addTectonAtRandomPosition();
+        addTectonAtRandomPosition();
         threads.add(new MushroomThreadView(tectons.get(0),tectons.get(1),Color.RED));
         threads.add(new MushroomThreadView(tectons.get(0),tectons.get(1),Color.YELLOW));
 
@@ -40,10 +43,10 @@ public class MapPanel extends JPanel {
                             //TODO: Eldönteni, hogy mushroomer vagy insecter játszik annak az add függvényét meghívni
                             add(insecterPop,BorderLayout.SOUTH);
                             //add(mushroomerPop, BorderLayout.SOUTH);
-                            revalidate(); // újrarenderelés
+                            revalidate();
                             repaint();
                         } else {
-                            selectedTecton = tecton; // bal klikk - mozgatás
+                            selectedTecton = tecton;
                         }
                         break;
                     }
@@ -81,5 +84,15 @@ public class MapPanel extends JPanel {
             t.draw(g2d);
         }
 
+    }
+    public void addTectonAtRandomPosition() {
+
+
+        int x = ThreadLocalRandom.current().nextInt(50, 1020);
+        int y = ThreadLocalRandom.current().nextInt(50, 550);
+
+        TectonView newTecton = new TectonView(x, y);
+        tectons.add(newTecton);
+        repaint();
     }
 }
