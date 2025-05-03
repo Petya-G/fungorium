@@ -1,14 +1,14 @@
-package view.game;
+package view.game.entities.tecton;
 
 import java.awt.*;
 
-public class TectonView {
+public class VTecton {
     private int x, y;
     int diameter = 50;
     private Color color = Color.BLUE;
     private int threads;
 
-    public TectonView(int x,int y) {
+    public VTecton(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -32,18 +32,19 @@ public class TectonView {
     public int getY() {
         return this.y;
     }
+
     public void setX(int x) {
         this.x = x;
     }
-    public void setY(int y) {this.y = y;}
 
-    public int getDiameter() {
-        return diameter;
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getThreads() {
         return threads;
     }
+
     public void increaseThreads() {
         this.threads++;
     }

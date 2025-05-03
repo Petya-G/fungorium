@@ -23,11 +23,11 @@ public class MiddlePanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
         setBorder(createTitledBorder("Game Area"));
-            add(turnOrderPanel, BorderLayout.NORTH);
+        add(turnOrderPanel, BorderLayout.NORTH);
 
-            add(mapPanel, BorderLayout.CENTER);
+        add(mapPanel, BorderLayout.CENTER);
 
-            add(tectonContentPanel, BorderLayout.SOUTH);
+        add(tectonContentPanel, BorderLayout.SOUTH);
     }
 
     /**

@@ -1,18 +1,18 @@
-package view.game;
+package view.game.entities;
 
-import model.mushroom.MushroomThread;
+import view.game.entities.tecton.VTecton;
 
 import java.awt.*;
 
-public class MushroomThreadView {
-    private TectonView start;
-    private TectonView end;
+public class VMushroomThread {
+    private VTecton start;
+    private VTecton end;
     private Color color = Color.RED;
     private int thickness = 1;
     private int startPos;
     private int endPos;
 
-    public MushroomThreadView(TectonView start, TectonView end, Color color) {
+    public VMushroomThread(VTecton start, VTecton end, Color color) {
         this.start = start;
         this.end = end;
         this.color = color;
@@ -22,8 +22,8 @@ public class MushroomThreadView {
         end.increaseThreads();
     }
 
-    private int isEven(int n){
-        if(n%2 == 0)
+    private int isEven(int n) {
+        if (n % 2 == 0)
             return 1;
         else
             return -1;
@@ -36,10 +36,11 @@ public class MushroomThreadView {
         g2d.setStroke(new BasicStroke(thickness));
         g2d.setColor(color);
 
-        g2d.drawLine(start.getX() + 5 * startPos * isEven(startPos), start.getY(), end.getX()+ 5* endPos * isEven(endPos), end.getY());
+        g2d.drawLine(start.getX() + 5 * startPos * isEven(startPos), start.getY(), end.getX() + 5 * endPos * isEven(endPos), end.getY());
 
         g2d.setStroke(originalStroke); // visszaállítás
     }
+
     public void setColor(Color color) {
         this.color = color;
     }
@@ -48,11 +49,11 @@ public class MushroomThreadView {
         this.thickness = thickness;
     }
 
-    public TectonView getStart() {
+    public VTecton getStart() {
         return start;
     }
 
-    public TectonView getEnd() {
+    public VTecton getEnd() {
         return end;
     }
 }

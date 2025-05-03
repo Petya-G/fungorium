@@ -1,4 +1,4 @@
-package view.game;
+package view.game.sidebar;
 
 import javax.swing.*;
 import javax.swing.border.Border;

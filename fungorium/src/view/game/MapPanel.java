@@ -1,7 +1,9 @@
 package view.game;
 
+import view.game.entities.VMushroomThread;
+import view.game.entities.tecton.VTecton;
+
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -10,9 +12,9 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MapPanel extends JPanel {
-    private List<TectonView> tectons = new ArrayList<>();
-    private  List<MushroomThreadView> threads = new ArrayList<>();
-    private TectonView selectedTecton = null;
+    private List<VTecton> tectons = new ArrayList<>();
+    private  List<VMushroomThread> threads = new ArrayList<>();
+    private VTecton selectedTecton = null;
     private InsecterPop insecterPop;
     private MushroomerPop mushroomerPop;
 
@@ -30,14 +32,14 @@ public class MapPanel extends JPanel {
         //tectons.add(new TectonView(150, 150));
         addTectonAtRandomPosition();
         addTectonAtRandomPosition();
-        threads.add(new MushroomThreadView(tectons.get(0),tectons.get(1),Color.RED));
-        threads.add(new MushroomThreadView(tectons.get(0),tectons.get(1),Color.YELLOW));
+        threads.add(new VMushroomThread(tectons.get(0),tectons.get(1),Color.RED));
+        threads.add(new VMushroomThread(tectons.get(0),tectons.get(1),Color.YELLOW));
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 Point click = e.getPoint();
-                for (TectonView tecton : tectons) {
+                for (VTecton tecton : tectons) {
                     if (tecton.contains(click)) {
                         if (SwingUtilities.isRightMouseButton(e)) {
                             //TODO: Eldönteni, hogy mushroomer vagy insecter játszik annak az add függvényét meghívni
@@ -77,10 +79,10 @@ public class MapPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        for (TectonView t : tectons) {
+        for (VTecton t : tectons) {
             t.draw(g2d);
         }
-        for(MushroomThreadView t : threads){
+        for(VMushroomThread t : threads){
             t.draw(g2d);
         }
 
@@ -91,7 +93,7 @@ public class MapPanel extends JPanel {
         int x = ThreadLocalRandom.current().nextInt(50, 1020);
         int y = ThreadLocalRandom.current().nextInt(50, 550);
 
-        TectonView newTecton = new TectonView(x, y);
+        VTecton newTecton = new VTecton(x, y);
         tectons.add(newTecton);
         repaint();
     }

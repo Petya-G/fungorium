@@ -1,5 +1,7 @@
 package view.game;
 
+import view.game.sidebar.SidebarPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
