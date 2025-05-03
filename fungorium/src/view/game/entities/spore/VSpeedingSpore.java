@@ -1,4 +1,4 @@
 package view.game.entities.spore;
 
-public class VSpeedingSpore {
+public class VSpeedingSpore extends VSpore {
 }

@@ -1,4 +1,4 @@
 package view.game.entities.spore;
 
-public class VSplitterSpore {
+public class VSplitterSpore extends VSpore {
 }

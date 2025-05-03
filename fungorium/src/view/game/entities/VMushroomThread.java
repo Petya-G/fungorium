@@ -18,8 +18,6 @@ public class VMushroomThread {
         this.color = color;
         startPos = start.getThreads();
         endPos = end.getThreads();
-        start.increaseThreads();
-        end.increaseThreads();
     }
 
     private int isEven(int n) {

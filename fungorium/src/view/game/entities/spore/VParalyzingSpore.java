@@ -1,4 +1,4 @@
 package view.game.entities.spore;
 
-public class VParalyzingSpore {
+public class VParalyzingSpore extends VSpore {
 }

@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MapPanel extends JPanel {
-    private List<VTecton> tectons = new ArrayList<>();
-    private  List<VMushroomThread> threads = new ArrayList<>();
+    private final List<VTecton> tectons = new ArrayList<>();
+    private final List<VMushroomThread> threads = new ArrayList<>();
     private VTecton selectedTecton = null;
-    private InsecterPop insecterPop;
-    private MushroomerPop mushroomerPop;
+    private final InsecterPop insecterPop;
+    private final MushroomerPop mushroomerPop;
 
     public MapPanel() {
 
@@ -32,8 +32,8 @@ public class MapPanel extends JPanel {
         //tectons.add(new TectonView(150, 150));
         addTectonAtRandomPosition();
         addTectonAtRandomPosition();
-        threads.add(new VMushroomThread(tectons.get(0),tectons.get(1),Color.RED));
-        threads.add(new VMushroomThread(tectons.get(0),tectons.get(1),Color.YELLOW));
+        threads.add(new VMushroomThread(tectons.get(0), tectons.get(1), Color.RED));
+        threads.add(new VMushroomThread(tectons.get(0), tectons.get(1), Color.YELLOW));
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
@@ -43,7 +43,7 @@ public class MapPanel extends JPanel {
                     if (tecton.contains(click)) {
                         if (SwingUtilities.isRightMouseButton(e)) {
                             //TODO: Eldönteni, hogy mushroomer vagy insecter játszik annak az add függvényét meghívni
-                            add(insecterPop,BorderLayout.SOUTH);
+                            add(insecterPop, BorderLayout.SOUTH);
                             //add(mushroomerPop, BorderLayout.SOUTH);
                             revalidate();
                             repaint();
@@ -82,14 +82,13 @@ public class MapPanel extends JPanel {
         for (VTecton t : tectons) {
             t.draw(g2d);
         }
-        for(VMushroomThread t : threads){
+        for (VMushroomThread t : threads) {
             t.draw(g2d);
         }
 
     }
+
     public void addTectonAtRandomPosition() {
-
-
         int x = ThreadLocalRandom.current().nextInt(50, 1020);
         int y = ThreadLocalRandom.current().nextInt(50, 550);
 
