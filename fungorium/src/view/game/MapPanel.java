@@ -12,10 +12,17 @@ public class MapPanel extends JPanel {
     private List<TectonView> tectons = new ArrayList<>();
     private  List<MushroomThreadView> threads = new ArrayList<>();
     private TectonView selectedTecton = null;
+    private InsecterPop insecterPop;
+    private MushroomerPop mushroomerPop;
 
     public MapPanel() {
 
-        setLayout(new FlowLayout());
+        //setLayout(new FlowLayout());
+        setLayout(new BorderLayout());
+
+        insecterPop = new InsecterPop();
+        mushroomerPop = new MushroomerPop();
+
         setBackground(new Color(250, 250, 250));
 
         tectons.add(new TectonView(640,360));
@@ -30,7 +37,11 @@ public class MapPanel extends JPanel {
                 for (TectonView tecton : tectons) {
                     if (tecton.contains(click)) {
                         if (SwingUtilities.isRightMouseButton(e)) {
-                            System.out.println("Jobb klikk a Tectonon: " + tecton.getX() + ", " + tecton.getY());
+                            //TODO: Eldönteni, hogy mushroomer vagy insecter játszik annak az add függvényét meghívni
+                            add(insecterPop,BorderLayout.SOUTH);
+                            //add(mushroomerPop, BorderLayout.SOUTH);
+                            revalidate(); // újrarenderelés
+                            repaint();
                         } else {
                             selectedTecton = tecton; // bal klikk - mozgatás
                         }
