@@ -1,30 +1,33 @@
-package view.game.entities.tecton;
+package view.game.vitem.tecton;
 
-import view.game.entities.VInsect;
-import view.game.entities.VMushroomStem;
-import view.game.entities.VMushroomThread;
-import view.game.entities.spore.VSpore;
+import view.game.vitem.VInsect;
+import view.game.vitem.VItem;
+import view.game.vitem.VMushroomStem;
+import view.game.vitem.VMushroomThreadConnection;
+import view.game.vitem.spore.VSpore;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class VTecton {
+public class VTecton extends VItem {
     int diameter = 50;
     private int x, y;
     private final Color color = Color.BLUE;
-    private final List<VMushroomThread> threads = new ArrayList<>();
+    private final List<VMushroomThreadConnection> threads = new ArrayList<>();
     private final List<VInsect> insects = new ArrayList<>();
     private final List<VSpore> spores = new ArrayList<>();
     private VMushroomStem stem;
 
-    public VTecton(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public VTecton(int x, int y, String toolTipText) {
+        super(x, y, toolTipText);
+        imagePath = "resources/images/mushroom.png";
+        loadImage();
     }
 
-    public void addThread(VMushroomThread thread) {
+
+    public void addThread(VMushroomThreadConnection thread) {
         if (thread != null) threads.add(thread);
     }
 

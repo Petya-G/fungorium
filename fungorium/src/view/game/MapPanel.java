@@ -1,7 +1,7 @@
 package view.game;
 
-import view.game.entities.VMushroomThread;
-import view.game.entities.tecton.VTecton;
+import view.game.vitem.VMushroomThreadConnection;
+import view.game.vitem.tecton.VTecton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class MapPanel extends JPanel {
     private final List<VTecton> tectons = new ArrayList<>();
-    private final List<VMushroomThread> threads = new ArrayList<>();
+    private final List<VMushroomThreadConnection> threads = new ArrayList<>();
     private VTecton selectedTecton = null;
     private final InsecterPop insecterPop;
     private final MushroomerPop mushroomerPop;
@@ -32,8 +32,8 @@ public class MapPanel extends JPanel {
         //tectons.add(new TectonView(150, 150));
         addTectonAtRandomPosition();
         addTectonAtRandomPosition();
-        threads.add(new VMushroomThread(tectons.get(0), tectons.get(1), Color.RED));
-        threads.add(new VMushroomThread(tectons.get(0), tectons.get(1), Color.YELLOW));
+        threads.add(new VMushroomThreadConnection(tectons.get(0), tectons.get(1), Color.RED));
+        threads.add(new VMushroomThreadConnection(tectons.get(0), tectons.get(1), Color.YELLOW));
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
@@ -82,7 +82,7 @@ public class MapPanel extends JPanel {
         for (VTecton t : tectons) {
             t.draw(g2d);
         }
-        for (VMushroomThread t : threads) {
+        for (VMushroomThreadConnection t : threads) {
             t.draw(g2d);
         }
 
@@ -92,7 +92,7 @@ public class MapPanel extends JPanel {
         int x = ThreadLocalRandom.current().nextInt(50, 1020);
         int y = ThreadLocalRandom.current().nextInt(50, 550);
 
-        VTecton newTecton = new VTecton(x, y);
+        VTecton newTecton = new VTecton(x, y, "tecton");
         tectons.add(newTecton);
         repaint();
     }

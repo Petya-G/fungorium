@@ -1,10 +1,10 @@
-package view.game.entities;
+package view.game.vitem;
 
-import view.game.entities.tecton.VTecton;
+import view.game.vitem.tecton.VTecton;
 
 import java.awt.*;
 
-public class VMushroomThread {
+public class VMushroomThreadConnection {
     private VTecton start;
     private VTecton end;
     private Color color = Color.RED;
@@ -12,7 +12,7 @@ public class VMushroomThread {
     private int startPos;
     private int endPos;
 
-    public VMushroomThread(VTecton start, VTecton end, Color color) {
+    public VMushroomThreadConnection(VTecton start, VTecton end, Color color) {
         this.start = start;
         this.end = end;
         this.color = color;
