@@ -1,0 +1,25 @@
+@startuml AppStart
+
+title Player starts the application
+
+actor Player
+participant "w : Window" as W
+participant "mm : MainMenu" as MM
+participant "gp : GamePanel" as GP
+
+'activate Controller
+Player -> W: Starts the application (Window())
+
+activate W
+W -> MM: MainMenu()
+activate MM
+MM -> W
+deactivate MM
+W -> GP: GamePanel()
+activate GP
+GP -> W
+deactivate GP
+W -> Player
+deactivate W
+
+@enduml

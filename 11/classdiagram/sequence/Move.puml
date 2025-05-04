@@ -1,0 +1,24 @@
+@startuml InsecterMove
+
+title Insecter moves an insect to another tecton
+
+actor Player
+participant "ip : InsecterPop" as IP
+participant "gp : GamePanel" as GP
+participant "p : Parser" as P
+
+'activate Controller
+Player -> IP: Clicks on move button
+
+IP -> GP: moveInsect()
+activate GP
+Player -> GP: Chooses insect to move
+Player -> GP: Chooses tecton to move to
+GP -> P: commandParser("!move [INSECTID] [TECTONID]")
+activate P
+P -> GP
+deactivate P
+GP -> Player
+deactivate GP
+
+@enduml

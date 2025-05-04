@@ -1,0 +1,23 @@
+@startuml MushroomThreadEat
+
+title Mushroomer eats an insect with a thread
+
+actor Player
+participant "mp : MushroomerPop" as MP
+participant "gp : GamePanel" as GP
+participant "p : Parser" as P
+
+'activate Controller
+Player -> MP: Clicks on eat button
+
+MP -> GP: mushroomThreadEat()
+activate GP
+Player -> GP: Chooses mushroomthread to eat with
+GP -> P: commandParser("!eat [MUSHROOMTHREADID]")
+activate P
+P -> GP
+deactivate P
+GP -> Player
+deactivate GP
+
+@enduml

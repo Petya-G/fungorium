@@ -1,0 +1,23 @@
+@startuml InsecterEat
+
+title Insecter eats a spore
+
+actor Player
+participant "ip : InsecterPop" as IP
+participant "gp : GamePanel" as GP
+participant "p : Parser" as P
+
+'activate Controller
+Player -> IP: Clicks on eat button
+
+IP -> GP: insectEat()
+activate GP
+Player -> GP: Chooses insect to eat with
+GP -> P: commandParser("!eat [INSECTID]")
+activate P
+P -> GP
+deactivate P
+GP -> Player
+deactivate GP
+
+@enduml

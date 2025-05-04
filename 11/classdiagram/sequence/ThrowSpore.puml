@@ -1,0 +1,24 @@
+@startuml ThrowSpore
+
+title Mushroomer throws spore
+
+actor Player
+participant "mp : InsecterPop" as MP
+participant "gp : GamePanel" as GP
+participant "p : Parser" as P
+
+'activate Controller
+Player -> MP: Clicks on throw button
+
+MP -> GP: throwSpore()
+activate GP
+Player -> GP: Chooses mushroomstem to throw spore from
+Player -> GP: Chooses tecton to throw spore to
+GP -> P: commandParser("!move [MUSHROOMSTEMID] [TECTONID]")
+activate P
+P -> GP
+deactivate P
+GP -> Player
+deactivate GP
+
+@enduml

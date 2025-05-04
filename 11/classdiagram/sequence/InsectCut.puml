@@ -1,0 +1,23 @@
+@startuml InsecterCut
+
+title Insecter cuts a mushroomthread with an insect
+
+actor Player
+participant "ip : InsecterPop" as IP
+participant "gp : GamePanel" as GP
+participant "p : Parser" as P
+
+'activate Controller
+Player -> IP: Clicks on cut button
+
+IP -> GP: insectCut()
+activate GP
+Player -> GP: Chooses insect to cut with
+GP -> P: commandParser("!cut [INSECTID]")
+activate P
+P -> GP
+deactivate P
+GP -> Player
+deactivate GP
+
+@enduml

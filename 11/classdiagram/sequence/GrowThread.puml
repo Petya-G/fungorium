@@ -1,0 +1,23 @@
+@startuml GrowMushroomThread
+
+title Mushroomer grows a thread
+
+actor Player
+participant "mp : MushroomerPop" as MP
+participant "gp : GamePanel" as GP
+participant "p : Parser" as P
+
+'activate Controller
+Player -> MP: Clicks on grow button
+
+MP -> GP: growMushroomThread()
+activate GP
+Player -> GP: Chooses tecton to grow thread on
+GP -> P: commandParser("!grow [TECTONID]")
+activate P
+P -> GP
+deactivate P
+GP -> Player
+deactivate GP
+
+@enduml

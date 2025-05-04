@@ -1,0 +1,25 @@
+@startuml GameStart
+
+title Player starts the game
+
+actor Player
+participant "mm : MainMenu" as MM
+participant "w : Window" as W
+participant "p : Parser" as P
+
+'activate Controller
+Player -> MM: Clicks on GameStart Button (StartGame())
+
+activate MM
+MM -> W: StartGame()
+activate W
+W -> P: parseCommand("/start")
+activate P
+P -> W
+deactivate P
+W -> MM
+deactivate W
+MM -> Player
+deactivate MM
+
+@enduml

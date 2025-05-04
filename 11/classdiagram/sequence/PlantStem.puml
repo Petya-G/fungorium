@@ -1,0 +1,23 @@
+@startuml PlantMushroomStem
+
+title Mushroomer plants a stem
+
+actor Player
+participant "mp : MushroomerPop" as MP
+participant "gp : GamePanel" as GP
+participant "p : Parser" as P
+
+'activate Controller
+Player -> MP: Clicks on plant button
+
+MP -> GP: plantMushroomStem()
+activate GP
+Player -> GP: Chooses tecton to plant stem on
+GP -> P: commandParser("!plant [TECTONID]")
+activate P
+P -> GP
+deactivate P
+GP -> Player
+deactivate GP
+
+@enduml
