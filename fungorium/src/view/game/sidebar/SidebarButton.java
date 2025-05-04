@@ -7,10 +7,6 @@ public class SidebarButton extends JButton {
 
     public SidebarButton(String text) {
         super(text);
-        initializeButton();
-    }
-
-    private void initializeButton() {
         setFocusPainted(false);
         setFont(new Font("Arial", Font.BOLD, 14));
         setBackground(Color.WHITE);

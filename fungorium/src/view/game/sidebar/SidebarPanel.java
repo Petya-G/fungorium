@@ -5,6 +5,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 public class SidebarPanel extends JPanel {
+    ButtonsPanel buttonsPanel = new ButtonsPanel();
+    ChatLogPanel chatLogPanel = new ChatLogPanel();
 
     public SidebarPanel() {
         setLayout(new BorderLayout());
@@ -12,10 +14,10 @@ public class SidebarPanel extends JPanel {
         setBackground(Color.WHITE);
 
         // Add Buttons Panel
-        add(new ButtonsPanel(), BorderLayout.NORTH);
+        add(buttonsPanel, BorderLayout.NORTH);
 
         // Add Chat Log Panel
-        add(new ChatLogPanel(), BorderLayout.CENTER);
+        add(chatLogPanel, BorderLayout.CENTER);
     }
 
     // Create a titled border with consistent formatting

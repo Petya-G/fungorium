@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ButtonsPanel extends JPanel {
+    SidebarButton endTurnButton = new SidebarButton("End Turn");
+    SidebarButton saveButton = new SidebarButton("Save");
+    SidebarButton exitButton = new SidebarButton("Exit");
 
     public ButtonsPanel() {
         setLayout(new GridLayout(3, 1, 10, 10)); // 3 buttons, spaced vertically
@@ -11,8 +14,8 @@ public class ButtonsPanel extends JPanel {
         setBackground(Color.WHITE);
 
         // Create and add sidebar buttons
-        add(new SidebarButton("End Turn"));
-        add(new SidebarButton("Save"));
-        add(new SidebarButton("Exit"));
+        add(endTurnButton);
+        add(saveButton);
+        add(exitButton);
     }
 }

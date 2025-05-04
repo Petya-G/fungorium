@@ -16,8 +16,6 @@ public class VMushroomThreadConnection {
         this.start = start;
         this.end = end;
         this.color = color;
-        startPos = start.getThreads();
-        endPos = end.getThreads();
     }
 
     private int isEven(int n) {
