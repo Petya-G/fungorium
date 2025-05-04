@@ -1,0 +1,165 @@
+@startuml
+
+!theme plain
+left to right direction
+skinparam linetype ortho
+hide empty members
+skinparam classAttributeIconSize 0
+skinparam nodesep 10
+skinparam rackagePadding 5
+
+package view {
+  package game {
+    class GamePanel {
+      + GamePanel():
+    }
+    class InsecterPop {
+      + InsecterPop():
+    }
+    class MapPanel {
+      + MapPanel():
+      + addTectonAtRandomPosition(): void
+      # paintComponent(Graphics): void
+    }
+    class MushroomerPop {
+      + MushroomerPop():
+    }
+    class TurnOrderPanel {
+      + TurnOrderPanel():
+    }
+    class TectonContentPanel {
+      + TectonContentPanel():
+      - createTitledBorder(String): Border
+    }
+    
+    class MiddlePanel {
+      + MiddlePanel():
+      - createTitledBorder(String): Border
+    }
+
+    package sidebar {
+    class ButtonsPanel {
+      + ButtonsPanel():
+    }
+    class ChatLogPanel {
+      + ChatLogPanel():
+      - createTitledBorder(String): Border
+    }
+    class SidebarPanel {
+      + SidebarPanel():
+      - createTitledBorder(String): Border
+    }
+    class SidebarButton {
+      + SidebarButton(String):
+    }
+  }
+
+  }
+
+  package mainMenu {
+    class MainMenu {
+      + MainMenu():
+    }
+    class MenuButton {
+      + MenuButton(String):
+    }
+  }
+
+  
+  package vitem {
+    class VItem {
+      # VItem(int, int, String):
+      # loadImage(String): void
+      + paintComponent(Graphics): void
+    }
+    class VInsect {
+      + VInsect(int, int, String):
+    }
+    class VMushroomStem {
+      + VMushroomStem(int, int, String):
+    }
+    class VMushroomThread {
+      # VMushroomThread(int, int, String):
+    }
+    class VSpore {
+      # VSpore(int, int, String):
+    }
+    class VClawParalyzingSpore {
+      + VClawParalyzingSpore(int, int, String):
+    }
+    class VParalyzingSpore {
+      + VParalyzingSpore(int, int, String):
+    }
+    class VSlowingSpore {
+      + VSlowingSpore(int, int, String):
+    }
+    class VSpeedingSpore {
+      + VSpeedingSpore(int, int, String):
+    }
+    class VSplitterSpore {
+      + VSplitterSpore(int, int, String):
+    }
+    class VTecton {
+      + VTecton(int, int, String):
+      + drawContent(): void
+    }
+    class VSingleThreadedTecton {
+      + VSingleThreadedTecton(int, int, String):
+    }
+    class VStemlessTecton {
+      + VStemlessTecton(int, int, String):
+    }
+    class VSupportTecton {
+      + VSupportTecton(int, int, String):
+    }
+    class VThreadConsumingTecton {
+      + VThreadConsumingTecton(int, int, String):
+    }
+    class VMushroomThreadConnection {
+      + VMushroomThreadConnection(VTecton, VTecton, Color):
+      - color: Color
+      - end: VTecton
+      - start: VTecton
+      - thickness: int
+      + draw(Graphics2D): void
+      - isEven(int): int
+    }
+  }
+
+  class Window {
+    + Window():
+    + main(String[]): void
+    + showPanel(String): void
+  }
+}
+
+ButtonsPanel              "1" *-[#595959,plain]-> "endTurnButton\n1" SidebarButton
+GamePanel                 "1" *-[#595959,plain]-> "middlePanel\n1" MiddlePanel
+GamePanel                 "1" *-[#595959,plain]-> "sidebarPanel\n1" SidebarPanel
+MapPanel                  "1" *-[#595959,plain]-> "insecterPop\n1" InsecterPop
+MapPanel                  "1" *-[#595959,plain]-> "mushroomerPop\n1" MushroomerPop
+MapPanel                  "1" *-[#595959,plain]-> "threads\n*" VMushroomThreadConnection
+MapPanel                  "1" *-[#595959,plain]-> "tectons\n*" VTecton
+MiddlePanel               "1" *-[#595959,plain]-> "mapPanel\n1" MapPanel
+MiddlePanel               "1" *-[#595959,plain]-> "tectonContentPanel\n1" TectonContentPanel
+MiddlePanel               "1" *-[#595959,plain]-> "turnOrderPanel\n1" TurnOrderPanel
+SidebarPanel              "1" *-[#595959,plain]-> "buttonsPanel\n1" ButtonsPanel
+SidebarPanel              "1" *-[#595959,plain]-> "chatLogPanel\n1" ChatLogPanel
+VClawParalyzingSpore       -[#000082,plain]-^  VSpore
+VInsect                    -[#000082,plain]-^  VItem
+VMushroomStem              -[#000082,plain]-^  VItem
+VMushroomThread            -[#000082,plain]-^  VItem
+VMushroomThreadConnection "1" *-[#595959,plain]-> "start\n1" VTecton
+VParalyzingSpore           -[#000082,plain]-^  VSpore
+VSingleThreadedTecton      -[#000082,plain]-^  VTecton
+VSlowingSpore              -[#000082,plain]-^  VSpore
+VSpeedingSpore             -[#000082,plain]-^  VSpore
+VSplitterSpore             -[#000082,plain]-^  VSpore
+VSpore                     -[#000082,plain]-^  VItem
+VStemlessTecton            -[#000082,plain]-^  VTecton
+VSupportTecton             -[#000082,plain]-^  VTecton
+VTecton                    -[#000082,plain]-^  VItem
+VThreadConsumingTecton     -[#000082,plain]-^  VTecton
+Window                    "1" *-[#595959,plain]-> "gamePanel\n1" GamePanel
+Window                    "1" *-[#595959,plain]-> "mainMenu\n1" MainMenu
+@enduml
