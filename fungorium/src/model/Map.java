@@ -1,6 +1,5 @@
 package model;
 
-import controller.Game;
 import model.core.IRound;
 import model.tecton.*;
 
@@ -8,7 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 /**
  * A pályát reprezentáló osztály, amely tartalmazza a pályán lévő tektonokat.
@@ -26,7 +24,7 @@ public class Map implements IRound, Serializable {
 
     public void generate(int size) {
         for (int i = 0; i < size; i++) {
-            switch (Game.random.nextInt(4)) {
+            switch (MGame.random.nextInt(4)) {
                 case 0:
                     tectons.add(new Tecton());
                     break;
@@ -44,7 +42,7 @@ public class Map implements IRound, Serializable {
 
         for (int i = 0; i < tectons.size(); i++) {
             for (int j = i + 1; j < tectons.size(); j++) {
-                if (Game.random.nextBoolean()) {
+                if (MGame.random.nextBoolean()) {
                     connect(tectons.get(i), tectons.get(j));
                 }
             }
@@ -112,7 +110,7 @@ public class Map implements IRound, Serializable {
 
         if (enableSplitting) {
             for (Tecton t : tectonsClone) {
-                if (Game.random.nextBoolean()) {
+                if (MGame.random.nextBoolean()) {
                     tectons.add(t.split());
                 }
             }

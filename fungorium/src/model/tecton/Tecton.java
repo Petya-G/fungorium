@@ -1,6 +1,6 @@
 package model.tecton;
 
-import controller.Game;
+import model.MGame;
 import model.core.IRound;
 import model.core.Identifiable;
 import model.core.Player;
@@ -11,7 +11,6 @@ import model.mushroom.spore.ISpore;
 import model.mushroom.spore.Spore;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -103,26 +102,26 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     public Tecton split() {
         Tecton t = new Tecton();
 
-        int rnd = Game.random.nextInt(5);
+        int rnd = MGame.random.nextInt(5);
         if (rnd == 0) t = new SingleThreadedTecton();
         else if (rnd == 1) t = new StemlessTecton();
         else if (rnd == 2) t = new ThreadConsumingTecton();
         else if (rnd == 3) t = new LifeSupportTecton();
 
         for (Tecton n : neighbours) {
-            if (Game.random.nextBoolean()) {
+            if (MGame.random.nextBoolean()) {
                 t.addNeighbour(n);
             }
         }
 
         threads.clear();
 
-        List<Spore> sporesToMove = spores.stream().filter(sp -> Game.random.nextBoolean()).toList();
+        List<Spore> sporesToMove = spores.stream().filter(sp -> MGame.random.nextBoolean()).toList();
 
         for (Spore sp : sporesToMove)
             sp.setLocation(t);
 
-        List<Insect> insectsToMove = insects.stream().filter(i -> Game.random.nextBoolean()).toList();
+        List<Insect> insectsToMove = insects.stream().filter(i -> MGame.random.nextBoolean()).toList();
 
         for (Insect i : insectsToMove)
             i.setLocation(t);

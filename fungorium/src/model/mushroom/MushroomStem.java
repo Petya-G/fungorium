@@ -1,6 +1,6 @@
 package model.mushroom;
 
-import controller.Game;
+import model.MGame;
 import model.core.Entity;
 import model.mushroom.spore.*;
 import model.tecton.Tecton;
@@ -94,7 +94,7 @@ public class MushroomStem extends Entity {
         int range = level + 1;
         if (getLocation().distanceTo(tecton) > range) return false;
 
-        int rnd = Game.random.nextInt(5);
+        int rnd = MGame.random.nextInt(5);
         Spore spore;
 
         switch (rnd) {

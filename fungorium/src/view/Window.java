@@ -1,6 +1,6 @@
 package view;
 
-import controller.Game;
+import model.MGame;
 import view.game.GamePanel;
 import view.mainMenu.MainMenu;
 
@@ -37,7 +37,7 @@ public class Window extends JFrame {
     }
 
     public static void main(String[] args) {
-        Game game = new Game();
+        MGame MGame = new MGame();
         Window window = new Window();
     }
 }
