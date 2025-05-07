@@ -1,7 +1,7 @@
 package model.insect;
 
+import controller.GameObjectVisitor;
 import model.core.Entity;
-import model.core.Player;
 import model.effect.Effect;
 import model.mushroom.MushroomThread;
 import model.mushroom.spore.Spore;
@@ -267,6 +267,10 @@ public class Insect extends Entity {
     public void remove() {
         getLocation().remove(this);
         ((Insecter) getOwner()).remove(this);
+    }
+
+    public void accept(GameObjectVisitor gameObjectVisitor){
+        gameObjectVisitor.visit(this);
     }
 
     @Override

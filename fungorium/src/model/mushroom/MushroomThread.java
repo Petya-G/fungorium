@@ -1,5 +1,6 @@
 package model.mushroom;
 
+import controller.GameObjectVisitor;
 import model.core.Entity;
 import model.insect.Insect;
 import model.tecton.Tecton;
@@ -8,11 +9,10 @@ import java.util.*;
 
 public class MushroomThread extends Entity {
 
+    private static final int MAX_CUTOFF_DURATION = 2;
     private boolean eaten = false;
     private boolean cutOff = false;
     private int cutOffDuration = 0;
-
-    private static final int MAX_CUTOFF_DURATION = 2;
 
     /**
      * Konstruktor
@@ -123,6 +123,21 @@ public class MushroomThread extends Entity {
     }
 
     /**
+     * Megvizsgálja, hogy van-e a megadott Tecton-on legalább egy érvényes MushroomThread}.
+     *
+     * @param tecton A vizsgált Tecton.
+     * @return true, ha van rajta legalább egy nem "eaten" és nem "cutOff" gombafonál, különben false.
+     */
+    public boolean hasValidThread(Tecton tecton) {
+        for (MushroomThread thread : tecton.getThreads()) {
+            if (!thread.hasEaten() && !thread.cutOff) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Thread törlése a pályáról
      */
     @Override
@@ -144,6 +159,10 @@ public class MushroomThread extends Entity {
                 remove();
             }
         }
+    }
+
+    public void accept(GameObjectVisitor gameObjectVisitor) {
+        gameObjectVisitor.visit(this);
     }
 
     /**
@@ -170,26 +189,8 @@ public class MushroomThread extends Entity {
         return Objects.hash(super.hashCode(), eaten, cutOff, cutOffDuration);
     }
 
-    /**
-     * Megvizsgálja, hogy van-e a megadott Tecton-on legalább egy érvényes MushroomThread}.
-     *
-     * @param tecton A vizsgált Tecton.
-     * @return true, ha van rajta legalább egy nem "eaten" és nem "cutOff" gombafonál, különben false.
-     */
-    public boolean hasValidThread(Tecton tecton) {
-        for (MushroomThread thread : tecton.getThreads()) {
-            if (!thread.hasEaten() && !thread.cutOff) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     @Override
     public String toString() {
-        return super.toString()
-                + "eaten=" + eaten +
-                ", cutOff=" + cutOff +
-                ", cutOffDuration=" + cutOffDuration;
+        return super.toString() + "eaten=" + eaten + ", cutOff=" + cutOff + ", cutOffDuration=" + cutOffDuration;
     }
 }

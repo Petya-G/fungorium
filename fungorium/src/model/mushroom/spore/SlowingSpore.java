@@ -1,5 +1,6 @@
 package model.mushroom.spore;
 
+import controller.GameObjectVisitor;
 import model.effect.SlowEffect;
 import model.mushroom.Mushroomer;
 import model.tecton.Tecton;
@@ -18,5 +19,9 @@ public class SlowingSpore extends Spore {
 
     public SlowingSpore(SlowingSpore spore) {
         super(spore);
+    }
+
+    public void accept(GameObjectVisitor visitor) {
+        visitor.visit(this);
     }
 }

@@ -1,5 +1,6 @@
 package model.mushroom.spore;
 
+import controller.GameObjectVisitor;
 import model.effect.SplitEffect;
 import model.mushroom.Mushroomer;
 import model.tecton.Tecton;
@@ -18,5 +19,9 @@ public class SplitterSpore extends Spore {
 
     public SplitterSpore(SplitterSpore spore) {
         super(spore);
+    }
+
+    public void accept(GameObjectVisitor visitor) {
+        visitor.visit(this);
     }
 }

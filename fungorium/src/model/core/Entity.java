@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Absztrakt osztály, amely egy játékbeli entitást reprezentál
  */
-public abstract class Entity extends Identifiable implements ITurn {
+public abstract class Entity extends GameObject implements ITurn {
     /**
      * Az entitás tulajdonosa.
      */

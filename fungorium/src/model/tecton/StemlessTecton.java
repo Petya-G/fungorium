@@ -1,5 +1,6 @@
 package model.tecton;
 
+import controller.GameObjectVisitor;
 import model.mushroom.MushroomStem;
 
 /**
@@ -16,5 +17,10 @@ public class StemlessTecton extends Tecton {
     @Override
     public boolean add(MushroomStem ms) {
         return false;
+    }
+
+    @Override
+    public void accept(GameObjectVisitor gameObjectVisitor) {
+        gameObjectVisitor.visit(this);
     }
 }

@@ -1,8 +1,9 @@
 package model.tecton;
 
-import model.MGame;
+import controller.GameObjectVisitor;
+import model.Game;
+import model.core.GameObject;
 import model.core.IRound;
-import model.core.Identifiable;
 import model.core.Player;
 import model.insect.IInsect;
 import model.insect.Insect;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 /**
  * Tekton osztály, tárolja a hozzá tartozó gombatest, fonalakat, spórákat, rovarokat és szomszédos tektonokat.
  */
-public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThread, IInsect {
+public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread, IInsect {
     /**
      * Tektonon lévő gombatest.
      */
@@ -102,26 +103,26 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
     public Tecton split() {
         Tecton t = new Tecton();
 
-        int rnd = MGame.random.nextInt(5);
+        int rnd = Game.random.nextInt(5);
         if (rnd == 0) t = new SingleThreadedTecton();
         else if (rnd == 1) t = new StemlessTecton();
         else if (rnd == 2) t = new ThreadConsumingTecton();
         else if (rnd == 3) t = new LifeSupportTecton();
 
         for (Tecton n : neighbours) {
-            if (MGame.random.nextBoolean()) {
+            if (Game.random.nextBoolean()) {
                 t.addNeighbour(n);
             }
         }
 
         threads.clear();
 
-        List<Spore> sporesToMove = spores.stream().filter(sp -> MGame.random.nextBoolean()).toList();
+        List<Spore> sporesToMove = spores.stream().filter(sp -> Game.random.nextBoolean()).toList();
 
         for (Spore sp : sporesToMove)
             sp.setLocation(t);
 
-        List<Insect> insectsToMove = insects.stream().filter(i -> MGame.random.nextBoolean()).toList();
+        List<Insect> insectsToMove = insects.stream().filter(i -> Game.random.nextBoolean()).toList();
 
         for (Insect i : insectsToMove)
             i.setLocation(t);
@@ -352,6 +353,11 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
         threadsToRemove.forEach(MushroomThread::remove);
     }
 
+
+    public void accept(GameObjectVisitor gameObjectVisitor){
+        gameObjectVisitor.visit(this);
+    }
+
     /**
      * Két Tecton egyenlőségének meghatározása.
      * A stem, spores, threads, insects, neighbours és az ősök alapján hasonlítja össze az objektumokat.
@@ -359,8 +365,6 @@ public class Tecton extends Identifiable implements IRound, ISpore, IStem, IThre
      * @param o Az összehasonlítandó objektum
      * @return Igaz, ha megegyeznek, egyébként hamis.
      */
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

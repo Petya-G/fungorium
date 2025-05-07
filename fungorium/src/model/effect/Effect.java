@@ -1,6 +1,6 @@
 package model.effect;
 
-import model.core.Identifiable;
+import model.core.GameObject;
 import model.insect.Insect;
 
 import java.util.Objects;
@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * A rovarokra érvényes hatások őse, absztrakt, nem példányosítható
  */
-public abstract class Effect extends Identifiable {
+public abstract class Effect extends GameObject {
     int duration = 3;
 
     protected Effect() {
@@ -55,7 +55,6 @@ public abstract class Effect extends Identifiable {
 
     @Override
     public String toString() {
-        return super.toString()
-                + "duration=";
+        return super.toString() + "duration=";
     }
 }

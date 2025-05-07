@@ -1,5 +1,6 @@
 package model.mushroom.spore;
 
+import controller.GameObjectVisitor;
 import model.core.Player;
 import model.effect.ParalyzeEffect;
 import model.tecton.Tecton;
@@ -18,5 +19,9 @@ public class ParalyzingSpore extends Spore {
 
     public ParalyzingSpore(ParalyzingSpore spore) {
         super(spore);
+    }
+
+    public void accept(GameObjectVisitor visitor) {
+        visitor.visit(this);
     }
 }

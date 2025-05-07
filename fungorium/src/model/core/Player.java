@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Absztrakt osztály, amely egy játékost definiál
  */
-public abstract class Player extends Identifiable implements ITurn {
+public abstract class Player extends GameObject implements ITurn {
     /**
      * Játékos pontszáma
      */

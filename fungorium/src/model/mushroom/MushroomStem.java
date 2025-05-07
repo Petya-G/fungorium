@@ -1,6 +1,7 @@
 package model.mushroom;
 
-import model.MGame;
+import controller.GameObjectVisitor;
+import model.Game;
 import model.core.Entity;
 import model.mushroom.spore.*;
 import model.tecton.Tecton;
@@ -94,7 +95,7 @@ public class MushroomStem extends Entity {
         int range = level + 1;
         if (getLocation().distanceTo(tecton) > range) return false;
 
-        int rnd = MGame.random.nextInt(5);
+        int rnd = Game.random.nextInt(5);
         Spore spore;
 
         switch (rnd) {
@@ -158,6 +159,10 @@ public class MushroomStem extends Entity {
     @Override
     public void endTurn() {
         thrown = false;
+    }
+
+    public void accept(GameObjectVisitor gameObjectVisitor) {
+        gameObjectVisitor.visit(this);
     }
 
     /**

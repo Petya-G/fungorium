@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * és a különböző műveleteket (pl. mozgás, támadás, növekedés).
  * Irányítja a játék logikáját, valamint nyilvántartja az aktuális játékállapotot.
  */
-public class MGame extends Identifiable implements ITurn, IRound, Serializable {
+public class Game implements ITurn, IRound, Serializable {
     public static final Random random = new Random();
 
     /**
@@ -47,18 +47,7 @@ public class MGame extends Identifiable implements ITurn, IRound, Serializable {
      */
     private int turn = 0;
 
-    public MGame() {
-    }
-
-    public MGame(MGame MGame) {
-        super(MGame);
-        this.map = MGame.map;
-        this.map.tectons.addAll(MGame.map.tectons);
-        this.insecters.addAll(MGame.insecters);
-        this.mushroomers.addAll(MGame.mushroomers);
-        this.ended = MGame.ended;
-        this.turn = MGame.turn;
-        this.started = MGame.started;
+    public Game() {
     }
 
     public Map getMap() {
@@ -259,19 +248,19 @@ public class MGame extends Identifiable implements ITurn, IRound, Serializable {
         return turn;
     }
 
-    public Identifiable findObject(int id) {
+    public GameObject findObject(int id) {
         if (!started) return null;
-        List<Identifiable> identifiable = new ArrayList<>();
-        identifiable.addAll(map.tectons);
-        identifiable.addAll(mushroomers);
-        identifiable.addAll(insecters);
-        map.tectons.forEach(t -> identifiable.addAll(t.getStems()));
-        map.tectons.forEach(t -> identifiable.addAll(t.getSpores()));
-        map.tectons.forEach(t -> identifiable.addAll(t.getThreads()));
-        map.tectons.forEach(t -> identifiable.addAll(t.getInsects()));
+        List<GameObject> gameObject = new ArrayList<>();
+        gameObject.addAll(map.tectons);
+        gameObject.addAll(mushroomers);
+        gameObject.addAll(insecters);
+        map.tectons.forEach(t -> gameObject.addAll(t.getStems()));
+        map.tectons.forEach(t -> gameObject.addAll(t.getSpores()));
+        map.tectons.forEach(t -> gameObject.addAll(t.getThreads()));
+        map.tectons.forEach(t -> gameObject.addAll(t.getInsects()));
 
-        //return identifiable.stream().filter(i -> i.getId() == id).findFirst().orElse(null);
-        for (Identifiable obj : identifiable) {
+        //return gameObject.stream().filter(i -> i.getId() == id).findFirst().orElse(null);
+        for (GameObject obj : gameObject) {
             if (obj.getId() == id) {
                 return obj;
             }
@@ -307,8 +296,8 @@ public class MGame extends Identifiable implements ITurn, IRound, Serializable {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        MGame MGame = (MGame) o;
-        return ended == MGame.ended && turn == MGame.turn && Objects.equals(map, MGame.map) && Objects.equals(insecters, MGame.insecters) && Objects.equals(mushroomers, MGame.mushroomers);
+        Game Game = (Game) o;
+        return ended == Game.ended && turn == Game.turn && Objects.equals(map, Game.map) && Objects.equals(insecters, Game.insecters) && Objects.equals(mushroomers, Game.mushroomers);
     }
 
     @Override
@@ -318,6 +307,6 @@ public class MGame extends Identifiable implements ITurn, IRound, Serializable {
 
     @Override
     public String toString() {
-        return super.toString() + ", maxTurn=" + maxTurn + ", started=" + ended + ", ended=" + ended + ", turn=" + turn + ", mushroomers=[" + mushroomers.stream().map(Player::getName).collect(Collectors.joining(", ")) + "]" + ", insecters=[" + insecters.stream().map(Player::getName).collect(Collectors.joining(", ")) + "]" + ", map=" + map.toString();
+        return ", maxTurn=" + maxTurn + ", started=" + ended + ", ended=" + ended + ", turn=" + turn + ", mushroomers=[" + mushroomers.stream().map(Player::getName).collect(Collectors.joining(", ")) + "]" + ", insecters=[" + insecters.stream().map(Player::getName).collect(Collectors.joining(", ")) + "]" + ", map=" + map.toString();
     }
 }

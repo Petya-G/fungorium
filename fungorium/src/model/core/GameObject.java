@@ -1,17 +1,17 @@
 package model.core;
 
-import java.util.HashMap;
+import controller.GameObjectVisitor;
+
 import java.util.Objects;
 
 /**
  * Absztrakt osztály, amely egyedi azonosítóval lát el minden leszármazott objektumot.
  */
-public abstract class Identifiable {
+public abstract class GameObject {
     /**
      * Eddig használt legnagyob azonosító
      */
     private static int sId = 0;
-    //private static HashMap<Integer, Identifiable> objects = new HashMap();
     /**
      * Egyedi azonosító
      */
@@ -20,9 +20,8 @@ public abstract class Identifiable {
     /**
      * Létrehoz egy példányt automatikusan generált azonosítóval.
      */
-    protected Identifiable() {
+    protected GameObject() {
         this.id = sId++;
-        //objects.put(this.id, this);
     }
 
     /**
@@ -30,34 +29,32 @@ public abstract class Identifiable {
      *
      * @param id Az objektum egyedi azonosítója
      */
-    protected Identifiable(int id) {
+    protected GameObject(int id) {
         this.id = id;
-       // objects.put(this.id, this);
     }
 
-    protected Identifiable(Identifiable identifiable) {
-        this.id = identifiable.id;
-        //objects.put(this.id, this);
-    }
-
-    /**
-     * Lekérdezi az objektum egyedi azonosítóját.
-     * @return Az azonosító értéke
-     */
-    public int getId() {
-        return id;
+    protected GameObject(GameObject gameObject) {
+        this.id = gameObject.id;
     }
 
     public static int getMaxId() {
         return sId;
     }
 
-    /*public static Identifiable findObject(Integer id) {
-        return objects.get(id);
-    }*/
+    public abstract void accept(GameObjectVisitor visitor);
+
+    /**
+     * Lekérdezi az objektum egyedi azonosítóját.
+     *
+     * @return Az azonosító értéke
+     */
+    public int getId() {
+        return id;
+    }
 
     /**
      * Visszaadja az objektum nevét, amely a típusából és azonosítójából áll.
+     *
      * @return Az objektum neve
      */
     public String getName() {
@@ -66,18 +63,20 @@ public abstract class Identifiable {
 
     /**
      * Meghatározza, hogy két objektum azonosnak számít-e az azonosító alapján.
+     *
      * @param o Az összehasonlítandó objektum
      * @return true, ha az objektumok azonosak, egyébként false
      */
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Identifiable that = (Identifiable) o;
+        GameObject that = (GameObject) o;
         return id == that.id;
     }
 
     /**
      * Az objektum hash-kódját adja vissza azonosító alapján.
+     *
      * @return Hash-kód érték
      */
     @Override

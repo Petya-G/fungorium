@@ -1,20 +1,23 @@
 package view;
 
-import model.MGame;
+import model.Game;
 import view.game.GamePanel;
 import view.mainMenu.MainMenu;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Window extends JFrame {
+public class View extends JFrame {
+    private Game game;
     CardLayout cardLayout = new CardLayout();
     JPanel cardPanel = new JPanel(cardLayout);
     MainMenu mainMenu = new MainMenu();
     GamePanel gamePanel = new GamePanel();
 
-    public Window() {
+    public View(Game game) {
         super("Fungorium");
+
+        this.game = game;
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1280, 720);
         setLocationRelativeTo(null);
@@ -34,10 +37,5 @@ public class Window extends JFrame {
 
     public void showPanel(String name) {
         cardLayout.show(cardPanel, name);
-    }
-
-    public static void main(String[] args) {
-        MGame MGame = new MGame();
-        Window window = new Window();
     }
 }

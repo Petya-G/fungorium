@@ -1,5 +1,6 @@
 package model.tecton;
 
+import controller.GameObjectVisitor;
 import model.mushroom.MushroomThread;
 
 /**
@@ -21,5 +22,10 @@ public class SingleThreadedTecton extends Tecton {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void accept(GameObjectVisitor gameObjectVisitor) {
+        gameObjectVisitor.visit(this);
     }
 }

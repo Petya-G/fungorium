@@ -24,7 +24,7 @@ public class Map implements IRound, Serializable {
 
     public void generate(int size) {
         for (int i = 0; i < size; i++) {
-            switch (MGame.random.nextInt(4)) {
+            switch (Game.random.nextInt(4)) {
                 case 0:
                     tectons.add(new Tecton());
                     break;
@@ -42,7 +42,7 @@ public class Map implements IRound, Serializable {
 
         for (int i = 0; i < tectons.size(); i++) {
             for (int j = i + 1; j < tectons.size(); j++) {
-                if (MGame.random.nextBoolean()) {
+                if (Game.random.nextBoolean()) {
                     connect(tectons.get(i), tectons.get(j));
                 }
             }
@@ -110,7 +110,7 @@ public class Map implements IRound, Serializable {
 
         if (enableSplitting) {
             for (Tecton t : tectonsClone) {
-                if (MGame.random.nextBoolean()) {
+                if (Game.random.nextBoolean()) {
                     tectons.add(t.split());
                 }
             }
