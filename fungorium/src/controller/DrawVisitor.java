@@ -6,7 +6,22 @@ import model.mushroom.MushroomThread;
 import model.mushroom.spore.*;
 import model.tecton.*;
 
+import javax.swing.*;
+
+import java.awt.*;
+
 public class DrawVisitor implements GameObjectVisitor {
+
+    protected Graphics2D g;
+
+    public void setGraphics(Graphics2D _g) {
+        g = _g;
+    }
+
+    protected Dimension size;
+    public void setSize(Dimension d) {
+        size = d;
+    }
 
     @Override
     public void visit(Insect insect) {
@@ -33,7 +48,11 @@ public class DrawVisitor implements GameObjectVisitor {
     @Override
     public void visit(Tecton tecton) {
 
+        g.drawRect(0, 0, 20, 20);
         //TODO
+        
+        g.drawRect((int)(tecton.getPosX()*size.getWidth()), (int)(tecton.getPosY()*size.getHeight()), 10, 10);
+        System.out.println(tecton.getId() + " " + tecton.getPosX());
     }
 
     @Override

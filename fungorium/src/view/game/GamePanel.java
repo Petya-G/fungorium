@@ -4,12 +4,16 @@ import view.game.sidebar.SidebarPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import model.*;
 
 public class GamePanel extends JPanel {
     SidebarPanel sidebarPanel = new SidebarPanel();
-    MiddlePanel middlePanel = new MiddlePanel();
+    MiddlePanel middlePanel;
+    Game game;
 
-    public GamePanel() {
+    public GamePanel(Game game) {
+        this.game = game;
+        middlePanel = new MiddlePanel(game);
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
 

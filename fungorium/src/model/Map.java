@@ -18,6 +18,10 @@ public class Map implements IRound, Serializable {
      */
     public List<Tecton> tectons = new ArrayList<>();
 
+    public List<Tecton> getTectons() {
+        return tectons;
+    }
+
     public Map() {
 
     }
@@ -38,6 +42,8 @@ public class Map implements IRound, Serializable {
                     tectons.add(new ThreadConsumingTecton());
                     break;
             }
+            tectons.getLast().setPosX(Game.random.nextDouble());
+            tectons.getLast().setPosY(Game.random.nextDouble());
         }
 
         for (int i = 0; i < tectons.size(); i++) {

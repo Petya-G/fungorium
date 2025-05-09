@@ -4,21 +4,23 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-
+import model.*;
 /**
  * A JPanel class that acts as the middle area of the GUI,
  * containing subpanels organized in a vertical layout.
  */
 public class MiddlePanel extends JPanel {
     TurnOrderPanel turnOrderPanel = new TurnOrderPanel();
-    MapPanel mapPanel = new MapPanel();
+    MapPanel mapPanel;
     TectonContentPanel tectonContentPanel = new TectonContentPanel();
-
+    Game game;
     /**
      * Constructor for the MiddlePanel.
      * Initializes and arranges the child panels with proper layout and styling.
      */
-    public MiddlePanel() {
+    public MiddlePanel(Game game) {
+        this.game = game;
+        mapPanel = new MapPanel(game);
         // Set the main layout and background
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);

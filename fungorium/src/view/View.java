@@ -1,6 +1,6 @@
 package view;
 
-import model.Game;
+import model.*;
 import view.game.GamePanel;
 import view.mainMenu.MainMenu;
 
@@ -12,10 +12,11 @@ public class View extends JFrame {
     CardLayout cardLayout = new CardLayout();
     JPanel cardPanel = new JPanel(cardLayout);
     MainMenu mainMenu = new MainMenu();
-    GamePanel gamePanel = new GamePanel();
+    GamePanel gamePanel;
 
     public View(Game game) {
         super("Fungorium");
+        gamePanel = new GamePanel(game);
 
         this.game = game;
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -36,6 +37,7 @@ public class View extends JFrame {
     }
 
     public void showPanel(String name) {
+        System.out.println("showing panel " + name);
         cardLayout.show(cardPanel, name);
     }
 }

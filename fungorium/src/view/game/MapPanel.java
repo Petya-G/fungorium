@@ -1,13 +1,19 @@
 package view.game;
 
 import javax.swing.*;
-import java.awt.*;
 
+import controller.DrawVisitor;
+import model.tecton.Tecton;
+
+import java.awt.*;
+import model.*;
 public class MapPanel extends JPanel {
     private final InsecterPop insecterPop;
     private final MushroomerPop mushroomerPop;
+    Game game;
 
-    public MapPanel() {
+    public MapPanel(Game game) {
+        this.game = game;
         setLayout(new BorderLayout());
 
         insecterPop = new InsecterPop();
@@ -55,10 +61,17 @@ public class MapPanel extends JPanel {
 //        addMouseMotionListener(mouseAdapter);
     }
 
+    DrawVisitor visitor = new DrawVisitor();
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        //TODO
+        
+        visitor.setSize(getSize());
+        visitor.setGraphics(g2d);
+        for(Tecton t : game.getMap().tectons) {
+            t.accept(visitor);
+        }
     }
 }

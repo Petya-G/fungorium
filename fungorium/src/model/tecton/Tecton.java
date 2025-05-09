@@ -40,6 +40,30 @@ public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread
     protected List<Tecton> neighbours = new ArrayList<>();
 
     /**
+     * Tekton pozíciója a pályán
+     */
+    protected double posX = 0;
+    protected double posY = 0;
+
+    /**
+     * Tekton pozíciója getter/setter
+     */
+    public double getPosX() {
+        return posX;
+    }
+    public double getPosY() {
+        return posY;
+    }
+
+    public void setPosX(double p) {
+        posX = p;
+    }
+
+    public void setPosY(double p) {
+        posY = p;
+    }
+
+    /**
      * A Tecton osztály konstruktora, üresen inicializálja a lista típusú
      * tagváltozókat
      */
