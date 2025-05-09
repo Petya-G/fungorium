@@ -9,7 +9,7 @@ public class Main {
         
         SwingUtilities.invokeLater(() ->{
             Game game = new Game();
-            game.startGame(4);
+            game.startTestGame();
             View view = new View(game);
             
             Controller controller = new Controller(game, view);

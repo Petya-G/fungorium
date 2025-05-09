@@ -71,7 +71,9 @@ public class MapPanel extends JPanel {
         visitor.setSize(getSize());
         visitor.setGraphics(g2d);
         for(Tecton t : game.getMap().tectons) {
+            System.out.print(t.getId() + "\t");
             t.accept(visitor);
         }
+        System.out.println();
     }
 }

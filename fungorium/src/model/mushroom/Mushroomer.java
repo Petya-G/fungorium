@@ -12,11 +12,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import controller.GameObjectVisitor;
+
 /**
  * A Mushroomer osztály egy játékost reprezentál, aki gombákat kezel.
  * A gombász képes spórákat, gombatesteket és gombafonalakat kezelni.
  */
 public class Mushroomer extends Player implements ISpore, IStem, IThread {
+
+    static int IDCounter = 1;
+
+    private int shroomerID;
 
     private static final int MAX_THREADS_PER_TURN = 2;
     private int grownThreadsThisTurn = 0;
@@ -26,6 +32,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
     private final List<Spore> spores = new ArrayList<>();
 
     public Mushroomer() {
+        shroomerID = IDCounter++;
     }
 
     /**
@@ -35,6 +42,8 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      * @param location Gombász kezdeti pozícióját meghatározó tekton.
      */
     public Mushroomer(Tecton location) {
+        shroomerID = IDCounter++;
+        
         MushroomStem s1 = new MushroomStem(this, location);
         stems.add(s1);
         location.add(s1);
@@ -54,6 +63,8 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     public Mushroomer(Tecton location, int id) {
         super(id);
+        shroomerID = IDCounter++;
+        
         MushroomStem s1 = new MushroomStem(this, location);
         stems.add(s1);
         location.add(s1);
@@ -72,11 +83,19 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
      */
     public Mushroomer(Mushroomer mushroomer) {
         super(mushroomer);
+        shroomerID = IDCounter++;
+        
         this.spores.addAll(mushroomer.spores);
         this.stems.addAll(mushroomer.stems);
         this.threads.addAll(mushroomer.threads);
         this.grownThreadsThisTurn = mushroomer.grownThreadsThisTurn;
     }
+
+    public int getShroomerID()
+    {
+        return shroomerID;
+    }
+
 
 
     /**
@@ -362,5 +381,11 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
                 + " stems=[" + stems.stream().map(MushroomStem::getName).collect(Collectors.joining(", ")) + "], "
                 + "spores=[" + spores.stream().map(Spore::getName).collect(Collectors.joining(", ")) + "], "
                 + "threads=[" + threads.stream().map(MushroomThread::getName).collect(Collectors.joining(", ")) + "]";
+    }
+
+    @Override
+    public void accept(GameObjectVisitor visitor) {
+        // TODO Auto-generated method stub
+        
     }
 }

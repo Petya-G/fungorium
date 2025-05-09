@@ -60,10 +60,25 @@ public class Map implements IRound, Serializable {
     public void genTestMap() {
         // 5 fajta tekton
         tectons.add(new Tecton());
+        tectons.getLast().setPosX(0);
+        tectons.getLast().setPosY(0);
+
         tectons.add(new LifeSupportTecton());
+        tectons.getLast().setPosX(0);
+        tectons.getLast().setPosY(1);
+
         tectons.add(new SingleThreadedTecton());
+        tectons.getLast().setPosX(1);
+        tectons.getLast().setPosY(0);
+
         tectons.add(new StemlessTecton());
+        tectons.getLast().setPosX(1);
+        tectons.getLast().setPosY(0.5);
+
         tectons.add(new ThreadConsumingTecton());
+        tectons.getLast().setPosX(0.5);
+        tectons.getLast().setPosY(1);
+
 
         // szépen sorba kötve
         connect(tectons.get(0), tectons.get(1));
