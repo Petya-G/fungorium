@@ -1,5 +1,7 @@
 package model;
 
+import controller.Controller;
+import controller.NewObjectVisitor;
 import model.core.IRound;
 import model.tecton.*;
 
@@ -26,21 +28,27 @@ public class Map implements IRound, Serializable {
 
     }
 
+    public void add(Tecton tecton){
+        tectons.add(tecton);
+        NewObjectVisitor newObjectVisitor = new NewObjectVisitor();
+        tecton.accept(newObjectVisitor);
+    }
+
     public void generate(int size) {
         System.out.println("generating map with size: " + size);
         for (int i = 0; i < size; i++) {
             switch (Game.random.nextInt(4)) {
                 case 0:
-                    tectons.add(new Tecton());
+                    add(new Tecton());
                     break;
                 case 1:
-                    tectons.add(new LifeSupportTecton());
+                    add(new LifeSupportTecton());
                     break;
                 case 2:
-                    tectons.add(new SingleThreadedTecton());
+                    add(new SingleThreadedTecton());
                     break;
                 case 3:
-                    tectons.add(new ThreadConsumingTecton());
+                    add(new ThreadConsumingTecton());
                     break;
             }
             tectons.getLast().setPosX(Game.random.nextDouble());
@@ -59,34 +67,31 @@ public class Map implements IRound, Serializable {
     // teszt pálya, nagyon egyszerű de annál sokszínűbb :)
     public void genTestMap() {
         // 5 fajta tekton
-        tectons.add(new Tecton());
+        add(new Tecton());
         tectons.getLast().setPosX(0);
         tectons.getLast().setPosY(0);
 
-        tectons.add(new LifeSupportTecton());
+        add(new LifeSupportTecton());
         tectons.getLast().setPosX(0);
         tectons.getLast().setPosY(1);
 
-        tectons.add(new SingleThreadedTecton());
+        add(new SingleThreadedTecton());
         tectons.getLast().setPosX(1);
         tectons.getLast().setPosY(0);
 
-        tectons.add(new StemlessTecton());
+        add(new StemlessTecton());
         tectons.getLast().setPosX(1);
         tectons.getLast().setPosY(0.5);
 
-        tectons.add(new ThreadConsumingTecton());
+        add(new ThreadConsumingTecton());
         tectons.getLast().setPosX(0.5);
         tectons.getLast().setPosY(1);
-
 
         // szépen sorba kötve
         connect(tectons.get(0), tectons.get(1));
         connect(tectons.get(1), tectons.get(2));
         connect(tectons.get(2), tectons.get(3));
         connect(tectons.get(3), tectons.get(4));
-
-
     }
 
     /**
@@ -125,15 +130,13 @@ public class Map implements IRound, Serializable {
      */
     @Override
     public void endRound() {
-
-        // avoid comodification
         ArrayList<Tecton> tectonsClone = new ArrayList<Tecton>(tectons);
         tectonsClone.forEach(Tecton::endRound);
 
         if (enableSplitting) {
             for (Tecton t : tectonsClone) {
                 if (Game.random.nextBoolean()) {
-                    tectons.add(t.split());
+                    add(t.split());
                 }
             }
         }

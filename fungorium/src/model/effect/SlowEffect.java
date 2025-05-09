@@ -1,5 +1,6 @@
 package model.effect;
 
+import controller.GameObjectVisitor;
 import model.insect.*;
 
 public class SlowEffect extends Effect {
@@ -11,5 +12,10 @@ public class SlowEffect extends Effect {
     public void apply(Insect i) {
         duration--;
         i.setSpeedModifier(0.5);
+    }
+
+    @Override
+    public void accept(GameObjectVisitor visitor) {
+
     }
 }

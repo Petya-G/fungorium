@@ -1,6 +1,7 @@
 package model.effect;
 
 //import model.core.Debug;
+import controller.GameObjectVisitor;
 import model.insect.*;
 
 public class ParalyzeEffect extends Effect {
@@ -13,5 +14,10 @@ public class ParalyzeEffect extends Effect {
         duration--;
         i.setParalyzed(true);
         //Debug.DBGFUNC("Kábító hatás van érvényben a rovaron");
+    }
+
+    @Override
+    public void accept(GameObjectVisitor visitor) {
+
     }
 }

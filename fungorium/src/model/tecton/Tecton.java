@@ -46,30 +46,12 @@ public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread
     protected double posY = 0;
 
     /**
-     * Tekton pozíciója getter/setter
-     */
-    public double getPosX() {
-        return posX;
-    }
-    public double getPosY() {
-        return posY;
-    }
-
-    public void setPosX(double p) {
-        posX = p;
-    }
-
-    public void setPosY(double p) {
-        posY = p;
-    }
-
-    /**
      * A Tecton osztály konstruktora, üresen inicializálja a lista típusú
      * tagváltozókat
      */
     public Tecton() {
         super();
-        
+
     }
 
     public Tecton(Tecton tecton) {
@@ -79,6 +61,25 @@ public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread
         this.threads.addAll(tecton.threads);
         this.insects.addAll(tecton.insects);
         this.neighbours.addAll(tecton.neighbours);
+    }
+
+    /**
+     * Tekton pozíciója getter/setter
+     */
+    public double getPosX() {
+        return posX;
+    }
+
+    public void setPosX(double p) {
+        posX = p;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
+
+    public void setPosY(double p) {
+        posY = p;
     }
 
     /**
@@ -134,11 +135,8 @@ public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread
         else if (rnd == 2) t = new ThreadConsumingTecton();
         else if (rnd == 3) t = new LifeSupportTecton();
 
-        for (Tecton n : neighbours) {
-            if (Game.random.nextBoolean()) {
-                t.addNeighbour(n);
-            }
-        }
+        for (Tecton n : neighbours)
+            if (Game.random.nextBoolean()) t.addNeighbour(n);
 
         threads.clear();
 
@@ -379,7 +377,7 @@ public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread
     }
 
 
-    public void accept(GameObjectVisitor gameObjectVisitor){
+    public void accept(GameObjectVisitor gameObjectVisitor) {
         gameObjectVisitor.visit(this);
     }
 
@@ -413,11 +411,6 @@ public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread
 
     @Override
     public String toString() {
-        return super.toString() + " "
-                + "stem=" + (stem != null ? stem.getName() : "null") + ", "
-                + "spores=[" + spores.stream().map(Spore::getName).collect(Collectors.joining(", ")) + "], "
-                + "threads=[" + threads.stream().map(MushroomThread::getName).collect(Collectors.joining(", ")) + "], "
-                + "insects=[" + insects.stream().map(Insect::getName).collect(Collectors.joining(", ")) + "], "
-                + "neighbours=[" + neighbours.stream().map(Tecton::getName).collect(Collectors.joining(", ")) + "]";
+        return super.toString() + " " + "stem=" + (stem != null ? stem.getName() : "null") + ", " + "spores=[" + spores.stream().map(Spore::getName).collect(Collectors.joining(", ")) + "], " + "threads=[" + threads.stream().map(MushroomThread::getName).collect(Collectors.joining(", ")) + "], " + "insects=[" + insects.stream().map(Insect::getName).collect(Collectors.joining(", ")) + "], " + "neighbours=[" + neighbours.stream().map(Tecton::getName).collect(Collectors.joining(", ")) + "]";
     }
 }

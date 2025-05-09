@@ -1,5 +1,6 @@
 package model.insect;
 
+import controller.GameObjectVisitor;
 import model.core.Player;
 import model.effect.Effect;
 import model.mushroom.MushroomThread;
@@ -20,6 +21,11 @@ public class Insecter extends Player implements IInsect {
     private List<Insect> insects = new ArrayList<>();
 
     public Insecter() {
+    }
+
+    @Override
+    public void accept(GameObjectVisitor visitor) {
+
     }
 
     public Insecter(Tecton location) {

@@ -161,8 +161,9 @@ public class MushroomThread extends Entity {
         }
     }
 
-    public void accept(GameObjectVisitor gameObjectVisitor) {
-        gameObjectVisitor.visit(this);
+    @Override
+    public void accept(GameObjectVisitor visitor) {
+
     }
 
     /**

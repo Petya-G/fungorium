@@ -269,8 +269,9 @@ public class Insect extends Entity {
         ((Insecter) getOwner()).remove(this);
     }
 
-    public void accept(GameObjectVisitor gameObjectVisitor){
-        gameObjectVisitor.visit(this);
+    @Override
+    public void accept(GameObjectVisitor visitor) {
+
     }
 
     @Override
