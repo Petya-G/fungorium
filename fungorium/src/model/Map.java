@@ -27,6 +27,7 @@ public class Map implements IRound, Serializable {
     }
 
     public void generate(int size) {
+        System.out.println("generating map with size: " + size);
         for (int i = 0; i < size; i++) {
             switch (Game.random.nextInt(4)) {
                 case 0:
