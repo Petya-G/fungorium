@@ -6,10 +6,13 @@ import model.mushroom.MushroomThread;
 import model.mushroom.Mushroomer;
 import model.mushroom.spore.*;
 import model.tecton.*;
-
-import javax.swing.*;
+import view.game.TectonButton;
 
 import java.awt.*;
+
+import java.util.List;
+
+import javax.swing.*;
 
 public class DrawVisitor implements GameObjectVisitor {
 
@@ -38,6 +41,11 @@ public class DrawVisitor implements GameObjectVisitor {
     protected Graphics2D g;
     public void setGraphics(Graphics2D _g) {
         g = _g;
+    }
+
+    protected List<TectonButton> tectonButtons;
+    public void setTectonButtons(List<TectonButton> tectonButtons) {
+        this.tectonButtons = tectonButtons;
     }
 
     protected Dimension size;
@@ -115,14 +123,18 @@ public class DrawVisitor implements GameObjectVisitor {
                 }
             }
         }
-        System.out.println();
+
+
+
+
+        //System.out.println();
         g.setColor(new Color(0,255,255));
         g.fillOval(tectonTopLeftX(tecton.getPosX()), tectonTopLeftY(tecton.getPosY()), tectonWidth, tectonHeight);
         
         g.setColor(new Color(0,0,0));
         
         g.drawOval(tectonTopLeftX(tecton.getPosX()), tectonTopLeftY(tecton.getPosY()), tectonWidth, tectonHeight);
-        //System.out.println(tecton.getId() + " " + tecton.getPosX());
+       //System.out.println(tecton.getId() + " " + tecton.getPosX());
 
         
     }

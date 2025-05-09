@@ -10,10 +10,12 @@ public class GamePanel extends JPanel {
     SidebarPanel sidebarPanel = new SidebarPanel();
     MiddlePanel middlePanel;
     Game game;
+    MapPanel mapPanel;
 
-    public GamePanel(Game game) {
+    public GamePanel(Game game, MapPanel mapPanel) {
         this.game = game;
-        middlePanel = new MiddlePanel(game);
+        this.mapPanel = mapPanel;
+        middlePanel = new MiddlePanel(game, mapPanel);
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
 

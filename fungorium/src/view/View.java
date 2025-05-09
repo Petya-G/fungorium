@@ -2,6 +2,7 @@ package view;
 
 import model.*;
 import view.game.GamePanel;
+import view.game.MapPanel;
 import view.mainMenu.MainMenu;
 
 import javax.swing.*;
@@ -13,10 +14,12 @@ public class View extends JFrame {
     JPanel cardPanel = new JPanel(cardLayout);
     MainMenu mainMenu = new MainMenu();
     GamePanel gamePanel;
+    MapPanel mapPanel;
 
     public View(Game game) {
         super("Fungorium");
-        gamePanel = new GamePanel(game);
+        mapPanel = new MapPanel(game);
+        gamePanel = new GamePanel(game, mapPanel);
 
         this.game = game;
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -40,4 +43,10 @@ public class View extends JFrame {
         System.out.println("showing panel " + name);
         cardLayout.show(cardPanel, name);
     }
+
+    public MapPanel getMapPanel()
+    {
+        return mapPanel;
+    }
+
 }

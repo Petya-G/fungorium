@@ -18,9 +18,9 @@ public class MiddlePanel extends JPanel {
      * Constructor for the MiddlePanel.
      * Initializes and arranges the child panels with proper layout and styling.
      */
-    public MiddlePanel(Game game) {
+    public MiddlePanel(Game game, MapPanel mapPanel) {
         this.game = game;
-        mapPanel = new MapPanel(game);
+        this.mapPanel = mapPanel;
         // Set the main layout and background
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);

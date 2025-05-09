@@ -69,6 +69,7 @@ public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread
      */
     public Tecton() {
         super();
+        
     }
 
     public Tecton(Tecton tecton) {
