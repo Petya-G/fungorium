@@ -41,6 +41,12 @@ public class TectonButton extends JButton {
                     int newX = buttonLocation.x + deltaX;
                     int newY = buttonLocation.y + deltaY;
 
+                    int parentWidth = parent.getWidth();
+                    int parentHeight = parent.getHeight();
+
+                    newX = Math.max(0, Math.min(newX, parentWidth - size));
+                    newY = Math.max(0, Math.min(newY, parentHeight - size));
+
                     tecton.setPosX(inverseTectonX(newX + size / 2));
                     tecton.setPosY(inverseTectonY(newY + size / 2));
 
