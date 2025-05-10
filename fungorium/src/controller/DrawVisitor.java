@@ -12,7 +12,7 @@ public class DrawVisitor implements GameObjectVisitor {
     protected Graphics2D g;
     protected Dimension size;
 
-    public DrawVisitor(Graphics2D g, Dimension size) {
+    public void setParameters(Graphics2D g, Dimension size) {
         this.g = g;
         this.size = size;
     }

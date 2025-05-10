@@ -24,6 +24,8 @@ public class MiddlePanel extends JPanel {
         add(mapPanel, BorderLayout.CENTER);
 
         add(tectonContentPanel, BorderLayout.SOUTH);
+
+        mapPanel.setTectonContentPanel(tectonContentPanel);
     }
 
     private Border createTitledBorder(String title) {

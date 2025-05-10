@@ -3,6 +3,7 @@ package controller;
 import model.Game;
 import view.View;
 import view.game.MapPanel;
+import view.game.MiddlePanel;
 
 public class Controller {
     private static Controller instance;

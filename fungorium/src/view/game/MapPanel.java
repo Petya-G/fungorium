@@ -9,16 +9,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.event.*;
 
-public class MapPanel extends JPanel {
+public class MapPanel extends JPanel{
     private final InsecterPop insecterPop;
     private final MushroomerPop mushroomerPop;
     public List<TectonButton> tectonButtons = new ArrayList<>();
     Game game;
     Tecton zoom = null;
 
+    DrawVisitor drawVisitor = new DrawVisitor();
+
+    private TectonContentPanel tectonContentPanel;
+    public void setTectonContentPanel(TectonContentPanel tectonContentPanel) {
+        this.tectonContentPanel = tectonContentPanel;
+    }
+
     public MapPanel(Game game) {
         this.game = game;
+        this.tectonContentPanel = tectonContentPanel;
         setLayout(null);
 
         insecterPop = new InsecterPop();
@@ -69,7 +78,11 @@ public class MapPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        DrawVisitor drawVisitor = new DrawVisitor((Graphics2D) g, new Dimension(10, 10));
+        drawVisitor.setParameters((Graphics2D)g, getSize());
+
+        for (TectonButton b : tectonButtons) {
+            b.refreshState();
+        }
 
         for (Tecton t : game.getMap().tectons) {
             t.accept(drawVisitor);
@@ -79,7 +92,10 @@ public class MapPanel extends JPanel {
     public void addTectonButton(TectonButton tectonButton) {
         tectonButtons.add(tectonButton);
         add(tectonButton);
+        tectonButton.addActionListener(tectonContentPanel);
         revalidate();
         repaint();
     }
+
+    
 }
