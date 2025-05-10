@@ -49,7 +49,7 @@ public class ImageManager {
 
     private static ImageIcon loadIcon(String path) {
         try {
-            return new ImageIcon(ImageManager.class.getResource(path));
+            return new ImageIcon(path);
         } catch (Exception e) {
             System.err.println("Image not found: " + path);
             return null;
