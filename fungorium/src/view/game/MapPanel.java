@@ -75,4 +75,11 @@ public class MapPanel extends JPanel {
             t.accept(drawVisitor);
         }
     }
+
+    public void addTectonButton(TectonButton tectonButton) {
+        tectonButtons.add(tectonButton);
+        add(tectonButton);
+        revalidate();
+        repaint();
+    }
 }

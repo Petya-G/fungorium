@@ -1,25 +1,27 @@
 package controller;
 
 import model.Game;
-import model.tecton.*;
 import view.View;
+import view.game.MapPanel;
 
 public class Controller {
     private static Controller instance;
-    public View view;
     public Game game;
+    public MapPanel mapPanel;
+    public View view;
 
-    public Controller(Game game, View view) {
+    public Controller(Game game) {
         this.game = game;
-        this.view = view;
+        this.mapPanel = new MapPanel(game);
+        view = new View(game, mapPanel);
     }
 
     public static Controller getInstance() {
         return instance;
     }
 
-    public static void startGame(Game game, View view) {
-        instance = new Controller(game, view);
+    public static void startGame(Game game) {
+        instance = new Controller(game);
         game.startGame(4);
     }
 }

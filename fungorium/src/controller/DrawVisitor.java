@@ -85,14 +85,12 @@ public class DrawVisitor implements GameObjectVisitor {
     }
 
     void drawTectonBase(Tecton tecton) {
-
         for (Tecton n : tecton.getNeighbours()) {
             if (n.getId() > tecton.getId()) {
                 connectTectons(n, tecton);
                 for (MushroomThread thread : tecton.getThreads()) {
                     for (MushroomThread thread2 : n.getThreads()) {
                         if (thread.getOwner().equals(thread2.getOwner())) {
-                            //System.out.print(thread.getLocation().getId() + "\t");
                             switch (((Mushroomer) thread.getOwner()).getShroomerID()) {
                                 case 1:
                                     connectTectonsWithThread(n, tecton, new Color(0, 0, 255), 10);
@@ -120,7 +118,6 @@ public class DrawVisitor implements GameObjectVisitor {
         g.fillOval(tectonTopLeftX(tecton.getPosX()), tectonTopLeftY(tecton.getPosY()), tectonWidth, tectonHeight);
 
         g.setColor(new Color(0, 0, 0));
-
         g.drawOval(tectonTopLeftX(tecton.getPosX()), tectonTopLeftY(tecton.getPosY()), tectonWidth, tectonHeight);
     }
 }

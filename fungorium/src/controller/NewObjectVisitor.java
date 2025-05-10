@@ -2,6 +2,7 @@ package controller;
 
 import model.core.GameObject;
 import model.tecton.*;
+import view.ImageManager;
 import view.game.TectonButton;
 
 public class NewObjectVisitor implements GameObjectVisitor {
@@ -13,36 +14,26 @@ public class NewObjectVisitor implements GameObjectVisitor {
 
     @Override
     public void visit(LifeSupportTecton lifeSupportTecton) {
-        TectonButton tb = new TectonButton(lifeSupportTecton);
-        Controller.getInstance().view.getMapPanel().tectonButtons.add(tb);
-        Controller.getInstance().view.getMapPanel().add(tb);
+        Controller.getInstance().mapPanel.addTectonButton(new TectonButton(lifeSupportTecton, ImageManager.getIcon("tecton_lifesupport")));
     }
 
     @Override
     public void visit(SingleThreadedTecton singleThreadedTecton) {
-        TectonButton tb = new TectonButton(singleThreadedTecton);
-        Controller.getInstance().view.getMapPanel().tectonButtons.add(tb);
-        Controller.getInstance().view.getMapPanel().add(tb);
+        Controller.getInstance().mapPanel.addTectonButton( new TectonButton(singleThreadedTecton, ImageManager.getIcon("tecton_singlethreaded")));
     }
 
     @Override
     public void visit(StemlessTecton stemlessTecton) {
-        TectonButton tb = new TectonButton(stemlessTecton);
-        Controller.getInstance().view.getMapPanel().tectonButtons.add(tb);
-        Controller.getInstance().view.getMapPanel().add(tb);
+        Controller.getInstance().mapPanel.addTectonButton( new TectonButton(stemlessTecton, ImageManager.getIcon("tecton_stemless")));
     }
 
     @Override
     public void visit(Tecton tecton) {
-        TectonButton tb = new TectonButton(tecton);
-        Controller.getInstance().view.getMapPanel().tectonButtons.add(tb);
-        Controller.getInstance().view.getMapPanel().add(tb);
+        Controller.getInstance().mapPanel.addTectonButton( new TectonButton(tecton, ImageManager.getIcon("tecton_basic")));
     }
 
     @Override
     public void visit(ThreadConsumingTecton threadConsumingTecton) {
-        TectonButton tb = new TectonButton(threadConsumingTecton);
-        Controller.getInstance().view.getMapPanel().tectonButtons.add(tb);
-        Controller.getInstance().view.getMapPanel().add(tb);
+        Controller.getInstance().mapPanel.addTectonButton( new TectonButton(threadConsumingTecton, ImageManager.getIcon("tecton_threadconsuming")));
     }
 }

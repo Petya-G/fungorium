@@ -6,16 +6,12 @@ import javax.swing.*;
 
 public class TectonButton extends JButton {
     static int size = 30;
-    int coordX, coordY;
     Tecton tecton;
+    ImageIcon imageIcon;
 
-    public TectonButton(Tecton tecton) {
-        super();
+    public TectonButton(Tecton tecton, ImageIcon imageIcon) {
+        super(imageIcon);
         setBounds(100, 100, size, size);
-        //setLocation(100, 100);
-        coordX = 100;
-        coordY = 202;
-
-        this.tecton = tecton;
+        setLocation((int)tecton.getPosX(), (int)tecton.getPosY());
     }
 }

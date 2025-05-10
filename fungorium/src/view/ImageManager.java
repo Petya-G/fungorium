@@ -1,18 +1,19 @@
 package view;
 
+import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.*;
 
 public class ImageManager {
     private static final Map<String, ImageIcon> icons = new HashMap<>();
-    private static final String BASE_PATH = "/icons/";
+    private static final String BASE_PATH = "src/resources/icons/";
 
     static {
         loadPlayerImages();
         loadMushroomImages();
         loadSporeImages();
         loadTectonImages();
+        System.out.println(System.getProperty("user.dir"));
     }
 
     private static void loadPlayerImages() {
@@ -22,7 +23,6 @@ public class ImageManager {
         }
     }
 
-    // Gomba képek betöltése
     private static void loadMushroomImages() {
         for (int i = 1; i <= 4; i++) {
             icons.put("mushroom_stem_" + i, loadIcon(BASE_PATH + "mushroom/stem/mushroom_stem_" + i + ".png"));
@@ -30,7 +30,6 @@ public class ImageManager {
         }
     }
 
-    // Spóra képek betöltése
     private static void loadSporeImages() {
         String[] sporeTypes = {"clawparalyzing", "paralyzing", "slowing", "speeding", "splitting"};
         for (String type : sporeTypes) {
@@ -40,7 +39,6 @@ public class ImageManager {
         }
     }
 
-    // Tecton képek betöltése
     private static void loadTectonImages() {
         icons.put("tecton_basic", loadIcon(BASE_PATH + "tecton/tecton_basic.png"));
         icons.put("tecton_lifesupport", loadIcon(BASE_PATH + "tecton/tecton_lifesupport.png"));
@@ -49,7 +47,6 @@ public class ImageManager {
         icons.put("tecton_threadconsuming", loadIcon(BASE_PATH + "tecton/tecton_threadconsuming.png"));
     }
 
-    // Kép betöltése biztonságosan
     private static ImageIcon loadIcon(String path) {
         try {
             return new ImageIcon(ImageManager.class.getResource(path));
@@ -59,7 +56,6 @@ public class ImageManager {
         }
     }
 
-    // Kép lekérdezése dinamikusan
     public static ImageIcon getIcon(String key) {
         return icons.get(key);
     }

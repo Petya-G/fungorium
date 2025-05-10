@@ -16,9 +16,8 @@ public class View extends JFrame {
     GamePanel gamePanel;
     MapPanel mapPanel;
 
-    public View(Game game) {
+    public View(Game game, MapPanel mapPanel) {
         super("Fungorium");
-        mapPanel = new MapPanel(game);
         gamePanel = new GamePanel(game, mapPanel);
 
         this.game = game;
