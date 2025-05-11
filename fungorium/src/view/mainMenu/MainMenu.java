@@ -2,27 +2,34 @@ package view.mainMenu;
 
 import controller.Controller;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class MainMenu extends JPanel {
 
+    private BufferedImage backgroundImage;
+
     public MainMenu() {
+
+        try {
+            backgroundImage = ImageIO.read(getClass().getResource("/resources/icons/menu/MainMenu.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(173, 216, 230));
 
-        JLabel fungorium = new JLabel("FUNGORIUM", SwingConstants.CENTER);
-        fungorium.setFont(new Font("Arial", Font.BOLD, 40));
-        fungorium.setForeground(Color.WHITE);
-        fungorium.setOpaque(true);
-        fungorium.setBackground(new Color(0, 0, 100));
-        fungorium.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(Box.createVerticalStrut(50));
-        add(fungorium);
-        add(Box.createVerticalStrut(100));
 
-        Dimension buttonSize = new Dimension(250, 50);
+
+
+        add(Box.createVerticalStrut(300));
+
+        Dimension buttonSize = new Dimension(260, 50);
 
         add(new MenuButton("Load Game", buttonSize, e -> {
             System.out.println("Todo: Load Game");
@@ -51,5 +58,13 @@ public class MainMenu extends JPanel {
         add(new MenuButton("Exit Game", buttonSize, e -> {
             System.exit(0);
         }));
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 }
