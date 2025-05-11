@@ -12,18 +12,16 @@ import java.awt.*;
 public class View extends JFrame {
     private Game game;
     CardLayout cardLayout = new CardLayout();
-    private Controller controller;
     JPanel cardPanel = new JPanel(cardLayout);
     MainMenu mainMenu ;
     GamePanel gamePanel;
     MapPanel mapPanel;
 
-    public View(Game game, MapPanel mapPanel,Controller controller) {
+    public View(Game game, MapPanel mapPanel) {
         super("Fungorium");
         gamePanel = new GamePanel(game, mapPanel);
-        this.controller = controller;
         this.game = game;
-        this.mainMenu = new MainMenu(controller);
+        this.mainMenu = new MainMenu();
         this.mapPanel = mapPanel;
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -40,7 +38,7 @@ public class View extends JFrame {
         add(cardPanel, BorderLayout.CENTER);
         setVisible(true);
 
-        showPanel("gameView");
+        showPanel("mainMenu");
     }
 
     public void showPanel(String name) {

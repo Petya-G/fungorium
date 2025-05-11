@@ -5,18 +5,15 @@ import model.Game;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainMenu extends JPanel {
-    private Controller controller;
 
-    public MainMenu(Controller controller) {
-        this.controller = controller;
+    public MainMenu() {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(173, 216, 230));
 
+        // Cím
         JLabel fungorium = new JLabel("Fungorium", SwingConstants.CENTER);
         fungorium.setFont(new Font("Arial", Font.BOLD, 40));
         fungorium.setForeground(Color.WHITE);
@@ -28,37 +25,57 @@ public class MainMenu extends JPanel {
         add(fungorium);
         add(Box.createVerticalStrut(30));
 
+        // Load Game gomb
         JButton loadGame = new JButton("Load Game");
         loadGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         loadGame.setFont(new Font("Arial", Font.PLAIN, 20));
         loadGame.setMaximumSize(new Dimension(200, 50));
         loadGame.addActionListener(e -> {
             System.out.println("Todo: Load Game");
+            //TODO: Load game
         });
-
-        JButton startButton4 = createStartButton("Start New 4 Player Game", 4);
-        JButton startButton6 = createStartButton("Start New 6 Player Game", 6);
-        JButton startButton8 = createStartButton("Start New 8 Player Game", 8);
-
         add(loadGame);
         add(Box.createVerticalStrut(20));
+
+        // Start New 4 Player Game gomb
+        JButton startButton4 = new JButton("Start New 4 Player Game");
+        startButton4.setAlignmentX(Component.CENTER_ALIGNMENT);
+        startButton4.setFont(new Font("Arial", Font.PLAIN, 20));
+        startButton4.setMaximumSize(new Dimension(250, 50));
+
+        startButton4.addActionListener(e -> {
+            Controller.getInstance().startGame(4);
+            Controller.getInstance().getView().showPanel("gameView");
+        });
+
         add(startButton4);
         add(Box.createVerticalStrut(20));
+
+        // Start New 6 Player Game gomb
+        JButton startButton6 = new JButton("Start New 6 Player Game");
+        startButton6.setAlignmentX(Component.CENTER_ALIGNMENT);
+        startButton6.setFont(new Font("Arial", Font.PLAIN, 20));
+        startButton6.setMaximumSize(new Dimension(250, 50));
+
+        startButton6.addActionListener(e -> {
+            Controller.getInstance().startGame(6);
+            Controller.getInstance().getView().showPanel("gameView");
+
+        });
         add(startButton6);
         add(Box.createVerticalStrut(20));
-        add(startButton8);
-    }
 
-    private JButton createStartButton(String text, int players) {
-        JButton button = new JButton(text);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setFont(new Font("Arial", Font.PLAIN, 20));
-        button.setMaximumSize(new Dimension(250, 50));
-        button.addActionListener(e -> {
-            Game game = new Game();
-            Controller.startGame(game, players);
-            controller.getView().showPanel("gameView");
+
+        JButton startButton8 = new JButton("Start New 8 Player Game");
+        startButton8.setAlignmentX(Component.CENTER_ALIGNMENT);
+        startButton8.setFont(new Font("Arial", Font.PLAIN, 20));
+        startButton8.setMaximumSize(new Dimension(250, 50));
+
+        startButton8.addActionListener(e -> {
+            Controller.getInstance().startGame(8);
+            Controller.getInstance().getView().showPanel("gameView");
+
         });
-        return button;
+        add(startButton8);
     }
 }
