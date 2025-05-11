@@ -23,14 +23,6 @@ public class Controller {
 
     }
 
-    /*public Controller(Game game) {
-        this.game = game;
-
-        this.mapPanel = new MapPanel(game);
-        view = new View(game, mapPanel);
-
-    }*/
-
     public static Controller getInstance() {
         return instance;
     }
