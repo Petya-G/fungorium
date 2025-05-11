@@ -1,5 +1,6 @@
 .vs
 combined.txt
+fungorium/out
 09-10/prototype/prototype.iml
 09-10/prototype/.idea/.gitignore
 09-10/prototype/.idea/misc.xml
