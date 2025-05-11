@@ -8,7 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class TectonButton extends JButton {
-    static int size = 30;
+    static int size = 50;
     static int tectonWidth = 100;
     static int tectonHeight = 100;
     Tecton tecton;
@@ -16,12 +16,17 @@ public class TectonButton extends JButton {
     MapPanel parent;
 
     public TectonButton(Tecton tecton, ImageIcon imageIcon, MapPanel parent) {
-        super(imageIcon);
+        super(scaleImageIcon(imageIcon, size, size));
+        this.imageIcon = imageIcon;
         this.parent = parent;
         this.tecton = tecton;
-        this.imageIcon = imageIcon;
         setBounds(tectonCenterX((int) tecton.getPosX()), tectonCenterY((int) tecton.getPosY()), size, size);
-        setIcon(imageIcon);
+        setPreferredSize(new Dimension(size, size));
+        setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        setBorderPainted(false);
+        setContentAreaFilled(false);
+        setFocusPainted(false);
+        setOpaque(true);
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
             private Point initialMousePoint;
@@ -59,6 +64,15 @@ public class TectonButton extends JButton {
 
         addMouseListener(mouseAdapter);
         addMouseMotionListener(mouseAdapter);
+    }
+
+    private static ImageIcon scaleImageIcon(ImageIcon icon, int width, int height) {
+        if (icon == null || icon.getImage() == null) {
+            return null;
+        }
+        Image img = icon.getImage();
+        Image scaledImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(scaledImg);
     }
 
     double inverseTectonX(int x) {

@@ -113,11 +113,5 @@ public class DrawVisitor implements GameObjectVisitor {
                 }
             }
         }
-
-        g.setColor(new Color(0, 255, 255));
-        g.fillOval(tectonTopLeftX(tecton.getPosX()), tectonTopLeftY(tecton.getPosY()), tectonWidth, tectonHeight);
-
-        g.setColor(new Color(0, 0, 0));
-        g.drawOval(tectonTopLeftX(tecton.getPosX()), tectonTopLeftY(tecton.getPosY()), tectonWidth, tectonHeight);
     }
 }
