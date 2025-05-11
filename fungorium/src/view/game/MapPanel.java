@@ -9,20 +9,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.event.*;
 
-public class MapPanel extends JPanel{
+public class MapPanel extends JPanel {
     private final InsecterPop insecterPop;
     private final MushroomerPop mushroomerPop;
+    private final DrawVisitor drawVisitor = new DrawVisitor();
     public List<TectonButton> tectonButtons = new ArrayList<>();
-    Game game;
-
-    DrawVisitor drawVisitor = new DrawVisitor();
-
+    private final Game game;
     private TectonContentPanel tectonContentPanel;
-    public void setTectonContentPanel(TectonContentPanel tectonContentPanel) {
-        this.tectonContentPanel = tectonContentPanel;
-    }
 
     public MapPanel(Game game) {
         this.game = game;
@@ -34,10 +28,14 @@ public class MapPanel extends JPanel{
         setBackground(new Color(250, 250, 250));
     }
 
+    public void setTectonContentPanel(TectonContentPanel tectonContentPanel) {
+        this.tectonContentPanel = tectonContentPanel;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawVisitor.setParameters((Graphics2D)g, getSize());
+        drawVisitor.setParameters((Graphics2D) g, getSize());
 
         for (TectonButton b : tectonButtons) {
             b.refreshState();
