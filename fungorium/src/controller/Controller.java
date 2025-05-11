@@ -21,8 +21,8 @@ public class Controller {
         return instance;
     }
 
-    public static void startGame(Game game) {
+    public static void startGame(Game game,int playerCount) {
         instance = new Controller(game);
-        game.startGame(4);
+        game.startGame(playerCount);
     }
 }
