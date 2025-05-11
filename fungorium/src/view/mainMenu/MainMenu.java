@@ -9,15 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainMenu extends JPanel {
-    private JFrame frame;
+    private Controller controller;
 
-    public MainMenu() {
-        frame = new JFrame("Main Menu");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 600);
-        frame.setLocationRelativeTo(null);
-        frame.setContentPane(this);
-        frame.setVisible(true);
+    public MainMenu(Controller controller) {
+        this.controller = controller;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(173, 216, 230));
@@ -37,40 +32,13 @@ public class MainMenu extends JPanel {
         loadGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         loadGame.setFont(new Font("Arial", Font.PLAIN, 20));
         loadGame.setMaximumSize(new Dimension(200, 50));
-        loadGame.addActionListener((ActionEvent e) -> {
-            System.out.println("Todo:Load Game");
-            //TODO: Load game
+        loadGame.addActionListener(e -> {
+            System.out.println("Todo: Load Game");
         });
 
-        JButton startButton4 = new JButton("Start New 4 Player Game");
-        startButton4.setAlignmentX(Component.CENTER_ALIGNMENT);
-        startButton4.setFont(new Font("Arial", Font.PLAIN, 20));
-        startButton4.setMaximumSize(new Dimension(200, 50));
-        startButton4.addActionListener((ActionEvent e) -> {
-            frame.dispose();
-            Game game = new Game();
-            Controller.startGame(game,4);
-        });
-
-        JButton startButton6 = new JButton("Start New 6 Player Game");
-        startButton6.setAlignmentX(Component.CENTER_ALIGNMENT);
-        startButton6.setFont(new Font("Arial", Font.PLAIN, 20));
-        startButton6.setMaximumSize(new Dimension(200, 50));
-        startButton6.addActionListener((ActionEvent e) -> {
-            frame.dispose();
-            Game game = new Game();
-            Controller.startGame(game,6);
-        });
-
-        JButton startButton8 = new JButton("Start New 8 Player Game");
-        startButton8.setAlignmentX(Component.CENTER_ALIGNMENT);
-        startButton8.setFont(new Font("Arial", Font.PLAIN, 20));
-        startButton8.setMaximumSize(new Dimension(200, 50));
-        startButton8.addActionListener((ActionEvent e) -> {
-            frame.dispose();
-            Game game = new Game();
-            Controller.startGame(game,8);
-        });
+        JButton startButton4 = createStartButton("Start New 4 Player Game", 4);
+        JButton startButton6 = createStartButton("Start New 6 Player Game", 6);
+        JButton startButton8 = createStartButton("Start New 8 Player Game", 8);
 
         add(loadGame);
         add(Box.createVerticalStrut(20));
@@ -79,5 +47,18 @@ public class MainMenu extends JPanel {
         add(startButton6);
         add(Box.createVerticalStrut(20));
         add(startButton8);
+    }
+
+    private JButton createStartButton(String text, int players) {
+        JButton button = new JButton(text);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setFont(new Font("Arial", Font.PLAIN, 20));
+        button.setMaximumSize(new Dimension(250, 50));
+        button.addActionListener(e -> {
+            Game game = new Game();
+            Controller.startGame(game, players);
+            controller.getView().showPanel("gameView");
+        });
+        return button;
     }
 }

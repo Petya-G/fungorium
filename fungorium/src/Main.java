@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            MainMenu mainMenu = new MainMenu();
+            Controller.startMainMenu();
             //Game game = new Game();
             //Controller.startGame(game);
         });
