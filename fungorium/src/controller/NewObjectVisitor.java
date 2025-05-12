@@ -3,7 +3,7 @@ package controller;
 import model.core.GameObject;
 import model.tecton.*;
 import view.ImageManager;
-import view.game.TectonButton;
+import view.game.buttons.TectonButton;
 
 public class NewObjectVisitor implements GameObjectVisitor {
 

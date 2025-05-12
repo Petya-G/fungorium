@@ -4,6 +4,7 @@ package view.game;
 import controller.DrawVisitor;
 import model.Game;
 import model.tecton.Tecton;
+import view.game.buttons.TectonButton;
 
 import javax.swing.*;
 import java.awt.*;

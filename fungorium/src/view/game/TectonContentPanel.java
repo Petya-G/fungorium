@@ -8,9 +8,10 @@ import java.awt.*;
 import java.awt.event.*;
 import model.tecton.*;
 import model.mushroom.*;
-import model.*;
 import model.mushroom.spore.*;
 import model.insect.*;
+import view.game.buttons.TectonButton;
+
 public class TectonContentPanel extends JPanel implements ActionListener{
 
     JLabel mainText;
