@@ -6,9 +6,9 @@ import view.game.MapPanel;
 
 public class Controller {
     private static Controller instance;
-    public Game game;
-    public MapPanel mapPanel;
-    public View view;
+    private final Game game;
+    private final MapPanel mapPanel;
+    private final View view;
 
     public Controller() {
         this.game = new Game();

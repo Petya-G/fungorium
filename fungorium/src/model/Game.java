@@ -33,7 +33,7 @@ public class Game implements ITurn, IRound, Serializable {
     /**
      * A játék pályája
      */
-    private Map map = new Map();
+    private final Map map = new Map();
     /**
      * Nyilvántartja, elkezdődött-e már a játék
      */
@@ -67,8 +67,8 @@ public class Game implements ITurn, IRound, Serializable {
     /**
      * Elindítja a játékot, a started változó beállításával
      */
-    public boolean startGame(int playerCount) {
-        if (started || playerCount < 0 || playerCount > 8 || playerCount % 2 != 0) return false;
+    public void startGame(int playerCount) {
+        if (started || playerCount < 0 || playerCount > 8 || playerCount % 2 != 0) return;
         started = true;
 
         map.generate(playerCount * 2);
@@ -78,7 +78,6 @@ public class Game implements ITurn, IRound, Serializable {
             insecters.add(new Insecter(map.tectons.get(random.nextInt(map.tectons.size()))));
         }
 
-        return true;
     }
 
     public boolean startTestGame() {
