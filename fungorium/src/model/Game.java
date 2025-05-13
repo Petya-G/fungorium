@@ -1,5 +1,8 @@
 package model;
 
+import java.io.Serializable;
+import java.util.*;
+import java.util.stream.Collectors;
 import model.core.*;
 import model.insect.Insect;
 import model.insect.Insecter;
@@ -8,10 +11,6 @@ import model.mushroom.MushroomThread;
 import model.mushroom.Mushroomer;
 import model.mushroom.spore.*;
 import model.tecton.Tecton;
-
-import java.io.Serializable;
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * A játékmenet kezeléséért felelős osztály, amely kezeli a köröket, a játékosokat
@@ -124,6 +123,75 @@ public class Game implements ITurn, IRound, Serializable {
 
         return true;
     }
+
+    public boolean startTestGame2() {
+        //TODO ez megjelenites teszthez van, ki lehet venni 
+        if (started) return false;
+        started = true;
+
+        map.genTestMap();
+
+        
+
+        Mushroomer m1 = new Mushroomer(map.tectons.get(0));
+        Mushroomer m2 = new Mushroomer(map.tectons.get(1));
+        Mushroomer m3 = new Mushroomer(map.tectons.get(2));
+        Mushroomer m4 = new Mushroomer(map.tectons.get(4));
+
+        Insecter i1 = new Insecter(map.tectons.get(1));
+        Insecter i2 = new Insecter(map.tectons.get(1));
+        Insecter i3 = new Insecter(map.tectons.get(1));
+        Insecter i4 = new Insecter(map.tectons.get(1));
+
+         
+        mushroomers.add(m1);
+        mushroomers.add(m2);
+        mushroomers.add(m3);
+        mushroomers.add(m4);
+       
+        insecters.add(i1);
+        insecters.add(i2);
+        insecters.add(i3);
+        insecters.add(i4);
+
+        // legyen thread az 1-es tektonon is
+        MushroomThread t1 = new MushroomThread(m1, map.tectons.get(1));
+        map.tectons.get(1).add(t1);
+        m1.add(t1);
+
+        // legyen sok-sok spóra az 1-es tektonon
+        SpeedingSpore sp0 = new SpeedingSpore(m1, map.tectons.get(1));
+        map.tectons.get(1).add(sp0);
+        m1.add(sp0);
+
+        SpeedingSpore sp10 = new SpeedingSpore(m2, map.tectons.get(4));
+        map.tectons.get(4).add(sp10);
+        m2.add(sp10);
+
+        SlowingSpore sp1 = new SlowingSpore(m1, map.tectons.get(1));
+        map.tectons.get(1).add(sp1);
+        m1.add(sp1);
+
+        ParalyzingSpore sp2 = new ParalyzingSpore(m1, map.tectons.get(1));
+        map.tectons.get(1).add(sp2);
+        m1.add(sp2);
+
+        ClawParalyzingSpore sp3 = new ClawParalyzingSpore(m1, map.tectons.get(1));
+        map.tectons.get(1).add(sp3);
+        m1.add(sp3);
+
+        SplitterSpore sp4 = new SplitterSpore(m1, map.tectons.get(1));
+        map.tectons.get(1).add(sp4);
+        m1.add(sp4);
+
+        // legyen thread a 2-es tektonon is
+        MushroomThread t2 = new MushroomThread(m1, map.tectons.get(2));
+        map.tectons.get(2).add(t2);
+        m1.add(t2);
+
+        return true;
+    }
+
 
     /**
      * Lekérdezi az aktuális körön lévő játékost.

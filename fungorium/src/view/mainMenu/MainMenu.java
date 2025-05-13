@@ -1,12 +1,11 @@
 package view.mainMenu;
 
 import controller.Controller;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 public class MainMenu extends JPanel {
 
@@ -50,11 +49,20 @@ public class MainMenu extends JPanel {
             Controller.getGame().startGame(8);
             Controller.getView().showPanel("gameView");
         }));
+
+        //TODO ki lehet venni, megjelenites teszt
+        add(Box.createVerticalStrut(20));
+        add(new MenuButton("Start test game", buttonSize, e -> {
+            Controller.getGame().startTestGame2();;
+            Controller.getView().showPanel("gameView");
+        }));
+        
         add(Box.createVerticalStrut(20));
 
         add(new MenuButton("Exit Game", buttonSize, e -> {
             System.exit(0);
         }));
+        
     }
 
     @Override

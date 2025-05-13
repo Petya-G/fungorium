@@ -1,16 +1,14 @@
 package model.insect;
 
 import controller.GameObjectVisitor;
-import model.core.Player;
-import model.effect.Effect;
-import model.mushroom.MushroomThread;
-import model.mushroom.spore.Spore;
-import model.tecton.Tecton;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import model.core.Player;
+import model.mushroom.MushroomThread;
+import model.mushroom.spore.Spore;
+import model.tecton.Tecton;
 
 /**
  * Az Insecter osztály egy játékos, aki egy rovart irányít.
@@ -20,7 +18,11 @@ import java.util.stream.Collectors;
 public class Insecter extends Player implements IInsect {
     private List<Insect> insects = new ArrayList<>();
 
+    static int IDCounter = 1;
+    private final int insecterID;
+
     public Insecter() {
+        insecterID = IDCounter++;
     }
 
     @Override
@@ -29,17 +31,24 @@ public class Insecter extends Player implements IInsect {
     }
 
     public Insecter(Tecton location) {
+        insecterID = IDCounter++;
         createInsect(location);
     }
 
     public Insecter(Tecton location, int id) {
         super(id);
+        insecterID = IDCounter++;
         createInsect(location);
     }
 
     public Insecter(Insecter insecter) {
         super(insecter);
+        insecterID = IDCounter++;
         insects.addAll(insecter.insects);
+    }
+
+    public int getInsecterID(){
+        return insecterID;
     }
 
     public boolean eat(Insect insect, Spore sp) {

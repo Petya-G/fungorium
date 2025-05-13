@@ -1,28 +1,50 @@
 package view.game;
 
+import controller.NewObjectVisitor;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
-
-import java.awt.*;
-import java.awt.event.*;
-import model.tecton.*;
+import model.insect.*;
 import model.mushroom.*;
 import model.mushroom.spore.*;
-import model.insect.*;
+import model.tecton.*;
 import view.game.buttons.TectonButton;
 
 public class TectonContentPanel extends JPanel implements ActionListener{
 
     JLabel mainText;
+
+    private final JPanel stem_panel;
+    private final JPanel thread_panel;
+    private final JPanel spore_panel;
+    private final JPanel insect_panel;
+
     public TectonContentPanel() {
-        setLayout(new FlowLayout());
+        setPreferredSize(new Dimension(400, 200));
+        setLayout(new BorderLayout());
         setBorder(createTitledBorder("Details"));
         setBackground(Color.WHITE);
 
-        setPreferredSize(new Dimension(getSize().width,200));
+        setLayout(new GridLayout(2, 2));
 
-        add(new JLabel("Please select a tecton to view."), BorderLayout.NORTH);
+        stem_panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        stem_panel.setBorder(new TitledBorder("Stems"));
+        add(stem_panel);
+
+        spore_panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        spore_panel.setBorder(new TitledBorder("Spores"));
+        add(spore_panel);
+
+        insect_panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        insect_panel.setBorder(new TitledBorder("Insects"));
+        add(insect_panel);
+
+        thread_panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        thread_panel.setBorder(new TitledBorder("Threads"));
+        add(thread_panel);
+        
     }
 
     private Border createTitledBorder(String title) {
@@ -32,84 +54,97 @@ public class TectonContentPanel extends JPanel implements ActionListener{
         );
     }
 
-    private void addThreadsPanel(Tecton t) {
-        // threads panel
-        JPanel panel = new JPanel(new GridLayout(0, 1, 10, 10));
-        
-        panel.setBorder(new TitledBorder("Threads"));
-        add(panel);
+    private void addThreadsPanel(Tecton t) {    
+        thread_panel.removeAll();
 
+        if (t.getThreads().isEmpty()) {
+            thread_panel.add(new JLabel("No threads"));
+        }
+
+        NewObjectVisitor v= new NewObjectVisitor();
         for (MushroomThread th : t.getThreads()) {
-            JButton button = new JButton(th.getName());
-            
-            panel.add(button);
+            th.accept(v);
         }
-        if (t.getThreads().size() == 0) {
-            panel.add(new JLabel("No threads"));
-        }
+
+        thread_panel.revalidate();
+        thread_panel.repaint();
     }
+
+    public void addThreadComponent(JButton button) {
+        thread_panel.add(button);
+    }
+
 
     private void addStemsPanel(Tecton t) {
-        // stems panel
-        JPanel panel = new JPanel(new GridLayout(0, 1, 10, 10));
-        
-        panel.setBorder(new TitledBorder("Stems"));
-        add(panel);
+        stem_panel.removeAll();
 
+        if (t.getStems().isEmpty()) {
+           stem_panel.add(new JLabel("No stems"));
+        }
+        
+        NewObjectVisitor v= new NewObjectVisitor();
         for (MushroomStem st : t.getStems()) {
-            JButton button = new JButton(st.getName());
-            
-            panel.add(button);
+            st.accept(v);
         }
-        if (t.getStems().size() == 0) {
-            panel.add(new JLabel("No stems"));
-        }
+       
+        stem_panel.revalidate();
+        stem_panel.repaint();
     }
 
-    private void addSporesPanel(Tecton t) {
-        // stems panel
-        JPanel panel = new JPanel(new GridLayout(0, 1, 10, 10));
-        
-        panel.setBorder(new TitledBorder("Spores"));
-        add(panel);
+    public void addStemComponent(JButton button) {
+        stem_panel.add(button);
+    }
 
+
+    private void addSporesPanel(Tecton t) {   
+        spore_panel.removeAll();
+        if (t.getSpores().isEmpty()) {
+            spore_panel.add(new JLabel("No spores"));
+            return;
+        }
+        NewObjectVisitor v= new NewObjectVisitor();
         for (Spore sp : t.getSpores()) {
-            JButton button = new JButton(sp.getName());
-            
-            panel.add(button);
+            sp.accept(v);
         }
-        if (t.getSpores().size() == 0) {
-            panel.add(new JLabel("No spores"));
-        }
+        spore_panel.revalidate();
+        spore_panel.repaint();
     }
+
+    public void addSporeComponent(JButton button) {
+        spore_panel.add(button);
+    }
+
 
     private void addInsectsPanel(Tecton t) {
-        // stems panel
-        JPanel panel = new JPanel(new GridLayout(0, 1, 10, 10));
-        
-        panel.setBorder(new TitledBorder("Insects"));
-        add(panel);
+        insect_panel.removeAll();
 
+        if (t.getInsects().isEmpty()) {
+            insect_panel.add(new JLabel("No insects"));
+            return;
+        }
+
+        NewObjectVisitor v= new NewObjectVisitor();
         for (Insect i : t.getInsects()) {
-            JButton button = new JButton(i.getName());
-            
-            panel.add(button);
+            i.accept(v);
         }
-        if (t.getInsects().size() == 0) {
-            panel.add(new JLabel("No insects"));
-        }
+        insect_panel.revalidate();
+        insect_panel.repaint();
     }
 
+    public void addInsectComponent(JButton button) {
+        
+        insect_panel.add(button);
+    }
+    
     /*
      * Tectonra való klikkelést kezelő függvény
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
-        removeAll();
 
         TectonButton b = (TectonButton)e.getSource();
         Tecton t = b.tecton;
 
-        // Add Label
         TitledBorder border = (TitledBorder)getBorder();
         border.setTitle("Details (" + t.getName() + ")");
 
@@ -122,4 +157,5 @@ public class TectonContentPanel extends JPanel implements ActionListener{
         repaint();
         validate();
     }
+
 }

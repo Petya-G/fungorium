@@ -1,11 +1,17 @@
 package controller;
 
+import java.awt.*;
 import model.core.GameObject;
+import model.insect.Insect;
+import model.mushroom.MushroomStem;
 import model.mushroom.MushroomThread;
 import model.mushroom.Mushroomer;
+import model.mushroom.spore.ClawParalyzingSpore;
+import model.mushroom.spore.ParalyzingSpore;
+import model.mushroom.spore.SlowingSpore;
+import model.mushroom.spore.SpeedingSpore;
+import model.mushroom.spore.SplitterSpore;
 import model.tecton.*;
-
-import java.awt.*;
 
 public class DrawVisitor implements GameObjectVisitor {
     static int tectonWidth = 100, tectonHeight = 100;
@@ -114,4 +120,15 @@ public class DrawVisitor implements GameObjectVisitor {
             }
         }
     }
+
+    @Override public void visit(SpeedingSpore spore) {  }
+    @Override public void visit(SlowingSpore spore) {  }
+    @Override public void visit(ParalyzingSpore spore) {  }
+    @Override public void visit(ClawParalyzingSpore spore) {  }
+    @Override public void visit(SplitterSpore spore) { }
+
+    @Override public void visit(Insect insect){}
+
+    @Override public void visit(MushroomThread thread){}
+    @Override public void visit(MushroomStem stem){}
 }

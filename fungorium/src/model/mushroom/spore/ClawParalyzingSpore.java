@@ -29,6 +29,7 @@ public class ClawParalyzingSpore extends Spore {
         super(spore);
     }
 
+    @Override
     public void accept(GameObjectVisitor visitor) {
         visitor.visit(this);
     }

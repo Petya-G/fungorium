@@ -1,14 +1,13 @@
 package model.insect;
 
 import controller.GameObjectVisitor;
+import java.util.*;
+import java.util.stream.Collectors;
 import model.core.Entity;
 import model.effect.Effect;
 import model.mushroom.MushroomThread;
 import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Egy rovart reprezentál a játékban.
@@ -271,7 +270,7 @@ public class Insect extends Entity {
 
     @Override
     public void accept(GameObjectVisitor visitor) {
-
+        visitor.visit(this);
     }
 
     @Override

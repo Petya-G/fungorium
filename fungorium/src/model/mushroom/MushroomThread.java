@@ -1,11 +1,10 @@
 package model.mushroom;
 
 import controller.GameObjectVisitor;
+import java.util.*;
 import model.core.Entity;
 import model.insect.Insect;
 import model.tecton.Tecton;
-
-import java.util.*;
 
 public class MushroomThread extends Entity {
 
@@ -163,7 +162,7 @@ public class MushroomThread extends Entity {
 
     @Override
     public void accept(GameObjectVisitor visitor) {
-
+        visitor.visit(this);
     }
 
     /**

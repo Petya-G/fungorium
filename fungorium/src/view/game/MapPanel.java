@@ -2,14 +2,13 @@ package view.game;
 
 
 import controller.DrawVisitor;
-import model.Game;
-import model.tecton.Tecton;
-import view.game.buttons.TectonButton;
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
+import model.Game;
+import model.tecton.Tecton;
+import view.game.buttons.TectonButton;
 
 public class MapPanel extends JPanel {
     private final InsecterPop insecterPop;
@@ -27,6 +26,10 @@ public class MapPanel extends JPanel {
         mushroomerPop = new MushroomerPop();
 
         setBackground(new Color(250, 250, 250));
+    }
+
+    public TectonContentPanel getTectonContentPanel() {
+        return tectonContentPanel;
     }
 
     public void setTectonContentPanel(TectonContentPanel tectonContentPanel) {

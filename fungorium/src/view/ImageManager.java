@@ -1,22 +1,23 @@
 package view;
 
-import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.*;
 
 public class ImageManager {
     private static final Map<String, ImageIcon> icons = new HashMap<>();
+
     private static final String BASE_PATH = "src/resources/icons/";
 
     static {
-        loadPlayerImages();
+        loadInsectImages();
         loadMushroomImages();
         loadSporeImages();
         loadTectonImages();
         System.out.println(System.getProperty("user.dir"));
     }
 
-    private static void loadPlayerImages() {
+    private static void loadInsectImages() {
         for (int i = 1; i <= 4; i++) {
             icons.put("insect_normal_" + i, loadIcon(BASE_PATH + "insect/normal/insect_normal_" + i + ".png"));
             icons.put("insect_paralyzed_" + i, loadIcon(BASE_PATH + "insect/paralyzed/insect_paralyzed_" + i + ".png"));
@@ -31,7 +32,7 @@ public class ImageManager {
     }
 
     private static void loadSporeImages() {
-        String[] sporeTypes = {"clawparalyzing", "paralyzing", "slowing", "speeding", "splitting"};
+        String[] sporeTypes = {"clawparalyzing", "paralyzing", "slowing", "speeding", "splitter"};
         for (String type : sporeTypes) {
             for (int i = 1; i <= 4; i++) {
                 icons.put("spore_" + type + "_" + i, loadIcon(BASE_PATH + "spore/" + type + "/spore_" + type + "_" + i + ".png"));

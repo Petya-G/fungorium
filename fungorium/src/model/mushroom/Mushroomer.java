@@ -22,7 +22,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
 
     static int IDCounter = 1;
 
-    private int shroomerID;
+    private final int shroomerID;
 
     private static final int MAX_THREADS_PER_TURN = 2;
     private int grownThreadsThisTurn = 0;
@@ -249,7 +249,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread {
         MushroomThread thread = threads.stream()
                 .filter(th -> th.hasEaten() && th.getLocation()
                         .equals(tecton)).findFirst().orElse(null);
-        ;
+        
 
         if (thread != null && tecton.add(ms)) {
             thread.setEaten(false);
