@@ -5,13 +5,13 @@ import view.View;
 import view.game.MapPanel;
 
 public class Controller {
-    public static Game game;
     private static Controller instance;
+    public Game game;
     public MapPanel mapPanel;
     public View view;
 
     public Controller() {
-        game = new Game();
+        this.game = new Game();
         this.mapPanel = new MapPanel(game);
         this.view = new View(game, mapPanel);
     }
@@ -22,8 +22,8 @@ public class Controller {
         return instance;
     }
 
-    public static void startGame(int playerCount) {
-        game.startGame(playerCount);
+    public static Game getGame() {
+        return instance.game;
     }
 
     public static View getView() {

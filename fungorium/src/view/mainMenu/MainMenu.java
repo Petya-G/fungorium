@@ -35,19 +35,19 @@ public class MainMenu extends JPanel {
         add(Box.createVerticalStrut(20));
 
         add(new MenuButton("Start New 4 Player Game", buttonSize, e -> {
-            Controller.startGame(4);
+            Controller.getGame().startGame(4);
             Controller.getView().showPanel("gameView");
         }));
         add(Box.createVerticalStrut(20));
 
         add(new MenuButton("Start New 6 Player Game", buttonSize, e -> {
-            Controller.startGame(6);
+            Controller.getGame().startGame(6);
             Controller.getView().showPanel("gameView");
         }));
         add(Box.createVerticalStrut(20));
 
         add(new MenuButton("Start New 8 Player Game", buttonSize, e -> {
-            Controller.startGame(8);
+            Controller.getGame().startGame(8);
             Controller.getView().showPanel("gameView");
         }));
         add(Box.createVerticalStrut(20));
