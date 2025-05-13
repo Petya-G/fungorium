@@ -24,9 +24,6 @@ public class MainMenu extends JPanel {
         setBackground(new Color(173, 216, 230));
 
 
-
-
-
         add(Box.createVerticalStrut(300));
 
         Dimension buttonSize = new Dimension(260, 50);
@@ -38,20 +35,20 @@ public class MainMenu extends JPanel {
         add(Box.createVerticalStrut(20));
 
         add(new MenuButton("Start New 4 Player Game", buttonSize, e -> {
-            Controller.getInstance().startGame(4);
-            Controller.getInstance().getView().showPanel("gameView");
+            Controller.startGame(4);
+            Controller.getView().showPanel("gameView");
         }));
         add(Box.createVerticalStrut(20));
 
         add(new MenuButton("Start New 6 Player Game", buttonSize, e -> {
-            Controller.getInstance().startGame(6);
-            Controller.getInstance().getView().showPanel("gameView");
+            Controller.startGame(6);
+            Controller.getView().showPanel("gameView");
         }));
         add(Box.createVerticalStrut(20));
 
         add(new MenuButton("Start New 8 Player Game", buttonSize, e -> {
-            Controller.getInstance().startGame(8);
-            Controller.getInstance().getView().showPanel("gameView");
+            Controller.startGame(8);
+            Controller.getView().showPanel("gameView");
         }));
         add(Box.createVerticalStrut(20));
 
@@ -59,6 +56,7 @@ public class MainMenu extends JPanel {
             System.exit(0);
         }));
     }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
