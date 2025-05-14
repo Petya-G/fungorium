@@ -1,29 +1,21 @@
 package controller;
 
 import model.Game;
+import model.core.GameObject;
 import view.View;
 import view.game.MapPanel;
 import view.game.contentpanel.ContentPanel;
 
 
 public class Controller {
-    private ButtonPressed selectedButton;
-
-    public enum ButtonPressed {
-        THROW_SPORE,
-        GROW_THREAD,
-        EAT_INSECT,
-        MOVE,
-        EAT,
-        CUT,
-        DEFAULT,
-    }
-
     private static Controller instance;
     private final Game game;
     private final MapPanel mapPanel;
     private final ContentPanel contentPanel;
     private final View view;
+
+    private Action action;
+    private GameObject selected;
 
     public Controller() {
         this.game = new Game();
@@ -54,12 +46,23 @@ public class Controller {
         return instance.contentPanel;
     }
 
-    public void handleButtonPress(ButtonPressed button) {
-        this.selectedButton = button;
-
-    }
-    public ButtonPressed getSelectedButton() {
-        return selectedButton;
+    public void handleAction(Action action) {
+        this.action = action;
     }
 
+    public static Action getAction() {
+        return instance.action;
+    }
+
+    public static void setAction(Action action) {
+        instance.action = action;
+    }
+
+    public static GameObject getSelected() {
+        return instance.selected;
+    }
+
+    public static void setSelected(GameObject selected) {
+        instance.selected = selected;
+    }
 }

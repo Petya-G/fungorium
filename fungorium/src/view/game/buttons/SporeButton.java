@@ -1,13 +1,13 @@
 package view.game.buttons;
 
-import java.awt.Point;
+import controller.Action;
+import controller.Controller;
+import model.insect.Insect;
+import model.mushroom.spore.Spore;
+
+import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-
-import controller.Controller;
-import model.mushroom.spore.Spore;
 
 public class SporeButton extends GameButton {
     public Spore spore;
@@ -17,19 +17,13 @@ public class SporeButton extends GameButton {
         this.spore = spore;
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
-            private Point initialMousePoint;
 
             @Override
             public void mousePressed(MouseEvent e) {
-                initialMousePoint = e.getPoint();
-
-                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.EAT) {
-                    System.out.println("A Eat gomb van kiválasztva! Ezt a spórát akarom megenni");
-                    //TODO: megcsinálni
+                if (SwingUtilities.isLeftMouseButton(e) && Controller.getAction() == Action.EAT) {
+                    Controller.getGame().eat((Insect) Controller.getSelected(), spore);
                 }
-                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.DEFAULT);
             }
-
         };
 
         addMouseListener(mouseAdapter);

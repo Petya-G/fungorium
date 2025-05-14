@@ -1,14 +1,14 @@
 package view.game.buttons;
 
-import java.awt.Point;
+import controller.Action;
+import controller.Controller;
+import model.insect.Insect;
+import model.mushroom.MushroomThread;
+import view.game.popup.ThreadPop;
+
+import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
-
-import controller.Controller;
-import model.mushroom.MushroomThread;
-import view.game.PopUps.MushroomPop;
-import view.game.PopUps.ThreadPop;
 
 public class MushroomThreadButton extends GameButton {
     public MushroomThread thread;
@@ -18,29 +18,18 @@ public class MushroomThreadButton extends GameButton {
         this.thread = thread;
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
-            private Point initialMousePoint;
-
-            @Override
             public void mousePressed(MouseEvent e) {
-                initialMousePoint = e.getPoint();
-                //TODO: megcsinálni, hogy csak akkor jelenjen meg ha gombász játszik és ha a saját gombájára kattint
-
-                ThreadPop popupPanel = new ThreadPop();
-                JPopupMenu popupMenu = new JPopupMenu();
-                popupMenu.add(popupPanel);
-
-                //popupMenu.setPopupSize(popupPanel.getPreferredSize());
-
-                popupMenu.show(MushroomThreadButton.this, MushroomThreadButton.this.getWidth(), -10);
-
-                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.CUT) {
-                    System.out.println("A Cut gomb van kiválasztva! Ezt a threadet akarom elvágni");
-                    //TODO: megcsinálni
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    ThreadPop popupPanel = new ThreadPop(thread);
+                    JPopupMenu popupMenu = new JPopupMenu();
+                    popupMenu.add(popupPanel);
+                    popupMenu.show(MushroomThreadButton.this, MushroomThreadButton.this.getWidth(), -10);
                 }
-                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.DEFAULT);
 
+                if (SwingUtilities.isLeftMouseButton(e) && Controller.getAction() == Action.CUT) {
+                    Controller.getGame().cut((Insect) Controller.getSelected(), thread);
+                }
             }
-
         };
 
         addMouseListener(mouseAdapter);

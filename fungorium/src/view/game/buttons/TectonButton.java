@@ -1,6 +1,9 @@
 package view.game.buttons;
 
+import controller.Action;
 import controller.Controller;
+import model.insect.Insect;
+import model.mushroom.MushroomStem;
 import model.tecton.Tecton;
 import view.game.MapPanel;
 
@@ -24,19 +27,20 @@ public class TectonButton extends GameButton {
             public void mousePressed(MouseEvent e) {
                 initialMousePoint = e.getPoint();
 
-                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.MOVE) {
-                    System.out.println("A MOVE gomb van kiválasztva! Erre  Tectonra akarok mozogni");
-                    //TODO: megcsinálni
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    if (Controller.getAction() == Action.MOVE) {
+                        Controller.getGame().move((Insect) Controller.getSelected(), tecton);
+                    }
+
+                    if (Controller.getAction() == Action.THROW_SPORE) {
+                        Controller.getGame().throwSpore((MushroomStem) Controller.getSelected(), tecton);
+                    }
+
+                    if (Controller.getAction() == Action.GROW_THREAD) {
+                        Controller.getGame().growThread(tecton);
+                    }
                 }
-                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.THROW_SPORE) {
-                    System.out.println("A Throw SPore gomb van kiválasztva! Erre  Tectonra akarok sporát dobni");
-                    //TODO: megcsinálni
-                }
-                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.GROW_THREAD) {
-                    System.out.println("A Grow Thread gomb van kiválasztva! Erre  Tectonra akarok növeszteni threadet");
-                    //TODO: megcsinálni
-                }
-                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.DEFAULT);
+
             }
 
             @Override
@@ -69,7 +73,6 @@ public class TectonButton extends GameButton {
         addMouseMotionListener(mouseAdapter);
     }
 
-    // ez kell, ne szedd ki, map generalas egyszerubb mintha konstruktorban lenne ez, ha nem hiszed kerdezd meg. Akos
     public void refreshState() {
         setLocation(CenterX(tecton.getPosX()) - size / 2, CenterY(tecton.getPosY()) - size / 2);
     }
@@ -90,34 +93,4 @@ public class TectonButton extends GameButton {
         return (int) (coordY * (parent.getSize().getHeight() - 2 * size) + size);
     }
 
-
-    //
-//        MouseAdapter mouseAdapter = new MouseAdapter() {
-//            @Override
-//            public void mousePressed(MouseEvent e) {
-//                Point click = e.getPoint();
-//                for (VTecton tecton : tectons) {
-//                    if (tecton.contains(click)) {
-//                        if (SwingUtilities.isRightMouseButton(e)) {
-//                            //TODO: Eldönteni, hogy mushroomer vagy insecter játszik annak az add függvényét meghívni
-//                            add(insecterPop, BorderLayout.SOUTH);
-//                            //add(mushroomerPop, BorderLayout.SOUTH);
-//                            revalidate();
-//                            repaint();
-//                        } else {
-//                            selectedTecton = tecton;
-//                        }
-//                        break;
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void mouseReleased(MouseEvent e) {
-//                selectedTecton = null;
-//            }
-//
-
-    //        };
-//
 }

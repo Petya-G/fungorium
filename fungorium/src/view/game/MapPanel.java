@@ -8,14 +8,12 @@ import java.util.List;
 import javax.swing.*;
 import model.Game;
 import model.tecton.Tecton;
-import view.game.PopUps.InsectPop;
-import view.game.PopUps.MushroomPop;
+import view.game.popup.InsectPop;
+import view.game.popup.MushroomStemPop;
 import view.game.buttons.TectonButton;
 import view.game.contentpanel.ContentPanel;
 
 public class MapPanel extends JPanel {
-    private final InsectPop insecterPop;
-    private final MushroomPop mushroomerPop;
     private final DrawVisitor drawVisitor = new DrawVisitor();
     public List<TectonButton> tectonButtons = new ArrayList<>();
     private final Game game;
@@ -24,9 +22,6 @@ public class MapPanel extends JPanel {
     public MapPanel(Game game) {
         this.game = game;
         setLayout(null);
-
-        insecterPop = new InsectPop();
-        mushroomerPop = new MushroomPop();
 
         setBackground(new Color(250, 250, 250));
     }

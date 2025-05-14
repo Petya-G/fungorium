@@ -1,13 +1,14 @@
 package view.game.buttons;
 
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.*;
-
+import controller.Action;
 import controller.Controller;
 import model.insect.Insect;
-import view.game.PopUps.InsectPop;
+import model.mushroom.MushroomThread;
+import view.game.popup.InsectPop;
+
+import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class InsectButton extends GameButton {
     public Insect insect;
@@ -17,26 +18,20 @@ public class InsectButton extends GameButton {
         this.insect = insect;
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
-            private Point initialMousePoint;
-
             @Override
             public void mousePressed(MouseEvent e) {
-                initialMousePoint = e.getPoint();
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    InsectPop popupPanel = new InsectPop(insect);
+                    JPopupMenu popupMenu = new JPopupMenu();
+                    popupMenu.add(popupPanel);
 
-                //TODO: megcsinálni, hogy csak akkor jelenjen meg ha rovarász játszik és a saját rovarjára kattint
-
-                InsectPop popupPanel = new InsectPop();
-                JPopupMenu popupMenu = new JPopupMenu();
-                popupMenu.add(popupPanel);
-
-                popupMenu.show(InsectButton.this, InsectButton.this.getWidth(), -20);
-
-                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.EAT_INSECT) {
-                    System.out.println("A Eat insect gomb van kiválasztva! Ezt a rovart akarom megenni");
+                    popupMenu.show(InsectButton.this, InsectButton.this.getWidth(), -10);
                 }
-                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.DEFAULT);
-            }
 
+                if (SwingUtilities.isLeftMouseButton(e) && Controller.getAction() == Action.EAT_INSECT) {
+                    Controller.getGame().eat((MushroomThread) Controller.getSelected(), insect);
+                }
+            }
         };
 
         addMouseListener(mouseAdapter);
