@@ -129,7 +129,7 @@ public class Map implements IRound, Serializable {
      */
     @Override
     public void endRound() {
-        ArrayList<Tecton> tectonsClone = new ArrayList<Tecton>(tectons);
+        ArrayList<Tecton> tectonsClone = new ArrayList<>(tectons);
         tectonsClone.forEach(Tecton::endRound);
 
         if (enableSplitting) {

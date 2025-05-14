@@ -21,27 +21,8 @@ public abstract class GameButton extends JButton {
     }
 
     protected static ImageIcon scaleImageIcon(ImageIcon icon) {
-        if (icon == null || icon.getImage() == null) {
-            return null;
-        }
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(size, size, Image.SCALE_SMOOTH);
         return new ImageIcon(scaledImg);
-    }
-
-    protected double invCenterX(int x) {
-        return (x - size) / (parent.getSize().getWidth() - 2 * size);
-    }
-
-    protected double invCenterY(int y) {
-        return (y - size) / (parent.getSize().getHeight() - 2 * size);
-    }
-
-    protected int CenterX(double coordX) {
-        return (int) (coordX * (parent.getSize().getWidth() - 2 * size) + size);
-    }
-
-    protected int CenterY(double coordY) {
-        return (int) (coordY * (parent.getSize().getHeight() - 2 * size) + size);
     }
 }

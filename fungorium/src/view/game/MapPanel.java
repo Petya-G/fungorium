@@ -9,6 +9,7 @@ import javax.swing.*;
 import model.Game;
 import model.tecton.Tecton;
 import view.game.buttons.TectonButton;
+import view.game.contentpanel.ContentPanel;
 
 public class MapPanel extends JPanel {
     private final InsecterPop insecterPop;
@@ -16,7 +17,7 @@ public class MapPanel extends JPanel {
     private final DrawVisitor drawVisitor = new DrawVisitor();
     public List<TectonButton> tectonButtons = new ArrayList<>();
     private final Game game;
-    private TectonContentPanel tectonContentPanel;
+    private ContentPanel contentPanel;
 
     public MapPanel(Game game) {
         this.game = game;
@@ -28,12 +29,12 @@ public class MapPanel extends JPanel {
         setBackground(new Color(250, 250, 250));
     }
 
-    public TectonContentPanel getTectonContentPanel() {
-        return tectonContentPanel;
+    public ContentPanel getTectonContentPanel() {
+        return contentPanel;
     }
 
-    public void setTectonContentPanel(TectonContentPanel tectonContentPanel) {
-        this.tectonContentPanel = tectonContentPanel;
+    public void setTectonContentPanel(ContentPanel contentPanel) {
+        this.contentPanel = contentPanel;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class MapPanel extends JPanel {
     public void addTectonButton(TectonButton tectonButton) {
         tectonButtons.add(tectonButton);
         add(tectonButton);
-        tectonButton.addActionListener(tectonContentPanel);
+        tectonButton.addActionListener(contentPanel);
         revalidate();
         repaint();
     }

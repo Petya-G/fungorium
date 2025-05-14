@@ -53,11 +53,27 @@ public class TectonButton extends GameButton {
         addMouseListener(mouseAdapter);
         addMouseMotionListener(mouseAdapter);
     }
+
     // ez kell, ne szedd ki, map generalas egyszerubb mintha konstruktorban lenne ez, ha nem hiszed kerdezd meg. Akos
     public void refreshState() {
         setLocation(CenterX(tecton.getPosX()) - size / 2, CenterY(tecton.getPosY()) - size / 2);
     }
 
+    protected double invCenterX(int x) {
+        return (x - size) / (parent.getSize().getWidth() - 2 * size);
+    }
+
+    protected double invCenterY(int y) {
+        return (y - size) / (parent.getSize().getHeight() - 2 * size);
+    }
+
+    protected int CenterX(double coordX) {
+        return (int) (coordX * (parent.getSize().getWidth() - 2 * size) + size);
+    }
+
+    protected int CenterY(double coordY) {
+        return (int) (coordY * (parent.getSize().getHeight() - 2 * size) + size);
+    }
     //
 //        MouseAdapter mouseAdapter = new MouseAdapter() {
 //            @Override

@@ -1,6 +1,7 @@
 package view.game;
 
 import model.Game;
+import view.game.contentpanel.ContentPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -10,26 +11,27 @@ import java.awt.*;
 public class MiddlePanel extends JPanel {
     TurnOrderPanel turnOrderPanel = new TurnOrderPanel();
     MapPanel mapPanel;
-    TectonContentPanel tectonContentPanel = new TectonContentPanel();
+    ContentPanel contentPanel;
     Game game;
 
-    public MiddlePanel(Game game, MapPanel mapPanel) {
+    public MiddlePanel(Game game, MapPanel mapPanel, ContentPanel contentPanel) {
         this.game = game;
         this.mapPanel = mapPanel;
+        this.contentPanel = contentPanel;
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
-        setBorder(createTitledBorder("Game Area"));
+        setBorder(createTitledBorder());
         add(turnOrderPanel, BorderLayout.NORTH);
 
         add(mapPanel, BorderLayout.CENTER);
 
-        add(tectonContentPanel, BorderLayout.SOUTH);
+        add(contentPanel, BorderLayout.SOUTH);
 
-        mapPanel.setTectonContentPanel(tectonContentPanel);
+        mapPanel.setTectonContentPanel(contentPanel);
     }
 
-    private Border createTitledBorder(String title) {
-        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(200, 200, 200)), title);
+    private Border createTitledBorder() {
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(200, 200, 200)), "Game Area");
         titledBorder.setTitleColor(Color.BLACK);
         return titledBorder;
     }

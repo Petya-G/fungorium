@@ -3,6 +3,7 @@ package view;
 import model.Game;
 import view.game.GamePanel;
 import view.game.MapPanel;
+import view.game.contentpanel.ContentPanel;
 import view.mainMenu.MainMenu;
 
 import javax.swing.*;
@@ -15,9 +16,9 @@ public class View extends JFrame {
     GamePanel gamePanel;
     MapPanel mapPanel;
 
-    public View(Game game, MapPanel mapPanel) {
+    public View(Game game, MapPanel mapPanel, ContentPanel contentPanel) {
         super("Fungorium");
-        gamePanel = new GamePanel(game, mapPanel);
+        gamePanel = new GamePanel(game, mapPanel, contentPanel);
         this.mainMenu = new MainMenu();
         this.mapPanel = mapPanel;
 

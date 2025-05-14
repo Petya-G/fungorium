@@ -3,17 +3,20 @@ package controller;
 import model.Game;
 import view.View;
 import view.game.MapPanel;
+import view.game.contentpanel.ContentPanel;
 
 public class Controller {
     private static Controller instance;
     private final Game game;
     private final MapPanel mapPanel;
+    private final ContentPanel contentPanel;
     private final View view;
 
     public Controller() {
         this.game = new Game();
+        this.contentPanel = new ContentPanel();
         this.mapPanel = new MapPanel(game);
-        this.view = new View(game, mapPanel);
+        this.view = new View(game, mapPanel, contentPanel);
     }
 
     public static Controller getInstance() {
@@ -32,5 +35,9 @@ public class Controller {
 
     public static MapPanel getMapPanel() {
         return instance.mapPanel;
+    }
+
+    public static ContentPanel getTectonContent() {
+        return instance.contentPanel;
     }
 }

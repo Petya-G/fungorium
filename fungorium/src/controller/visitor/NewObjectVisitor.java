@@ -50,8 +50,8 @@ public class NewObjectVisitor implements GameObjectVisitor {
         int playerId = ((Mushroomer) spore.getOwner()).getShroomerID();
         ImageIcon ii = ImageManager.getIcon("spore_speeding_" + ((playerId) % 4 + 1));
 
-        JButton button = new SporeButton(spore, ii, Controller.getMapPanel().getTectonContentPanel());
-        Controller.getMapPanel().getTectonContentPanel().addSporeComponent(button);
+        GameButton button = new SporeButton(spore, ii, Controller.getTectonContent().getSporesPanel());
+        Controller.getTectonContent().getSporesPanel().addComponent(button);
     }
 
     @Override
@@ -59,8 +59,9 @@ public class NewObjectVisitor implements GameObjectVisitor {
         int playerId = ((Mushroomer) spore.getOwner()).getShroomerID();
         ImageIcon ii = ImageManager.getIcon("spore_slowing_" + ((playerId) % 4 + 1));
 
-        JButton button = new SporeButton(spore, ii, Controller.getMapPanel().getTectonContentPanel());
-        Controller.getMapPanel().getTectonContentPanel().addSporeComponent(button);
+        GameButton button = new SporeButton(spore, ii, Controller.getTectonContent().getSporesPanel());
+        Controller.getTectonContent().getSporesPanel().addComponent(button);
+
     }
 
     @Override
@@ -68,8 +69,8 @@ public class NewObjectVisitor implements GameObjectVisitor {
         int playerId = ((Mushroomer) spore.getOwner()).getShroomerID();
         ImageIcon ii = ImageManager.getIcon("spore_paralyzing_" + ((playerId) % 4 + 1));
 
-        JButton button = new SporeButton(spore, ii, Controller.getMapPanel().getTectonContentPanel());
-        Controller.getMapPanel().getTectonContentPanel().addSporeComponent(button);
+        GameButton button = new SporeButton(spore, ii, Controller.getTectonContent().getSporesPanel());
+        Controller.getTectonContent().getSporesPanel().addComponent(button);
     }
 
     @Override
@@ -77,8 +78,8 @@ public class NewObjectVisitor implements GameObjectVisitor {
         int playerId = ((Mushroomer) spore.getOwner()).getShroomerID();
         ImageIcon ii = ImageManager.getIcon("spore_clawparalyzing_" + ((playerId) % 4 + 1));
 
-        JButton button = new SporeButton(spore, ii, Controller.getMapPanel().getTectonContentPanel());
-        Controller.getMapPanel().getTectonContentPanel().addSporeComponent(button);
+        GameButton button = new SporeButton(spore, ii, Controller.getTectonContent().getSporesPanel());
+        Controller.getTectonContent().getSporesPanel().addComponent(button);
     }
 
     @Override
@@ -86,8 +87,8 @@ public class NewObjectVisitor implements GameObjectVisitor {
         int playerId = ((Mushroomer) spore.getOwner()).getShroomerID();
         ImageIcon ii = ImageManager.getIcon("spore_splitter_" + ((playerId) % 4 + 1));
 
-        JButton button = new SporeButton(spore, ii, Controller.getMapPanel().getTectonContentPanel());
-        Controller.getMapPanel().getTectonContentPanel().addSporeComponent(button);
+        GameButton button = new SporeButton(spore, ii, Controller.getTectonContent().getSporesPanel());
+        Controller.getTectonContent().getSporesPanel().addComponent(button);
     }
 
 
@@ -96,8 +97,8 @@ public class NewObjectVisitor implements GameObjectVisitor {
         int playerId = ((Mushroomer) thread.getOwner()).getShroomerID();
         ImageIcon ii = ImageManager.getIcon("mushroom_thread_" + ((playerId) % 4 + 1));
 
-        JButton button = new MushroomThreadButton(thread, ii, Controller.getMapPanel().getTectonContentPanel());
-        Controller.getMapPanel().getTectonContentPanel().addThreadComponent(button);
+        GameButton button = new MushroomThreadButton(thread, ii, Controller.getTectonContent().getThreadsPanel());
+        Controller.getTectonContent().getThreadsPanel().addComponent(button);
     }
 
     @Override
@@ -105,17 +106,17 @@ public class NewObjectVisitor implements GameObjectVisitor {
         int playerId = ((Mushroomer) stem.getOwner()).getShroomerID();
         ImageIcon ii = ImageManager.getIcon("mushroom_stem_" + ((playerId) % 4 + 1));
 
-        JButton button = new MushroomStemButton(stem, ii, Controller.getMapPanel().getTectonContentPanel());
-        Controller.getMapPanel().getTectonContentPanel().addStemComponent(button);
+        GameButton button = new MushroomStemButton(stem, ii, Controller.getTectonContent().getStemsPanel());
+        Controller.getTectonContent().getStemsPanel().addComponent(button);
     }
 
     @Override
     public void visit(Insect insect) {
         int playerId = ((Insecter) insect.getOwner()).getInsecterID();
         String p = insect.isParalyzed() ? "paralyzed_" : "normal_";
-
         ImageIcon ii = ImageManager.getIcon("insect_" + p + ((playerId + 1) % 4 + 1));
-        JButton button = new InsectButton(insect, ii, Controller.getMapPanel().getTectonContentPanel());
-        Controller.getMapPanel().getTectonContentPanel().addInsectComponent(button);
+
+        GameButton button = new InsectButton(insect, ii, Controller.getTectonContent().getStemsPanel());
+        Controller.getTectonContent().getInsectPanel().addComponent(button);
     }
 }
