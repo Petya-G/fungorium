@@ -3,9 +3,10 @@ package view.game.buttons;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 import model.insect.Insect;
+import view.game.InsecterPop;
 
 public class InsectButton extends GameButton {
     public Insect insect;
@@ -20,6 +21,14 @@ public class InsectButton extends GameButton {
             @Override
             public void mousePressed(MouseEvent e) {
                 initialMousePoint = e.getPoint();
+
+                //TODO: megcsinálni, hogy csak akkor jelenjen meg ha rovarász játszik és a saját rovarjára kattint
+
+                InsecterPop popupPanel = new InsecterPop();
+                JPopupMenu popupMenu = new JPopupMenu();
+                popupMenu.add(popupPanel);
+
+                popupMenu.show(InsectButton.this, InsectButton.this.getWidth(), -20);
             }
 
         };

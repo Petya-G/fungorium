@@ -7,14 +7,20 @@ import java.awt.event.ActionListener;
 
 public class InsecterPop extends JPanel {
     public InsecterPop() {
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));  // Vízszintes elrendezés
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(240, 240, 240));
+
         JButton moveButton = new JButton("Move");
         JButton eatButton = new JButton("Eat");
         JButton cutButton= new JButton("Cut");
-        moveButton.setPreferredSize(new Dimension(800, 30));
-        eatButton.setPreferredSize(new Dimension(800, 30));
-        cutButton.setPreferredSize(new Dimension(800, 30));
+
+        Dimension buttonSize = new Dimension(100, 30);
+
+        moveButton.setMaximumSize(buttonSize);
+        eatButton.setMaximumSize(buttonSize);
+        cutButton.setMaximumSize(buttonSize);
+
 
         moveButton.addActionListener(new ActionListener() {
             @Override
