@@ -26,13 +26,17 @@ public class TectonButton extends GameButton {
 
                 if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.MOVE) {
                     System.out.println("A MOVE gomb van kiválasztva! Erre  Tectonra akarok mozogni");
+                    //TODO: megcsinálni
                 }
                 if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.THROW_SPORE) {
                     System.out.println("A Throw SPore gomb van kiválasztva! Erre  Tectonra akarok sporát dobni");
+                    //TODO: megcsinálni
                 }
                 if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.GROW_THREAD) {
                     System.out.println("A Grow Thread gomb van kiválasztva! Erre  Tectonra akarok növeszteni threadet");
+                    //TODO: megcsinálni
                 }
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.DEFAULT);
             }
 
             @Override

@@ -35,7 +35,9 @@ public class MushroomThreadButton extends GameButton {
 
                 if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.CUT) {
                     System.out.println("A Cut gomb van kiválasztva! Ezt a threadet akarom elvágni");
+                    //TODO: megcsinálni
                 }
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.DEFAULT);
 
             }
 

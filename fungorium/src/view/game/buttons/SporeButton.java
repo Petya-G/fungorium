@@ -25,7 +25,9 @@ public class SporeButton extends GameButton {
 
                 if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.EAT) {
                     System.out.println("A Eat gomb van kiválasztva! Ezt a spórát akarom megenni");
+                    //TODO: megcsinálni
                 }
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.DEFAULT);
             }
 
         };

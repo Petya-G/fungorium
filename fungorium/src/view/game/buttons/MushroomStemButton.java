@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+import controller.Controller;
 import model.mushroom.MushroomStem;
 import view.game.PopUps.MushroomPop;
 
@@ -28,9 +29,11 @@ public class MushroomStemButton extends GameButton {
                 JPopupMenu popupMenu = new JPopupMenu();
                 popupMenu.add(popupPanel);
 
-                //popupMenu.setPopupSize(popupPanel.getPreferredSize());
+
 
                 popupMenu.show(MushroomStemButton.this, MushroomStemButton.this.getWidth(), 0);
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.DEFAULT);
+
             }
 
         };

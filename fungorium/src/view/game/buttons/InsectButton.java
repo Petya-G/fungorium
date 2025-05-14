@@ -34,6 +34,7 @@ public class InsectButton extends GameButton {
                 if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.EAT_INSECT) {
                     System.out.println("A Eat insect gomb van kiválasztva! Ezt a rovart akarom megenni");
                 }
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.DEFAULT);
             }
 
         };
