@@ -1,6 +1,6 @@
 package model.tecton;
 
-import controller.GameObjectVisitor;
+import controller.visitor.GameObjectVisitor;
 import model.mushroom.MushroomStem;
 
 /**

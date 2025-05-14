@@ -1,6 +1,6 @@
 package view.game;
 
-import controller.NewObjectVisitor;
+import controller.visitor.NewObjectVisitor;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

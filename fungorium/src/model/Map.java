@@ -1,6 +1,6 @@
 package model;
 
-import controller.NewObjectVisitor;
+import controller.visitor.NewObjectVisitor;
 import model.core.IRound;
 import model.tecton.*;
 

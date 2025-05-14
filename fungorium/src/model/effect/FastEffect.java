@@ -1,7 +1,6 @@
 package model.effect;
 
-import controller.GameObjectVisitor;
-import model.insect.*;
+import model.insect.Insect;
 
 public class FastEffect extends Effect {
     /**
@@ -12,10 +11,5 @@ public class FastEffect extends Effect {
     public void apply(Insect i) {
         duration--;
         i.setSpeedModifier(2);
-    }
-
-    @Override
-    public void accept(GameObjectVisitor visitor) {
-
     }
 }

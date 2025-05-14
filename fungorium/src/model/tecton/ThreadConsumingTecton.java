@@ -1,6 +1,6 @@
 package model.tecton;
 
-import controller.GameObjectVisitor;
+import controller.visitor.GameObjectVisitor;
 
 /**
  * Olyan tekton fajta, amin minden kör végén eltűnnek a gombafonalak.

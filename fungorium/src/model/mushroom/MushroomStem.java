@@ -1,6 +1,6 @@
 package model.mushroom;
 
-import controller.GameObjectVisitor;
+import controller.visitor.GameObjectVisitor;
 import java.util.List;
 import java.util.Objects;
 import model.Game;

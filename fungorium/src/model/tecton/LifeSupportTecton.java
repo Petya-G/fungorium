@@ -1,6 +1,6 @@
 package model.tecton;
 
-import controller.GameObjectVisitor;
+import controller.visitor.GameObjectVisitor;
 
 /**
  * Olyan tekton fajta, amin nem pusztulnak el a gombafonalak, ha nincsenek a gombafonalak összekötve gombatesttel.

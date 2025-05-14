@@ -1,6 +1,6 @@
 package model.mushroom.spore;
 
-import controller.GameObjectVisitor;
+import controller.visitor.GameObjectVisitor;
 import model.effect.SplitEffect;
 import model.mushroom.Mushroomer;
 import model.tecton.Tecton;

@@ -1,6 +1,6 @@
 package model.core;
 
-import controller.GameObjectVisitor;
+import controller.visitor.GameObjectVisitor;
 
 import java.util.Objects;
 
@@ -41,7 +41,7 @@ public abstract class GameObject {
         return sId;
     }
 
-    public abstract void accept(GameObjectVisitor visitor);
+    public void accept(GameObjectVisitor visitor){}
 
     /**
      * Lekérdezi az objektum egyedi azonosítóját.

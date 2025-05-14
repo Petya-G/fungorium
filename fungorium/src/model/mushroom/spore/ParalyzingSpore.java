@@ -1,6 +1,6 @@
 package model.mushroom.spore;
 
-import controller.GameObjectVisitor;
+import controller.visitor.GameObjectVisitor;
 import model.core.Player;
 import model.effect.ParalyzeEffect;
 import model.tecton.Tecton;

@@ -1,6 +1,6 @@
 package model.insect;
 
-import controller.GameObjectVisitor;
+import controller.visitor.GameObjectVisitor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

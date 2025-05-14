@@ -1,7 +1,7 @@
 package view.game;
 
 
-import controller.DrawVisitor;
+import controller.visitor.DrawVisitor;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;

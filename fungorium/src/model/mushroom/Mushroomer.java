@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import controller.GameObjectVisitor;
+import controller.visitor.GameObjectVisitor;
 
 /**
  * A Mushroomer osztály egy játékost reprezentál, aki gombákat kezel.

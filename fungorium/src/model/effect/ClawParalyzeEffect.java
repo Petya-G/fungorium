@@ -1,6 +1,5 @@
 package model.effect;
 
-import controller.GameObjectVisitor;
 import model.insect.*;
 
 public class ClawParalyzeEffect extends Effect {
@@ -13,10 +12,5 @@ public class ClawParalyzeEffect extends Effect {
     public void apply(Insect i) {
         duration--;
         i.setClawParalyzed(true);
-    }
-
-    @Override
-    public void accept(GameObjectVisitor visitor) {
-
     }
 }

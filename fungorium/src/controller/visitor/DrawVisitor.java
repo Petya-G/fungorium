@@ -1,16 +1,9 @@
-package controller;
+package controller.visitor;
 
 import java.awt.*;
 import model.core.GameObject;
-import model.insect.Insect;
-import model.mushroom.MushroomStem;
 import model.mushroom.MushroomThread;
 import model.mushroom.Mushroomer;
-import model.mushroom.spore.ClawParalyzingSpore;
-import model.mushroom.spore.ParalyzingSpore;
-import model.mushroom.spore.SlowingSpore;
-import model.mushroom.spore.SpeedingSpore;
-import model.mushroom.spore.SplitterSpore;
 import model.tecton.*;
 
 public class DrawVisitor implements GameObjectVisitor {
@@ -23,20 +16,12 @@ public class DrawVisitor implements GameObjectVisitor {
         this.size = size;
     }
 
-    int tectonTopLeftX(double coordX) {
-        return (int) (coordX * (size.getWidth() - tectonWidth));
-    }
-
-    int tectonTopLeftY(double coordY) {
-        return (int) (coordY * (size.getHeight() - tectonHeight));
-    }
-
     int tectonCenterX(double coordX) {
-        return (int) (coordX * (size.getWidth() - tectonWidth) + tectonWidth / 2);
+        return (int) (coordX * (size.getWidth() - tectonWidth) + (double) tectonWidth / 2);
     }
 
     int tectonCenterY(double coordY) {
-        return (int) (coordY * (size.getHeight() - tectonHeight) + tectonHeight / 2);
+        return (int) (coordY * (size.getHeight() - tectonHeight) + (double) tectonHeight / 2);
     }
 
     @Override
@@ -120,15 +105,4 @@ public class DrawVisitor implements GameObjectVisitor {
             }
         }
     }
-
-    @Override public void visit(SpeedingSpore spore) {  }
-    @Override public void visit(SlowingSpore spore) {  }
-    @Override public void visit(ParalyzingSpore spore) {  }
-    @Override public void visit(ClawParalyzingSpore spore) {  }
-    @Override public void visit(SplitterSpore spore) { }
-
-    @Override public void visit(Insect insect){}
-
-    @Override public void visit(MushroomThread thread){}
-    @Override public void visit(MushroomStem stem){}
 }
