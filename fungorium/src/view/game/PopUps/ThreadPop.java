@@ -1,5 +1,7 @@
 package view.game.PopUps;
 
+import controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,16 +26,14 @@ public class ThreadPop extends JPanel {
         threadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: meghívni a függvényt, kitalálni, hogy hova fog nőni
-                System.out.println("thread  Gomb lett megnyomva.");
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.GROW_THREAD);
             }
         });
 
         eatButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: meghívni a függvényt, kitalálni, hogy hova fog nőni
-                System.out.println("eat  Gomb lett megnyomva.");
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.EAT_INSECT);
             }
         });
 

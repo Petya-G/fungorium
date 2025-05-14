@@ -5,7 +5,20 @@ import view.View;
 import view.game.MapPanel;
 import view.game.contentpanel.ContentPanel;
 
+
 public class Controller {
+    private ButtonPressed selectedButton;
+
+    public enum ButtonPressed {
+        THROW_SPORE,
+        GROW_THREAD,
+        EAT_INSECT,
+        MOVE,
+        EAT,
+        CUT,
+        DEFAULT,
+    }
+
     private static Controller instance;
     private final Game game;
     private final MapPanel mapPanel;
@@ -40,4 +53,13 @@ public class Controller {
     public static ContentPanel getTectonContent() {
         return instance.contentPanel;
     }
+
+    public void handleButtonPress(ButtonPressed button) {
+        this.selectedButton = button;
+
+    }
+    public ButtonPressed getSelectedButton() {
+        return selectedButton;
+    }
+
 }

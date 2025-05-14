@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+import controller.Controller;
 import model.insect.Insect;
 import view.game.PopUps.InsectPop;
 
@@ -29,6 +30,10 @@ public class InsectButton extends GameButton {
                 popupMenu.add(popupPanel);
 
                 popupMenu.show(InsectButton.this, InsectButton.this.getWidth(), -20);
+
+                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.EAT_INSECT) {
+                    System.out.println("A Eat insect gomb van kiválasztva! Ezt a rovart akarom megenni");
+                }
             }
 
         };

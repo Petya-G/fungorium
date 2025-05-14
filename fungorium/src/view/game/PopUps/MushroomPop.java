@@ -1,5 +1,7 @@
 package view.game.PopUps;
 
+import controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,7 +28,7 @@ public class MushroomPop extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO: meghívni a függvényt, kitalálni, hogy hova fog dobni
-                System.out.println("spore Gomb lett megnyomva.");
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.THROW_SPORE);
             }
         });
 

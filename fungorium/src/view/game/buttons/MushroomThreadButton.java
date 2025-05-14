@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+import controller.Controller;
 import model.mushroom.MushroomThread;
 import view.game.PopUps.MushroomPop;
 import view.game.PopUps.ThreadPop;
@@ -31,6 +32,11 @@ public class MushroomThreadButton extends GameButton {
                 //popupMenu.setPopupSize(popupPanel.getPreferredSize());
 
                 popupMenu.show(MushroomThreadButton.this, MushroomThreadButton.this.getWidth(), -10);
+
+                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.CUT) {
+                    System.out.println("A Cut gomb van kiválasztva! Ezt a threadet akarom elvágni");
+                }
+
             }
 
         };

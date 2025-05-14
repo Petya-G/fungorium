@@ -1,5 +1,6 @@
 package view.game.buttons;
 
+import controller.Controller;
 import model.tecton.Tecton;
 import view.game.MapPanel;
 
@@ -22,6 +23,16 @@ public class TectonButton extends GameButton {
             @Override
             public void mousePressed(MouseEvent e) {
                 initialMousePoint = e.getPoint();
+
+                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.MOVE) {
+                    System.out.println("A MOVE gomb van kiválasztva! Erre  Tectonra akarok mozogni");
+                }
+                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.THROW_SPORE) {
+                    System.out.println("A Throw SPore gomb van kiválasztva! Erre  Tectonra akarok sporát dobni");
+                }
+                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.GROW_THREAD) {
+                    System.out.println("A Grow Thread gomb van kiválasztva! Erre  Tectonra akarok növeszteni threadet");
+                }
             }
 
             @Override
@@ -74,6 +85,8 @@ public class TectonButton extends GameButton {
     protected int CenterY(double coordY) {
         return (int) (coordY * (parent.getSize().getHeight() - 2 * size) + size);
     }
+
+
     //
 //        MouseAdapter mouseAdapter = new MouseAdapter() {
 //            @Override

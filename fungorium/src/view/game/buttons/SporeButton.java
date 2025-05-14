@@ -5,6 +5,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import controller.Controller;
 import model.mushroom.spore.Spore;
 
 public class SporeButton extends GameButton {
@@ -20,6 +22,10 @@ public class SporeButton extends GameButton {
             @Override
             public void mousePressed(MouseEvent e) {
                 initialMousePoint = e.getPoint();
+
+                if (Controller.getInstance().getSelectedButton() == Controller.ButtonPressed.EAT) {
+                    System.out.println("A Eat gomb van kiválasztva! Ezt a spórát akarom megenni");
+                }
             }
 
         };

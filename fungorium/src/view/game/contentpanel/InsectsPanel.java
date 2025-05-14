@@ -20,5 +20,7 @@ public class InsectsPanel extends BasePanel {
 
         NewObjectVisitor v = new NewObjectVisitor();
         tecton.getInsects().forEach(i -> i.accept(v));
+
     }
+
 }

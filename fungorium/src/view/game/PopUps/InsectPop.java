@@ -1,5 +1,7 @@
 package view.game.PopUps;
 
+import controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,23 +27,20 @@ public class InsectPop extends JPanel {
         moveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: meghívni a föggvényt, kitalálni, hogy hova fog mozogni
-                System.out.println("move Gomb lett megnyomva.");
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.MOVE);
             }
         });
 
         eatButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: meghívni a függvényt
-                System.out.println("eat Gomb lett megnyomva.");
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.EAT);
             }
         });
         cutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: meghívni a függvényt
-                System.out.println("cut Gomb lett megnyomva.");
+                Controller.getInstance().handleButtonPress(Controller.ButtonPressed.CUT);
             }
         });
 
