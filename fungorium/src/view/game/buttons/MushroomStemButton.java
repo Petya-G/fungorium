@@ -6,8 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import model.mushroom.MushroomStem;
-import view.game.InsecterPop;
-import view.game.MushroomerPop;
+import view.game.PopUps.MushroomPop;
 
 public class MushroomStemButton extends GameButton {
     public MushroomStem stem;
@@ -25,13 +24,13 @@ public class MushroomStemButton extends GameButton {
 
                 //TODO: megcsinálni, hogy csak akkor jelenjen meg ha gombász játszik és ha a saját gombájára kattint
 
-                MushroomerPop popupPanel = new MushroomerPop();
+                MushroomPop popupPanel = new MushroomPop();
                 JPopupMenu popupMenu = new JPopupMenu();
                 popupMenu.add(popupPanel);
 
                 //popupMenu.setPopupSize(popupPanel.getPreferredSize());
 
-                popupMenu.show(MushroomStemButton.this, MushroomStemButton.this.getWidth(), -10);
+                popupMenu.show(MushroomStemButton.this, MushroomStemButton.this.getWidth(), 0);
             }
 
         };

@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import model.insect.Insect;
-import view.game.InsecterPop;
+import view.game.PopUps.InsectPop;
 
 public class InsectButton extends GameButton {
     public Insect insect;
@@ -24,7 +24,7 @@ public class InsectButton extends GameButton {
 
                 //TODO: megcsinálni, hogy csak akkor jelenjen meg ha rovarász játszik és a saját rovarjára kattint
 
-                InsecterPop popupPanel = new InsecterPop();
+                InsectPop popupPanel = new InsectPop();
                 JPopupMenu popupMenu = new JPopupMenu();
                 popupMenu.add(popupPanel);
 

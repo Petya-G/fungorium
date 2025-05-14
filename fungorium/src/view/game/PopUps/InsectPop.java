@@ -1,12 +1,12 @@
-package view.game;
+package view.game.PopUps;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InsecterPop extends JPanel {
-    public InsecterPop() {
+public class InsectPop extends JPanel {
+    public InsectPop() {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(240, 240, 240));
