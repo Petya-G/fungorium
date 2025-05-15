@@ -3,12 +3,13 @@ package model.effect;
 import model.core.GameObject;
 import model.insect.Insect;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * A rovarokra érvényes hatások őse, absztrakt, nem példányosítható
  */
-public abstract class Effect extends GameObject {
+public abstract class Effect extends GameObject implements Serializable {
     int duration = 3;
 
     protected Effect() {

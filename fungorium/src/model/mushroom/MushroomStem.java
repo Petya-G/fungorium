@@ -1,6 +1,8 @@
 package model.mushroom;
 
 import controller.visitor.GameObjectVisitor;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import model.Game;
@@ -8,7 +10,7 @@ import model.core.Entity;
 import model.mushroom.spore.*;
 import model.tecton.Tecton;
 
-public class MushroomStem extends Entity {
+public class MushroomStem extends Entity implements Serializable {
 
     private boolean thrown = false;
     private int numThrownSpores = 0;

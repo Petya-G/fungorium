@@ -2,12 +2,13 @@ package model.core;
 
 import model.tecton.Tecton;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Absztrakt osztály, amely egy játékbeli entitást reprezentál
  */
-public abstract class Entity extends GameObject implements ITurn {
+public abstract class Entity extends GameObject implements ITurn, Serializable {
     /**
      * Az entitás tulajdonosa.
      */

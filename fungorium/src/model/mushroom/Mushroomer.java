@@ -7,6 +7,7 @@ import model.mushroom.spore.ISpore;
 import model.mushroom.spore.Spore;
 import model.tecton.Tecton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +19,7 @@ import controller.visitor.GameObjectVisitor;
  * A Mushroomer osztály egy játékost reprezentál, aki gombákat kezel.
  * A gombász képes spórákat, gombatesteket és gombafonalakat kezelni.
  */
-public class Mushroomer extends Player implements ISpore, IStem, IThread {
+public class Mushroomer extends Player implements ISpore, IStem, IThread, Serializable {
 
     static int IDCounter = 1;
 

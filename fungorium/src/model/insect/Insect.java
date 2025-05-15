@@ -1,6 +1,8 @@
 package model.insect;
 
 import controller.visitor.GameObjectVisitor;
+
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 import model.core.Entity;
@@ -15,7 +17,7 @@ import model.tecton.Tecton;
  * gombafonalakat elvágni.
  * A különböző spórák befolyásolják a képességeiket.
  */
-public class Insect extends Entity {
+public class Insect extends Entity implements Serializable {
     protected List<Effect> effects = new ArrayList<>();
     protected boolean paralyzed = false;
     protected boolean clawParalyzed = false;

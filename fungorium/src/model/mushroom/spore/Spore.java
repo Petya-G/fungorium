@@ -6,9 +6,10 @@ import model.effect.Effect;
 import model.mushroom.Mushroomer;
 import model.tecton.Tecton;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Spore extends Entity {
+public abstract class Spore extends Entity implements Serializable {
     protected int NUTRITION = 10; // A tápérték, ennyi pontot kap a rovar, mikor megeszi a spórát
     protected Effect effect; // A spóra rovarra gyakorolt hatása
 

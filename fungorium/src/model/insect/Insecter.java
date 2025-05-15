@@ -1,6 +1,8 @@
 package model.insect;
 
 import controller.visitor.GameObjectVisitor;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,7 +17,7 @@ import model.tecton.Tecton;
  * Ez az osztály implementálja az IInsect interfészt, hogy a játékos képes legyen spórákat enni,
  * mozogni és gombafonalakat elvágni.
  */
-public class Insecter extends Player implements IInsect {
+public class Insecter extends Player implements IInsect, Serializable {
     private List<Insect> insects = new ArrayList<>();
 
     static int IDCounter = 1;

@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 public class ButtonsPanel extends JPanel {
     SidebarButton endTurnButton = new SidebarButton("End Turn");
@@ -25,7 +27,10 @@ public class ButtonsPanel extends JPanel {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                /*Controller.resetGame();
                 Controller.getView().showPanel("mainMenu");
+                Controller.refreshView();*/
+                System.exit(0);
             }
         });
 
@@ -40,7 +45,20 @@ public class ButtonsPanel extends JPanel {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: megcsinálni
+                JFileChooser j = new JFileChooser();
+                j.showSaveDialog(null);
+
+                try {
+                    FileOutputStream file = new FileOutputStream(j.getSelectedFile());
+                    ObjectOutputStream out = new ObjectOutputStream(file);
+
+                    out.writeObject(Controller.getGame());
+
+                    out.close();
+                    file.close();
+                } catch (Exception exc) {
+                    System.out.println(exc);
+                }
             }
         });
     }

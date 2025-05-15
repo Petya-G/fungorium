@@ -1,12 +1,14 @@
 package model.mushroom;
 
 import controller.visitor.GameObjectVisitor;
+
+import java.io.Serializable;
 import java.util.*;
 import model.core.Entity;
 import model.insect.Insect;
 import model.tecton.Tecton;
 
-public class MushroomThread extends Entity {
+public class MushroomThread extends Entity implements Serializable {
 
     private static final int MAX_CUTOFF_DURATION = 2;
     private boolean eaten = false;

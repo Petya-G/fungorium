@@ -4,14 +4,16 @@ import java.awt.List;
 
 import model.Game;
 import model.core.GameObject;
-import view.View;
 import view.game.MapPanel;
 import view.game.contentpanel.ContentPanel;
 import view.*;
 import java.util.ArrayList;
+
+import controller.visitor.NewObjectVisitor;
+import model.tecton.*;
 public class Controller {
     private static Controller instance;
-    private final Game game;
+    private Game game;
     private final MapPanel mapPanel;
     private final ContentPanel contentPanel;
     private final View view;
@@ -43,6 +45,16 @@ public class Controller {
 
     public static Game getGame() {
         return instance.game;
+    }
+
+    public static void setGame(Game game) {
+        instance.game = game;
+        instance.mapPanel.setGame(game);
+
+        NewObjectVisitor v = new NewObjectVisitor();
+        for (Tecton t : game.getMap().tectons) {
+            t.accept(v);
+        }
     }
 
     public static View getView() {

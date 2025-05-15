@@ -11,13 +11,14 @@ import model.mushroom.*;
 import model.mushroom.spore.ISpore;
 import model.mushroom.spore.Spore;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * Tekton osztály, tárolja a hozzá tartozó gombatest, fonalakat, spórákat, rovarokat és szomszédos tektonokat.
  */
-public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread, IInsect {
+public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread, IInsect, Serializable {
     /**
      * Tektonon lévő gombatest.
      */

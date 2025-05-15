@@ -16,7 +16,7 @@ import view.game.contentpanel.ContentPanel;
 public class MapPanel extends JPanel {
     private final DrawVisitor drawVisitor = new DrawVisitor();
     public List<TectonButton> tectonButtons = new ArrayList<>();
-    private final Game game;
+    private Game game;
     private ContentPanel contentPanel;
 
     public MapPanel(Game game) {
@@ -54,5 +54,17 @@ public class MapPanel extends JPanel {
         tectonButton.addActionListener(contentPanel);
         revalidate();
         repaint();
+    }
+
+    /*public void clearMap() {
+        contentPanel.clear();
+        for (TectonButton b : tectonButtons) {
+            remove(b);
+        }
+        tectonButtons.clear();
+    }*/
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

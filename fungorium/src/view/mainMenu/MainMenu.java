@@ -3,7 +3,10 @@ package view.mainMenu;
 import controller.Controller;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -28,9 +31,28 @@ public class MainMenu extends JPanel {
         Dimension buttonSize = new Dimension(260, 50);
 
         add(new MenuButton("Load Game", buttonSize, e -> {
-            System.out.println("Todo: Load Game");
-            // TODO: Load game
-            Controller.refreshView();
+            //System.out.println("Todo: Load Game");
+            
+
+            JFileChooser j = new JFileChooser();
+            j.showOpenDialog(null);
+
+
+             try {
+                FileInputStream file = new FileInputStream(j.getSelectedFile());
+                ObjectInputStream in = new ObjectInputStream(file);
+
+                
+                Controller.setGame((model.Game) in.readObject());
+
+                in.close();
+                file.close();
+
+                Controller.getView().showPanel("gameView");
+                Controller.refreshView();
+            } catch (Exception exc) {
+                System.out.println(exc);
+            }
         }));
         add(Box.createVerticalStrut(20));
 

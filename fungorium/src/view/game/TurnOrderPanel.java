@@ -34,6 +34,9 @@ public class TurnOrderPanel extends JPanel implements IUpdateGUI {
 
     public void GUIupdate() {
         Game game = Controller.getGame();
+        if (game.getCurrentPlayer() == null)
+            return;
+
         String text = "[turn " + game.getTurn() + "] " +  game.getCurrentPlayer().getName();
 
         ImageIcon ii;

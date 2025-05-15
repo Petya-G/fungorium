@@ -84,4 +84,8 @@ public class ContentPanel extends JPanel implements ActionListener, IUpdateGUI {
             insectPanel.addPanel(tecton);
         }
     }
+
+    /*public void clear() {
+        tecton = null;
+    }*/
 }
