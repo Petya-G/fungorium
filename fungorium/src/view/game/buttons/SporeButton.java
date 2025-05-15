@@ -23,6 +23,7 @@ public class SporeButton extends GameButton {
                 if (SwingUtilities.isLeftMouseButton(e) && Controller.getAction() == Action.EAT) {
                     Controller.getGame().eat((Insect) Controller.getSelected(), spore);
                 }
+                Controller.refreshView();
             }
         };
 

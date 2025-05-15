@@ -31,6 +31,8 @@ public class MushroomStemButton extends GameButton {
                 if (SwingUtilities.isLeftMouseButton(e) && Controller.getAction() == Action.THROW_SPORE) {
                     Controller.getGame().throwSpore(stem, (Tecton)Controller.getSelected());
                 }
+
+                Controller.refreshView();
             }
         };
 

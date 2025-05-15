@@ -31,6 +31,8 @@ public class InsectButton extends GameButton {
                 if (SwingUtilities.isLeftMouseButton(e) && Controller.getAction() == Action.EAT_INSECT) {
                     Controller.getGame().eat((MushroomThread) Controller.getSelected(), insect);
                 }
+
+                Controller.refreshView();
             }
         };
 

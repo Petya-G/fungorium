@@ -30,24 +30,28 @@ public class MainMenu extends JPanel {
         add(new MenuButton("Load Game", buttonSize, e -> {
             System.out.println("Todo: Load Game");
             // TODO: Load game
+            Controller.refreshView();
         }));
         add(Box.createVerticalStrut(20));
 
         add(new MenuButton("Start New 4 Player Game", buttonSize, e -> {
             Controller.getGame().startGame(4);
             Controller.getView().showPanel("gameView");
+            Controller.refreshView();
         }));
         add(Box.createVerticalStrut(20));
 
         add(new MenuButton("Start New 6 Player Game", buttonSize, e -> {
             Controller.getGame().startGame(6);
             Controller.getView().showPanel("gameView");
+            Controller.refreshView();
         }));
         add(Box.createVerticalStrut(20));
 
         add(new MenuButton("Start New 8 Player Game", buttonSize, e -> {
             Controller.getGame().startGame(8);
             Controller.getView().showPanel("gameView");
+            Controller.refreshView();
         }));
 
         //TODO ki lehet venni, megjelenites teszt
@@ -55,6 +59,7 @@ public class MainMenu extends JPanel {
         add(new MenuButton("Start test game", buttonSize, e -> {
             Controller.getGame().startTestGame2();;
             Controller.getView().showPanel("gameView");
+            Controller.refreshView();
         }));
         
         add(Box.createVerticalStrut(20));

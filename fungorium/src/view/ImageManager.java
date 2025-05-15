@@ -1,5 +1,8 @@
 package view;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
@@ -7,9 +10,15 @@ import javax.swing.*;
 public class ImageManager {
     private static final Map<String, ImageIcon> icons = new HashMap<>();
 
-    private static final String BASE_PATH = "src/resources/icons/";
+    private static String BASE_PATH = "src/resources/icons/";
 
     static {
+
+        // VSCODE fix
+        if (!(new File(BASE_PATH).exists())) {
+            BASE_PATH = "fungorium/" + BASE_PATH;
+        }
+
         loadInsectImages();
         loadMushroomImages();
         loadSporeImages();

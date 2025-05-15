@@ -1,6 +1,7 @@
 package view.game.contentpanel;
 
 import model.tecton.Tecton;
+import view.IUpdateGUI;
 import view.game.buttons.GameButton;
 
 import javax.swing.*;

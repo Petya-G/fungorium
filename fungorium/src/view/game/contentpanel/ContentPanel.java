@@ -1,16 +1,20 @@
 package view.game.contentpanel;
 
 import model.tecton.Tecton;
+import view.IUpdateGUI;
 import view.game.buttons.TectonButton;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+
+import controller.Controller;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ContentPanel extends JPanel implements ActionListener {
+public class ContentPanel extends JPanel implements ActionListener, IUpdateGUI {
     private final StemsPanel stemsPanel = new StemsPanel();
     private final ThreadsPanel threadsPanel = new ThreadsPanel();
     private final SporesPanel sporesPanel = new SporesPanel();
@@ -28,6 +32,8 @@ public class ContentPanel extends JPanel implements ActionListener {
         add(sporesPanel);
         add(threadsPanel);
         add(insectPanel);
+
+        Controller.subscribeGUIUpdate(this);
     }
 
     private Border createTitledBorder(String title) {
@@ -50,12 +56,14 @@ public class ContentPanel extends JPanel implements ActionListener {
         return insectPanel;
     }
 
+    Tecton tecton = null;
+
     /*
      * Tectonra való klikkelést kezelő függvény
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        Tecton tecton = ((TectonButton) e.getSource()).tecton;
+        tecton = ((TectonButton) e.getSource()).tecton;
 
         ((TitledBorder) getBorder()).setTitle("Details (" + tecton.getName() + ")");
 
@@ -66,5 +74,14 @@ public class ContentPanel extends JPanel implements ActionListener {
 
         repaint();
         validate();
+    }
+
+    public void GUIupdate() {
+        if (tecton != null) {
+            threadsPanel.addPanel(tecton);
+            sporesPanel.addPanel(tecton);
+            stemsPanel.addPanel(tecton);
+            insectPanel.addPanel(tecton);
+        }
     }
 }
