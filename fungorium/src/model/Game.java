@@ -200,8 +200,14 @@ public class Game implements ITurn, IRound, Serializable {
      */
     public Player getCurrentPlayer() {
         if (!started) return null;
-        if (turn % 2 == 0) return mushroomers.get(turn % mushroomers.size());
-        else return insecters.get(turn % insecters.size());
+
+        if (turn % 2 == 0) {
+            int mturn = turn / 2;
+            return mushroomers.get(mturn % mushroomers.size());
+        } else {
+            int iturn = (turn-1)/2;
+            return insecters.get(iturn % insecters.size());
+        }
     }
 
     /**

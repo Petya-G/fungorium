@@ -32,7 +32,8 @@ public class ButtonsPanel extends JPanel {
         endTurnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: megcsinálni
+                Controller.getGame().endTurn();
+                Controller.refreshView();
             }
         });
 
