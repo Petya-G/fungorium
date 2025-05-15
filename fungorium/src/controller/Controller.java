@@ -46,10 +46,6 @@ public class Controller {
         return instance.contentPanel;
     }
 
-    public void handleAction(Action action) {
-        this.action = action;
-    }
-
     public static Action getAction() {
         return instance.action;
     }

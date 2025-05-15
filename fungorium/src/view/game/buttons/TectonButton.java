@@ -27,7 +27,7 @@ public class TectonButton extends GameButton {
             public void mousePressed(MouseEvent e) {
                 initialMousePoint = e.getPoint();
 
-                if (SwingUtilities.isRightMouseButton(e)) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
                     if (Controller.getAction() == Action.MOVE) {
                         Controller.getGame().move((Insect) Controller.getSelected(), tecton);
                     }
