@@ -76,6 +76,24 @@ public class TectonButton extends GameButton {
         addMouseMotionListener(mouseAdapter);
     }
 
+    private boolean hasHighlight = false;
+    public void highlight (boolean b) {
+        hasHighlight = b;
+        revalidate();
+        repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D)g;
+        if (hasHighlight) {
+            g.setColor(new Color(255,0,0));
+            g2d.setStroke(new BasicStroke(10));
+            g.drawRect(0, 0, size, size);
+        }
+    }
+
     public void refreshState() {
         setLocation(CenterX(tecton.getPosX()) - size / 2, CenterY(tecton.getPosY()) - size / 2);
     }

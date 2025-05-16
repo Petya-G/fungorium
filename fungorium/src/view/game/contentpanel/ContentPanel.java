@@ -57,12 +57,19 @@ public class ContentPanel extends JPanel implements ActionListener, IUpdateGUI {
     }
 
     Tecton tecton = null;
-
+    TectonButton tectonButton = null;
     /*
      * Tectonra való klikkelést kezelő függvény
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (tectonButton != null) {
+            tectonButton.highlight(false);
+        }
+        tectonButton = (TectonButton)e.getSource();
+        tectonButton.highlight(true);
+
         tecton = ((TectonButton) e.getSource()).tecton;
 
         ((TitledBorder) getBorder()).setTitle("Details (" + tecton.getName() + ")");
