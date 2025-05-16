@@ -132,6 +132,7 @@ public class Map implements IRound, Serializable {
         ArrayList<Tecton> tectonsClone = new ArrayList<>(tectons);
         tectonsClone.forEach(Tecton::endRound);
 
+        System.out.println("end of round. Splitting is [" + enableSplitting + "]");
         if (enableSplitting) {
             for (Tecton t : tectonsClone) {
                 if (Game.random.nextBoolean()) {

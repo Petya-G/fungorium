@@ -359,7 +359,7 @@ public class Game implements ITurn, IRound, Serializable {
         if (!started) return;
         getCurrentPlayer().endTurn();
         turn++;
-        if (turn % insecters.size() + mushroomers.size() == 0) {
+        if (turn % (insecters.size() + mushroomers.size()) == 0) {
             endRound();
         }
         if (turn == maxTurn) ended = true;

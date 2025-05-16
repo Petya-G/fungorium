@@ -136,8 +136,12 @@ public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread
         else if (rnd == 2) t = new ThreadConsumingTecton();
         else if (rnd == 3) t = new LifeSupportTecton();
 
-        for (Tecton n : neighbours)
-            if (Game.random.nextBoolean()) t.addNeighbour(n);
+        for (Tecton n : neighbours) {
+            if (Game.random.nextBoolean()) {
+                t.addNeighbour(n);
+                n.addNeighbour(t);
+            }
+        }
 
         threads.clear();
 
@@ -150,6 +154,11 @@ public class Tecton extends GameObject implements IRound, ISpore, IStem, IThread
 
         for (Insect i : insectsToMove)
             i.setLocation(t);
+
+        t.setPosX(Game.random.nextDouble(1));
+        t.setPosY(Game.random.nextDouble(1));
+
+        System.out.println("n: " + t.getNeighbours());
 
         return t;
     }
