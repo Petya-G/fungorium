@@ -20,7 +20,7 @@ import model.tecton.Tecton;
 public class Insecter extends Player implements IInsect, Serializable {
     private List<Insect> insects = new ArrayList<>();
 
-    static int IDCounter = 1;
+    static int IDCounter = 0;
     private final int insecterID;
 
     public Insecter() {
@@ -76,7 +76,8 @@ public class Insecter extends Player implements IInsect, Serializable {
      */
     @Override
     public void endTurn() {
-        insects.forEach(Insect::endTurn);
+        List<Insect> insects_copy = new ArrayList<Insect>(insects);
+        insects_copy.forEach(Insect::endTurn);
     }
 
     @Override

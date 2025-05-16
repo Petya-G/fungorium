@@ -83,16 +83,16 @@ public class DrawVisitor implements GameObjectVisitor {
                     for (MushroomThread thread2 : n.getThreads()) {
                         if (thread.getOwner().equals(thread2.getOwner())) {
                             switch (((Mushroomer) thread.getOwner()).getShroomerID()) {
-                                case 1:
+                                case 0:
                                     connectTectonsWithThread(n, tecton, new Color(0, 0, 255), 10);
                                     break;
-                                case 2:
+                                case 1:
                                     connectTectonsWithThread(n, tecton, new Color(0, 255, 0), -10);
                                     break;
-                                case 3:
+                                case 2:
                                     connectTectonsWithThread(n, tecton, new Color(255, 0, 0), 20);
                                     break;
-                                case 4:
+                                case 3:
                                     connectTectonsWithThread(n, tecton, new Color(255, 255, 0), -20);
                                     break;
 

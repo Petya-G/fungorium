@@ -21,7 +21,7 @@ import controller.visitor.GameObjectVisitor;
  */
 public class Mushroomer extends Player implements ISpore, IStem, IThread, Serializable {
 
-    static int IDCounter = 1;
+    static int IDCounter = 0;
 
     private final int shroomerID;
 
@@ -336,13 +336,15 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread, Serial
      */
     @Override
     public void endTurn() {
-        stems.forEach(MushroomStem::endTurn);
+        List<MushroomStem> stemsCopy = new ArrayList<MushroomStem>(stems);
+        stemsCopy.forEach(MushroomStem::endTurn);
 
         // concurrent modification fix
         ArrayList<MushroomThread> threadsCopy = new ArrayList<MushroomThread>(threads);
         threadsCopy.forEach(MushroomThread::endTurn);
 
-        spores.forEach(Entity::endTurn);
+        List<Spore> sporesCopy = new ArrayList<Spore>(spores);
+        sporesCopy.forEach(Entity::endTurn);
 
         grownThreadsThisTurn = 0;
     }
