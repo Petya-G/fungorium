@@ -344,7 +344,7 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread, Serial
         threadsCopy.forEach(MushroomThread::endTurn);
 
         List<Spore> sporesCopy = new ArrayList<Spore>(spores);
-        sporesCopy.forEach(Entity::endTurn);
+        sporesCopy.forEach(Spore::endTurn);
 
         grownThreadsThisTurn = 0;
     }

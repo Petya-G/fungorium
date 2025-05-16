@@ -30,14 +30,17 @@ public class TectonButton extends GameButton {
                 if (SwingUtilities.isLeftMouseButton(e)) {
                     if (Controller.getAction() == Action.MOVE) {
                         Controller.getGame().move((Insect) Controller.getSelected(), tecton);
+                        Controller.setAction(Action.NONE);
                     }
 
                     if (Controller.getAction() == Action.THROW_SPORE) {
                         Controller.getGame().throwSpore((MushroomStem) Controller.getSelected(), tecton);
+                        Controller.setAction(Action.NONE);
                     }
 
                     if (Controller.getAction() == Action.GROW_THREAD) {
                         Controller.getGame().growThread(tecton);
+                        Controller.setAction(Action.NONE);
                     }
                 }
                 Controller.refreshView();
