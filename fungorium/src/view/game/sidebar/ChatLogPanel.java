@@ -2,17 +2,21 @@ package view.game.sidebar;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+
+import controller.Controller;
+
 import java.awt.*;
 
 public class ChatLogPanel extends JPanel {
 
+    JTextArea chatLog;
     public ChatLogPanel() {
         setLayout(new BorderLayout());
         setBorder(createTitledBorder("Chat Log"));
         setBackground(Color.WHITE);
 
         // Create a scrollable, non-editable text area
-        JTextArea chatLog = new JTextArea(10, 20);
+        chatLog = new JTextArea(10, 20);
         chatLog.setEditable(false);
         chatLog.setBackground(new Color(245, 245, 245)); // Light gray background
         chatLog.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -21,6 +25,8 @@ public class ChatLogPanel extends JPanel {
         JScrollPane chatScrollPane = new JScrollPane(chatLog);
         chatScrollPane.setBorder(null); // Cleaner scroll pane style
         add(chatScrollPane, BorderLayout.CENTER);
+
+        Controller.setChatPanel(this);
     }
 
     // Helper method to create a titled border
@@ -29,5 +35,10 @@ public class ChatLogPanel extends JPanel {
                 BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(200, 200, 200)),
                 title
         );
+    }
+
+    public void addLine(String s) {
+        chatLog.append(s + "\n");
+        
     }
 }

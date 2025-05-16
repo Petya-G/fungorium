@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import controller.Controller;
 import model.core.*;
 import model.insect.Insect;
 import model.insect.Insecter;
@@ -348,7 +350,7 @@ public class Game implements ITurn, IRound, Serializable {
     public void endRound() {
         if (!started) return;
         map.endRound();
-        System.out.println("[ROUND OVER]");
+        Controller.log("[ROUND OVER]");
     }
 
     /**
@@ -357,11 +359,13 @@ public class Game implements ITurn, IRound, Serializable {
     @Override
     public void endTurn() {
         if (!started) return;
+        Controller.log("[TURN OVER]");
         getCurrentPlayer().endTurn();
         turn++;
         if (turn % (insecters.size() + mushroomers.size()) == 0) {
             endRound();
         }
+        Controller.log("Next turn: " + getCurrentPlayer().getName());
         if (turn == maxTurn) ended = true;
     }
 

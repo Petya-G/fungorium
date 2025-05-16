@@ -6,6 +6,7 @@ import model.Game;
 import model.core.GameObject;
 import view.game.MapPanel;
 import view.game.contentpanel.ContentPanel;
+import view.game.sidebar.ChatLogPanel;
 import view.*;
 import java.util.ArrayList;
 
@@ -20,6 +21,17 @@ public class Controller {
 
     private Action action;
     private GameObject selected;
+
+    private ChatLogPanel chatPanel = null;
+    public static void setChatPanel(ChatLogPanel p) {
+        instance.chatPanel = p;
+    }
+
+    public static void log(String s) {
+        if (instance.chatPanel != null) {
+            instance.chatPanel.addLine(s);
+        }
+    }
 
     public Controller() {
         instance = this;
