@@ -1,9 +1,5 @@
 package model;
 
-import java.io.Serializable;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import controller.Controller;
 import model.core.*;
 import model.insect.Insect;
@@ -13,6 +9,10 @@ import model.mushroom.MushroomThread;
 import model.mushroom.Mushroomer;
 import model.mushroom.spore.*;
 import model.tecton.Tecton;
+
+import java.io.Serializable;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A játékmenet kezeléséért felelős osztály, amely kezeli a köröket, a játékosokat
@@ -25,7 +25,7 @@ public class Game implements ITurn, IRound, Serializable {
     /**
      * Egy körben lejátszható lépések maximális száma.
      */
-    private final int maxTurn = 10;
+    private final int maxRound = 10;
     /**
      * A játékban résztvevő játékosok listája.
      */
@@ -48,6 +48,8 @@ public class Game implements ITurn, IRound, Serializable {
      */
     private int turn = 0;
 
+    private int round = 0;
+
     public Game() {
     }
 
@@ -69,7 +71,7 @@ public class Game implements ITurn, IRound, Serializable {
      * Elindítja a játékot, a started változó beállításával
      */
     public void startGame(int playerCount) {
-        if (started || playerCount < 0 || playerCount > 8 || playerCount % 2 != 0) return;
+        if (started || ended || playerCount < 0 || playerCount > 8 || playerCount % 2 != 0) return;
         started = true;
 
         map.generate(playerCount * 2);
@@ -82,7 +84,7 @@ public class Game implements ITurn, IRound, Serializable {
     }
 
     public boolean startTestGame() {
-        if (started) return false;
+        if (started || ended) return false;
         started = true;
 
         map.genTestMap();
@@ -128,12 +130,11 @@ public class Game implements ITurn, IRound, Serializable {
 
     public boolean startTestGame2() {
         //TODO ez megjelenites teszthez van, ki lehet venni 
-        if (started) return false;
+        if (started || ended) return false;
         started = true;
 
         map.genTestMap();
 
-        
 
         Mushroomer m1 = new Mushroomer(map.tectons.get(0));
         Mushroomer m2 = new Mushroomer(map.tectons.get(1));
@@ -145,12 +146,12 @@ public class Game implements ITurn, IRound, Serializable {
         Insecter i3 = new Insecter(map.tectons.get(1));
         Insecter i4 = new Insecter(map.tectons.get(1));
 
-         
+
         mushroomers.add(m1);
         mushroomers.add(m2);
         mushroomers.add(m3);
         mushroomers.add(m4);
-       
+
         insecters.add(i1);
         insecters.add(i2);
         insecters.add(i3);
@@ -207,7 +208,7 @@ public class Game implements ITurn, IRound, Serializable {
             int mturn = turn / 2;
             return mushroomers.get(mturn % mushroomers.size());
         } else {
-            int iturn = (turn-1)/2;
+            int iturn = (turn - 1) / 2;
             return insecters.get(iturn % insecters.size());
         }
     }
@@ -233,7 +234,7 @@ public class Game implements ITurn, IRound, Serializable {
      * @return true, ha a mozgás sikerült, különben false.
      */
     public boolean move(Insect insect, Tecton location) {
-        if (started && !hasCurrentTurn(insect)) return false;
+        if (started && !ended && !hasCurrentTurn(insect)) return false;
         return ((Insecter) insect.getOwner()).move(insect, location);
     }
 
@@ -245,7 +246,7 @@ public class Game implements ITurn, IRound, Serializable {
      * @return true, ha a művelet sikeres volt.
      */
     public boolean eat(Insect insect, Spore spore) {
-        if (started && !hasCurrentTurn(insect)) return false;
+        if (started && !ended && !hasCurrentTurn(insect)) return false;
         return ((Insecter) insect.getOwner()).eat(insect, spore);
     }
 
@@ -257,7 +258,7 @@ public class Game implements ITurn, IRound, Serializable {
      * @return true, ha a szeletelés sikeres.
      */
     public boolean cut(Insect insect, MushroomThread mushroomThread) {
-        if (started && !hasCurrentTurn(insect)) return false;
+        if (started && !ended && !hasCurrentTurn(insect)) return false;
         return ((Insecter) insect.getOwner()).cut(insect, mushroomThread);
 
     }
@@ -269,13 +270,13 @@ public class Game implements ITurn, IRound, Serializable {
      * @return true, ha az elhelyezés sikeres.
      */
     public boolean plantMushroomStem(Tecton location) {
-        if (started && turn % 2 == 0) return ((Mushroomer) getCurrentPlayer()).plantMushroomStem(location);
+        if (started && !ended && turn % 2 == 0) return ((Mushroomer) getCurrentPlayer()).plantMushroomStem(location);
         return false;
 
     }
 
     public boolean throwSpore(MushroomStem mushroomStem, Tecton location) {
-        if (started && !hasCurrentTurn(mushroomStem)) return false;
+        if (started && !ended && !hasCurrentTurn(mushroomStem)) return false;
         return ((Mushroomer) mushroomStem.getOwner()).throwSpore(mushroomStem, location);
     }
 
@@ -286,7 +287,7 @@ public class Game implements ITurn, IRound, Serializable {
      * @return true ha a növesztés sikeres.
      */
     public boolean growThread(Tecton location) {
-        if (started && turn % 2 == 0) return ((Mushroomer) getCurrentPlayer()).growMushroomThread(location);
+        if (started && !ended && turn % 2 == 0) return ((Mushroomer) getCurrentPlayer()).growMushroomThread(location);
         return false;
     }
 
@@ -298,7 +299,7 @@ public class Game implements ITurn, IRound, Serializable {
      * @return true, ha a támadás sikeres.
      */
     public boolean eat(MushroomThread mushroomThread, Insect insect) {
-        if (started && !hasCurrentTurn(mushroomThread)) return false;
+        if (started && !ended && !hasCurrentTurn(mushroomThread)) return false;
         return ((Mushroomer) mushroomThread.getOwner()).eat(mushroomThread, insect);
     }
 
@@ -309,7 +310,7 @@ public class Game implements ITurn, IRound, Serializable {
      * @return true, ha a fejlesztés sikeres.
      */
     public boolean levelUp(MushroomStem mushroomStem) {
-        if (started && !hasCurrentTurn(mushroomStem)) return false;
+        if (started && !ended && !hasCurrentTurn(mushroomStem)) return false;
         return ((Mushroomer) mushroomStem.getOwner()).levelUp(mushroomStem);
     }
 
@@ -334,7 +335,6 @@ public class Game implements ITurn, IRound, Serializable {
         map.tectons.forEach(t -> gameObject.addAll(t.getThreads()));
         map.tectons.forEach(t -> gameObject.addAll(t.getInsects()));
 
-        //return gameObject.stream().filter(i -> i.getId() == id).findFirst().orElse(null);
         for (GameObject obj : gameObject) {
             if (obj.getId() == id) {
                 return obj;
@@ -348,7 +348,7 @@ public class Game implements ITurn, IRound, Serializable {
      */
     @Override
     public void endRound() {
-        if (!started) return;
+        if (!started || ended) return;
         map.endRound();
         Controller.log("[ROUND OVER]");
     }
@@ -358,15 +358,20 @@ public class Game implements ITurn, IRound, Serializable {
      */
     @Override
     public void endTurn() {
-        if (!started) return;
+        if (!started || ended) return;
         Controller.log("[TURN OVER]");
         getCurrentPlayer().endTurn();
         turn++;
+
         if (turn % (insecters.size() + mushroomers.size()) == 0) {
+            round++;
             endRound();
+            Controller.log("[ROUND OVER]");
         }
-        Controller.log("Next turn: " + getCurrentPlayer().getName());
-        if (turn == maxTurn) ended = true;
+
+        if (round == maxRound) ended = true;
+
+        if (!ended) Controller.log("Next turn: " + getCurrentPlayer().getName());
     }
 
     @Override
@@ -379,11 +384,11 @@ public class Game implements ITurn, IRound, Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), map, maxTurn, ended, insecters, mushroomers, turn);
+        return Objects.hash(super.hashCode(), map, maxRound, ended, insecters, mushroomers, turn);
     }
 
     @Override
     public String toString() {
-        return ", maxTurn=" + maxTurn + ", started=" + ended + ", ended=" + ended + ", turn=" + turn + ", mushroomers=[" + mushroomers.stream().map(Player::getName).collect(Collectors.joining(", ")) + "]" + ", insecters=[" + insecters.stream().map(Player::getName).collect(Collectors.joining(", ")) + "]" + ", map=" + map.toString();
+        return ", maxRound=" + maxRound + ", started=" + ended + ", ended=" + ended + ", turn=" + turn + ", mushroomers=[" + mushroomers.stream().map(Player::getName).collect(Collectors.joining(", ")) + "]" + ", insecters=[" + insecters.stream().map(Player::getName).collect(Collectors.joining(", ")) + "]" + ", map=" + map;
     }
 }
