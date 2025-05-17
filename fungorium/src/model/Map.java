@@ -135,7 +135,7 @@ public class Map implements IRound, Serializable {
         System.out.println("end of round. Splitting is [" + enableSplitting + "]");
         if (enableSplitting) {
             for (Tecton t : tectonsClone) {
-                if (Game.random.nextBoolean()) {
+                if (Game.random.nextInt(5) < 1) {
                     add(t.split());
                 }
             }

@@ -2,6 +2,7 @@ package view.game.popup;
 
 import controller.Action;
 import controller.Controller;
+import model.Game;
 import model.core.GameObject;
 
 import javax.swing.*;
