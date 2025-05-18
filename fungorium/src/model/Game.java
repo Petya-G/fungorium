@@ -369,7 +369,10 @@ public class Game implements ITurn, IRound, Serializable {
             Controller.log("[ROUND OVER]");
         }
 
-        if (round == maxRound) ended = true;
+        if (round == maxRound) {
+            Controller.getView().showPanel("winnerView");
+            ended = true;
+        }
 
         if (!ended) Controller.log("Next turn: " + getCurrentPlayer().getName());
     }
