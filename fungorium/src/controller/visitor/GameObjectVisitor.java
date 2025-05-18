@@ -11,22 +11,110 @@ import model.mushroom.spore.SpeedingSpore;
 import model.mushroom.spore.SplitterSpore;
 import model.tecton.*;
 
+/**
+ * A látogató (Visitor) minta interfésze, amely lehetővé teszi
+ * különböző típusú játékelemek meglátogatását és kezelését.
+ *
+ * Ez az interfész alapértelmezett (üres) implementációkat biztosít,
+ * így csak a szükséges metódusokat kell felüldefiniálni.
+ */
 public interface GameObjectVisitor {
-    default void visit(GameObject gameObject){}
-    default void visit(LifeSupportTecton lifeSupportTecton){}
-    default void visit(SingleThreadedTecton singleThreadedTecton){}
-    default void visit(StemlessTecton stemlessTecton){}
-    default void visit(Tecton tecton){}
-    default void visit(ThreadConsumingTecton threadConsumingTecton){}
 
-    default void visit(SpeedingSpore spore){}
-    default void visit(SlowingSpore spore){}
-    default void visit(ParalyzingSpore spore){}
-    default void visit(ClawParalyzingSpore spore){}
-    default void visit(SplitterSpore spore){}
+    /**
+     * Általános játékelem meglátogatása.
+     *
+     * @param gameObject a meglátogatott játékelem
+     */
+    default void visit(GameObject gameObject) {}
 
-    default void visit(Insect insect){}
+    /**
+     * Életfenntartó tecton meglátogatása.
+     *
+     * @param lifeSupportTecton a meglátogatott objektum
+     */
+    default void visit(LifeSupportTecton lifeSupportTecton) {}
 
-    default void visit(MushroomThread thread){}
-    default void visit(MushroomStem stem){}
+    /**
+     * Egy szálon futó tecton meglátogatása.
+     *
+     * @param singleThreadedTecton a meglátogatott objektum
+     */
+    default void visit(SingleThreadedTecton singleThreadedTecton) {}
+
+    /**
+     * Törzs nélküli tecton meglátogatása.
+     *
+     * @param stemlessTecton a meglátogatott objektum
+     */
+    default void visit(StemlessTecton stemlessTecton) {}
+
+    /**
+     * Általános tecton meglátogatása.
+     *
+     * @param tecton a meglátogatott objektum
+     */
+    default void visit(Tecton tecton) {}
+
+    /**
+     * Szálakat fogyasztó tecton meglátogatása.
+     *
+     * @param threadConsumingTecton a meglátogatott objektum
+     */
+    default void visit(ThreadConsumingTecton threadConsumingTecton) {}
+
+    /**
+     * Sebességnövelő spóra meglátogatása.
+     *
+     * @param spore a meglátogatott spóra
+     */
+    default void visit(SpeedingSpore spore) {}
+
+    /**
+     * Lassító spóra meglátogatása.
+     *
+     * @param spore a meglátogatott spóra
+     */
+    default void visit(SlowingSpore spore) {}
+
+    /**
+     * Bénító spóra meglátogatása.
+     *
+     * @param spore a meglátogatott spóra
+     */
+    default void visit(ParalyzingSpore spore) {}
+
+    /**
+     * Karmos bénító spóra meglátogatása.
+     *
+     * @param spore a meglátogatott spóra
+     */
+    default void visit(ClawParalyzingSpore spore) {}
+
+    /**
+     * Osztódó spóra meglátogatása.
+     *
+     * @param spore a meglátogatott spóra
+     */
+    default void visit(SplitterSpore spore) {}
+
+    /**
+     * Rovar meglátogatása.
+     *
+     * @param insect a meglátogatott rovar
+     */
+    default void visit(Insect insect) {}
+
+    /**
+     * Gombaszál meglátogatása.
+     *
+     * @param thread a meglátogatott szál
+     */
+    default void visit(MushroomThread thread) {}
+
+    /**
+     * Gombatörzs meglátogatása.
+     *
+     * @param stem a meglátogatott törzs
+     */
+    default void visit(MushroomStem stem) {}
 }
