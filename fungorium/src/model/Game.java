@@ -299,7 +299,9 @@ public class Game implements ITurn, IRound, Serializable {
      * @return true, ha a támadás sikeres.
      */
     public boolean eat(MushroomThread mushroomThread, Insect insect) {
+        Controller.log("eat insect with thread");
         if (started && !ended && !hasCurrentTurn(mushroomThread)) return false;
+        Controller.log("eat insect with thread 2");
         return ((Mushroomer) mushroomThread.getOwner()).eat(mushroomThread, insect);
     }
 

@@ -3,6 +3,7 @@ package model.mushroom;
 import controller.visitor.GameObjectVisitor;
 
 import java.io.Serializable;
+import java.lang.ModuleLayer.Controller;
 import java.util.*;
 import model.core.Entity;
 import model.insect.Insect;
@@ -86,7 +87,9 @@ public class MushroomThread extends Entity implements Serializable {
      * @return {@code true}, hogyha meg tudta enni a rovart, egyébként {@code false}
      */
     public boolean eat(Insect insect) {
+        //controller.Controller.log("asdasd " + insect.isParalyzed());
         if (!cutOff && insect.isParalyzed()) {
+            //controller.Controller.log("asd2");
             insect.remove();
             eaten = true;
             return true;
