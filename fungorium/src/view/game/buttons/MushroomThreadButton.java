@@ -32,7 +32,11 @@ public class MushroomThreadButton extends GameButton {
                 }
 
                 if (SwingUtilities.isLeftMouseButton(e) && Controller.getAction() == Action.CUT) {
-                    Controller.getGame().cut((Insect) Controller.getSelected(), thread);
+                    if (Controller.getGame().cut((Insect) Controller.getSelected(), thread)) {
+                        Controller.log("thread successfully cut");
+                    } else {
+                        Controller.log("unable to cut thread");
+                    }
                     Controller.setAction(Action.NONE);
                 }
 

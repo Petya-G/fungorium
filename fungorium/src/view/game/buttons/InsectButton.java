@@ -34,8 +34,11 @@ public class InsectButton extends GameButton {
                 }
 
                 if (SwingUtilities.isLeftMouseButton(e) && Controller.getAction() == Action.EAT_INSECT) {
-                    Controller.log("menu insect eat clicked");
-                    Controller.getGame().eat((MushroomThread) Controller.getSelected(), insect);
+                    if (Controller.getGame().eat((MushroomThread) Controller.getSelected(), insect)) {
+                        Controller.log("insect successfully eaten");
+                    } else {
+                        Controller.log("unable to eat insect");
+                    }
                     Controller.setAction(Action.NONE);
                 }
                 

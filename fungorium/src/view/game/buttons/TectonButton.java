@@ -29,17 +29,29 @@ public class TectonButton extends GameButton {
 
                 if (SwingUtilities.isLeftMouseButton(e)) {
                     if (Controller.getAction() == Action.MOVE) {
-                        Controller.getGame().move((Insect) Controller.getSelected(), tecton);
+                        if (Controller.getGame().move((Insect) Controller.getSelected(), tecton)) {
+                            Controller.log("moved successfully");
+                        } else {
+                            Controller.log("unable to move");
+                        }
                         Controller.setAction(Action.NONE);
                     }
 
                     if (Controller.getAction() == Action.THROW_SPORE) {
-                        Controller.getGame().throwSpore((MushroomStem) Controller.getSelected(), tecton);
+                        if (Controller.getGame().throwSpore((MushroomStem) Controller.getSelected(), tecton)) {
+                            Controller.log("spore succesfully thrown");
+                        } else {
+                            Controller.log("unable to throw spore");
+                        }
                         Controller.setAction(Action.NONE);
                     }
 
                     if (Controller.getAction() == Action.GROW_THREAD) {
-                        Controller.getGame().growThread(tecton);
+                        if (Controller.getGame().growThread(tecton)) {
+                            Controller.log("thread grown successfully");
+                        } else {
+                            Controller.log("unable to grow thread");
+                        }
                         Controller.setAction(Action.NONE);
                     }
                 }
