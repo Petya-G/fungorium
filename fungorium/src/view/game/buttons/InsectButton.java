@@ -24,7 +24,7 @@ public class InsectButton extends GameButton {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
-                    if(game.getCurrentPlayer() == insect.getOwner()) {
+                    if(game.getCurrentPlayer() == insect.getOwner() && insect.getBaseSpeed() > 0) {
                         InsectPop popupPanel = new InsectPop(insect);
                         JPopupMenu popupMenu = new JPopupMenu();
                         popupMenu.add(popupPanel);

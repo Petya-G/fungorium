@@ -213,6 +213,7 @@ public class Insect extends Entity implements Serializable {
         if (paralyzed || distance == -1 || distance > baseSpeed * speedModifier)
             return false;
 
+        baseSpeed -= distance;
         setLocation(targetTecton);
         return true;
     }
