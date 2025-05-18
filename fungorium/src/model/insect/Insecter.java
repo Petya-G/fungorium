@@ -194,6 +194,12 @@ public class Insecter extends Player implements IInsect, Serializable {
         return Objects.equals(insects, insecter.insects);
     }
 
+
+    
+    /**
+     * visszaadja a Insecter nevét (Insecter_[insecterID] formában)
+     * @return A Insecter neve
+     */
     @Override
     public String getName()
     {

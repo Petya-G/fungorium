@@ -15,6 +15,8 @@ public class TurnOrderPanel extends JPanel implements IUpdateGUI {
 
     JLabel gameInfoLabel;
     JLabel img;
+
+    /** Konstruktor, inicializálja a TurnOrderPanel-t */
     public TurnOrderPanel() {
         setLayout(new FlowLayout());
         setBackground(Color.WHITE);
