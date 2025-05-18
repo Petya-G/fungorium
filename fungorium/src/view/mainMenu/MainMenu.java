@@ -28,7 +28,7 @@ public class MainMenu extends JPanel {
 
         add(Box.createVerticalStrut(300));
 
-        Dimension buttonSize = new Dimension(260, 50);
+        Dimension buttonSize = new Dimension(360, 50);
 
         add(new MenuButton("Load Game", buttonSize, e -> {
             //System.out.println("Todo: Load Game");

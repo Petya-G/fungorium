@@ -25,6 +25,8 @@ public class View extends JFrame {
         this.mapPanel = mapPanel;
         winnerView = new WinnerView();
 
+
+        setIconImage(ImageManager.getIcon("mushroom_stem_3").getImage());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1280, 720);
         setLocationRelativeTo(null);
