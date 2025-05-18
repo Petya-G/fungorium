@@ -378,6 +378,11 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread, Serial
         return Objects.hash(super.hashCode(), spores, stems, threads, grownThreadsThisTurn);
     }
 
+
+    /**
+     * visszaadja a Mushroomer nevét (Mushroomer_[shroomerID] formában)
+     * @return A Mushroomer neve
+     */
     @Override
     public String getName()
     {
