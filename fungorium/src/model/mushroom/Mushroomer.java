@@ -379,6 +379,13 @@ public class Mushroomer extends Player implements ISpore, IStem, IThread, Serial
     }
 
     @Override
+    public String getName()
+    {
+        return getClass().getSimpleName() + "_" + shroomerID;
+    }
+
+
+    @Override
     public String toString() {
         return super.toString()
                 + " stems=[" + stems.stream().map(MushroomStem::getName).collect(Collectors.joining(", ")) + "], "

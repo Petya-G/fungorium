@@ -195,6 +195,12 @@ public class Insecter extends Player implements IInsect, Serializable {
     }
 
     @Override
+    public String getName()
+    {
+        return getClass().getSimpleName() + "_" + insecterID;
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), insects);
     }

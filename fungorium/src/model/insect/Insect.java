@@ -257,7 +257,7 @@ public class Insect extends Entity implements Serializable {
      */
     @Override
     public void endTurn() {
-        List<Effect> endingEffects = effects.stream().filter(e -> e.getDuration() == 1).toList();
+        List<Effect> endingEffects = effects.stream().filter(e -> e.getDuration() < 1).toList();
         effects.removeAll(endingEffects);
         effects.forEach(e -> e.apply(this));
     }
