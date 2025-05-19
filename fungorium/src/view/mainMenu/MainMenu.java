@@ -84,7 +84,7 @@ public class MainMenu extends JPanel {
             Controller.refreshView();
         }));
         add(Box.createVerticalStrut(20));
-
+/*
         // Tesztjáték (ideiglenes funkció)
         add(new MenuButton("Start test game", buttonSize, e -> {
             Controller.getGame().startTestGame2();
@@ -92,7 +92,7 @@ public class MainMenu extends JPanel {
             Controller.refreshView();
         }));
         add(Box.createVerticalStrut(20));
-
+*/
         // Kilépés gomb
         add(new MenuButton("Exit Game", buttonSize, e -> {
             System.exit(0);
