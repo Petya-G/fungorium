@@ -3,6 +3,8 @@ package view;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -24,15 +26,10 @@ public class ImageManager {
     private static final Map<String, ImageIcon> icons = new HashMap<>();
 
     /** Az alapértelmezett fájlrendszerbeli képútvonal. */
-    private static String BASE_PATH = "src/resources/icons/";
+    private static String BASE_PATH = "/resources/icons/";
 
     // Statikus inicializálás: összes kép betöltése induláskor
     static {
-        // VSCode kompatibilitási javítás – ha nem találja a mappát, alternatív útvonalat próbál
-        if (!(new File(BASE_PATH).exists())) {
-            BASE_PATH = "fungorium/" + BASE_PATH;
-        }
-
         loadInsectImages();
         loadMushroomImages();
         loadSporeImages();
@@ -93,7 +90,7 @@ public class ImageManager {
      */
     private static ImageIcon loadIcon(String path) {
         try {
-            return new ImageIcon(path);
+            return new ImageIcon(ImageIO.read(Objects.requireNonNull(ImageManager.class.getResource(path))));
         } catch (Exception e) {
             System.err.println("Image not found: " + path);
             return null;

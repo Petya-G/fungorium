@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Objects;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class MainMenu extends JPanel {
      */
     public MainMenu() {
         try {
-            backgroundImage = ImageIO.read(getClass().getResource("/resources/icons/menu/MainMenu2.png"));
+            backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/icons/menu/MainMenu2.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
